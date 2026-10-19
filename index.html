@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Привет SIM — eSIM для путешествий в 190+ стран</title>
+  <meta name="description" content="Мобильный интернет за границей без роуминга и пластика. Установите eSIM за день до вылета — интернет включится сразу после посадки. Цена в рублях, оплата по СБП.">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Привет SIM — eSIM для путешествий">
+  <meta property="og:description" content="Интернет за границей с трапа самолёта. 190+ стран, цена в рублях, установка за 2 минуты.">
+  <meta property="og:image" content="assets/photos/cap.jpg">
+  <meta property="og:locale" content="ru_RU">
+
+  <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- ============ Шапка ============ -->
+  <header class="header" id="top">
+    <div class="container header__row">
+      <a class="logo" href="#top" aria-label="Привет SIM — на главную">
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"/><circle cx="13.5" cy="15.5" r="3.2" fill="#fff"/><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"/><path d="M11 23.5c2.5 7 15.5 7 18 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+        <span class="logo__word">Привет</span><span class="logo__tag">SIM</span>
+      </a>
+
+      <nav class="nav" aria-label="Основное меню">
+        <a href="#countries">Страны</a>
+        <a href="#how">Как это работает</a>
+        <a href="#why">Почему eSIM</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="btn btn--primary btn--md header__cta" href="#countries">Купить eSIM</a>
+        <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Меню на телефоне (вне шапки: у шапки backdrop-filter, он обрезал бы fixed-элемент) -->
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav class="mobile-menu__nav" aria-label="Мобильное меню">
+      <a href="#countries">Страны и цены</a>
+      <a href="#how">Как это работает</a>
+      <a href="#why">Почему eSIM</a>
+      <a href="#compat">Подходит ли телефон</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="mobile-menu__foot">
+      <a class="btn btn--primary btn--lg btn--block" href="#countries">Выбрать страну <span aria-hidden="true">→</span></a>
+      <a class="btn btn--secondary btn--lg btn--block" data-link="bot" href="#">Открыть Telegram-бота</a>
+      <p class="mobile-menu__note">Поддержка 24/7 · отвечаем моментально</p>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ============ Первый экран ============ -->
+    <section class="hero">
+      <svg class="hero__route" viewBox="0 0 1440 640" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-40 520 C 240 120, 520 80, 720 220 S 1180 520, 1480 140" />
+      </svg>
+
+      <figure class="hero__pin hero__pin--left">
+        <img src="assets/photos/cap.jpg" alt="" width="640" height="480" loading="eager">
+        <figcaption><img src="assets/flags/tr.svg" alt="" width="16" height="16">Каппадокия</figcaption>
+      </figure>
+      <figure class="hero__pin hero__pin--right">
+        <img src="assets/photos/th.jpg" alt="" width="640" height="480" loading="eager">
+        <figcaption><img src="assets/flags/th.svg" alt="" width="16" height="16">Таиланд</figcaption>
+      </figure>
+      <span class="hero__flag hero__flag--a"><img src="assets/flags/fr.svg" alt="" width="40" height="40"></span>
+      <span class="hero__flag hero__flag--b"><img src="assets/flags/jp.svg" alt="" width="40" height="40"></span>
+
+      <div class="container hero__inner">
+        <p class="label hero__label"><span class="dot dot--coral" aria-hidden="true"></span>eSIM для путешествий · 190+ стран</p>
+
+        <h1 class="hero__title">
+          Интернет в <span class="rotator" aria-hidden="true"><span class="rotator__word">Стамбуле</span></span><span class="sr-only">Стамбуле, Бангкоке, Тбилиси, Дубае и Токио</span>
+          <br class="br-desk"> с&nbsp;трапа самолёта
+        </h1>
+
+        <p class="hero__lead">Мобильный интернет за&nbsp;границей без роуминга и&nbsp;пластика. Установите eSIM за&nbsp;день до&nbsp;вылета&nbsp;— включится сразу после посадки.</p>
+
+        <form class="search" role="search" data-search>
+          <label class="sr-only" for="search-hero">Куда едете?</label>
+          <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="search__input" id="search-hero" type="search" autocomplete="off" placeholder="Например, Турция" aria-autocomplete="list" aria-controls="search-hero-list" aria-expanded="false">
+          <button class="btn btn--primary btn--md search__btn" type="submit" aria-label="Найти"><span class="search__btn-text">Найти</span> <span aria-hidden="true">→</span></button>
+          <ul class="search__list" id="search-hero-list" role="listbox" hidden></ul>
+        </form>
+
+        <ul class="chips" aria-label="Популярные направления">
+          <li><a class="chip" data-buy="tr" href="#"><img src="assets/flags/tr.svg" alt="" width="20" height="20">Турция</a></li>
+          <li><a class="chip" data-buy="ae" href="#"><img src="assets/flags/ae.svg" alt="" width="20" height="20">ОАЭ</a></li>
+          <li><a class="chip" data-buy="th" href="#"><img src="assets/flags/th.svg" alt="" width="20" height="20">Таиланд</a></li>
+          <li><a class="chip" data-buy="ge" href="#"><img src="assets/flags/ge.svg" alt="" width="20" height="20">Грузия</a></li>
+          <li><a class="chip" data-buy="eu" href="#"><img src="assets/flags/eu.svg" alt="" width="20" height="20">Европа</a></li>
+        </ul>
+
+        <ul class="facts">
+          <li><b class="mono">190+</b><span>стран и регионов</span></li>
+          <li><b class="mono">₽</b><span>цена заранее, без доплат</span></li>
+          <li><b class="mono">2 мин</b><span>установка по QR-коду</span></li>
+          <li><b class="mono">24/7</b><span>поддержка в Telegram</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ Направления ============ -->
+    <section class="section" id="countries">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="label">Популярные направления</p>
+            <h2>Куда летим?</h2>
+          </div>
+          <div class="segment" role="tablist" aria-label="Тип пакета">
+            <button class="segment__btn is-active" type="button" role="tab" aria-selected="true" data-tab="country">Страны</button>
+            <button class="segment__btn" type="button" role="tab" aria-selected="false" data-tab="region">Регионы</button>
+          </div>
+        </div>
+
+        <div class="cards" data-cards aria-live="polite"></div>
+
+        <div class="section__more">
+          <a class="btn btn--secondary btn--lg" data-link="all" href="#">Все 190+ стран и регионов <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Как это работает ============ -->
+    <section class="section section--tint" id="how">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <p class="label">Как это работает</p>
+          <h2>4 шага — и&nbsp;вы на&nbsp;связи</h2>
+          <p class="section__lead">Весь путь от&nbsp;выбора страны до&nbsp;QR-кода занимает около минуты.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__node mono">01</span>
+            <h3 class="step__title">Выберите страну и&nbsp;пакет</h3>
+            <p>Объём, срок и&nbsp;покрытие на&nbsp;одной странице. Итоговая цена в&nbsp;рублях видна сразу.</p>
+          </li>
+          <li class="step">
+            <span class="step__node mono">02</span>
+            <h3 class="step__title">Оплатите по&nbsp;СБП</h3>
+            <p>Из приложения любого банка. QR-код и&nbsp;квитанция придут на&nbsp;email.</p>
+          </li>
+          <li class="step">
+            <span class="step__node mono">03</span>
+            <h3 class="step__title">Установите eSIM накануне</h3>
+            <p>Пока есть Wi-Fi дома — около 2&nbsp;минут. Обычная SIM остаётся в&nbsp;телефоне.</p>
+          </li>
+          <li class="step step--dest">
+            <span class="step__node mono">04</span>
+            <h3 class="step__title">Приземлитесь — и&nbsp;вы на&nbsp;связи</h3>
+            <p>Включите «Роуминг данных» для линии Привет SIM. Такси, карты и&nbsp;мессенджеры — сразу.</p>
+          </li>
+        </ol>
+
+        <div class="section__more">
+          <a class="btn btn--primary btn--lg" href="#countries">Выбрать страну <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Почему eSIM ============ -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="label">Почему eSIM, а&nbsp;не&nbsp;роуминг</p>
+            <h2>Думайте о&nbsp;поездке, а&nbsp;не&nbsp;о&nbsp;связи</h2>
+          </div>
+        </div>
+
+        <div class="bento">
+          <article class="tile">
+            <p class="label">01 · Две линии в&nbsp;одном телефоне</p>
+            <h3>Ваш номер остаётся с&nbsp;вами</h3>
+            <p class="tile__text">Обычная SIM не&nbsp;вынимается: SMS от&nbsp;банка приходят как раньше, а&nbsp;интернет идёт через eSIM.</p>
+            <div class="mock mock--lines" aria-hidden="true">
+              <div class="mock__row"><span class="mock__ava">P</span><span><b>Основной</b><small>Звонки и SMS</small></span><i class="toggle is-on"></i></div>
+              <div class="mock__row"><span class="mock__ava mock__ava--blue">S</span><span><b>Привет SIM</b><small>Мобильный интернет · 5G</small></span><i class="toggle is-on"></i></div>
+            </div>
+          </article>
+
+          <article class="tile">
+            <p class="label">02 · Пополнение</p>
+            <h3>Гигабайты — без новой eSIM</h3>
+            <p class="tile__text">Закончился трафик? Докупите пакет в&nbsp;боте — на&nbsp;ту&nbsp;же eSIM, переустанавливать ничего не&nbsp;нужно.</p>
+            <div class="mock mock--topup" aria-hidden="true">
+              <span><img src="assets/flags/tr.svg" alt="" width="20" height="20"> Турция · 5&nbsp;ГБ</span>
+              <b class="mono">+5 ГБ</b>
+            </div>
+          </article>
+
+          <article class="tile">
+            <p class="label">03 · Только email</p>
+            <h3>Без паспорта и&nbsp;договоров</h3>
+            <p class="tile__text">На&nbsp;почту придут QR-код, инструкция и&nbsp;чек. Никаких салонов связи и&nbsp;очередей.</p>
+            <div class="mock mock--field" aria-hidden="true">
+              <small>Email</small>
+              <span>name@mail.ru</span>
+            </div>
+          </article>
+
+          <article class="tile tile--dark">
+            <p class="label">04 · Поддержка 24/7</p>
+            <h3>Ответ моментально, оператор — за&nbsp;5&nbsp;минут</h3>
+            <p class="tile__text">В&nbsp;Telegram отвечаем круглосуточно. Если вопрос сложный, подключится живой оператор.</p>
+            <div class="mock mock--chat" aria-hidden="true">
+              <p class="bubble bubble--in">Приземлился в&nbsp;Анталье, а&nbsp;интернета нет</p>
+              <p class="bubble bubble--out">Включите «Роуминг данных» для линии Привет SIM: Настройки → Сотовая связь</p>
+              <p class="bubble bubble--in">Заработало, спасибо!</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="compare" role="list">
+          <div class="compare__col" role="listitem">
+            <h3>Роуминг оператора</h3>
+            <ul>
+              <li class="no">Дорогие мегабайты, сумма — после поездки</li>
+              <li class="no">Легко выйти за&nbsp;пакет и&nbsp;не&nbsp;заметить</li>
+            </ul>
+          </div>
+          <div class="compare__col" role="listitem">
+            <h3>Местная SIM-карта</h3>
+            <ul>
+              <li class="no">Поиск салона, очередь и&nbsp;паспорт</li>
+              <li class="no">Основную SIM приходится вынимать</li>
+            </ul>
+          </div>
+          <div class="compare__col compare__col--best" role="listitem">
+            <h3><span class="dot dot--coral" aria-hidden="true"></span>Привет SIM</h3>
+            <ul>
+              <li class="yes">Цена заранее, в&nbsp;рублях</li>
+              <li class="yes">Установка дома, интернет — сразу после посадки</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Telegram + совместимость ============ -->
+    <section class="section section--tight">
+      <div class="container duo">
+        <article class="panel panel--dark">
+          <div class="panel__body">
+            <p class="label">Telegram-бот и&nbsp;Mini App</p>
+            <h2 class="h3">Всё то&nbsp;же — в&nbsp;Telegram</h2>
+            <p class="panel__text">Купить, пополнить и&nbsp;проверить остаток, не&nbsp;выходя из&nbsp;чата.</p>
+            <a class="btn btn--light btn--md" data-link="bot" href="#">Открыть бота <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="tg" aria-hidden="true">
+            <p class="bubble bubble--in">Привет! Куда летим?</p>
+            <p class="bubble bubble--out">Турция, 10 дней</p>
+            <div class="tg__offer">
+              <span><img src="assets/flags/tr.svg" alt="" width="18" height="18"> Турция · 5&nbsp;ГБ · 15&nbsp;дней</span>
+              <b>Оплатить</b>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" id="compat">
+          <div class="panel__body">
+            <p class="label">Совместимость</p>
+            <h2 class="h3">Подходит ли мой телефон?</h2>
+            <p class="panel__text">Наберите <b class="mono kbd">*#06#</b>. Если на&nbsp;экране есть строка <b class="mono">EID</b>&nbsp;— телефон поддерживает eSIM.</p>
+            <ul class="compat">
+              <li><b>iPhone</b> XR, XS и&nbsp;новее</li>
+              <li><b>Samsung</b> Galaxy S20, Z Flip/Fold и&nbsp;новее</li>
+              <li><b>Google</b> Pixel 3 и&nbsp;новее</li>
+              <li><b>Xiaomi, Honor, OPPO</b>&nbsp;— часть моделей 2022+</li>
+            </ul>
+            <p class="panel__note">Телефоны, купленные в&nbsp;Китае, часто без&nbsp;eSIM.<span data-requires="support"> Сомневаетесь — <a data-link="support" href="#">спросите в&nbsp;поддержке</a>.</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ Вопросы ============ -->
+    <section class="section" id="faq">
+      <div class="container faq">
+        <div class="faq__aside">
+          <p class="label">Вопросы</p>
+          <h2>Коротко о&nbsp;главном</h2>
+          <div class="help">
+            <span class="help__ava" aria-hidden="true">А</span>
+            <div>
+              <b>Не&nbsp;нашли ответ?</b>
+              <p>Ответим моментально, оператор подключится за&nbsp;5&nbsp;минут.</p>
+              <a class="btn btn--secondary btn--md" data-link="support" href="#">Написать в&nbsp;Telegram</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__main">
+          <div class="chips chips--tabs" role="tablist" aria-label="Темы вопросов">
+            <button class="chip is-active" type="button" role="tab" aria-selected="true" data-faq="install">Установка</button>
+            <button class="chip" type="button" role="tab" aria-selected="false" data-faq="pay">Оплата</button>
+            <button class="chip" type="button" role="tab" aria-selected="false" data-faq="trip">В поездке</button>
+            <button class="chip" type="button" role="tab" aria-selected="false" data-faq="refund">Возврат</button>
+          </div>
+
+          <div class="acc">
+            <details data-cat="install" open>
+              <summary>Когда лучше устанавливать eSIM?</summary>
+              <p>За&nbsp;день до&nbsp;вылета, пока есть стабильный Wi-Fi. Установка занимает около двух минут. Срок пакета у&nbsp;большинства тарифов начинается с&nbsp;первого подключения к&nbsp;сети в&nbsp;стране поездки, а&nbsp;не&nbsp;с&nbsp;момента установки.</p>
+            </details>
+            <details data-cat="install">
+              <summary>Как установить eSIM?</summary>
+              <p>Отсканируйте QR-код из&nbsp;письма камерой телефона или в&nbsp;Настройках → Сотовая связь → Добавить eSIM. На&nbsp;iPhone можно установить в&nbsp;одно касание прямо со&nbsp;страницы заказа.</p>
+            </details>
+            <details data-cat="install">
+              <summary>Можно ли удалить eSIM и&nbsp;установить заново?</summary>
+              <p>Лучше не&nbsp;удалять: QR-код обычно одноразовый. Если линия мешает, просто выключите её в&nbsp;настройках — пакет сохранится.</p>
+            </details>
+            <details data-cat="pay" hidden>
+              <summary>Как оплатить?</summary>
+              <p>По&nbsp;СБП из&nbsp;приложения любого российского банка. Цена в&nbsp;рублях фиксируется до&nbsp;оплаты — никаких доплат и&nbsp;скрытых комиссий.</p>
+            </details>
+            <details data-cat="pay" hidden>
+              <summary>Нужна ли регистрация?</summary>
+              <p>Нет. Достаточно email: на&nbsp;него придут QR-код, инструкция и&nbsp;чек. Личный кабинет можно открыть позже по&nbsp;тому&nbsp;же адресу.</p>
+            </details>
+            <details data-cat="trip" hidden>
+              <summary>Прилетел, а&nbsp;интернета нет. Что делать?</summary>
+              <p>Откройте Настройки → Сотовая связь → Привет SIM и&nbsp;включите «Роуминг данных». Проверьте, что для мобильных данных выбрана линия Привет SIM. Не&nbsp;помогло — напишите нам, ответим сразу.</p>
+            </details>
+            <details data-cat="trip" hidden>
+              <summary>Можно ли раздавать интернет?</summary>
+              <p>Да, у&nbsp;большинства пакетов раздача по&nbsp;Wi-Fi включена. Если есть ограничение, это написано на&nbsp;странице пакета.</p>
+            </details>
+            <details data-cat="trip" hidden>
+              <summary>Будут ли работать звонки и&nbsp;SMS?</summary>
+              <p>eSIM даёт мобильный интернет: мессенджеры, звонки в&nbsp;Telegram и&nbsp;WhatsApp работают. Ваш основной номер остаётся в&nbsp;телефоне и&nbsp;принимает SMS по&nbsp;условиям вашего оператора.</p>
+            </details>
+            <details data-cat="refund" hidden>
+              <summary>Можно ли вернуть деньги?</summary>
+              <p>Если eSIM ещё не&nbsp;установлена, вернём полную стоимость. Если установлена, но&nbsp;не&nbsp;работает по&nbsp;нашей вине&nbsp;— разберёмся и&nbsp;вернём деньги или заменим пакет.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Финальный призыв ============ -->
+    <section class="section section--tight" id="final">
+      <div class="container">
+        <div class="final">
+          <div class="final__photos" aria-hidden="true">
+            <figure><img src="assets/photos/cap.jpg" alt="" width="640" height="480" loading="lazy"><figcaption>Каппадокия</figcaption></figure>
+            <figure><img src="assets/photos/halong.jpg" alt="" width="640" height="480" loading="lazy"><figcaption>Бухта Халонг</figcaption></figure>
+            <figure><img src="assets/photos/kazbegi.jpg" alt="" width="640" height="480" loading="lazy"><figcaption>Казбеги</figcaption></figure>
+            <figure><img src="assets/photos/dubai.jpg" alt="" width="640" height="480" loading="lazy"><figcaption>Дубай</figcaption></figure>
+          </div>
+          <div class="final__body">
+            <h2 class="final__title">Куда дальше?</h2>
+            <p class="section__lead">Выберите направление — eSIM будет готова к&nbsp;установке через минуту после оплаты.</p>
+            <form class="search search--final" role="search" data-search>
+              <label class="sr-only" for="search-final">Куда едете?</label>
+              <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input class="search__input" id="search-final" type="search" autocomplete="off" placeholder="Куда едете?" aria-autocomplete="list" aria-controls="search-final-list" aria-expanded="false">
+              <button class="btn btn--primary btn--md search__btn" type="submit" aria-label="Найти"><span class="search__btn-text">Найти</span> <span aria-hidden="true">→</span></button>
+              <ul class="search__list search__list--up" id="search-final-list" role="listbox" hidden></ul>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Подвал ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="logo" href="#top" aria-label="Привет SIM — наверх">
+            <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"/><circle cx="13.5" cy="15.5" r="3.2" fill="#fff"/><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"/><path d="M11 23.5c2.5 7 15.5 7 18 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+            <span class="logo__word">Привет</span><span class="logo__tag">SIM</span>
+          </a>
+          <p>eSIM для путешествий. Сделано для тех, кто любит новые места.</p>
+          <p class="footer__pay"><span class="label">Принимаем</span> <span class="pill">СБП</span></p>
+        </div>
+        <nav aria-label="Направления">
+          <h3>Направления</h3>
+          <a data-buy="tr" href="#">Турция</a>
+          <a data-buy="ae" href="#">ОАЭ</a>
+          <a data-buy="th" href="#">Таиланд</a>
+          <a data-buy="eu" href="#">Европа</a>
+          <a data-link="all" href="#">Все страны</a>
+        </nav>
+        <nav aria-label="Помощь">
+          <h3>Помощь</h3>
+          <a href="#how">Как установить</a>
+          <a href="#compat">Совместимость</a>
+          <a href="#faq">Вопросы</a>
+          <a data-link="support" href="#">Поддержка в Telegram</a>
+        </nav>
+        <nav aria-label="Документы">
+          <h3>Документы</h3>
+          <a data-link="offer" href="#">Публичная оферта</a>
+          <a data-link="privacy" href="#">Конфиденциальность</a>
+          <a data-link="email" href="#">Написать на почту</a>
+        </nav>
+      </div>
+      <p class="footer__legal" data-seller>© <span data-year>2026</span> Привет SIM</p>
+    </div>
+  </footer>
+
+  <!-- Липкая кнопка на телефоне -->
+  <div class="sticky-cta" aria-hidden="true">
+    <a class="btn btn--primary btn--lg btn--block" href="#countries" tabindex="-1">Выбрать страну <span aria-hidden="true">→</span></a>
+  </div>
+</body>
+</html>
