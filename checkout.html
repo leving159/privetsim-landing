@@ -8,11 +8,13 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610200026"></script>
-<script src="assets/site.js?v=202610200026"></script>
+<script src="config.js?v=202610200208"></script>
+<script src="assets/site.js?v=202610200208"></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610200026"></script>
+<script src="assets/dc-runtime.js?v=202610200208"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610200208">
+<script src="assets/motion.js?v=202610200208" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -670,7 +672,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </dl>
         <div style="display: flex; justify-content: space-between; align-items: baseline">
           <span style="font-size: 16px; font-weight: 500">К&nbsp;оплате</span>
-          <span style="font-size: 28px; font-weight: 600; letter-spacing: -0.02em">{{totalLabel}}</span>
+          <span style="font-size: 28px; font-weight: 600; letter-spacing: -0.02em" data-ps-tick>{{totalLabel}}</span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 6px">

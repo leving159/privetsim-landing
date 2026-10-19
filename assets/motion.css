@@ -1,0 +1,121 @@
+/*
+  Слой микро-анимаций поверх макетов. Вёрстку макетов не меняет — только сглаживает
+  переходы, переключения, наведения и нажатия. Идеи — Magic UI, Aceternity, Eldora UI;
+  реализация своя, на CSS/JS, без зависимостей.
+
+  Тайминги по брендбуку: отклик 160 мс, переход 240–350 мс, появление ≤ 600 мс.
+  Кривые: мягкая cubic-bezier(.2,.8,.2,1), акцент cubic-bezier(.7,0,.2,1).
+  При prefers-reduced-motion всё отключается.
+*/
+:root {
+  --ps-ease: cubic-bezier(.2, .8, .2, 1);
+  --ps-accent: cubic-bezier(.7, 0, .2, 1);
+  --ps-blue: 47, 91, 255;
+}
+
+/* 1. Плавный переход между страницами (View Transitions, Chrome/Edge/Safari 18.2+) */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: ps-vt-out .18s ease-out both; }
+::view-transition-new(root) { animation: ps-vt-in .32s var(--ps-ease) both; }
+::view-transition-group(ps-header) { animation-duration: .32s; animation-timing-function: var(--ps-ease); }
+header.sh, #dc-root > div > header:first-of-type { view-transition-name: ps-header; }
+@keyframes ps-vt-out { to { opacity: 0; } }
+@keyframes ps-vt-in { from { opacity: 0; transform: translateY(8px); } }
+
+/* 2. Мягкое появление страницы после загрузки */
+#dc-root { animation: ps-boot .36s var(--ps-ease) both; }
+@keyframes ps-boot { from { opacity: 0; } }
+
+/* 3. Волна от нажатия (ripple) на кнопках */
+.ps-rp { position: relative; overflow: hidden; isolation: isolate; }
+.ps-rp::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  left: var(--ps-rx, 50%); top: var(--ps-ry, 50%); width: var(--ps-rs, 120px); height: var(--ps-rs, 120px);
+  margin: calc(var(--ps-rs, 120px) / -2) 0 0 calc(var(--ps-rs, 120px) / -2);
+  border-radius: 50%; background: currentColor; opacity: 0; transform: scale(0);
+}
+.ps-rp.ps-rp-go::before { animation: ps-ripple .55s var(--ps-ease); }
+@keyframes ps-ripple { 0% { opacity: .22; transform: scale(0); } 100% { opacity: 0; transform: scale(1); } }
+
+/* 4. Блик по главным кнопкам при наведении (shiny button) */
+.ps-shine::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .38) 50%, transparent 65%);
+  transform: translateX(-120%);
+}
+.ps-shine:hover::after { animation: ps-shine .8s var(--ps-ease); }
+@keyframes ps-shine { to { transform: translateX(120%); } }
+
+/* 5. Подсветка за курсором на карточках (spotlight / magic card) */
+.ps-spot { position: relative; }
+.ps-spot::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+  background: radial-gradient(260px circle at var(--ps-mx, 50%) var(--ps-my, 50%), rgba(var(--ps-blue), .09), transparent 70%);
+  opacity: 0; transition: opacity .35s var(--ps-ease);
+}
+.ps-spot:hover::after { opacity: 1; }
+.ps-spot-w::after { background: radial-gradient(220px circle at var(--ps-mx, 50%) var(--ps-my, 50%), rgba(255, 255, 255, .24), transparent 70%); }
+
+/* 6. Переключатели с «плывущей» подложкой (animated tabs) */
+[data-ps-seg] { position: relative; isolation: isolate; }
+[data-ps-seg]::before {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  left: var(--ps-px, 0); top: var(--ps-py, 0); width: var(--ps-pw, 0); height: var(--ps-ph, 0);
+  border-radius: var(--ps-pr, 999px); background: var(--ps-pbg, #FFFFFF); box-shadow: var(--ps-psh, none);
+  transition: left .34s var(--ps-ease), top .34s var(--ps-ease), width .34s var(--ps-ease), height .34s var(--ps-ease), background-color .2s;
+}
+[data-ps-seg].ps-seg-init::before { transition: none; }
+[data-ps-seg] [role="tab"], [data-ps-seg] [role="radio"] {
+  position: relative; z-index: 1;
+  background: transparent !important; box-shadow: none !important;
+  transition: color .25s var(--ps-ease) !important;
+}
+
+/* 7. Смена содержимого (вкладки, фильтры, поиск): мягкое проявление (blur fade) */
+.ps-in { animation: ps-in .34s var(--ps-ease) both; animation-delay: var(--ps-d, 0ms); }
+@keyframes ps-in { from { opacity: 0; transform: translateY(6px); filter: blur(4px); } }
+
+/* 8. Цена «Итого» — короткий подъём при изменении (number ticker) */
+.ps-tick { display: inline-block; animation: ps-tick .3s var(--ps-ease); }
+@keyframes ps-tick { from { opacity: .35; transform: translateY(35%); } }
+
+/* 9. Плавное раскрытие вопросов (details) — где браузер умеет */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  details::details-content {
+    block-size: 0; overflow: clip;
+    transition: block-size .32s var(--ps-ease), content-visibility .32s allow-discrete;
+  }
+  details[open]::details-content { block-size: auto; }
+}
+
+/* 10. Прогресс чтения на длинных страницах (scroll progress) */
+.ps-progress {
+  position: fixed; left: 0; top: 0; z-index: 9999; height: 3px; width: 100%; pointer-events: none;
+  background: linear-gradient(90deg, #2F5BFF, #5A7DFF 70%, #FF7A45);
+  transform-origin: 0 50%; transform: scaleX(var(--ps-p, 0)); opacity: .9;
+}
+
+/* 11. Бегущая строка флагов: мягкие края и пауза при наведении */
+.marq { -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marq:hover .track { animation-play-state: paused !important; }
+
+/* 12. Чуть «живее» нажатие у чипов, карточек и пунктов */
+.ps-press { transition: scale .16s var(--ps-ease); }
+.ps-press:active { scale: .98; }
+
+/* 13. Конфетти на «eSIM готова» */
+.ps-confetti { position: fixed; inset: 0; z-index: 9998; pointer-events: none; }
+
+/* 14. Поле поиска: каретка подсказки при «печати» плейсхолдера */
+input.ps-typing::placeholder { transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  #dc-root, .ps-in, .ps-tick, .ps-rp.ps-rp-go::before, .ps-shine:hover::after { animation: none !important; }
+  [data-ps-seg]::before, .ps-spot::after, .ps-press { transition: none !important; }
+  .ps-progress, .ps-confetti { display: none; }
+}
+@media (hover: none) {
+  .ps-spot::after, .ps-shine::after { display: none; }
+}

@@ -1,0 +1,68 @@
+/* «Полетели?» — тоннель из фото направлений (см. tunnel.js). Цвета — из брендбука. */
+.pt-sec { padding-bottom: 120px; }
+.pt-stage {
+  position: relative; height: clamp(420px, 62vh, 620px); border-radius: 32px; overflow: hidden;
+  background: #0E1220; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  box-shadow: 0 1px 2px rgba(14, 18, 32, .06), 0 24px 48px rgba(14, 18, 32, .12);
+}
+.pt-stage.pt-boost { cursor: grabbing; }
+.pt-view { position: absolute; inset: 0; perspective-origin: 50% 50%; }
+.pt-world { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+.pt-plane, .pt-tile { position: absolute; left: 50%; top: 50%; backface-visibility: visible; }
+.pt-plane {
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .10) 1px, transparent 1px);
+  -webkit-mask-image: linear-gradient(var(--pt-dir, to top), #000 0%, rgba(0, 0, 0, .55) 45%, transparent 100%);
+  mask-image: linear-gradient(var(--pt-dir, to top), #000 0%, rgba(0, 0, 0, .55) 45%, transparent 100%);
+}
+.pt-tile {
+  display: block; border-radius: 10px; overflow: hidden; background: #2B3142;
+  transition: filter .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s cubic-bezier(.2, .8, .2, 1);
+}
+.pt-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
+.pt-tile:not(.pt-accent) { cursor: pointer; }
+.pt-tile:not(.pt-accent):hover { filter: brightness(1.18) saturate(1.1); box-shadow: 0 0 0 2px rgba(255, 255, 255, .9); }
+.pt-tile:not(.pt-accent):hover img { transform: scale(1.06); }
+.pt-accent { background: linear-gradient(135deg, #2F5BFF, #5A7DFF 55%, #FF7A45); opacity: .9; }
+.pt-glow {
+  position: absolute; left: 50%; top: 50%; width: 46%; aspect-ratio: 1; transform: translate(-50%, -50%);
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(90, 125, 255, .28), rgba(255, 122, 69, .08) 45%, transparent 70%);
+  transition: opacity .4s; opacity: .7;
+}
+.pt-stage.pt-boost .pt-glow { opacity: 1; }
+.pt-hint {
+  position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 2; pointer-events: none;
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  background: rgba(14, 18, 32, .6); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  color: #E6ECFF; font: 500 12px/16px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
+}
+.pt-hint i { width: 6px; height: 6px; border-radius: 50%; background: #FF7A45; animation: pt-pulse 1.8s ease-in-out infinite; }
+@keyframes pt-pulse { 50% { opacity: .35; transform: scale(.8); } }
+
+/* Открытое фото */
+.pt-focus { position: fixed; inset: 0; z-index: 9990; cursor: pointer; }
+.pt-focus-bg { position: absolute; inset: 0; background: rgba(14, 18, 32, 0); transition: background-color .5s cubic-bezier(.2, .8, .2, 1); }
+.pt-focus.pt-on .pt-focus-bg { background: rgba(14, 18, 32, .72); }
+.pt-card { position: fixed; margin: 0; overflow: hidden; border-radius: 24px; transform-origin: 0 0; box-shadow: 0 24px 64px rgba(0, 0, 0, .45); }
+.pt-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pt-card figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 4px; padding: 56px 24px 22px;
+  background: linear-gradient(transparent, rgba(14, 18, 32, .78)); color: #FFFFFF;
+  opacity: 0; transform: translateY(10px); transition: opacity .35s cubic-bezier(.2, .8, .2, 1), transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+.pt-focus.pt-cap-on figcaption { opacity: 1; transform: none; }
+.pt-cap { font: 500 12px/16px 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+.pt-name { font: 600 28px/34px 'Onest', system-ui, sans-serif; letter-spacing: -.02em; }
+.pt-go { font: 500 15px/22px 'Onest', system-ui, sans-serif; color: #E6ECFF; }
+
+@media (max-width: 599px) {
+  .pt-sec { padding-bottom: 80px; }
+  .pt-stage { border-radius: 24px; height: 440px; }
+  .pt-name { font-size: 22px; line-height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pt-hint i { animation: none; }
+}
