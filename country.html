@@ -7,13 +7,14 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610200208"></script>
-<script src="assets/site.js?v=202610200208"></script>
+<script src="config.js?v=202610200240"></script>
+<script src="assets/catalog.js?v=202610200240"></script>
+<script src="assets/site.js?v=202610200240"></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610200208"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610200208">
-<script src="assets/motion.js?v=202610200208" defer></script>
+<script src="assets/dc-runtime.js?v=202610200240"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610200240">
+<script src="assets/motion.js?v=202610200240" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -553,7 +554,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
   <!-- Шапка (единая) -->
   <header class="sh">
     <div class="sh-in">
-      <a class="sh-logo" href="index.html" aria-label="Привет SIM — на главную"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Привет</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">eSIM для&nbsp;путешествий<br>в&nbsp;190+ стран</span></a>
+      <a class="sh-logo" href="index.html" aria-label="Привет SIM — на главную"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Привет</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">eSIM для&nbsp;путешествий<br>в&nbsp;200+ стран</span></a>
       <nav class="sh-nav" aria-label="Основная"><a href="countries.html" class="on" aria-current="page">Страны</a><a href="index.html#how">Как&nbsp;это&nbsp;работает</a><a href="compatibility.html">Совместимость</a><a href="help.html">Помощь</a></nav>
       <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="en" lang="en" aria-label="{{langAria}}" title="English" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><a class="sh-btn sh-gho sh-hm" href="login.html">Войти</a><a class="sh-btn sh-pri" href="countries.html">Купить eSIM</a><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Открыть меню"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
     </div>
@@ -852,34 +853,12 @@ class Component extends DCLogic {
     });
   }
 
-  constructor(props) { super(props); this.state = { calc: false, more: false, dn: 10, type: 'total', sel: { total: 3, daily: 1 }, days: 10, lv: { maps: 2, msg: 2, social: 1, video: 0, work: 0 } }; }
+  constructor(props) { super(props); this.state = { calc: false, more: false, dn: 10, type: PS.planSel(PS.country().code).type, sel: { total: PS.planSel(PS.country().code).total, daily: PS.planSel(PS.country().code).daily }, days: 10, lv: { maps: 2, msg: 2, social: 1, video: 0, work: 0 } }; }
   _rv0() {
     const type = this.state.type;
     const PSC = PS.country();
     // Тарифы Турции из прайса поставщика (премиум убраны; для дневных — FUP 1 Мбит/с, если есть, иначе 512 Кбит/с)
-    const RAW = {
-      total: [
-        { gb: '1 ГБ', days: '7 дней', daysShort: '7 ДН', total: 'на весь срок', n: 1 },
-        { gb: '3 ГБ', days: '15 дней', daysShort: '15 ДН', total: 'на весь срок', n: 3 },
-        { gb: '3 ГБ', days: '30 дней', daysShort: '30 ДН', total: 'на весь срок', n: 3 },
-        { gb: '5 ГБ', days: '30 дней', daysShort: '30 ДН', total: 'на весь срок', hit: true, n: 5 },
-        { gb: '10 ГБ', days: '30 дней', daysShort: '30 ДН', total: 'на весь срок', n: 10 },
-        { gb: '20 ГБ', days: '30 дней', daysShort: '30 ДН', total: 'на весь срок', n: 20 },
-        { gb: '50 ГБ', days: '30 дней', daysShort: '30 ДН', total: 'на весь срок', n: 50 },
-        { gb: '100 МБ', days: '7 дней', daysShort: '7 ДН', total: 'на весь срок · для мессенджеров', more: true, n: 0.1 },
-        { gb: '500 МБ', days: '1 день', daysShort: '1 ДН', total: 'на весь срок · на пересадку', more: true, n: 0.5 },
-        { gb: '500 МБ', days: '7 дней', daysShort: '7 ДН', total: 'на весь срок', more: true, n: 0.5 },
-        { gb: '50 ГБ', days: '180 дней', daysShort: '180 ДН', total: 'на весь срок · на полгода', more: true, n: 50 }
-      ],
-      daily: [
-        { gb: '500 МБ/день', days: 'после лимита 512 Кбит/с', total: 'мессенджеры и карты', n: 0.5, gbShort: '500 МБ/ДЕНЬ' },
-        { gb: '1 ГБ/день', days: 'после лимита 1 Мбит/с', total: 'соцсети и навигация', n: 1, hit: true, gbShort: '1 ГБ/ДЕНЬ' },
-        { gb: '2 ГБ/день', days: 'после лимита 1 Мбит/с', total: 'фото, видео время от времени', n: 2, gbShort: '2 ГБ/ДЕНЬ' },
-        { gb: '3 ГБ/день', days: 'после лимита 1 Мбит/с', total: 'активно каждый день', n: 3, gbShort: '3 ГБ/ДЕНЬ' },
-        { gb: '5 ГБ/день', days: 'после лимита 512 Кбит/с', total: 'видео и раздача', n: 5, gbShort: '5 ГБ/ДЕНЬ' },
-        { gb: '10 ГБ/день', days: 'после лимита 512 Кбит/с', total: 'работа и стриминг', n: 10, gbShort: '10 ГБ/ДЕНЬ' }
-      ]
-    };
+    const RAW = PS.plans(PSC.code);
     // Калькулятор
     const DAYS = [3, 7, 10, 15, 30, 60];
     const cd = this.state.days;
@@ -901,7 +880,7 @@ class Component extends DCLogic {
     const sum = per.reduce((s2, x) => s2 + x.v, 0) || 1;
     const cParts = per.filter((x) => x.v > 0).map((x) => ({ w: (x.v / sum * 100).toFixed(1) + '%', c: x.c, t: x.t }));
     let rec;
-    if (daily >= 0.7 && cd >= 7) {
+    if (daily >= 0.7 && cd >= 7 && RAW.daily.length) {
       const lim = daily <= 1 ? 1 : (daily <= 2 ? 2 : 3);
       const bi = Math.max(0, RAW.daily.findIndex((p) => p.n >= lim));
       rec = { title: RAW.daily[bi].gb + ' · ' + cd + ' дн.', why: 'Вы активно пользуетесь интернетом каждый день — тариф с дневным лимитом удобнее: трафик не закончится раньше времени', pick: () => this.setState({ type: 'daily', dn: cd, sel: { ...this.state.sel, daily: bi } }) };
@@ -915,7 +894,7 @@ class Component extends DCLogic {
     const plans = raw.map((p, i) => ({ p, i, d: parseInt(p.days) || 0 })).sort((x, y) => type === 'total' ? (x.p.n - y.p.n) || (x.d - y.d) : 0).map(({ p, i }) => {
       const on = si === i;
       return {
-        ...p, hit: !!p.hit, on: on ? 'true' : 'false', price: type === 'daily' ? PS.fmt(PS.priceDay(PSC.code, p.n)) + ' ₽/день' : PS.fmt(PS.priceTotal(PSC.code, p.n, parseInt(p.days) || 1)) + ' ₽', big: type === 'daily' ? p.gb.replace('/день', '') : p.gb, small: type === 'daily' ? 'в день' : p.days,
+        ...p, hit: !!p.hit, on: on ? 'true' : 'false', price: type === 'daily' ? PS.fmt(p.price) + ' ₽/день' : PS.fmt(p.price) + ' ₽', big: type === 'daily' ? p.gb.replace('/день', '') : p.gb, small: type === 'daily' ? 'в день' : p.days,
         ring: on ? 'inset 0 0 0 2px #2F5BFF, 0 8px 20px rgba(47,91,255,.18)' : '0 1px 2px rgba(14,18,32,.06)',
         bg: '#FFFFFF',
         pick: () => this.setState({ sel: { ...this.state.sel, [type]: i } })
@@ -923,7 +902,7 @@ class Component extends DCLogic {
     });
     const totalUse = [62, 18, 40, 8, 28, 70, 12];
     const dailyUse = [100, 100, 100, 100, 100, 100, 100];
-    const types = [['total', 'На весь срок'], ['daily', 'С лимитом в день']].map(([id, title]) => {
+    const types = [['total', 'На весь срок'], ['daily', 'С лимитом в день']].filter(([id]) => RAW[id].length).map(([id, title]) => {
       const on = type === id;
       return { title, on: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#0E1220' : '#5A6175', sh: on ? '0 1px 3px rgba(14,18,32,.12)' : 'none', pick: () => this.setState({ type: id }) };
     });
@@ -939,7 +918,7 @@ class Component extends DCLogic {
     const qDayOpts = Array.from({ length: 30 }, (_, k) => ({ v: String(k + 1), t: plural(k + 1) })).concat([45, 60, 90].map((d) => ({ v: String(d), t: plural(d) })));
     const selP = type === 'daily' ? { ...raw[si], days: plural(dn), daysShort: dn + ' ДН', gb: raw[si].gb } : raw[si];
     const fmtGb = (x) => x < 1 ? Math.round(x * 1000) + ' МБ' : (String(Math.round(x * 10) / 10).replace('.', ',') + ' ГБ');
-    return { psC: PSC, psLead: PSC.code === 'TR' ? 'Мобильный интернет в\u00a0Стамбуле, Анталье и\u00a0по\u00a0всей стране.' : 'Мобильный интернет ' + PSC.inn.replace(' ', '\u00a0') + '\u00a0— по\u00a0всей стране.', psNetSp: PSC.net.replace('/', ' / '), psOps: 'МЕСТНЫЕ ОПЕРАТОРЫ', psOpsLong: 'Лучшая сеть выбирается автоматически', psTotal: PS.fmt(PS.planPrice(PSC.code, type, raw[si].n, type === 'daily' ? dn : (parseInt(raw[si].days) || 1))), psCheckout: PS.checkoutUrl(PSC.code, type, raw[si].n, type === 'daily' ? dn : (parseInt(raw[si].days) || 1)), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Гигабайт в день' : 'Гигабайты и срок', qHint: type === 'daily' ? 'лимит обновляется каждые 24 ч' : 'общий объём на поездку',
+    return { psC: PSC, psLead: PSC.code === 'TR' ? 'Мобильный интернет в\u00a0Стамбуле, Анталье и\u00a0по\u00a0всей стране.' : 'Мобильный интернет ' + PSC.inn.replace(' ', '\u00a0') + '\u00a0— по\u00a0всей стране.', psNetSp: PSC.net.replace('/', ' / '), psOps: (PSC.ops.length ? PSC.ops.slice(0, 2).join(' · ') : 'Местные операторы').toUpperCase(), psOpsLong: PSC.ops.length ? PSC.ops.join(', ') : 'Лучшая сеть выбирается автоматически', psTotal: PS.fmt(type === 'daily' ? raw[si].price * dn : raw[si].price), psCheckout: PS.checkoutUrl(PSC.code, raw[si].code, type === 'daily' ? dn : 0), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Гигабайт в день' : 'Гигабайты и срок', qHint: type === 'daily' ? 'лимит обновляется каждые 24 ч' : 'общий объём на поездку',
       onQType: (e) => this.setState({ type: e.target.value }),
       onQPkg: (e) => this.setState({ sel: { ...this.state.sel, [type]: parseInt(e.target.value, 10) || 0 } }),
       typeNote, pkCols: type === 'daily' ? 'repeat(3, minmax(0, 1fr))' : 'repeat(4, minmax(0, 1fr))', isDaily: type === 'daily', dCount: dn, dCountLabel: plural(dn), dTotal: fmtGb(raw[si].n * dn), dChips, qDays: String(dn), qDayOpts,
