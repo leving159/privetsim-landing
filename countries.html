@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Все страны и регионы — Привет SIM</title>
+  <meta name="description" content="eSIM для 190+ стран и региональные пакеты: Европа, Азия, Ближний Восток, Америка и весь мир. Цена в рублях, установка за 2 минуты.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=202610191923">
+  <link rel="stylesheet" href="styles.css?v=202610191923">
+  <link rel="stylesheet" href="pages.css?v=202610191923">
+  <script src="config.js?v=202610191923" defer></script>
+  <script src="js/catalog.js?v=202610191923" defer></script>
+  <script src="js/core.js?v=202610191923" defer></script>
+  <script src="js/countries.js?v=202610191923" defer></script>
+</head>
+<body data-page="countries">
+  <div data-slot="header"></div>
+
+  <main id="main" class="page">
+    <div class="container">
+      <nav class="crumbs" aria-label="Навигация"><ol><li><a href="index.html">Главная</a></li><li><span aria-current="page">Страны</span></li></ol></nav>
+
+      <header class="page-head">
+        <h1>Все страны и&nbsp;регионы</h1>
+        <p><span data-count-all>190+</span> направлений. Если едете в&nbsp;несколько стран&nbsp;— выгоднее региональная eSIM.</p>
+      </header>
+
+      <div class="filters">
+        <form class="search" role="search" data-filter-form>
+          <label class="sr-only" for="q">Поиск страны</label>
+          <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="search__input" id="q" type="search" autocomplete="off" placeholder="Поиск страны">
+          <button class="btn btn--ghost btn--md search__btn" type="reset" hidden data-reset>Сбросить</button>
+        </form>
+        <div class="chips" role="tablist" aria-label="Часть света" data-parts></div>
+      </div>
+
+      <section aria-labelledby="packs-title" data-packs-wrap>
+        <h2 class="sr-only" id="packs-title">Региональные пакеты</h2>
+        <div class="packs" data-packs></div>
+      </section>
+
+      <p class="count-line" aria-live="polite" data-count></p>
+      <div class="clist" data-list></div>
+
+      <div class="empty" data-empty hidden>
+        <h2 class="h3">Не нашли «<span data-q></span>»</h2>
+        <p>Проверьте написание или посмотрите региональные пакеты&nbsp;— возможно, страна входит в&nbsp;один из&nbsp;них.</p>
+        <div class="row" style="justify-content:center">
+          <a class="btn btn--primary btn--md" href="country.html?c=world">eSIM «Весь мир»</a>
+          <button class="btn btn--secondary btn--md" type="button" data-show-regions>Смотреть регионы</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div data-slot="footer"></div>
+</body>
+</html>

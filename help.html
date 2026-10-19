@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Помощь — Привет SIM</title>
+  <meta name="description" content="Как установить eSIM на iPhone и Android, что делать, если нет интернета в поездке, оплата и возврат — ответы на частые вопросы.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=202610191923">
+  <link rel="stylesheet" href="styles.css?v=202610191923">
+  <link rel="stylesheet" href="pages.css?v=202610191923">
+  <script src="config.js?v=202610191923" defer></script>
+  <script src="js/catalog.js?v=202610191923" defer></script>
+  <script src="js/core.js?v=202610191923" defer></script>
+  <script src="js/help.js?v=202610191923" defer></script>
+</head>
+<body data-page="help">
+  <div data-slot="header"></div>
+  <main id="main" class="page">
+    <div class="container">
+      <nav class="crumbs" aria-label="Навигация"><ol><li><a href="index.html">Главная</a></li><li><span aria-current="page">Помощь</span></li></ol></nav>
+      <header class="page-head">
+        <h1>Чем помочь?</h1>
+      </header>
+
+      <form class="search" role="search" style="margin:0 0 24px;max-width:640px" onsubmit="return false">
+        <label class="sr-only" for="hq">Поиск по вопросам</label>
+        <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input class="search__input" id="hq" type="search" autocomplete="off" placeholder="Поиск по вопросам, например «роуминг»">
+      </form>
+
+      <div class="cats">
+        <button class="cat" type="button" data-goto="before"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><b>Перед покупкой</b><small>Совместимость, тарифы, покрытие</small></button>
+        <button class="cat" type="button" data-goto="pay"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg><b>Оплата</b><small>СБП, USDT, квитанции</small></button>
+        <button class="cat" type="button" data-goto="install"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 18h2v2h-2z"/></svg><b>Установка</b><small>QR-код, iPhone, Android</small></button>
+        <button class="cat" type="button" data-goto="trip"><svg viewBox="0 0 24 24"><path d="M2 16l20-6-4 10zM8 14l2 6"/></svg><b>В поездке</b><small>Нет сети, роуминг, пополнение</small></button>
+        <button class="cat" type="button" data-goto="refund"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg><b>Возврат</b><small>Когда и как вернуть деньги</small></button>
+      </div>
+
+      <section class="help-sec" id="install" aria-labelledby="install-title">
+        <p class="label">Инструкция</p>
+        <h2 id="install-title">Как установить eSIM</h2>
+        <p>Нужны Wi-Fi и QR-код из&nbsp;письма или со&nbsp;страницы заказа. Займёт 2&nbsp;минуты. Лучше сделать за&nbsp;день до&nbsp;вылета.</p>
+        <div class="segment" role="tablist" data-tabs="os" style="margin-bottom:20px">
+          <button class="segment__btn is-active" type="button" role="tab" aria-controls="os-ios" aria-selected="true">iPhone</button>
+          <button class="segment__btn" type="button" role="tab" aria-controls="os-android" aria-selected="false" tabindex="-1">Android</button>
+        </div>
+        <div class="two">
+          <div id="os-ios" role="tabpanel">
+            <ol class="isteps">
+              <li><b>Откройте Настройки → Сотовая связь</b><p>Нажмите «Добавить eSIM» и выберите «Использовать QR-код».</p><span class="path">НАСТРОЙКИ › СОТОВАЯ СВЯЗЬ</span></li>
+              <li><b>Наведите камеру на QR-код</b><p>Если страница заказа открыта на этом iPhone — нажмите «Установить в один тап».</p></li>
+              <li><b>Назовите линию «Привет SIM»</b><p>Выберите её только для сотовых данных. Основной номер оставьте для звонков и SMS.</p></li>
+              <li><b>После посадки включите роуминг</b><p>Для линии Привет SIM включите «Роуминг данных».</p><span class="path">СОТОВАЯ СВЯЗЬ › ПРИВЕТ SIM › РОУМИНГ ДАННЫХ</span></li>
+            </ol>
+          </div>
+          <div id="os-android" role="tabpanel" hidden>
+            <ol class="isteps">
+              <li><b>Откройте Настройки → Подключения</b><p>Диспетчер SIM-карт → «Добавить eSIM». На Pixel: Сеть и интернет → SIM-карты.</p><span class="path">НАСТРОЙКИ › ПОДКЛЮЧЕНИЯ › ДИСПЕТЧЕР SIM</span></li>
+              <li><b>Выберите «Сканировать QR-код»</b><p>Нет второго экрана — введите адрес SM-DP+ и код активации со страницы заказа вручную.</p></li>
+              <li><b>Выберите линию для мобильных данных</b><p>Основной номер оставьте для звонков и SMS.</p></li>
+              <li><b>После посадки включите роуминг</b><p>Для eSIM Привет SIM включите «Роуминг данных».</p></li>
+            </ol>
+          </div>
+          <div class="box box--tint">
+            <b>Важно</b>
+            <ul class="check-list" style="margin-top:12px">
+              <li>QR-код одноразовый — устанавливается только на один телефон</li>
+              <li>Не удаляйте eSIM из настроек: восстановить её нельзя</li>
+              <li>Срок у большинства пакетов начинается с первого подключения в стране поездки</li>
+            </ul>
+            <a class="btn btn--secondary btn--md" style="margin-top:16px" href="compatibility.html">Проверить телефон</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="help-sec" id="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Частые вопросы</h2>
+        <div class="chips chips--tabs" role="tablist" aria-label="Темы" data-faq-tabs style="margin-bottom:8px">
+          <button class="chip is-active" type="button" role="tab" aria-selected="true" data-cat="all">Все</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-cat="before">Перед покупкой</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-cat="pay">Оплата</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-cat="install">Установка</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-cat="trip">В поездке</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-cat="refund">Возврат</button>
+        </div>
+        <div class="acc" data-faq>
+          <details data-cat="before"><summary>Подходит ли мой телефон?</summary><p>Наберите *#06#: если на экране есть строка EID — телефон поддерживает eSIM. Ещё можно найти модель на странице <a class="link" href="compatibility.html">«Совместимость»</a>. Телефон не должен быть привязан к оператору.</p></details>
+          <details data-cat="before"><summary>Чем eSIM лучше роуминга?</summary><p>Цена известна заранее и в рублях, выйти за пакет и получить счёт после поездки невозможно. Обычно это в несколько раз дешевле роуминга оператора.</p></details>
+          <details data-cat="before"><summary>Будет ли у меня местный номер?</summary><p>Нет, eSIM даёт только мобильный интернет. Звонки в Telegram и WhatsApp работают, а основной номер остаётся в телефоне и принимает SMS по условиям вашего оператора.</p></details>
+          <details data-cat="before"><summary>Сколько гигабайт брать?</summary><p>Карты, такси и мессенджеры — около 0,3 ГБ в день, с соцсетями и фото — около 1 ГБ. На странице страны есть калькулятор: ответьте на 2 вопроса, и мы подскажем пакет.</p></details>
+          <details data-cat="before"><summary>Еду в несколько стран — нужна ли eSIM на каждую?</summary><p>Нет, возьмите региональный пакет: Европа, Азия, Ближний Восток, Америка или «Весь мир». При пересечении границы eSIM сама подключится к местной сети.</p></details>
+          <details data-cat="pay"><summary>Как оплатить?</summary><p>По СБП из приложения любого российского банка или в USDT (сети TRON, TON и BEP-20). Оплата банковской картой появится позже.</p></details>
+          <details data-cat="pay"><summary>Цена окончательная?</summary><p>Да. Цена в рублях фиксируется в момент перехода к оплате — никаких доплат и скрытых комиссий.</p></details>
+          <details data-cat="pay"><summary>Нужна ли регистрация?</summary><p>Нет. Достаточно email: на него придут QR-код, инструкция и чек. Личный кабинет создаётся автоматически, вход — по коду из письма.</p></details>
+          <details data-cat="pay"><summary>Где взять чек?</summary><p>Он приходит на email сразу после оплаты и хранится в личном кабинете.</p></details>
+          <details data-cat="pay"><summary>Можно купить eSIM для всей семьи?</summary><p>Да, на странице оформления укажите количество — до 5 штук. Каждая eSIM ставится на свой телефон по своему QR-коду.</p></details>
+          <details data-cat="install"><summary>Когда устанавливать eSIM?</summary><p>За день до вылета, пока есть стабильный Wi-Fi. Срок у большинства пакетов начинается с первого подключения к сети в стране поездки, а не с установки.</p></details>
+          <details data-cat="install"><summary>Можно ли перенести eSIM на другой телефон?</summary><p>Нет: при установке eSIM привязывается к телефону. Пока eSIM не установлена, её можно переслать спутнику из личного кабинета.</p></details>
+          <details data-cat="install"><summary>Удалил eSIM. Что делать?</summary><p>Восстановить удалённую eSIM нельзя — для нового телефона нужна новая. Если линия мешает, в следующий раз просто выключите её в настройках.</p></details>
+          <details data-cat="install"><summary>QR-код не сканируется</summary><p>Проверьте подключение к Wi-Fi и что телефон поддерживает eSIM. Можно ввести адрес SM-DP+ и код активации вручную — они есть на странице заказа и в письме.</p></details>
+          <details data-cat="trip"><summary>Прилетел, а интернета нет</summary><p>Откройте Настройки → Сотовая связь → Привет SIM и включите «Роуминг данных». Проверьте, что для мобильных данных выбрана линия Привет SIM. Не помогло — перезагрузите телефон и напишите нам.</p></details>
+          <details data-cat="trip"><summary>Как проверить остаток?</summary><p>В личном кабинете или Telegram-боте — там видно гигабайты и дни. Напомним, когда пакет будет заканчиваться.</p></details>
+          <details data-cat="trip"><summary>Как пополнить трафик?</summary><p>Докупите пакет в кабинете или боте — на ту же eSIM, переустанавливать ничего не нужно.</p></details>
+          <details data-cat="trip"><summary>Можно раздавать интернет?</summary><p>Да, раздача по Wi-Fi работает на всех пакетах.</p></details>
+          <details data-cat="refund"><summary>Можно ли вернуть деньги?</summary><p>Если eSIM не установлена и не использовалась — вернём полную стоимость при обращении в течение 14 дней. Если eSIM не заработала по нашей вине — разберёмся и вернём деньги или заменим пакет. Подробно — в <a class="link" href="legal.html?doc=refund">политике возврата</a>.</p></details>
+          <details data-cat="refund"><summary>Как оформить возврат?</summary><p>Напишите в поддержку номер заказа и причину. Обращение рассматриваем до 3 рабочих дней.</p></details>
+        </div>
+        <div class="empty" data-faq-empty hidden><p>Ничего не нашли по запросу. Напишите в чат — ответим моментально.</p></div>
+      </section>
+
+      <section class="help-sec" aria-labelledby="contact-title">
+        <div class="box box--blue">
+          <h2 id="contact-title">Не нашли ответ?</h2>
+          <p class="muted">Напишите в чат на сайте или в Telegram: ответим моментально, а оператор подключится в течение 5 минут.</p>
+          <div class="row" style="margin-top:16px">
+            <button class="btn btn--primary btn--md" type="button" data-open-chat>Написать в чат</button>
+            <a class="btn btn--secondary btn--md" data-link="support" href="#">Написать в Telegram</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div data-slot="footer"></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Партнёрам и бизнесу — Привет SIM</title>
+  <meta name="description" content="Оптовые eSIM для турагентств, корпоративные eSIM для командировок, 25% с заказов для блогеров, API и white label.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=202610191923">
+  <link rel="stylesheet" href="styles.css?v=202610191923">
+  <link rel="stylesheet" href="pages.css?v=202610191923">
+  <script src="config.js?v=202610191923" defer></script>
+  <script src="js/catalog.js?v=202610191923" defer></script>
+  <script src="js/core.js?v=202610191923" defer></script>
+  <script src="js/business.js?v=202610191923" defer></script>
+</head>
+<body data-page="business">
+  <div data-slot="header"></div>
+  <main id="main" class="page">
+    <div class="container">
+      <nav class="crumbs" aria-label="Навигация"><ol><li><a href="index.html">Главная</a></li><li><span aria-current="page">Партнёрам и бизнесу</span></li></ol></nav>
+
+      <section class="biz-hero">
+        <p class="label">Партнёрам и бизнесу</p>
+        <h1>Интернет в&nbsp;поездке — для ваших клиентов, сотрудников и&nbsp;подписчиков</h1>
+        <p>Оптовые цены для турагентств, корпоративные eSIM для командировок и&nbsp;25% с&nbsp;заказов для блогеров. Документы, безнал и&nbsp;личный менеджер.</p>
+        <div class="row"><a class="btn btn--primary btn--lg" href="#lead">Оставить заявку</a><a class="btn btn--secondary btn--lg" data-link="support" href="#">Написать менеджеру</a></div>
+        <div class="stats4">
+          <div><b>25%</b><span>блогерам с заказов</span></div>
+          <div><b>от 50</b><span>eSIM — оптовые цены</span></div>
+          <div><b>1 счёт</b><span>за всех сотрудников</span></div>
+          <div><b>API</b><span>выдача за секунды</span></div>
+        </div>
+      </section>
+
+      <section class="help-sec" style="margin-top:72px" aria-labelledby="aud-title">
+        <h2 id="aud-title" style="margin-bottom:24px">Кому подходит</h2>
+        <div class="aud">
+          <article><h3>Турагентствам</h3><p>Продавайте eSIM вместе с турами по оптовой цене или дарите клиентам. Выдача в день оплаты, отчёт по продажам каждый месяц.</p><a href="#lead" data-who="agency">Обсудить условия →</a></article>
+          <article><h3>Компаниям</h3><p>Корпоративные eSIM для командировок: один счёт, закрывающие документы и контроль трафика сотрудников.</p><a href="#lead" data-who="company">Подключить компанию →</a></article>
+          <article><h3>Блогерам</h3><p>Личная ссылка или промокод для подписчиков и 25% с каждого их заказа — бессрочно, без лимита по сумме.</p><a href="#lead" data-who="blogger">Получить ссылку →</a></article>
+          <article><h3>Интеграторам</h3><p>REST API или white label под вашим брендом: продавайте eSIM в своём приложении, на сайте или в боте.</p><a href="#api">Смотреть API →</a></article>
+        </div>
+      </section>
+
+      <section class="help-sec" id="api" style="margin-top:72px" aria-labelledby="api-title">
+        <p class="label">Для интеграторов и брендов</p>
+        <h2 id="api-title">eSIM через API или под&nbsp;вашим брендом</h2>
+        <p>Условия индивидуальные: цена зависит от&nbsp;объёма, без абонентской платы и&nbsp;минимального депозита на&nbsp;старте.</p>
+        <div class="two">
+          <div class="box stack">
+            <h3>API</h3>
+            <p class="muted">Клиент получает QR сразу после оплаты — у&nbsp;вас.</p>
+            <div class="code"><i>// выдать eSIM</i>
+POST /v1/orders
+{
+  "country": "TR",
+  "package": "5GB_30D",
+  "email": "client@mail.ru"
+}
+<i>→ 201 · qr, iccid, install_url</i></div>
+            <ul class="check-list"><li>Каталог 190+ стран и регионов с актуальными ценами</li><li>Выдача eSIM, пополнение и проверка остатка</li><li>Вебхуки: установлена, активна, трафик заканчивается</li><li>Тестовая среда и документация</li></ul>
+            <a class="btn btn--secondary btn--md" href="#lead" data-who="api">Получить доступ к API</a>
+          </div>
+          <div class="box stack">
+            <h3>White label</h3>
+            <p class="muted">Готовый сервис eSIM под вашим логотипом — без разработки.</p>
+            <div class="esim-card esim-card--world" aria-hidden="true"><div class="esim-card__top"><span>ВАШ ЛОГО</span><span class="esim-card__chip"></span></div><div><div class="esim-card__name">eSIM от «Вашего бренда»</div><div class="esim-card__data">Турция · 5 ГБ · 30 дн</div></div></div>
+            <ul class="check-list"><li>Ваш логотип и цвета: сайт, письма, QR, кабинет</li><li>Свой домен или Telegram Mini App</li><li>Ваши цены и наценка — мы берём оптовую цену</li><li>Поддержка клиентов 24/7 от вашего имени</li><li>Запуск за 1–2 недели</li></ul>
+            <a class="btn btn--secondary btn--md" href="#lead" data-who="api">Обсудить white label</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="help-sec" style="margin-top:72px" aria-labelledby="start-title">
+        <h2 id="start-title" style="margin-bottom:24px">Как начать работу</h2>
+        <ol class="steps">
+          <li class="step"><span class="step__node mono">01</span><h3 class="step__title">Заявка</h3><p>Расскажите, кто вы и&nbsp;сколько eSIM нужно в&nbsp;месяц.</p></li>
+          <li class="step"><span class="step__node mono">02</span><h3 class="step__title">Звонок за&nbsp;1 день</h3><p>Менеджер подберёт условия и&nbsp;пришлёт договор.</p></li>
+          <li class="step"><span class="step__node mono">03</span><h3 class="step__title">Кабинет партнёра</h3><p>Выдача eSIM, статистика, счета и&nbsp;закрывающие документы.</p></li>
+          <li class="step step--dest"><span class="step__node mono">04</span><h3 class="step__title">Клиенты на&nbsp;связи</h3><p>А вы — с&nbsp;выручкой или довольной командой.</p></li>
+        </ol>
+      </section>
+
+      <section class="help-sec" id="lead" style="margin-top:72px" aria-labelledby="lead-title">
+        <div class="two">
+          <div>
+            <h2 id="lead-title">Оставьте заявку — ответим за&nbsp;1&nbsp;рабочий день</h2>
+            <ul class="check-list" style="margin-top:20px"><li>Работаем с ИП и юрлицами, договор и ЭДО</li><li>Оплата по счёту или СБП</li><li>Персональный менеджер и поддержка 24/7</li></ul>
+          </div>
+          <form class="box lead-form" novalidate data-lead>
+            <fieldset style="border:0;padding:0;margin:0"><legend class="field__label" style="margin-bottom:8px">Кто вы</legend>
+              <div class="chips chips--sm" role="radiogroup" data-who-group>
+                <button class="chip is-active" type="button" role="radio" aria-checked="true" data-v="agency">Турагентство</button>
+                <button class="chip" type="button" role="radio" aria-checked="false" data-v="company">Компания</button>
+                <button class="chip" type="button" role="radio" aria-checked="false" data-v="blogger">Блогер</button>
+                <button class="chip" type="button" role="radio" aria-checked="false" data-v="api">API / white label</button>
+              </div>
+            </fieldset>
+            <div class="grid2">
+              <div class="field"><label class="field__label" for="l-name">Имя</label><input class="input" id="l-name" autocomplete="name"><p class="field__error" hidden></p></div>
+              <div class="field"><label class="field__label" for="l-company">Компания или канал</label><input class="input" id="l-company" autocomplete="organization"></div>
+            </div>
+            <div class="field"><label class="field__label" for="l-contact">Email или Telegram</label><input class="input" id="l-contact" autocomplete="email" placeholder="name@mail.ru или @username"><p class="field__error" hidden></p></div>
+            <div class="field"><label class="field__label" for="l-vol">Сколько eSIM в месяц</label>
+              <div class="chips chips--sm" data-vol>
+                <button class="chip is-active" type="button" aria-pressed="true">до 50</button><button class="chip" type="button" aria-pressed="false">50–200</button><button class="chip" type="button" aria-pressed="false">200–1000</button><button class="chip" type="button" aria-pressed="false">1000+</button>
+              </div></div>
+            <div class="field"><label class="field__label" for="l-msg">Комментарий</label><textarea class="textarea" id="l-msg" rows="3"></textarea></div>
+            <button class="btn btn--primary btn--lg btn--block" type="submit">Отправить заявку</button>
+            <p class="legal-note">Отправляя заявку, вы соглашаетесь на&nbsp;<a href="legal.html?doc=privacy">обработку персональных данных</a></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="help-sec" style="margin-top:72px" aria-labelledby="bfaq-title">
+        <h2 id="bfaq-title" style="margin-bottom:12px">Частые вопросы</h2>
+        <div class="acc">
+          <details><summary>Какие документы вы предоставляете?</summary><p>Договор, счёт, акт и УПД через ЭДО или в бумажном виде. Для партнёров API и white label — отчёт о продажах каждый месяц.</p></details>
+          <details><summary>Можно ли выдавать eSIM под своим брендом?</summary><p>Да, для турагентств и интеграторов есть white label: письма, QR и кабинет с вашим логотипом. Условия — после заявки.</p></details>
+          <details><summary>Как начисляются 25% блогерам?</summary><p>С каждого заказа подписчиков, пришедших по вашей ссылке или промокоду, 25% зачисляются на ваш баланс в Привет SIM. Отдельные выплаты по договору — для партнёров API и white label.</p></details>
+          <details><summary>Есть ли API?</summary><p>Да: REST API для выдачи eSIM, пополнения и проверки остатка, вебхуки о статусах. Тестовый доступ — после подписания NDA.</p></details>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div data-slot="footer"></div>
+</body>
+</html>

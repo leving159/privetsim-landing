@@ -17,53 +17,16 @@
   <meta property="og:locale" content="ru_RU">
 
   <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="styles.css">
-  <script src="config.js" defer></script>
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="assets/fonts.css?v=202610191923">
+  <link rel="stylesheet" href="styles.css?v=202610191923">
+  <link rel="stylesheet" href="pages.css?v=202610191923">
+  <script src="config.js?v=202610191923" defer></script>
+  <script src="js/catalog.js?v=202610191923" defer></script>
+  <script src="js/core.js?v=202610191923" defer></script>
+  <script src="js/home.js?v=202610191923" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#main">Перейти к содержимому</a>
-
-  <!-- ============ Шапка ============ -->
-  <header class="header" id="top">
-    <div class="container header__row">
-      <a class="logo" href="#top" aria-label="Привет SIM — на главную">
-        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"/><circle cx="13.5" cy="15.5" r="3.2" fill="#fff"/><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"/><path d="M11 23.5c2.5 7 15.5 7 18 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
-        <span class="logo__word">Привет</span><span class="logo__tag">SIM</span>
-      </a>
-
-      <nav class="nav" aria-label="Основное меню">
-        <a href="#countries">Страны</a>
-        <a href="#how">Как это работает</a>
-        <a href="#why">Почему eSIM</a>
-        <a href="#faq">Вопросы</a>
-      </nav>
-
-      <div class="header__actions">
-        <a class="btn btn--primary btn--md header__cta" href="#countries">Купить eSIM</a>
-        <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Меню на телефоне (вне шапки: у шапки backdrop-filter, он обрезал бы fixed-элемент) -->
-  <div class="mobile-menu" id="mobile-menu" hidden>
-    <nav class="mobile-menu__nav" aria-label="Мобильное меню">
-      <a href="#countries">Страны и цены</a>
-      <a href="#how">Как это работает</a>
-      <a href="#why">Почему eSIM</a>
-      <a href="#compat">Подходит ли телефон</a>
-      <a href="#faq">Вопросы</a>
-    </nav>
-    <div class="mobile-menu__foot">
-      <a class="btn btn--primary btn--lg btn--block" href="#countries">Выбрать страну <span aria-hidden="true">→</span></a>
-      <a class="btn btn--secondary btn--lg btn--block" data-link="bot" href="#">Открыть Telegram-бота</a>
-      <p class="mobile-menu__note">Поддержка 24/7 · отвечаем моментально</p>
-    </div>
-  </div>
+<body data-page="home">
+  <div data-slot="header"></div>
 
   <main id="main">
 
@@ -103,11 +66,11 @@
         </form>
 
         <ul class="chips" aria-label="Популярные направления">
-          <li><a class="chip" data-buy="tr" href="#"><img src="assets/flags/tr.svg" alt="" width="20" height="20">Турция</a></li>
-          <li><a class="chip" data-buy="ae" href="#"><img src="assets/flags/ae.svg" alt="" width="20" height="20">ОАЭ</a></li>
-          <li><a class="chip" data-buy="th" href="#"><img src="assets/flags/th.svg" alt="" width="20" height="20">Таиланд</a></li>
-          <li><a class="chip" data-buy="ge" href="#"><img src="assets/flags/ge.svg" alt="" width="20" height="20">Грузия</a></li>
-          <li><a class="chip" data-buy="eu" href="#"><img src="assets/flags/eu.svg" alt="" width="20" height="20">Европа</a></li>
+          <li><a class="chip" href="country.html?c=tr"><img src="assets/flags/tr.svg" alt="" width="20" height="20">Турция</a></li>
+          <li><a class="chip" href="country.html?c=ae"><img src="assets/flags/ae.svg" alt="" width="20" height="20">ОАЭ</a></li>
+          <li><a class="chip" href="country.html?c=th"><img src="assets/flags/th.svg" alt="" width="20" height="20">Таиланд</a></li>
+          <li><a class="chip" href="country.html?c=ge"><img src="assets/flags/ge.svg" alt="" width="20" height="20">Грузия</a></li>
+          <li><a class="chip" href="country.html?c=europe"><img src="assets/flags/eu.svg" alt="" width="20" height="20">Европа</a></li>
         </ul>
 
         <ul class="facts">
@@ -136,7 +99,7 @@
         <div class="cards" data-cards aria-live="polite"></div>
 
         <div class="section__more">
-          <a class="btn btn--secondary btn--lg" data-link="all" href="#">Все 190+ стран и регионов <span aria-hidden="true">→</span></a>
+          <a class="btn btn--secondary btn--lg" href="countries.html">Все 190+ стран и регионов <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -289,6 +252,7 @@
               <li><b>Google</b> Pixel 3 и&nbsp;новее</li>
               <li><b>Xiaomi, Honor, OPPO</b>&nbsp;— часть моделей 2022+</li>
             </ul>
+            <a class="btn btn--secondary btn--md" href="compatibility.html">Проверить мою модель <span aria-hidden="true">→</span></a>
             <p class="panel__note">Телефоны, купленные в&nbsp;Китае, часто без&nbsp;eSIM.<span data-requires="support"> Сомневаетесь — <a data-link="support" href="#">спросите в&nbsp;поддержке</a>.</span></p>
           </div>
         </article>
@@ -357,6 +321,7 @@
               <p>Если eSIM ещё не&nbsp;установлена, вернём полную стоимость. Если установлена, но&nbsp;не&nbsp;работает по&nbsp;нашей вине&nbsp;— разберёмся и&nbsp;вернём деньги или заменим пакет.</p>
             </details>
           </div>
+          <p class="faq__more"><a class="link" href="help.html#faq">Все вопросы и ответы →</a></p>
         </div>
       </div>
     </section>
@@ -387,43 +352,7 @@
     </section>
   </main>
 
-  <!-- ============ Подвал ============ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div class="footer__brand">
-          <a class="logo" href="#top" aria-label="Привет SIM — наверх">
-            <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"/><circle cx="13.5" cy="15.5" r="3.2" fill="#fff"/><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"/><path d="M11 23.5c2.5 7 15.5 7 18 0" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
-            <span class="logo__word">Привет</span><span class="logo__tag">SIM</span>
-          </a>
-          <p>eSIM для путешествий. Сделано для тех, кто любит новые места.</p>
-          <p class="footer__pay"><span class="label">Принимаем</span> <span class="pill">СБП</span></p>
-        </div>
-        <nav aria-label="Направления">
-          <h3>Направления</h3>
-          <a data-buy="tr" href="#">Турция</a>
-          <a data-buy="ae" href="#">ОАЭ</a>
-          <a data-buy="th" href="#">Таиланд</a>
-          <a data-buy="eu" href="#">Европа</a>
-          <a data-link="all" href="#">Все страны</a>
-        </nav>
-        <nav aria-label="Помощь">
-          <h3>Помощь</h3>
-          <a href="#how">Как установить</a>
-          <a href="#compat">Совместимость</a>
-          <a href="#faq">Вопросы</a>
-          <a data-link="support" href="#">Поддержка в Telegram</a>
-        </nav>
-        <nav aria-label="Документы">
-          <h3>Документы</h3>
-          <a data-link="offer" href="#">Публичная оферта</a>
-          <a data-link="privacy" href="#">Конфиденциальность</a>
-          <a data-link="email" href="#">Написать на почту</a>
-        </nav>
-      </div>
-      <p class="footer__legal" data-seller>© <span data-year>2026</span> Привет SIM</p>
-    </div>
-  </footer>
+  <div data-slot="footer"></div>
 
   <!-- Липкая кнопка на телефоне -->
   <div class="sticky-cta" aria-hidden="true">

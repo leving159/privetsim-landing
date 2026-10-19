@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Поддерживает ли телефон eSIM — Привет SIM</title>
+  <meta name="description" content="Проверьте за 10 секунд, поддерживает ли ваш телефон eSIM: поиск по модели и список iPhone, Samsung, Google Pixel, Xiaomi и других.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=202610191923">
+  <link rel="stylesheet" href="styles.css?v=202610191923">
+  <link rel="stylesheet" href="pages.css?v=202610191923">
+  <script src="config.js?v=202610191923" defer></script>
+  <script src="js/catalog.js?v=202610191923" defer></script>
+  <script src="js/core.js?v=202610191923" defer></script>
+  <script src="js/compatibility.js?v=202610191923" defer></script>
+</head>
+<body data-page="compatibility">
+  <div data-slot="header"></div>
+  <main id="main" class="page">
+    <div class="container">
+      <nav class="crumbs" aria-label="Навигация"><ol><li><a href="index.html">Главная</a></li><li><span aria-current="page">Совместимость</span></li></ol></nav>
+      <header class="page-head">
+        <h1>Поддерживает ли ваш телефон eSIM?</h1>
+        <p>Начните вводить модель — подскажем сразу. Попробуйте «iPhone 15», «iPhone 8» или&nbsp;«Galaxy A54».</p>
+      </header>
+
+      <div class="compat-check">
+        <form class="search" role="search" data-check onsubmit="return false">
+          <label class="sr-only" for="model">Модель телефона</label>
+          <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="search__input" id="model" type="search" autocomplete="off" placeholder="Модель телефона" aria-autocomplete="list" aria-controls="model-list" aria-expanded="false">
+          <ul class="search__list" id="model-list" role="listbox" hidden></ul>
+        </form>
+        <div aria-live="polite" data-result></div>
+      </div>
+
+      <section class="help-sec" style="margin-top:56px" aria-labelledby="how-title">
+        <h2 id="how-title">Проверка за&nbsp;10 секунд</h2>
+        <ol class="how3">
+          <li><i>1</i>Откройте набор номера</li>
+          <li><i>2</i>Наберите&nbsp;<b class="mono kbd">*#06#</b></li>
+          <li><i>3</i><span>Есть строка <b class="mono">EID</b>&nbsp;— eSIM поддерживается</span></li>
+        </ol>
+        <p class="small muted" style="margin-top:12px">Ещё один признак: в Настройках → Сотовая связь есть пункт «Добавить eSIM».</p>
+      </section>
+
+      <section class="help-sec" style="margin-top:56px" aria-labelledby="list-title">
+        <h2 id="list-title">Список устройств</h2>
+        <div class="chips" role="tablist" aria-label="Производитель" data-brands></div>
+        <ul class="devices" data-devices></ul>
+        <p class="small muted" style="margin-top:16px">Список предварительный — сверим с&nbsp;данными поставщика перед запуском. <span class="dot3 dot3--y" style="margin:0 2px"></span> поддерживает, <span class="dot3 dot3--v" style="margin:0 2px"></span> зависит от&nbsp;версии, <span class="dot3 dot3--n" style="margin:0 2px"></span> не&nbsp;поддерживает. Модели для материкового Китая и&nbsp;Гонконга часто без&nbsp;eSIM.</p>
+      </section>
+    </div>
+  </main>
+  <div data-slot="footer"></div>
+</body>
+</html>

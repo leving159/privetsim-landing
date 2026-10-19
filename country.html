@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>eSIM для путешествий — Привет SIM</title>
+  <meta name="description" content="Мобильный интернет за границей: выберите пакет, оплатите по СБП и установите eSIM за день до вылета.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=202610191923">
+  <link rel="stylesheet" href="styles.css?v=202610191923">
+  <link rel="stylesheet" href="pages.css?v=202610191923">
+  <script src="config.js?v=202610191923" defer></script>
+  <script src="js/catalog.js?v=202610191923" defer></script>
+  <script src="js/core.js?v=202610191923" defer></script>
+  <script src="js/country.js?v=202610191923" defer></script>
+</head>
+<body data-page="countries" class="page--buybar">
+  <div data-slot="header"></div>
+
+  <main id="main" class="page">
+    <div class="container" data-root>
+      <!-- Содержимое собирает js/country.js по параметру ?c=код (tr, ae, europe …) -->
+      <noscript><p>Для выбора пакета включите JavaScript.</p></noscript>
+    </div>
+  </main>
+
+  <div data-slot="footer"></div>
+</body>
+</html>

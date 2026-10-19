@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Вход — Привет SIM</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css?v=202610191923">
+  <link rel="stylesheet" href="styles.css?v=202610191923">
+  <link rel="stylesheet" href="pages.css?v=202610191923">
+  <script src="config.js?v=202610191923" defer></script>
+  <script src="js/catalog.js?v=202610191923" defer></script>
+  <script src="js/core.js?v=202610191923" defer></script>
+  <script src="js/login.js?v=202610191923" defer></script>
+</head>
+<body data-page="login">
+  <div data-slot="header"></div>
+  <main id="main" class="auth">
+    <div class="container" style="display:grid;place-items:center">
+
+      <!-- Шаг 1: email -->
+      <form class="auth__card" data-step="email" novalidate>
+        <h1>Привет!</h1>
+        <p>Войдите или зарегистрируйтесь — пришлём код на&nbsp;почту. Пароль не&nbsp;нужен.</p>
+        <div class="field">
+          <label class="field__label" for="email">Email</label>
+          <input class="input" id="email" type="email" inputmode="email" autocomplete="email" placeholder="name@mail.ru">
+          <p class="field__error" hidden></p>
+          <p class="suggest" data-suggest hidden></p>
+        </div>
+        <details data-ref>
+          <summary class="textbtn" style="list-style:none">Есть код друга?</summary>
+          <div class="field" style="margin-top:12px">
+            <label class="field__label" for="ref">Код друга — необязательно</label>
+            <input class="input mono" id="ref" autocomplete="off" placeholder="PRIVET-XXXX" style="text-transform:uppercase">
+            <p class="field__error" hidden></p>
+            <p class="field__hint">Код работает только при первой регистрации.<span data-demo> Для демо: PRIVET-7K2Q</span></p>
+          </div>
+        </details>
+        <button class="btn btn--primary btn--lg btn--block" type="submit">Получить код</button>
+        <p class="or">или</p>
+        <button class="btn btn--tg btn--lg" type="button" data-soon="Telegram">Войти через Telegram</button>
+        <button class="btn btn--social btn--lg" type="button" data-soon="Google"><span class="g" aria-hidden="true">G</span>Войти через Google</button>
+        <p class="legal-note">Продолжая, вы принимаете <a href="legal.html?doc=offer">оферту</a> и&nbsp;<a href="legal.html?doc=privacy">политику конфиденциальности</a></p>
+      </form>
+
+      <!-- Шаг 2: код -->
+      <form class="auth__card" data-step="code" novalidate hidden>
+        <button class="textbtn" type="button" data-back style="justify-self:start">← Изменить email</button>
+        <h1>Введите код</h1>
+        <p>Отправили 6 цифр на&nbsp;<b data-email></b>.<span data-demo> Для демо: 123456</span></p>
+        <div class="field" id="code-field">
+          <span class="field__label" id="code-label">Код из письма</span>
+          <div class="code-inputs" role="group" aria-labelledby="code-label">
+            <input class="input" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-label="Цифра 1">
+            <input class="input" inputmode="numeric" maxlength="1" aria-label="Цифра 2">
+            <input class="input" inputmode="numeric" maxlength="1" aria-label="Цифра 3">
+            <input class="input" inputmode="numeric" maxlength="1" aria-label="Цифра 4">
+            <input class="input" inputmode="numeric" maxlength="1" aria-label="Цифра 5">
+            <input class="input" inputmode="numeric" maxlength="1" aria-label="Цифра 6">
+          </div>
+          <p class="field__error" hidden></p>
+        </div>
+        <button class="btn btn--primary btn--lg btn--block" type="submit">Войти</button>
+        <p class="small muted" style="text-align:center">Не пришло? Проверьте «Спам». <button class="textbtn" type="button" data-resend></button></p>
+      </form>
+
+      <!-- Шаг 3: готово -->
+      <div class="auth__card" data-step="done" hidden>
+        <span class="status__icon status__icon--ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>
+        <h1 tabindex="-1">Вы вошли</h1>
+        <p data-done-text>Здесь будут ваши eSIM, остаток трафика, пополнение и квитанции.</p>
+        <p class="info-box">Личный кабинет — следующий этап вёрстки. Пока можно выбрать eSIM для поездки.</p>
+        <a class="btn btn--primary btn--lg btn--block" href="countries.html">Выбрать страну</a>
+      </div>
+    </div>
+  </main>
+  <div data-slot="footer"></div>
+</body>
+</html>
