@@ -1,11 +1,11 @@
 /*
-  Личный кабинет: пользователи, вход по коду, eSIM, заказы, баланс, друзья, возвраты.
+  Личный кабинет: пользователи, вход (код из письма, Google, Telegram), eSIM, заказы, баланс, друзья, возвраты.
   Подключается после site.js и до runtime макетов. Экраны читают данные синхронно (PSA.*).
 
   Два режима (site-src/config.js):
     • demo: true — ДЕМО: «сервер» живёт в localStorage этого браузера, код входа показывается на экране,
       оплата СБП/USDT имитируется, статусы eSIM переключаются в демо-панели (кнопка «Демо» внизу слева);
-    • demo: false — API-драйвер (внизу файла): данные из apps/api (SITE_CONFIG.apiUrl), вход по коду из письма,
+    • demo: false — API-драйвер (внизу файла): данные из apps/api (SITE_CONFIG.apiUrl), вход по коду из письма, через Google и Telegram (в Mini App — сам),
       оплата на странице эквайринга. Перед показом страницы грузим /api/account/state (PSA.ready), а экраны
       читают те же структуры синхронно. Мутации возвращают Promise — экраны ждут их через PSA.then().
 */
@@ -88,6 +88,34 @@
   PSA.hasAccount = function (email) { return !!userByEmail(email); };
   PSA.logout = function () { db().sid = null; save(); try { root.localStorage.removeItem('ps.chat.v2'); } catch (e) {} };
   PSA.loginUrl = function (next) { return 'login.html' + (next ? '?next=' + encodeURIComponent(next) : ''); };
+  /* ---------- Вход через Telegram и Google (работают с сервером; в демо — подсказка) ---------- */
+  PSA.providers = function () { return { google: false, telegram: false }; };
+  PSA.googlePending = function () { return ''; };
+  PSA.googleUrl = function () { return ''; };
+  PSA.tgStart = function (link, cb) { cb({ status: 'off' }); };
+  PSA.tgCancel = function () {};
+  PSA.unlink = function () { return { err: 'off' }; };
+  var AUTH_ERR = {
+    google_cancelled: 'Попробуйте ещё раз или войдите по коду из письма.',
+    google_failed: 'Попробуйте ещё раз или войдите по коду из письма.',
+    google_unverified: 'Google не подтвердил почту этого аккаунта. Войдите по коду из письма.',
+    google_off: 'Вход через Google временно недоступен. Войдите по коду из письма',
+    identity_conflict: 'Этот вход привязан к другому кабинету, где уже есть свой Telegram или Google. Напишите в поддержку — объединим вручную',
+    already_linked: 'К кабинету уже привязан другой Google-аккаунт. Сначала отвяжите его в профиле',
+    auth: 'Сначала войдите в кабинет'
+  };
+  PSA.authError = function (code) { return AUTH_ERR[code] || ''; };
+  // Первый экран входа: после Google — «Этот email у нас уже есть» (site-29, 08) или «Вход через Google отменён» (07)
+  PSA.loginStep = function () {
+    if (PS.qp('merge') === 'google' && PSA.googlePending()) return 'merge';
+    var e = PS.qp('error');
+    return e && e !== 'google_off' && AUTH_ERR[e] ? 'gFail' : 'email';
+  };
+  // Сообщение после возврата из Google в профиль (?linked=google / ?error=…)
+  PSA.authMessage = function () {
+    if (PS.qp('linked') === 'google') return 'Google привязан — теперь можно входить в один клик';
+    return PSA.authError(PS.qp('error'));
+  };
   // Страницы кабинета без входа ведут на вход и возвращают обратно
   PSA.guard = function () {
     return PSA.whenReady(function () {
@@ -865,7 +893,7 @@
           set: setDefaults(U.settings), ops: st.ops.map(function (x) {
             return { id: x.id, ts: tms(x.createdAt), t: x.title, d: PSA.dt(tms(x.createdAt)) + (x.note ? ' · ' + x.note : ''), b: x.bucket, a: x.amountKopecks / 100, kind: x.kind, pend: x.pending, cancel: x.cancelled, orderId: x.orderId };
           }) };
-        u.set.tg = !!U.telegram; u.set.g = !!U.google;
+        u.set.tg = !!U.telegram; u.set.g = !!U.google; u.tgName = U.telegramUsername || '';
         d.users[u.id] = u; d.byEmail[u.email] = u.id; d.refs[u.ref] = u.id; d.sid = u.id;
         st.orders.forEach(function (x) { putOrder(d, x, u.id); });
         // Возвраты: к заказу и eSIM (как в демо)
@@ -941,7 +969,8 @@
       return call('POST', '/auth/email/verify', { email: normEmail(email), code: String(code), ref: ref || undefined }).then(function (r) {
         if (!r.user) return CODE_ERR(r);
         try { root.localStorage.removeItem('ps.ref'); } catch (e) {}
-        return load().then(function () { return { ok: true, isNew: !!r.isNew, invited: !!r.invited }; });
+        gPending = '';
+        return load().then(function () { return { ok: true, isNew: !!r.isNew, invited: !!r.invited, linked: r.linked }; });
       });
     };
     // Код друга: проверяем формат сразу, наличие — на сервере (неизвестный код сервер просто не применит)
@@ -958,6 +987,68 @@
       try { root.localStorage.removeItem('ps.chat.v2'); } catch (e) {}
       return call('POST', '/auth/logout', {});
     };
+
+    /* ---------- Вход и привязка: Telegram (через бота) и Google ---------- */
+    var prov = { google: false, telegram: false }, gPending = '';
+    PSA.providers = function () { return prov; };
+    PSA.googlePending = function () { return gPending; };
+    PSA.googleUrl = function (next, link) { return API + '/auth/google/start?' + (link ? 'link=1&' : '') + 'next=' + encodeURIComponent(next || 'account.html'); };
+    // Сайт создаёт вход, бот спрашивает «Это я?», сайт ждёт подтверждения. link — привязать к кабинету (профиль)
+    // cb получает { status: 'start' | 'wait' | 'ok' | 'fail', code, url, opened, text }
+    var tgs = null, tgTimer = 0;
+    PSA.tgCancel = function () { clearInterval(tgTimer); tgs = null; };
+    PSA.tgStart = function (link, cb) {
+      PSA.tgCancel();
+      var w = null;
+      try { w = root.open('about:blank', '_blank'); } catch (e) {} // окно открываем сразу по клику, иначе браузер заблокирует
+      var st = tgs = { status: 'start' };
+      var emit = function () { if (tgs === st) cb(st); };
+      var close = function () { try { if (w) w.close(); } catch (e) {} };
+      emit();
+      call('POST', '/auth/telegram/start', {}).then(function (r) {
+        if (tgs !== st) return close();
+        if (!r.secret) { close(); st.status = 'fail'; st.text = r.error === 'network' ? r.message : ''; return emit(); }
+        st.status = 'wait'; st.code = r.verifyCode; st.url = r.url; st.opened = false;
+        try { if (w) { w.location.href = r.url; st.opened = true; } } catch (e) {}
+        emit();
+        var started = Date.now(), busy = false;
+        tgTimer = setInterval(function () {
+          if (busy || tgs !== st) return;
+          if (Date.now() - started > 10 * MIN) { clearInterval(tgTimer); st.status = 'fail'; st.text = ''; return emit(); }
+          busy = true;
+          call('POST', '/auth/telegram/poll', { secret: r.secret, link: !!link }).then(function (p) {
+            busy = false;
+            if (tgs !== st || p.status === 'pending' || p.error === 'network') return;
+            clearInterval(tgTimer);
+            if (p.status === 'confirmed') return load().then(function () { st.status = 'ok'; emit(); });
+            st.status = 'fail'; st.text = p.message && p.message !== p.error ? p.message : ''; emit();
+          });
+        }, 2000);
+      });
+    };
+    PSA.unlink = function (provider) {
+      return call('POST', '/account/unlink', { provider: provider }).then(function (r) {
+        if (!r.ok) return fail(r, 'Не получилось отвязать. Попробуйте ещё раз');
+        return load().then(function () { return { ok: true }; });
+      });
+    };
+    // Mini App: Telegram передаёт подписанные данные пользователя — входим без кнопок
+    function miniApp() {
+      var init = '';
+      try { init = (root.Telegram && root.Telegram.WebApp && root.Telegram.WebApp.initData) || new URLSearchParams(String(root.location.hash || '').slice(1)).get('tgWebAppData') || ''; } catch (e) {}
+      if (!init || PS.qp('logout')) return;
+      var mark = init.slice(-24);
+      try { if (root.sessionStorage.getItem('ps.tgma') === mark) return; } catch (e) {}
+      return call('POST', '/auth/telegram/miniapp', { initData: init }).then(function (r) {
+        if (r.user) try { root.sessionStorage.setItem('ps.tgma', mark); } catch (e) {}
+      });
+    }
+    function authExtras() {
+      return Promise.all([
+        call('GET', '/auth/providers').then(function (r) { if (!r.error) prov = { google: !!r.google, telegram: !!r.telegram }; }),
+        PS.qp('merge') === 'google' ? call('GET', '/auth/google/pending').then(function (r) { gPending = r.email || ''; }) : null
+      ]);
+    }
 
     /* ---------- Заказы и оплата ---------- */
     PSA.checkPromo = function () { return { err: 'Такого промокода нет. Проверьте буквы и цифры' }; };
@@ -1088,7 +1179,8 @@
 
     /* ---------- Загрузка перед показом страницы ---------- */
     PSA.ready = (PS.qp('logout') ? PSA.logout() : Promise.resolve())
-      .then(load)
+      .then(miniApp)
+      .then(function () { return Promise.all([load(), authExtras()]); })
       .then(function () {
         var oid = PS.qp('o') || PS.qp('paid'), k = PS.qp('k');
         if (oid && !db().orders[oid] && k) return fetchOrder(oid, k).then(function () { save(); });

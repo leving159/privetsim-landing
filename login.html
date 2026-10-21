@@ -8,19 +8,19 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610220117"></script>
-<script src="assets/catalog.js?v=202610220117"></script>
+<script src="config.js?v=202610220208"></script>
+<script src="assets/catalog.js?v=202610220208"></script>
 <script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
-<script src="assets/site.js?v=202610220117"></script>
-<script src="assets/account.js?v=202610220117"></script>
+<script src="assets/site.js?v=202610220208"></script>
+<script src="assets/account.js?v=202610220208"></script>
 <script>PSA.whenReady(function () { if (PSA.authed()) { PSA.leaving = true; location.replace(PSA.nextUrl()); } })</script>
-<link rel="stylesheet" href="assets/account.css?v=202610220117">
-<script src="assets/chat.js?v=202610220117" defer></script>
+<link rel="stylesheet" href="assets/account.css?v=202610220208">
+<script src="assets/chat.js?v=202610220208" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610220117"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610220117">
-<script src="assets/motion.js?v=202610220117" defer></script>
+<script src="assets/dc-runtime.js?v=202610220208"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610220208">
+<script src="assets/motion.js?v=202610220208" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -594,6 +594,41 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
       </sc-if>
 
+      <!-- Вход через Telegram: ждём «Это я» в боте; не удалось (site-29, 06); Google отменён (07); почта Google уже есть (08) -->
+      <sc-if value="{{isTgWait}}" hint-placeholder-val="{{ false }}">
+        <div class="ps-fr" style="padding: 0">
+          <span class="ps-ico" aria-hidden="true"><svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L3 11l6 2.5L11.5 20 15 15l4 3z"></path><path d="M9 13.5L21 4"></path></svg></span>
+          <h3>Подтвердите вход в&nbsp;Telegram</h3>
+          <p>Открыли бота Привет&nbsp;SIM. Если код в&nbsp;сообщении совпадает с&nbsp;этим, нажмите «Это&nbsp;я»: <b class="mono" style="color: #0E1220">{{tgCode}}</b></p>
+          <p style="font-size: 13px; line-height: 19px; color: #5A6175">Страница обновится сама, как только вы&nbsp;подтвердите вход.</p>
+          <div class="ps-btns"><sc-if value="{{tgReady}}" hint-placeholder-val="{{ true }}"><a class="btn btn-dark" href="{{tgUrl}}" target="_blank" rel="noopener">Открыть Telegram</a></sc-if><button class="btn btn-ghost-out" type="button" sc-camel-on-click="{{toEmail}}">Войти по&nbsp;email</button></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{isTgFail}}" hint-placeholder-val="{{ false }}">
+        <div class="ps-fr" style="padding: 0">
+          <span class="ps-ico red" aria-hidden="true"><svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
+          <h3>Вход через Telegram не&nbsp;удался</h3>
+          <p>{{tgErr}}</p>
+          <div class="ps-btns"><button class="btn btn-primary" type="button" sc-camel-on-click="{{psTg}}">Попробовать снова</button><button class="btn btn-ghost-out" type="button" sc-camel-on-click="{{toEmail}}">Войти по&nbsp;email</button></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{isGFail}}" hint-placeholder-val="{{ false }}">
+        <div class="ps-fr" style="padding: 0">
+          <span class="ps-ico red" aria-hidden="true"><svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></span>
+          <h3>Вход через Google отменён</h3>
+          <p>{{gErr}}</p>
+          <div class="ps-btns"><button class="btn btn-primary" type="button" sc-camel-on-click="{{psGoogle}}">Попробовать снова</button><button class="btn btn-ghost-out" type="button" sc-camel-on-click="{{toEmail}}">Войти по&nbsp;email</button></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{isMerge}}" hint-placeholder-val="{{ false }}">
+        <div class="ps-fr" style="padding: 0">
+          <span class="ps-ico" aria-hidden="true"><svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M3.5 7l8.5 6 8.5-6"></path></svg></span>
+          <h3>Этот Email у&nbsp;нас уже есть</h3>
+          <p>На&nbsp;{{mergeEmail}} уже есть кабинет. Подтвердите, что это вы: пришлём код и&nbsp;объединим входы.</p>
+          <div class="ps-btns"><button class="btn btn-primary" type="button" sc-camel-on-click="{{sendMerge}}">Прислать код</button></div>
+        </div>
+      </sc-if>
+
       <sc-if value="{{isDone}}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 16px 0">
           <svg width="72" height="72" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg>
@@ -696,7 +731,7 @@ class Component extends DCLogic {
     const v = this._rv0() || {};
     const s = this.state || {};
     const toast = (t) => () => { this.setState({ toast: t }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 2200); };
-    return Object.assign(v, PS.vals(), { psTg: toast('Вход через Telegram заработает после подключения сервера'), psGoogle: toast('Вход через Google заработает после подключения сервера') }, {
+    return Object.assign(v, PS.vals(), {
       toastOn: !!s.toast, toastText: s.toast || '',
       langLbl: s.uiLang === 'en' ? 'RU' : 'EN', langAria: s.uiLang === 'en' ? 'Переключить на русский' : 'Switch to English',
       toggleLang: () => { const en = s.uiLang !== 'en'; this.setState({ uiLang: en ? 'en' : 'ru' }); toast(en ? 'Switched to English' : 'Сайт на русском')(); },
@@ -704,7 +739,7 @@ class Component extends DCLogic {
     });
   }
 
-  constructor(props) { super(props); this.state = { step: 'email', email: PS.qp('email'), eErr: '', code: '', cErr: '', tries: 3, ref: '', refOpen: false, rErr: '', refApplied: false }; }
+  constructor(props) { super(props); this.state = { step: PSA.loginStep(), email: PS.qp('email') || PSA.googlePending(), eErr: '', code: '', cErr: '', tries: 3, ref: '', refOpen: false, rErr: '', refApplied: false }; }
   _rv0() {
     const s = this.state;
     const typos = { 'gmal.com': 'gmail.com', 'gmial.com': 'gmail.com', 'yandx.ru': 'yandex.ru', 'mial.ru': 'mail.ru', 'mail.ri': 'mail.ru' };
@@ -715,6 +750,8 @@ class Component extends DCLogic {
     const fromLink = !!(this.props.fromLink ?? false) || !!PSA.pendingRef();
     const refCode = fromLink ? PSA.pendingRef() : s.ref.trim().toUpperCase();
     const refOk = !fromLink && !!refCode && PSA.refValid(refCode) && !s.rErr;
+    const note = (text) => { this.setState({ toast: text }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 3200); };
+    if (!this._qn) { this._qn = 1; if (PS.qp('error') === 'google_off') setTimeout(() => note(PSA.authError('google_off')), 0); }
     const wait = s.step === 'code' ? PSA.codeWait(s.email) : 0;
     if (s.step === 'code' && !this._iv) this._iv = setInterval(() => { if (this.state.step !== 'code') { clearInterval(this._iv); this._iv = 0; } this.setState({ tick: Date.now() }); }, 1000);
     const sendCode = () => PSA.then(PSA.requestCode(s.email.trim()), (r) => {
@@ -754,6 +791,32 @@ class Component extends DCLogic {
       back: () => this.setState({ step: 'email' }),
       refShow: refCode, demoCode: PSA.demoCode(s.email), hasDemo: !!PSA.demoCode(s.email), waitResend: wait > 0, canResend: wait <= 0, resendIn: Math.floor(wait / 60) + ':' + String(wait % 60).padStart(2, '0'), resend: sendCode,
       nextHref: PSA.nextUrl(), nextLabel: PSA.nextUrl() === 'account.html' ? 'Мои eSIM' : 'Продолжить',
+      isTgWait: s.step === 'tg', isTgFail: s.step === 'tgFail', isGFail: s.step === 'gFail', isMerge: s.step === 'merge',
+      tgCode: (s.tg && s.tg.code) || '···', tgUrl: (s.tg && s.tg.url) || '#', tgReady: !!(s.tg && s.tg.url),
+      tgErr: s.tgErr || 'Telegram не\u00a0подтвердил вход. Попробуйте ещё раз или войдите по\u00a0коду из\u00a0письма.',
+      gErr: PSA.authError(PS.qp('error')) || PSA.authError('google_failed'), mergeEmail: PSA.googlePending(),
+      toEmail: () => { PSA.tgCancel(); this.setState({ step: 'email', tg: null }); },
+      psTg: () => {
+        if (!PSA.providers().telegram) return note(PSA.DEMO ? 'Вход через Telegram заработает после подключения сервера' : 'Вход через Telegram временно недоступен. Войдите по\u00a0коду из\u00a0письма');
+        this.setState({ step: 'tg', tg: null, tgErr: '' });
+        PSA.tgStart(false, (st) => {
+          if (st.status === 'ok') { this.setState({ step: 'done' }); if (PS.qp('next')) setTimeout(() => PS.go(PSA.nextUrl()), 900); return; }
+          if (st.status === 'fail') return this.setState({ step: 'tgFail', tgErr: st.text || '' });
+          if (st.status === 'wait') this.setState({ tg: { code: st.code, url: st.url } });
+        });
+      },
+      psGoogle: () => {
+        if (!PSA.providers().google) return note(PSA.DEMO ? 'Вход через Google заработает после подключения сервера' : PSA.authError('google_off'));
+        window.location.href = PSA.googleUrl(PSA.nextUrl());
+      },
+      sendMerge: () => {
+        const v = PSA.googlePending();
+        this.setState({ email: v });
+        PSA.then(PSA.requestCode(v), (r) => {
+          if (r.err) return this.setState({ step: 'email', eErr: r.text || 'Новый код можно запросить через ' + r.wait + ' с' });
+          this.setState({ step: 'code', code: '', cErr: '', tries: 3 });
+        });
+      },
       submitCode: () => {
         if (locked) return;
         if (s.code.length < 6) return this.setState({ cErr: 'Введите все 6 цифр' });

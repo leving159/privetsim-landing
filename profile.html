@@ -8,19 +8,19 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610220117"></script>
-<script src="assets/catalog.js?v=202610220117"></script>
+<script src="config.js?v=202610220208"></script>
+<script src="assets/catalog.js?v=202610220208"></script>
 <script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
-<script src="assets/site.js?v=202610220117"></script>
-<script src="assets/account.js?v=202610220117"></script>
+<script src="assets/site.js?v=202610220208"></script>
+<script src="assets/account.js?v=202610220208"></script>
 <script>PSA.guard()</script>
-<link rel="stylesheet" href="assets/account.css?v=202610220117">
-<script src="assets/chat.js?v=202610220117" defer></script>
+<link rel="stylesheet" href="assets/account.css?v=202610220208">
+<script src="assets/chat.js?v=202610220208" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610220117"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610220117">
-<script src="assets/motion.js?v=202610220117" defer></script>
+<script src="assets/dc-runtime.js?v=202610220208"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610220208">
+<script src="assets/motion.js?v=202610220208" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -806,10 +806,32 @@ class Component extends DCLogic {
     }) }));
     const q = swv(s.quiet);
     const later = (what) => () => { this.setState({ toast: what + ' появится после подключения сервера. Сейчас вход — по коду из письма' }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 3000); };
+    // Telegram и Google: подключить (вход через бота / Google с привязкой к этому кабинету) и отвязать
+    const note = (text, ms) => { this.setState({ toast: text }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), ms || 3000); };
+    if (!this._qn) { this._qn = 1; const m = PSA.authMessage(); if (m) setTimeout(() => note(m, 4500), 0); }
+    const tgw = s.tgw;
+    const toggleTg = () => {
+      if (PSA.DEMO) return later('Подключение Telegram')();
+      if (tgw && !tgw.opened) { window.open(tgw.url, '_blank', 'noopener'); return this.setState({ tgw: { ...tgw, opened: true } }); }
+      if (tgw) { PSA.tgCancel(); return this.setState({ tgw: null }); }
+      if (u.set.tg) return PSA.then(PSA.unlink('telegram'), (r) => { if (r.ok) note('Telegram отключён'); });
+      if (!PSA.providers().telegram) return note('Подключение Telegram временно недоступно');
+      PSA.tgStart(true, (st) => {
+        if (st.status === 'wait') return this.setState({ tgw: { code: st.code, url: st.url, opened: st.opened } });
+        if (st.status === 'ok') { this.setState({ tgw: null }); return note('Telegram подключён — покупки из бота теперь здесь'); }
+        if (st.status === 'fail') { this.setState({ tgw: null }); note(st.text || 'Telegram не подтвердил вход. Попробуйте ещё раз', 4500); }
+      });
+    };
+    const toggleG = () => {
+      if (PSA.DEMO) return later('Вход через Google')();
+      if (u.set.g) return PSA.then(PSA.unlink('google'), (r) => { if (r.ok) note('Google отвязан'); });
+      if (!PSA.providers().google) return note(PSA.authError('google_off'));
+      window.location.href = PSA.googleUrl('profile.html', true);
+    };
     const B = PSA.balance();
     const pending = u.pendingEmail || '';
     return {
-      email: u.email, viewEmail: !s.editing && !pending, editEmail: s.editing && !pending, codeEmail: !!pending, pending, draft: s.draft,
+      email: u.email || 'Не указан', viewEmail: !s.editing && !pending, editEmail: s.editing && !pending, codeEmail: !!pending, pending, draft: s.draft,
       dErr: s.dErr, hasDErr: !!s.dErr, dInvalid: s.dErr ? 'true' : 'false',
       dBorder: s.dErr ? '#C62F35' : '#2F5BFF', dBg: s.dErr ? '#FFFBFB' : '#FFFFFF',
       startEdit: () => this.setState({ editing: true, draft: u.email, dErr: '', saved: false }),
@@ -835,8 +857,9 @@ class Component extends DCLogic {
         this.setState({ cErr: r.err === 'invalid' ? 'Неверный код. Осталось попыток: ' + r.left : (r.err === 'expired' ? 'Код устарел. Измените email ещё раз' : 'Слишком много попыток. Измените email ещё раз') });
         });
       },
-      tgText: 'Не подключён — уведомления придут только на почту', tgColor: '#5A6175', tgBtn: 'Подключить', tgBtnClass: 'btn-secondary', toggleTg: later('Подключение Telegram'),
-      gText: 'Не подключён — привяжите, чтобы входить без кода из письма', gColor: '#5A6175', gBtn: 'Привязать', gBtnClass: 'btn-secondary', toggleG: later('Вход через Google'),
+      tgText: tgw ? 'Подтвердите в боте: нажмите «Это я», код ' + tgw.code : (u.set.tg ? 'Подключён' + (u.tgName ? ' · @' + u.tgName : '') : 'Не подключён — уведомления придут только на почту'),
+      tgColor: u.set.tg && !tgw ? '#0B7A3E' : '#5A6175', tgBtn: tgw ? (tgw.opened ? 'Отмена' : 'Открыть Telegram') : (u.set.tg ? 'Отключить' : 'Подключить'), tgBtnClass: u.set.tg || tgw ? 'btn-ghost' : 'btn-secondary', toggleTg,
+      gText: u.set.g ? 'Подключён — можно входить в один клик' : 'Не подключён — привяжите, чтобы входить без кода из письма', gColor: u.set.g ? '#0B7A3E' : '#5A6175', gBtn: u.set.g ? 'Отвязать' : 'Привязать', gBtnClass: u.set.g ? 'btn-ghost' : 'btn-secondary', toggleG,
       langs: seg([['ru', 'Русский'], ['en', 'English']], 'lang'),
       mlangs: seg([['ru', 'Русский'], ['en', 'English']], 'mlang'),
       curs: seg([['rub', '₽'], ['usd', '$'], ['usdt', 'USDT']], 'cur'),
