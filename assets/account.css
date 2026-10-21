@@ -1,0 +1,48 @@
+/*
+  Кабинет: элементы из листов состояний макета (site-26…29) — плашки статусов, заметки,
+  пустые состояния — и демо-уведомления. Классы с префиксом ps-, чтобы не пересекаться со стилями экранов.
+*/
+.ps-fr{display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:24px;background:#FFFFFF;box-sizing:border-box}
+.ps-fr h3{margin:0;font-size:20px;line-height:26px;font-weight:600;letter-spacing:-0.01em}
+.ps-fr p{margin:0;font-size:15px;line-height:23px;color:#2B3142}
+.ps-empty{align-items:flex-start;padding:28px;border-radius:28px}
+.ps-ico{width:48px;height:48px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;flex:none;background:#F2F5FF;color:#2F5BFF}
+.ps-ico.red{background:#FDECEC;color:#C62F35}
+.ps-pill{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;font:600 13px/1 'Onest',system-ui,sans-serif;white-space:nowrap}
+.ps-pill i{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.ps-note{padding:14px 16px;border-radius:16px;font-size:14px;line-height:21px}
+.ps-n-amber{background:#FFF6E5;color:#5C3D00}.ps-n-blue{background:#F2F5FF;color:#1F45D6}.ps-n-gray{background:#F5F6F9;color:#2B3142}.ps-n-red{background:#FDECEC;color:#7A1A1F}.ps-n-green{background:#E4F5EA;color:#0B5C2E}
+.ps-kv{display:flex;flex-direction:column;border-top:1px solid #EDEFF3}
+.ps-kv div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #EDEFF3;font-size:14px}
+.ps-kv span{color:#5A6175}.ps-kv b{font-weight:500;text-align:right}
+.ps-btns{display:flex;flex-wrap:wrap;gap:8px}
+.ps-spin{width:22px;height:22px;border-radius:50%;border:3px solid #E6ECFF;border-top-color:#2F5BFF;animation:ps-spin 1s linear infinite;flex:none;box-sizing:border-box}
+@keyframes ps-spin{to{transform:rotate(360deg)}}
+.ps-qr svg{display:block;width:100%;height:100%}
+.ps-hide{display:none !important}
+
+/* Демо: письма вместо почты */
+#psa-notes{position:fixed;top:16px;right:16px;z-index:400;display:flex;flex-direction:column;gap:10px;width:min(360px,calc(100vw - 32px));pointer-events:none}
+.psa-note{pointer-events:auto;display:flex;gap:12px;align-items:flex-start;padding:14px 14px 14px 16px;border-radius:20px;background:#0E1220;color:#FFFFFF;box-shadow:0 16px 40px rgba(14,18,32,.28);font:400 14px/20px 'Onest',system-ui,sans-serif;animation:psa-in .35s cubic-bezier(.2,.8,.2,1);transition:opacity .35s,transform .35s}
+.psa-note.out{opacity:0;transform:translateY(-8px)}
+.psa-note-i{width:34px;height:34px;border-radius:11px;background:#2F5BFF;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.psa-note-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.psa-note-t small{font:500 11px/16px 'JetBrains Mono',monospace;letter-spacing:.04em;color:#8C92A3;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.psa-note-t b{font-weight:600;font-size:15px}
+.psa-note-t span{color:#C5CAD6}
+.psa-note button{border:0;background:transparent;color:#8C92A3;font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+@keyframes psa-in{from{opacity:0;transform:translateY(-8px)}}
+
+/* Демо-панель: переключение статусов eSIM, оплаты, времени */
+#psa-demo{position:fixed;left:16px;bottom:16px;z-index:390;font:400 13px/18px 'Onest',system-ui,sans-serif;color:#0E1220}
+#psa-demo>button{height:36px;padding:0 14px;border-radius:999px;border:0;background:#0E1220;color:#FFFFFF;font:600 12px/1 'JetBrains Mono',monospace;letter-spacing:.06em;cursor:pointer;box-shadow:0 6px 18px rgba(14,18,32,.22)}
+#psa-demo .psa-dp{position:absolute;left:0;bottom:46px;width:min(320px,calc(100vw - 32px));max-height:min(70vh,560px);overflow:auto;padding:16px;border-radius:20px;background:#FFFFFF;box-shadow:0 24px 64px rgba(14,18,32,.24);display:flex;flex-direction:column;gap:12px;box-sizing:border-box}
+#psa-demo .psa-dp[hidden]{display:none}
+#psa-demo .psa-dp b{font-size:14px}
+#psa-demo .psa-dp small{display:block;color:#5A6175;font-size:12px;line-height:17px}
+#psa-demo .psa-g{display:flex;flex-direction:column;gap:6px}
+#psa-demo .psa-g>span{font:500 11px/16px 'JetBrains Mono',monospace;letter-spacing:.04em;color:#8C92A3;text-transform:uppercase}
+#psa-demo .psa-row{display:flex;flex-wrap:wrap;gap:6px}
+#psa-demo .psa-row button{height:30px;padding:0 10px;border-radius:999px;border:0;background:#F2F5FF;color:#1F45D6;font:600 12px/1 'Onest',system-ui,sans-serif;cursor:pointer}
+#psa-demo .psa-row button.warn{background:#FDECEC;color:#B0262C}
+@media print{#psa-demo,#psa-notes,.cw{display:none !important}}

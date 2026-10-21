@@ -288,14 +288,14 @@
     PS.plans = function (code) {
       var e = catEntry(code) || CAT.countries.TR;
       var total = e.plans.total.map(function (p) {
-        return { gb: GBL(p.n), days: PS.daysWord(p.d), daysShort: p.d + ' ДН', total: 'на весь срок', n: p.n, price: p.p, code: p.c, more: p.n < 1 || p.d >= 90 };
+        return { gb: GBL(p.n), days: PS.daysWord(p.d), daysShort: p.d + ' ДН', total: 'на весь срок', n: p.n, price: p.p, code: p.c, top: p.t, more: p.n < 1 || p.d >= 90 };
       });
       var main = total.filter(function (p) { return !p.more; });
       main.slice(8).forEach(function (p) { p.more = true; });
       var hit = main.filter(function (p) { return p.n === 5 && p.daysShort === '30 ДН'; })[0] || main.filter(function (p) { return p.n >= 3; })[0] || main[0] || total[0];
       if (hit) hit.hit = true;
       var daily = e.plans.daily.map(function (p) {
-        return { gb: GBL(p.n) + '/день', days: p.f ? 'после лимита ' + p.f : 'после лимита скорость снижается', total: USE(p.n), n: p.n, price: p.p, code: p.c, gbShort: (GBL(p.n) + '/день').toUpperCase() };
+        return { gb: GBL(p.n) + '/день', days: p.f ? 'после лимита ' + p.f : 'после лимита скорость снижается', total: USE(p.n), n: p.n, price: p.p, code: p.c, top: p.t, gbShort: (GBL(p.n) + '/день').toUpperCase() };
       });
       var dh = daily.filter(function (p) { return p.n === 1; })[0] || daily[0];
       if (dh) dh.hit = true;

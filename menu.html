@@ -8,14 +8,18 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610201428"></script>
-<script src="assets/catalog.js?v=202610201428"></script>
-<script src="assets/site.js?v=202610201428"></script>
+<script src="config.js?v=202610211649"></script>
+<script src="assets/catalog.js?v=202610211649"></script>
+<script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
+<script src="assets/site.js?v=202610211649"></script>
+<script src="assets/account.js?v=202610211649"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610211649">
+<script src="assets/chat.js?v=202610211649" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610201428"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610201428">
-<script src="assets/motion.js?v=202610201428" defer></script>
+<script src="assets/dc-runtime.js?v=202610211649"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610211649">
+<script src="assets/motion.js?v=202610211649" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -432,9 +436,9 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
       <a class="mi" href="index.html#how">Как&nbsp;это&nbsp;работает<svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8C92A3" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
       <a class="mi" href="compatibility.html">Совместимость<svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8C92A3" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
       <a class="mi" href="help.html">Помощь<svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8C92A3" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
-      <a class="mi" href="login.html">Мои eSIM<svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8C92A3" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
-      <a class="mi" href="login.html">Баланс<span class="mono" style="font-size: 15px; font-weight: 500; color: #5A6175; letter-spacing: 0">4 970 ₽</span></a>
-      <a class="mi" href="login.html">Пригласить друзей<span style="height: 26px; padding: 0 10px; border-radius: 8px; background: #FF7A45; color: #0E1220; font: 600 13px/26px 'Onest', system-ui, sans-serif; letter-spacing: 0">25%</span></a>
+      <a class="mi" href="account.html">Мои eSIM<svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8C92A3" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+      <a class="mi" href="wallet.html">Баланс<span class="mono" style="font-size: 15px; font-weight: 500; color: #5A6175; letter-spacing: 0">4 970 ₽</span></a>
+      <a class="mi" href="referral.html">Пригласить друзей<span style="height: 26px; padding: 0 10px; border-radius: 8px; background: #FF7A45; color: #0E1220; font: 600 13px/26px 'Onest', system-ui, sans-serif; letter-spacing: 0">25%</span></a>
     </nav>
     
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -453,7 +457,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
   </div>
 
   <div style="padding: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; border-top: 1px solid #EDEFF3; flex: none">
-    <a class="btn btn-ghost" href="login.html">Войти</a>
+    <sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a class="btn btn-ghost" href="login.html">Войти</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a class="btn btn-ghost" href="account.html">Мои eSIM</a></sc-if>
     <a class="btn btn-primary" href="countries.html">Купить eSIM</a>
   </div>
 </div>

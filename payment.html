@@ -8,14 +8,19 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610201428"></script>
-<script src="assets/catalog.js?v=202610201428"></script>
-<script src="assets/site.js?v=202610201428"></script>
+<script src="config.js?v=202610211649"></script>
+<script src="assets/catalog.js?v=202610211649"></script>
+<script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
+<script src="assets/site.js?v=202610211649"></script>
+<script src="assets/account.js?v=202610211649"></script>
+<script src="assets/vendor/qrcode.min.js"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610211649">
+<script src="assets/chat.js?v=202610211649" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610201428"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610201428">
-<script src="assets/motion.js?v=202610201428" defer></script>
+<script src="assets/dc-runtime.js?v=202610211649"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610211649">
+<script src="assets/motion.js?v=202610211649" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -498,7 +503,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
     <div class="sh-in">
       <a class="sh-logo" href="index.html" aria-label="Привет SIM — на главную"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Привет</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">eSIM для&nbsp;путешествий<br>в&nbsp;200+ стран</span></a>
       <nav class="sh-nav" aria-label="Основная"><a href="countries.html">Страны</a><a href="index.html#how">Как&nbsp;это&nbsp;работает</a><a href="compatibility.html">Совместимость</a><a href="help.html">Помощь</a></nav>
-      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="en" lang="en" aria-label="{{langAria}}" title="English" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><a class="sh-btn sh-gho sh-hm" href="login.html">Войти</a><a class="sh-btn sh-pri" href="countries.html">Купить eSIM</a><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Открыть меню"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
+      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="en" lang="en" aria-label="{{langAria}}" title="English" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a class="sh-btn sh-gho sh-hm" href="login.html">Войти</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a class="sh-ava sh-hm" href="account.html" aria-label="{{psAvaAria}}">{{psAva}}</a></sc-if><a class="sh-btn sh-pri" href="countries.html">Купить eSIM</a><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Открыть меню"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
     </div>
   </header>
 
@@ -509,21 +514,14 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         <div style="display: flex; flex-direction: column; gap: 24px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
             <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 8px; background: #F2F5FF; color: #1F45D6; font: 600 13px/1 'Onest', system-ui, sans-serif"><span style="width: 6px; height: 6px; border-radius: 50%; background: #1F45D6"></span>Ждём перевод</span>
-            <span class="mono" style="font-size: 14px; color: #5A6175">Осталось 14:52</span>
+            <span class="mono" style="font-size: 14px; color: #5A6175">Осталось {{left}}</span>
           </div>
           <h1 style="margin: 0; font-size: 32px; line-height: 38px; letter-spacing: -0.025em; font-weight: 600">Переведите {{psUsdt}} USDT</h1>
           <div role="radiogroup" aria-label="Сеть" style="display: flex; gap: 8px">
-            <span role="radio" aria-checked="true" style="height: 40px; padding: 0 16px; border-radius: 999px; background: #0E1220; color: #FFFFFF; font: 500 14px/40px 'Onest', system-ui, sans-serif">USDT · TRON</span>
-            <span role="radio" aria-checked="false" style="height: 40px; padding: 0 16px; border-radius: 999px; background: #F5F6F9; font: 500 14px/40px 'Onest', system-ui, sans-serif">USDT · TON</span>
-            <span role="radio" aria-checked="false" style="height: 40px; padding: 0 16px; border-radius: 999px; background: #F5F6F9; font: 500 14px/40px 'Onest', system-ui, sans-serif">USDT · BEP-20</span>
+            <sc-for list="{{nets}}" as="n" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{n.on}}" sc-camel-on-click="{{n.pick}}" style="height: 40px; padding: 0 16px; border: 0; cursor: pointer; border-radius: 999px; background: {{n.bg}}; color: {{n.fg}}; font: 500 14px/40px 'Onest', system-ui, sans-serif">USDT · {{n.name}}</button></sc-for>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center">
-            <div role="img" aria-label="QR-код адреса кошелька" style="width: 168px; height: 168px; border-radius: 16px; border: 1px solid #E3E6ED; position: relative; flex: none">
-              <span style="position: absolute; left: 14px; top: 14px; width: 38px; height: 38px; border: 6px solid #0E1220; border-radius: 8px; box-sizing: border-box"></span>
-              <span style="position: absolute; right: 14px; top: 14px; width: 38px; height: 38px; border: 6px solid #0E1220; border-radius: 8px; box-sizing: border-box"></span>
-              <span style="position: absolute; left: 14px; bottom: 14px; width: 38px; height: 38px; border: 6px solid #0E1220; border-radius: 8px; box-sizing: border-box"></span>
-              <span class="mono" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5A6175"><svg viewBox="-1 -1 27 27" width="100%" height="100%" role="img" aria-label="QR-код" style="display: block"><rect x="-1" y="-1" width="27" height="27" fill="#FFFFFF"></rect><g fill="#0E1220"><path d="M9 0h1v1h-1zM10 0h1v1h-1zM14 0h1v1h-1zM16 0h1v1h-1zM9 1h1v1h-1zM10 1h1v1h-1zM15 1h1v1h-1zM16 1h1v1h-1zM9 2h1v1h-1zM12 2h1v1h-1zM14 2h1v1h-1zM14 3h1v1h-1zM15 3h1v1h-1zM16 3h1v1h-1zM11 4h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM15 4h1v1h-1zM8 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM8 6h1v1h-1zM11 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM11 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM15 7h1v1h-1zM1 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM9 8h1v1h-1zM10 8h1v1h-1zM11 8h1v1h-1zM14 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM21 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM1 9h1v1h-1zM2 9h1v1h-1zM4 9h1v1h-1zM5 9h1v1h-1zM6 9h1v1h-1zM7 9h1v1h-1zM8 9h1v1h-1zM13 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM20 9h1v1h-1zM21 9h1v1h-1zM24 9h1v1h-1zM0 10h1v1h-1zM1 10h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM7 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM13 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM23 10h1v1h-1zM0 11h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM6 11h1v1h-1zM7 11h1v1h-1zM8 11h1v1h-1zM9 11h1v1h-1zM10 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM14 11h1v1h-1zM17 11h1v1h-1zM18 11h1v1h-1zM20 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM0 12h1v1h-1zM2 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM14 12h1v1h-1zM18 12h1v1h-1zM23 12h1v1h-1zM1 13h1v1h-1zM6 13h1v1h-1zM7 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM13 13h1v1h-1zM18 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM4 14h1v1h-1zM7 14h1v1h-1zM9 14h1v1h-1zM12 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM16 14h1v1h-1zM22 14h1v1h-1zM23 14h1v1h-1zM24 14h1v1h-1zM0 15h1v1h-1zM2 15h1v1h-1zM3 15h1v1h-1zM5 15h1v1h-1zM6 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM23 15h1v1h-1zM0 16h1v1h-1zM1 16h1v1h-1zM2 16h1v1h-1zM5 16h1v1h-1zM8 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM14 16h1v1h-1zM15 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM9 17h1v1h-1zM11 17h1v1h-1zM13 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM12 18h1v1h-1zM13 18h1v1h-1zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM23 18h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM19 19h1v1h-1zM22 19h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM17 20h1v1h-1zM20 20h1v1h-1zM21 20h1v1h-1zM24 20h1v1h-1zM9 21h1v1h-1zM12 21h1v1h-1zM13 21h1v1h-1zM15 21h1v1h-1zM16 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM21 21h1v1h-1zM22 21h1v1h-1zM23 21h1v1h-1zM10 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM23 22h1v1h-1zM24 22h1v1h-1zM8 23h1v1h-1zM11 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM17 23h1v1h-1zM19 23h1v1h-1zM21 23h1v1h-1zM23 23h1v1h-1zM9 24h1v1h-1zM10 24h1v1h-1zM12 24h1v1h-1zM17 24h1v1h-1zM18 24h1v1h-1zM20 24h1v1h-1zM23 24h1v1h-1z"></path><path d="M0 0h7v7h-7z M1 1v5h5v-5z" fill-rule="evenodd"></path><path d="M2 2h3v3h-3z"></path><path d="M18 0h7v7h-7z M19 1v5h5v-5z" fill-rule="evenodd"></path><path d="M20 2h3v3h-3z"></path><path d="M0 18h7v7h-7z M1 19v5h5v-5z" fill-rule="evenodd"></path><path d="M2 20h3v3h-3z"></path></g></svg></span>
-            </div>
+            <div role="img" aria-label="QR-код адреса кошелька" style="width: 168px; height: 168px; border-radius: 16px; border: 1px solid #E3E6ED; padding: 10px; box-sizing: border-box; background: #FFFFFF; flex: none; display: grid; grid-template-columns: repeat({{qrN}}, 1fr); grid-auto-rows: 1fr"><sc-for list="{{qrCells}}" as="q" hint-placeholder-count="20"><i style="display: block; background: {{q}}"></i></sc-for></div>
             <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 12px">
               <div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
                 <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Адрес</span><span class="mono" style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Демо-адрес</span></div>
@@ -550,32 +548,27 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         <div style="display: flex; flex-direction: column; gap: 24px">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
             <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 8px; background: #FFF6E5; color: #8A5300; font: 600 13px/1 'Onest', system-ui, sans-serif"><span style="width: 6px; height: 6px; border-radius: 50%; background: #8A5300"></span>Нужна доплата</span>
-            <span class="mono" style="font-size: 14px; color: #5A6175">Осталось 29:41</span>
+            <span class="mono" style="font-size: 14px; color: #5A6175">Осталось {{left}}</span>
           </div>
-          <h1 style="margin: 0; font-size: 32px; line-height: 38px; letter-spacing: -0.025em; font-weight: 600">Доплатите 1,0427 USDT</h1>
-          <div style="display: flex; flex-direction: column; gap: 8px"><div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A6175"><span>Уже получили 5,9713 из&nbsp;6,9713 USDT</span><span class="mono">86%</span></div><div style="height: 8px; border-radius: 999px; background: #EDEFF3; overflow: hidden"><span style="display: block; width: 86%; height: 100%; border-radius: 999px; background: #2F5BFF"></span></div></div>
-          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><span style="height: 40px; padding: 0 16px; border-radius: 999px; background: #0E1220; color: #FFFFFF; font: 500 14px/40px 'Onest', system-ui, sans-serif">USDT · TRON</span><span style="font-size: 14px; color: #5A6175">та же сеть, что и&nbsp;первый перевод</span></div>
+          <h1 style="margin: 0; font-size: 32px; line-height: 38px; letter-spacing: -0.025em; font-weight: 600">Доплатите {{psDue}} USDT</h1>
+          <div style="display: flex; flex-direction: column; gap: 8px"><div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A6175"><span>Уже получили {{psGot}} из&nbsp;{{psUsdt}} USDT</span><span class="mono">{{psGotPc}}</span></div><div style="height: 8px; border-radius: 999px; background: #EDEFF3; overflow: hidden"><span style="display: block; width: {{psGotPc}}; height: 100%; border-radius: 999px; background: #2F5BFF"></span></div></div>
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><span style="height: 40px; padding: 0 16px; border-radius: 999px; background: #0E1220; color: #FFFFFF; font: 500 14px/40px 'Onest', system-ui, sans-serif">USDT · {{netName}}</span><span style="font-size: 14px; color: #5A6175">та же сеть, что и&nbsp;первый перевод</span></div>
           <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center">
-            <div role="img" aria-label="QR-код адреса кошелька" style="width: 168px; height: 168px; border-radius: 16px; border: 1px solid #E3E6ED; position: relative; flex: none">
-              <span style="position: absolute; left: 14px; top: 14px; width: 38px; height: 38px; border: 6px solid #0E1220; border-radius: 8px; box-sizing: border-box"></span>
-              <span style="position: absolute; right: 14px; top: 14px; width: 38px; height: 38px; border: 6px solid #0E1220; border-radius: 8px; box-sizing: border-box"></span>
-              <span style="position: absolute; left: 14px; bottom: 14px; width: 38px; height: 38px; border: 6px solid #0E1220; border-radius: 8px; box-sizing: border-box"></span>
-              <span class="mono" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5A6175"><svg viewBox="-1 -1 27 27" width="100%" height="100%" role="img" aria-label="QR-код" style="display: block"><rect x="-1" y="-1" width="27" height="27" fill="#FFFFFF"></rect><g fill="#0E1220"><path d="M9 0h1v1h-1zM12 0h1v1h-1zM14 0h1v1h-1zM16 0h1v1h-1zM8 1h1v1h-1zM10 1h1v1h-1zM11 1h1v1h-1zM14 1h1v1h-1zM15 1h1v1h-1zM10 2h1v1h-1zM11 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM14 2h1v1h-1zM16 2h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM15 3h1v1h-1zM16 3h1v1h-1zM8 4h1v1h-1zM11 4h1v1h-1zM12 4h1v1h-1zM9 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM8 6h1v1h-1zM11 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM10 7h1v1h-1zM13 7h1v1h-1zM14 7h1v1h-1zM2 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM11 8h1v1h-1zM13 8h1v1h-1zM14 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM2 9h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM9 9h1v1h-1zM12 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM21 9h1v1h-1zM22 9h1v1h-1zM23 9h1v1h-1zM1 10h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM8 10h1v1h-1zM10 10h1v1h-1zM13 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM17 10h1v1h-1zM23 10h1v1h-1zM24 10h1v1h-1zM0 11h1v1h-1zM1 11h1v1h-1zM2 11h1v1h-1zM4 11h1v1h-1zM5 11h1v1h-1zM6 11h1v1h-1zM7 11h1v1h-1zM13 11h1v1h-1zM16 11h1v1h-1zM18 11h1v1h-1zM19 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM0 12h1v1h-1zM2 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM7 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM21 12h1v1h-1zM23 12h1v1h-1zM2 13h1v1h-1zM6 13h1v1h-1zM9 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM12 13h1v1h-1zM13 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM17 13h1v1h-1zM18 13h1v1h-1zM19 13h1v1h-1zM20 13h1v1h-1zM21 13h1v1h-1zM23 13h1v1h-1zM0 14h1v1h-1zM2 14h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM7 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM11 14h1v1h-1zM16 14h1v1h-1zM18 14h1v1h-1zM19 14h1v1h-1zM21 14h1v1h-1zM23 14h1v1h-1zM0 15h1v1h-1zM2 15h1v1h-1zM4 15h1v1h-1zM7 15h1v1h-1zM11 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM1 16h1v1h-1zM7 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM14 16h1v1h-1zM15 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM19 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM9 17h1v1h-1zM12 17h1v1h-1zM14 17h1v1h-1zM15 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM20 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM11 18h1v1h-1zM12 18h1v1h-1zM14 18h1v1h-1zM16 18h1v1h-1zM17 18h1v1h-1zM24 18h1v1h-1zM9 19h1v1h-1zM10 19h1v1h-1zM11 19h1v1h-1zM13 19h1v1h-1zM17 19h1v1h-1zM18 19h1v1h-1zM19 19h1v1h-1zM20 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM17 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM10 21h1v1h-1zM11 21h1v1h-1zM13 21h1v1h-1zM14 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM21 21h1v1h-1zM22 21h1v1h-1zM24 21h1v1h-1zM9 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM19 22h1v1h-1zM22 22h1v1h-1zM10 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM21 23h1v1h-1zM23 23h1v1h-1zM24 23h1v1h-1zM13 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM18 24h1v1h-1zM22 24h1v1h-1z"></path><path d="M0 0h7v7h-7z M1 1v5h5v-5z" fill-rule="evenodd"></path><path d="M2 2h3v3h-3z"></path><path d="M18 0h7v7h-7z M19 1v5h5v-5z" fill-rule="evenodd"></path><path d="M20 2h3v3h-3z"></path><path d="M0 18h7v7h-7z M1 19v5h5v-5z" fill-rule="evenodd"></path><path d="M2 20h3v3h-3z"></path></g></svg></span>
-            </div>
+            <div role="img" aria-label="QR-код адреса кошелька" style="width: 168px; height: 168px; border-radius: 16px; border: 1px solid #E3E6ED; padding: 10px; box-sizing: border-box; background: #FFFFFF; flex: none; display: grid; grid-template-columns: repeat({{qrN}}, 1fr); grid-auto-rows: 1fr"><sc-for list="{{qrCells}}" as="q" hint-placeholder-count="20"><i style="display: block; background: {{q}}"></i></sc-for></div>
             <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 12px">
               <div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
                 <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Адрес</span><span class="mono" style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Демо-адрес</span></div>
                 <button class="btn btn-ghost btn-sm" type="button" aria-label="Скопировать адрес" style="width: 40px; padding: 0" sc-camel-on-click="{{cpAddr}}"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg></button>
               </div>
               <div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
-                <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Сумма точно</span><span class="mono" style="font-size: 15px; font-weight: 500">1,0427 USDT</span></div>
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Сумма точно</span><span class="mono" style="font-size: 15px; font-weight: 500">{{psDue}} USDT</span></div>
                 <button class="btn btn-ghost btn-sm" type="button" aria-label="Скопировать сумму" style="width: 40px; padding: 0" sc-camel-on-click="{{cpSum}}"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg></button>
               </div>
             </div>
           </div>
           <div role="note" style="display: flex; gap: 10px; padding: 14px 16px; border-radius: 16px; background: #FFF4DE; font-size: 14px; line-height: 21px; color: #2B3142">
             <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8A5A00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M12 3l9.5 17h-19z"></path><path d="M12 10v4M12 17.5v.01"></path></svg>
-            <span>Отправьте ровно 1,0427 USDT в&nbsp;сети TRON: по этой сумме мы узнаём доплату. Если за&nbsp;30 минут доплата не&nbsp;придёт, заказ отменим, а&nbsp;полученные 5,9713 USDT зачислим на&nbsp;баланс.</span>
+            <span>Отправьте ровно {{psDue}} USDT в&nbsp;сети {{netName}}: по этой сумме мы узнаём доплату. Если за&nbsp;30 минут доплата не&nbsp;придёт, заказ отменим, а&nbsp;полученные {{psGot}} USDT зачислим на&nbsp;баланс.</span>
           </div>
           <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #5A6175">
             <svg width="18" height="18" sc-camel-view-box="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#2F5BFF" stroke-opacity="0.25" stroke-width="3" fill="none"></circle><path d="M21 12a9 9 0 0 0-9-9" stroke="#2F5BFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg>
@@ -617,7 +610,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           <p style="margin: 0; font-size: 16px; line-height: 25px; color: #2B3142">Мы не получили перевод за 30 минут. Если вы&nbsp;уже&nbsp;отправили деньги&nbsp;— напишите в&nbsp;поддержку с&nbsp;номером заказа, разберёмся.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 10px">
             <a class="btn btn-primary" href="{{psBack}}">Оплатить заново</a>
-            <a class="btn btn-ghost" href="help.html">Я&nbsp;уже&nbsp;отправил</a>
+            <a class="btn btn-ghost" href="#chat">Я&nbsp;уже&nbsp;отправил</a>
           </div>
         </div>
       </sc-if>
@@ -644,7 +637,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
         <div class="sf-col"><span class="sf-mono">Направления</span><a href="country.html?c=TR">Турция</a><a href="country.html?c=AE">ОАЭ</a><a href="country.html?c=TH">Таиланд</a><a href="region.html?r=EU">Европа</a><a href="countries.html">Все&nbsp;страны</a></div>
         <div class="sf-col"><span class="sf-mono">Помощь</span><a href="help.html#install">Как&nbsp;установить</a><a href="compatibility.html">Совместимость</a><a href="help.html#faq">Вопросы</a><a href="https://t.me/privetsim_support" target="_blank" rel="noopener">Поддержка в&nbsp;Telegram</a></div>
-        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><a href="login.html">Войти</a><a href="login.html">Мои eSIM</a><a href="login.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
+        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a href="login.html">Войти</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a href="login.html?logout=1">Выйти</a></sc-if><a href="account.html">Мои eSIM</a><a href="referral.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
       </div>
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid #EDEFF3; font-size: 13px; color: #5A6175">
         <span>© 2026 Привет SIM{{psSellerLine}}</span>
@@ -720,15 +713,38 @@ class Component extends DCLogic {
       toastOn: !!s.toast, toastText: s.toast || '',
       langLbl: s.uiLang === 'en' ? 'RU' : 'EN', langAria: s.uiLang === 'en' ? 'Переключить на русский' : 'Switch to English',
       toggleLang: () => { const en = s.uiLang !== 'en'; this.setState({ uiLang: en ? 'en' : 'ru' }); toast(en ? 'Switched to English' : 'Сайт на русском')(); },
-      cpSum: toast('Сумма скопирована'), cpAddr: toast('Адрес скопирован'),
+      cpSum: () => { PSA.copy(String(v.psDueRaw || '').replace(',', '.')); toast('Сумма скопирована')(); }, cpAddr: () => { PSA.copy(v.addr); toast('Адрес скопирован')(); },
     });
   }
 
   _rv0() {
-    const v = this.props.variant ?? 'crypto';
-    // СБП: банк подтвердил — переходим к eSIM (в рабочей версии — по статусу из API)
-    if (v === 'pending' && !this._go) this._go = setTimeout(() => PS.go(PS.successUrl({ code: PS.qp('c') || 'TR' })), 5000);
-    return { psUsdt: PS.usdt(), psBack: PS.checkoutBack(), isCrypto: v === 'crypto', isTopup: v === 'topup', isPending: v === 'pending', isFailed: v === 'failed', isExpired: v === 'expired' };
+    const s = this.state || {};
+    const O = PS.qp('o') ? PSA.order(PS.qp('o')) : null;
+    if (!O) {
+      const v = this.props.variant ?? 'crypto';
+      return { isCrypto: v === 'crypto', isTopup: v === 'topup', isPending: v === 'pending', isFailed: v === 'failed', isExpired: v === 'expired', left: '30:00', nets: [], qrN: 21, qrCells: [], addr: '', psUsdt: PS.usdt(), psBack: 'countries.html' };
+    }
+    const st = PSA.orderStatus(O);
+    if ((st === 'paid' || st === 'late') && !this._done) { this._done = 1; setTimeout(() => PS.go(PSA.doneUrl(O)), 700); }
+    if (!this._iv) { this._iv = setInterval(() => this.setState({ t: Date.now() }), 1000); this._un = PSA.sub(() => this.setState({ t: Date.now() })); }
+    // Демо: банк и блокчейн «подтверждают» сами (СБП — через 4 с, USDT — через 20 с; быстрее — в демо-панели)
+    if (PSA.DEMO && st === 'pending' && !this._auto) this._auto = setTimeout(() => { if (PSA.orderStatus(O) === 'pending' && !O.hold) PSA.confirmPayment(O.id); }, O.method === 'usdt' ? 20000 : 4000);
+    const left = Math.max(0, O.payBy - PSA.now());
+    const mm = String(Math.floor(left / 60000)).padStart(2, '0') + ':' + String(Math.floor(left / 1000) % 60).padStart(2, '0');
+    const ni = s.net == null ? 0 : s.net;
+    const N = PSA.NETS[ni];
+    const due = O.usdtGot ? Math.round((O.usdt - O.usdtGot) * 10000) / 10000 : O.usdt;
+    const q = PSA.qr(N.addr);
+    const retry = O.kind === 'balance' ? 'wallet.html' : (O.kind === 'topup' ? 'account.html?topup=' + O.esimId : PS.checkoutUrl(O.code, O.pkg, O.t === 'daily' ? O.d : 0));
+    const pend = st === 'pending' || st === 'paid' || st === 'late';
+    const usdt = PSA.DEMO && O.method === 'usdt';
+    return {
+      isCrypto: st === 'pending' && usdt && !O.usdtGot, isTopup: st === 'pending' && usdt && O.usdtGot > 0,
+      isPending: pend && !(st === 'pending' && usdt), isFailed: st === 'failed', isExpired: st === 'expired' || st === 'cancelled',
+      left: mm, addr: N.addr, netName: N.name, qrN: q.n, qrCells: q.cells,
+      nets: PSA.NETS.map((n, i) => ({ name: n.name, on: i === ni ? 'true' : 'false', bg: i === ni ? '#0E1220' : '#F5F6F9', fg: i === ni ? '#FFFFFF' : '#0E1220', pick: () => this.setState({ net: i }) })),
+      psUsdt: PSA.usdtStr(O.usdt), psDue: PSA.usdtStr(due), psDueRaw: PSA.usdtStr(due), psGot: PSA.usdtStr(O.usdtGot || 0), psGotPc: Math.round((O.usdtGot || 0) / O.usdt * 100) + '%', psBack: retry
+    };
   }
 }
 </script>

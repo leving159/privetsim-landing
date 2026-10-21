@@ -8,14 +8,19 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610201428"></script>
-<script src="assets/catalog.js?v=202610201428"></script>
-<script src="assets/site.js?v=202610201428"></script>
+<script src="config.js?v=202610211649"></script>
+<script src="assets/catalog.js?v=202610211649"></script>
+<script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
+<script src="assets/site.js?v=202610211649"></script>
+<script src="assets/account.js?v=202610211649"></script>
+<script>PSA.whenReady(function () { if (PSA.authed()) { PSA.leaving = true; location.replace(PSA.nextUrl()); } })</script>
+<link rel="stylesheet" href="assets/account.css?v=202610211649">
+<script src="assets/chat.js?v=202610211649" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610201428"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610201428">
-<script src="assets/motion.js?v=202610201428" defer></script>
+<script src="assets/dc-runtime.js?v=202610211649"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610211649">
+<script src="assets/motion.js?v=202610211649" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -535,7 +540,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           <sc-if value="{{fromLink}}" hint-placeholder-val="{{ false }}">
             <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: #FFF1E8">
               <span style="width: 36px; height: 36px; border-radius: 12px; background: #FF7A45; display: inline-flex; align-items: center; justify-content: center; flex: none"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0E1220" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1"></rect><path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-3-5-3.5-5-1.5S10 8 12 8zM12 8c1.5-3 5-3.5 5-1.5S14 8 12 8z"></path></svg></span>
-              <span style="flex: 1; display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 20px"><b style="font-weight: 600">Вас пригласил друг</b><span style="color: #5A6175">Код <span class="mono" style="color: #0E1220">PRIVET-7K2Q</span> подставлен из&nbsp;ссылки · после первой оплаты вам придёт 100&nbsp;₽</span></span>
+              <span style="flex: 1; display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 20px"><b style="font-weight: 600">Вас пригласил друг</b><span style="color: #5A6175">Код <span class="mono" style="color: #0E1220">{{refShow}}</span> подставлен из&nbsp;ссылки · после первой оплаты вам придёт 100&nbsp;₽</span></span>
               <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0B7A3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
             </div>
           </sc-if>
@@ -550,7 +555,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
                 <sc-if value="{{refOk}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0B7A3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
               </div>
               <sc-if value="{{hasRErr}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 13px; line-height: 18px; color: #C62F35">{{rErr}}</span></sc-if>
-              <sc-if value="{{refHint}}" hint-placeholder-val="{{ true }}"><span style="font-size: 13px; line-height: 18px; color: #5A6175">Код работает только при&nbsp;первой регистрации. Для&nbsp;демо: <span class="mono">PRIVET-7K2Q</span></span></sc-if>
+              <sc-if value="{{refHint}}" hint-placeholder-val="{{ true }}"><span style="font-size: 13px; line-height: 18px; color: #5A6175">Код работает только при&nbsp;первой регистрации</span></sc-if>
               <sc-if value="{{refOk}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 18px; color: #0B7A3E">Код принят&nbsp;— после первой оплаты вам начислим 100&nbsp;₽ на&nbsp;баланс</span></sc-if>
             </div>
           </sc-if>
@@ -575,7 +580,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           </button>
           <div style="display: flex; flex-direction: column; gap: 8px">
             <h1 style="margin: 0; font-size: 32px; line-height: 38px; letter-spacing: -0.025em; font-weight: 600">Введите код</h1>
-            <p style="margin: 0; font-size: 16px; line-height: 24px; color: #5A6175">Отправили 6 цифр на <b style="color: #0E1220; font-weight: 600">{{email}}</b>. Для&nbsp;демо: <span class="mono">123456</span></p>
+            <p style="margin: 0; font-size: 16px; line-height: 24px; color: #5A6175">Отправили 6 цифр на <b style="color: #0E1220; font-weight: 600">{{email}}</b>.<sc-if value="{{hasDemo}}" hint-placeholder-val="{{ false }}"> Демо-режим, код: <span class="mono">{{demoCode}}</span></sc-if></p>
           </div>
           <div style="display: flex; flex-direction: column; gap: 8px">
             <label for="a-code" style="font-size: 14px; font-weight: 500">Код из&nbsp;письма</label>
@@ -585,7 +590,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
             </sc-if>
           </div>
           <button class="btn btn-primary" type="button" sc-camel-on-click="{{submitCode}}" disabled="{{locked}}" style="background: {{btnBg}}; color: {{btnFg}}">Войти</button>
-          <p style="margin: 0; font-size: 14px; line-height: 21px; color: #5A6175; text-align: center">Не&nbsp;пришло? Проверьте «Спам». Отправить снова через <span class="mono">0:42</span></p>
+          <p style="margin: 0; font-size: 14px; line-height: 21px; color: #5A6175; text-align: center">Не&nbsp;пришло? Проверьте «Спам». <sc-if value="{{waitResend}}" hint-placeholder-val="{{ true }}">Отправить снова через <span class="mono">{{resendIn}}</span></sc-if><sc-if value="{{canResend}}" hint-placeholder-val="{{ false }}"><button class="lnk" type="button" sc-camel-on-click="{{resend}}" style="font-size: 14px">Отправить код ещё раз</button></sc-if></p>
         </div>
       </sc-if>
 
@@ -593,8 +598,8 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 16px 0">
           <svg width="72" height="72" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg>
           <h1 style="margin: 0; font-size: 28px; line-height: 34px; letter-spacing: -0.02em; font-weight: 600">Вы&nbsp;вошли</h1>
-          <sc-if value="{{refApplied}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; line-height: 22px; color: #5A6175">Вы&nbsp;зарегистрировались по&nbsp;приглашению. Позовите друзей сами&nbsp;— <a href="login.html">25% с&nbsp;их&nbsp;покупок</a>.</p></sc-if>
-          <a class="btn btn-primary" href="login.html">Мои eSIM</a>
+          <sc-if value="{{refApplied}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 15px; line-height: 22px; color: #5A6175">Вы&nbsp;зарегистрировались по&nbsp;приглашению. Позовите друзей сами&nbsp;— <a href="referral.html">25% с&nbsp;их&nbsp;покупок</a>.</p></sc-if>
+          <a class="btn btn-primary" href="{{nextHref}}">{{nextLabel}}</a>
         </div>
       </sc-if>
     </div>
@@ -619,7 +624,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
         <div class="sf-col"><span class="sf-mono">Направления</span><a href="country.html?c=TR">Турция</a><a href="country.html?c=AE">ОАЭ</a><a href="country.html?c=TH">Таиланд</a><a href="region.html?r=EU">Европа</a><a href="countries.html">Все&nbsp;страны</a></div>
         <div class="sf-col"><span class="sf-mono">Помощь</span><a href="help.html#install">Как&nbsp;установить</a><a href="compatibility.html">Совместимость</a><a href="help.html#faq">Вопросы</a><a href="https://t.me/privetsim_support" target="_blank" rel="noopener">Поддержка в&nbsp;Telegram</a></div>
-        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><a href="login.html">Войти</a><a href="login.html">Мои eSIM</a><a href="login.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
+        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a href="login.html">Войти</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a href="login.html?logout=1">Выйти</a></sc-if><a href="account.html">Мои eSIM</a><a href="referral.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
       </div>
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid #EDEFF3; font-size: 13px; color: #5A6175">
         <span>© 2026 Привет SIM{{psSellerLine}}</span>
@@ -699,7 +704,7 @@ class Component extends DCLogic {
     });
   }
 
-  constructor(props) { super(props); this.state = { step: 'email', email: '', eErr: '', code: '', cErr: '', tries: 3, ref: '', refOpen: false, rErr: '', refApplied: false }; }
+  constructor(props) { super(props); this.state = { step: 'email', email: PS.qp('email'), eErr: '', code: '', cErr: '', tries: 3, ref: '', refOpen: false, rErr: '', refApplied: false }; }
   _rv0() {
     const s = this.state;
     const typos = { 'gmal.com': 'gmail.com', 'gmial.com': 'gmail.com', 'yandx.ru': 'yandex.ru', 'mial.ru': 'mail.ru', 'mail.ri': 'mail.ru' };
@@ -707,9 +712,15 @@ class Component extends DCLogic {
     const typoFix = typos[dom] ? s.email.split('@')[0] + '@' + typos[dom] : '';
     const valid = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
     const locked = s.tries <= 0;
-    const fromLink = !!(this.props.fromLink ?? false);
-    const refCode = fromLink ? 'PRIVET-7K2Q' : s.ref.trim().toUpperCase();
-    const refOk = !fromLink && refCode === 'PRIVET-7K2Q' && !s.rErr;
+    const fromLink = !!(this.props.fromLink ?? false) || !!PSA.pendingRef();
+    const refCode = fromLink ? PSA.pendingRef() : s.ref.trim().toUpperCase();
+    const refOk = !fromLink && !!refCode && PSA.refValid(refCode) && !s.rErr;
+    const wait = s.step === 'code' ? PSA.codeWait(s.email) : 0;
+    if (s.step === 'code' && !this._iv) this._iv = setInterval(() => { if (this.state.step !== 'code') { clearInterval(this._iv); this._iv = 0; } this.setState({ tick: Date.now() }); }, 1000);
+    const sendCode = () => PSA.then(PSA.requestCode(s.email.trim()), (r) => {
+      if (r.err) return this.setState({ step: 'email', eErr: r.text || (r.err === 'hour' ? 'Слишком много попыток. Новый код можно запросить через ' + Math.ceil(r.wait / 60) + ' мин. Проверьте папку «Спам»' : 'Новый код можно запросить через ' + r.wait + ' с') });
+      this.setState({ step: 'code', code: '', cErr: '', tries: 3 });
+    });
     return {
       isEmail: s.step === 'email', isCode: s.step === 'code', isDone: s.step === 'done',
       email: s.email, hasEmail: !!s.email, eErr: s.eErr, hasEErr: !!s.eErr, eInvalid: s.eErr ? 'true' : 'false',
@@ -728,20 +739,31 @@ class Component extends DCLogic {
         const v = s.email.trim();
         if (!v) return this.setState({ eErr: 'Укажите email — пришлём на него код' });
         if (!valid(v)) return this.setState({ eErr: 'Похоже, в адресе ошибка. Пример: name@mail.ru' });
-        if (refCode && refCode !== 'PRIVET-7K2Q') return this.setState({ rErr: 'Такого кода нет. Проверьте написание или оставьте поле пустым' });
-        this.setState({ step: 'code', code: '', cErr: '', tries: 3, refApplied: !!refCode });
+        if (refCode && !PSA.refValid(refCode)) return this.setState({ rErr: 'Такого кода нет. Проверьте написание или оставьте поле пустым' });
+        if (PSA.codeWait(v) > 0) return this.setState({ step: 'code', code: '', cErr: '' });
+        this.setState({ email: v });
+        return PSA.then(PSA.requestCode(v), (r) => {
+          if (r.err) return this.setState({ eErr: r.text || (r.err === 'hour' ? 'Слишком много попыток. Новый код можно запросить через ' + Math.ceil(r.wait / 60) + ' мин. Проверьте папку «Спам»' : 'Новый код можно запросить через ' + r.wait + ' с') });
+          this.setState({ step: 'code', code: '', cErr: '', tries: 3 });
+        });
       },
       code: s.code, cErr: s.cErr, hasCErr: !!s.cErr, cInvalid: s.cErr ? 'true' : 'false', locked,
       cBorder: s.cErr ? '#C62F35' : '#E3E6ED', cBg: locked ? '#F5F6F9' : (s.cErr ? '#FFFBFB' : '#FFFFFF'),
       btnBg: locked ? '#EDEFF3' : '#2F5BFF', btnFg: locked ? '#8C92A3' : '#FFFFFF',
       onCode: (e) => this.setState({ code: e.target.value.replace(/\D/g, '').slice(0, 6), cErr: locked ? s.cErr : '' }),
       back: () => this.setState({ step: 'email' }),
+      refShow: refCode, demoCode: PSA.demoCode(s.email), hasDemo: !!PSA.demoCode(s.email), waitResend: wait > 0, canResend: wait <= 0, resendIn: Math.floor(wait / 60) + ':' + String(wait % 60).padStart(2, '0'), resend: sendCode,
+      nextHref: PSA.nextUrl(), nextLabel: PSA.nextUrl() === 'account.html' ? 'Мои eSIM' : 'Продолжить',
       submitCode: () => {
         if (locked) return;
         if (s.code.length < 6) return this.setState({ cErr: 'Введите все 6 цифр' });
-        if (s.code === '123456') return this.setState({ step: 'done' });
-        const left = s.tries - 1;
-        this.setState({ tries: left, cErr: left > 0 ? 'Неверный код. Осталось попыток: ' + left : 'Слишком много попыток. Попробуйте через 10 минут' });
+        return PSA.then(PSA.verifyLogin(s.email, s.code, refCode), (r) => {
+        if (r.ok) { this.setState({ step: 'done', refApplied: r.invited && r.isNew }); if (PS.qp('next')) setTimeout(() => PS.go(PSA.nextUrl()), 900); return; }
+        if (r.err === 'invalid') return this.setState({ tries: r.left, cErr: 'Неверный код. Осталось попыток: ' + r.left });
+        if (r.err === 'expired') return this.setState({ tries: 0, cErr: 'Код устарел. Запросите новый' });
+        if (r.text) return this.setState({ cErr: r.text });
+        this.setState({ tries: 0, cErr: 'Слишком много попыток. Запросите новый код' });
+        });
       }
     };
   }

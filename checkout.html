@@ -8,14 +8,18 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610201428"></script>
-<script src="assets/catalog.js?v=202610201428"></script>
-<script src="assets/site.js?v=202610201428"></script>
+<script src="config.js?v=202610211649"></script>
+<script src="assets/catalog.js?v=202610211649"></script>
+<script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
+<script src="assets/site.js?v=202610211649"></script>
+<script src="assets/account.js?v=202610211649"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610211649">
+<script src="assets/chat.js?v=202610211649" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610201428"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610201428">
-<script src="assets/motion.js?v=202610201428" defer></script>
+<script src="assets/dc-runtime.js?v=202610211649"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610211649">
+<script src="assets/motion.js?v=202610211649" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -525,7 +529,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
     <div class="sh-in">
       <a class="sh-logo" href="index.html" aria-label="Привет SIM — на главную"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Привет</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">eSIM для&nbsp;путешествий<br>в&nbsp;200+ стран</span></a>
       <nav class="sh-nav" aria-label="Основная"><a href="countries.html">Страны</a><a href="index.html#how">Как&nbsp;это&nbsp;работает</a><a href="compatibility.html">Совместимость</a><a href="help.html">Помощь</a></nav>
-      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="en" lang="en" aria-label="{{langAria}}" title="English" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><a class="sh-btn sh-gho sh-hm" href="login.html">Войти</a><a class="sh-btn sh-pri" href="countries.html">Купить eSIM</a><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Открыть меню"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
+      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="en" lang="en" aria-label="{{langAria}}" title="English" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a class="sh-btn sh-gho sh-hm" href="login.html">Войти</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a class="sh-ava sh-hm" href="account.html" aria-label="{{psAvaAria}}">{{psAva}}</a></sc-if><a class="sh-btn sh-pri" href="countries.html">Купить eSIM</a><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Открыть меню"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
     </div>
   </header>
 
@@ -561,6 +565,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
             </div>
             <sc-if value="{{hasEErr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 18px; color: #C62F35">{{eErr}}</span></sc-if>
             <sc-if value="{{hasTypo}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 18px; color: #5A6175">Возможно, вы&nbsp;имели в&nbsp;виду <button class="lnk" type="button" sc-camel-on-click="{{fixTypo}}">{{typoFix}}</button>?</span></sc-if>
+            <sc-if value="{{psHasAcc}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 19px; color: #1F45D6">На&nbsp;этот email уже есть кабинет. Заказ появится в&nbsp;нём автоматически. <a href="{{psLogin}}">Войти</a>, чтобы оплатить с&nbsp;баланса.</span></sc-if>
             <sc-if value="{{authed}}" hint-placeholder-val="{{ true }}">
               <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px"><sc-for list="{{saved}}" as="e" hint-placeholder-count="2"><button type="button" aria-pressed="{{e.on}}" sc-camel-on-click="{{e.pick}}" class="em-chip" style="background: {{e.bg}}; color: {{e.fg}}; box-shadow: {{e.ring}}">{{e.mail}}</button></sc-for></div>
             </sc-if>
@@ -598,15 +603,15 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
             <div class="split" role="group" aria-label="Доплата остатка">
               <div style="display: flex; align-items: center; gap: 12px">
                 <span class="split-ic" aria-hidden="true"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8A5A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5M12 16.5v.01"></path></svg></span>
-                <span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px; font-weight: 600">На&nbsp;балансе 80 ₽&nbsp;— не&nbsp;хватает {{psMinus80}} ₽</b><span style="font-size: 13px; line-height: 19px; color: #5A6175">Спишем 80 ₽ с&nbsp;баланса, остаток доплатите удобным способом</span></span>
+                <span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px; font-weight: 600">На&nbsp;балансе {{psBalT}}&nbsp;— не&nbsp;хватает {{psMinus80}} ₽</b><span style="font-size: 13px; line-height: 19px; color: #5A6175">Спишем {{psBalT}} с&nbsp;баланса, остаток доплатите удобным способом</span></span>
               </div>
               <div class="split-bar" aria-hidden="true"><span style="width: 38%; background: #2F5BFF"></span><span style="flex: 1; background: #FFB347"></span></div>
-              <div style="display: flex; justify-content: space-between; font-size: 12px; color: #5A6175"><span>С&nbsp;баланса · 80 ₽</span><span>Доплата · {{psMinus80}} ₽</span></div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; color: #5A6175"><span>С&nbsp;баланса · {{psBalT}}</span><span>Доплата · {{psMinus80}} ₽</span></div>
               <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px">
                 <span style="font-size: 13px; font-weight: 600; margin-right: 4px">Доплатить через</span>
                 <sc-for list="{{tops}}" as="t" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{t.on}}" sc-camel-on-click="{{t.pick}}" class="split-chip" style="background: {{t.bg}}; color: {{t.fg}}; box-shadow: {{t.ring}}">{{t.label}}</button></sc-for>
               </div>
-              <a href="login.html" style="align-self: flex-start; font-size: 13px; font-weight: 500; text-decoration: none">Или пополнить баланс и&nbsp;оплатить целиком →</a>
+              <a href="wallet.html" style="align-self: flex-start; font-size: 13px; font-weight: 500; text-decoration: none">Или пополнить баланс и&nbsp;оплатить целиком →</a>
             </div>
           </sc-if>
         </section>
@@ -663,7 +668,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
 
         <sc-if value="{{guestBal}}" hint-placeholder-val="{{ false }}">
-          <a href="login.html" style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 16px; background: #F5F6F9; color: #2B3142; text-decoration: none; font-size: 14px">Есть деньги на&nbsp;балансе? <b style="color: #2F5BFF; font-weight: 600">Войдите</b>, чтобы оплатить с&nbsp;него</a>
+          <a href="{{psLogin}}" style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 16px; background: #F5F6F9; color: #2B3142; text-decoration: none; font-size: 14px">Есть деньги на&nbsp;балансе? <b style="color: #2F5BFF; font-weight: 600">Войдите</b>, чтобы оплатить с&nbsp;него</a>
         </sc-if>
         <dl style="margin: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid #EDEFF3; font-size: 15px">
           <div style="display: flex; justify-content: space-between"><dt style="color: #5A6175">{{pkgLabel}}</dt><dd style="margin: 0">{{pkgSum}}</dd></div>
@@ -699,8 +704,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         <sc-if value="{{ready}}" hint-placeholder-val="{{ false }}">
           <div style="display: flex; flex-direction: column; gap: 10px">
             <span class="btn btn-primary btn-lg" style="width: 100%; box-sizing: border-box; opacity: 0.85; cursor: default"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-opacity="0.3" stroke-width="3" fill="none"></circle><path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"></path></svg>Переходим к&nbsp;оплате…</span>
-            <span style="font-size: 13px; color: #5A6175; text-align: center">Прототип: <a href="{{psSuccess}}">оплата прошла</a> · <a href="{{psPay}}">ожидание / ошибка</a></span>
-          </div>
+                      </div>
         </sc-if>
         <p style="margin: 0; font-size: 13px; line-height: 19px; color: #5A6175; text-align: center">eSIM придёт сразу после оплаты</p>
       </aside>
@@ -726,7 +730,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
         <div class="sf-col"><span class="sf-mono">Направления</span><a href="country.html?c=TR">Турция</a><a href="country.html?c=AE">ОАЭ</a><a href="country.html?c=TH">Таиланд</a><a href="region.html?r=EU">Европа</a><a href="countries.html">Все&nbsp;страны</a></div>
         <div class="sf-col"><span class="sf-mono">Помощь</span><a href="help.html#install">Как&nbsp;установить</a><a href="compatibility.html">Совместимость</a><a href="help.html#faq">Вопросы</a><a href="https://t.me/privetsim_support" target="_blank" rel="noopener">Поддержка в&nbsp;Telegram</a></div>
-        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><a href="login.html">Войти</a><a href="login.html">Мои eSIM</a><a href="login.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
+        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a href="login.html">Войти</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a href="login.html?logout=1">Выйти</a></sc-if><a href="account.html">Мои eSIM</a><a href="referral.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
       </div>
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid #EDEFF3; font-size: 13px; color: #5A6175">
         <span>© 2026 Привет SIM{{psSellerLine}}</span>
@@ -808,7 +812,7 @@ class Component extends DCLogic {
 
   constructor(props) {
     super(props);
-    this.state = { email: null, eErr: '', m: -1, mErr: false, promo: '', pErr: '', applied: '', agree: false, aErr: false, tried: false, ready: false, useBal: false, bal: '100', bErr: '', qty: 1, top: 0, removed: false };
+    this.state = { email: null, eErr: '', m: PSA.authed() && PSA.user().set.balFirst && PSA.balance().total > 0 ? 0 : -1, mErr: false, promo: '', pErr: '', applied: '', agree: false, aErr: false, tried: false, ready: false, useBal: false, bal: '100', bErr: '', qty: 1, top: 0, removed: false };
   }
   _rv0() {
     const s = this.state;
@@ -818,21 +822,23 @@ class Component extends DCLogic {
     const TOT = SUM - DISC;
     const R = (n) => PS.fmt(n) + ' ₽';
     const raw = [
-      { key: 'wallet', title: 'С баланса', sub: (this.props.lowBalance ? 'Доступно 80 ₽ · остаток доплатите по СБП или в USDT' : 'Доступно 4 970 ₽ · без комиссии'), hint: 'Спишем с баланса — без комиссии сети и ввода реквизитов. Не хватает? Пополните баланс USDT в кабинете.' },
+      { key: 'wallet', title: 'С баланса', sub: (PSA.balance().total < TOT ? 'Доступно ' + R(PSA.balance().total) + ' · остаток доплатите по СБП или в USDT' : 'Доступно ' + R(PSA.balance().total) + ' · без комиссии'), hint: 'Спишем с баланса — без комиссии сети и ввода реквизитов. Не хватает? Пополните баланс USDT в кабинете.' },
       { key: 'sbp', title: 'СБП', sub: 'Оплата из приложения любого банка, без комиссии', hint: 'Покажем QR-код или откроем приложение банка — подтвердите перевод, и eSIM придёт сразу.' },
       { key: 'crypto', title: 'Криптовалюта', sub: 'USDT в сетях TRON, TON, BEP-20', hint: 'Покажем адрес и QR-код для перевода. eSIM придёт после подтверждения в сети.' }
     ];
     const valid = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
     const typos = { 'gmal.com': 'gmail.com', 'gmial.com': 'gmail.com', 'yandx.ru': 'yandex.ru', 'mial.ru': 'mail.ru' };
-    const authed = !!(this.props.authorized ?? true);
-    const splitOn = !!this.props.lowBalance && authed && s.m === 0;
-    const em = s.email ?? (authed ? 'name@mail.ru' : '');
+    const authed = PSA.authed();
+    const BALT = PSA.balance().total;
+    const LOWB = authed && BALT < TOT;
+    const splitOn = LOWB && BALT > 0 && s.m === 0;
+    const em = s.email ?? (authed ? PSA.user().email : PS.qp('email'));
     const dom = (em.split('@')[1] || '').toLowerCase();
     const typoFix = typos[dom] ? em.split('@')[0] + '@' + typos[dom] : '';
-    const low = !!this.props.lowBalance;
+    const low = LOWB;
     const TOPS = ['СБП', 'USDT'];
     const tops = TOPS.map((label, i) => { const on = s.top === i; return { label, on: on ? 'true' : 'false', bg: on ? '#0E1220' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0E1220', ring: on ? 'none' : 'inset 0 0 0 1px #E3E6ED', pick: () => this.setState({ top: i }) }; });
-    const methods = raw.map((m, i) => ({ m, i })).filter(({ m }) => m.key !== 'wallet' || (this.props.authorized ?? true)).map(({ m, i }) => {
+    const methods = raw.map((m, i) => ({ m, i })).filter(({ m }) => m.key !== 'wallet' || (PSA.authed() && PSA.balance().total > 0)).map(({ m, i }) => {
       const on = s.m === i;
       return {
         ...m, on: on ? 'true' : 'false',
@@ -856,7 +862,7 @@ class Component extends DCLogic {
     }
     const promoUp = (s.promo || '').trim().toUpperCase();
     const BAL = 150;
-    const SAVED = [['name@mail.ru', 'Вход в кабинет · сюда приходили прошлые eSIM'], ['anna.k@company.ru', 'Добавлен в профиле · рабочий']];
+    const SAVED = authed ? [[PSA.user().email, '']].concat((PSA.user().emails || []).map((x) => [x, ''])) : [];
     const saved = SAVED.map(([mail]) => { const on = em.trim().toLowerCase() === mail; return { mail, on: on ? 'true' : 'false', ring: on ? 'none' : 'inset 0 0 0 1px #E3E6ED', bg: on ? '#E6ECFF' : '#FFFFFF', fg: on ? '#1F45D6' : '#5A6175', pick: () => this.setState({ email: mail, eErr: '', ready: false }) }; });
     const amt = parseInt(String(s.bal).replace(/\D/g, ''), 10) || 0;
     const bErr = !s.useBal ? '' : (amt <= 0 ? 'Укажите сумму больше нуля' : (amt > BAL ? 'На балансе только ' + BAL + ' ₽' : ''));
@@ -875,15 +881,15 @@ class Component extends DCLogic {
       methods, hasMErr: s.mErr, hasHint: s.m >= 0 && !(low && s.m === 0 && authed), hint: s.m >= 0 ? raw[s.m].hint : '',
       promo: s.promo, promoApplied: !!s.applied, promoEditing: !s.applied, promoCode: s.applied,
       promoEmpty: !promoUp, pErr: s.pErr, hasPErr: !!s.pErr, pInvalid: s.pErr ? 'true' : 'false',
-      noPromoMsg: !s.pErr && !s.applied,
+      noPromoMsg: PSA.DEMO && !s.pErr && !s.applied,
       pBorder: s.pErr ? '#C62F35' : '#E3E6ED', pBg: s.pErr ? '#FFFBFB' : '#FFFFFF',
       applyBg: promoUp ? '#F2F5FF' : '#F5F6F9', applyFg: promoUp ? '#1F45D6' : '#8C92A3',
       onPromo: (e) => this.setState({ promo: e.target.value, pErr: '' }),
       applyPromo: () => {
         if (!promoUp) return;
-        if (promoUp === 'TRIP10') return this.setState({ applied: 'TRIP10', pErr: '', promo: '' });
-        if (promoUp === 'SUMMER25') return this.setState({ pErr: 'Срок действия промокода закончился' });
-        this.setState({ pErr: 'Такого промокода нет. Проверьте буквы и цифры' });
+        const pr = PSA.checkPromo(promoUp);
+        if (pr.ok) return this.setState({ applied: pr.code, pErr: '', promo: '' });
+        this.setState({ pErr: pr.err });
       },
       removePromo: () => this.setState({ applied: '' }),
       qty: s.qty, multi: s.qty > 1, single: s.qty <= 1, inCart: !s.removed, removed: s.removed, removeItem: () => this.setState({ removed: true }), restoreItem: () => this.setState({ removed: false, qty: 1 }), qMinDis: s.qty <= 1, qMaxDis: s.qty >= 10,
@@ -900,9 +906,9 @@ class Component extends DCLogic {
       balAmt: s.bal, onBal: (e) => this.setState({ bal: e.target.value.replace(/\D/g, '').slice(0, 5) }),
       bErr, hasBErr: !!bErr, balOk: s.useBal && !bErr, bInvalid: bErr ? 'true' : 'false', bBorder: bErr ? '#C62F35' : '#E3E6ED',
       quick, balLine: authed, walLine: authed && s.m === 0, balUsed: used, balLeft: BAL - used,
-      splitOn, tops, topName: TOPS[s.top], walAmt: splitOn ? '−80 ₽' : '−' + R(TOT),
-      payBtn: splitOn ? 'Доплатить ' + R(TOT - 80) + ' · ' + TOPS[s.top] : (authed && s.m === 0 ? 'Оплатить с баланса' : 'Оплатить ' + R(TOT)), totalLabel: splitOn ? R(TOT - 80) : (authed && s.m === 0 ? '0 ₽' : R(TOT)),
-      disc: s.applied ? '−' + R(DISC) : '—', psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' стран' : O.info.net), back: O.back }, psMinus80: PS.fmt(TOT - 80), psSuccess: PS.successUrl(O), psPay: PS.payUrl(O, s.m), discColor: s.applied ? '#0B7A3E' : '#0E1220',
+      splitOn, tops, topName: TOPS[s.top], walAmt: splitOn ? '−' + R(BALT) : '−' + R(TOT),
+      payBtn: splitOn ? 'Доплатить ' + R(TOT - BALT) + ' · ' + TOPS[s.top] : (authed && s.m === 0 ? 'Оплатить с баланса' : 'Оплатить ' + R(TOT)), totalLabel: splitOn ? R(TOT - BALT) : (authed && s.m === 0 ? '0 ₽' : R(TOT)),
+      disc: s.applied ? '−' + R(DISC) : '—', psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' стран' : O.info.net), back: O.back }, psMinus80: PS.fmt(TOT - BALT), psSuccess: PS.successUrl(O), psBalT: R(BALT), psLogin: PSA.loginUrl(PS.checkoutBack()), psHasAcc: !authed && PSA.validEmail(em) && PSA.hasAccount(em), psPay: PS.payUrl(O, s.m), discColor: s.applied ? '#0B7A3E' : '#0E1220',
       agree: s.agree, agreeAria: s.agree ? 'true' : 'false', hasAErr: s.aErr,
       boxBg: s.agree ? '#2F5BFF' : (s.aErr ? '#FFFBFB' : '#FFFFFF'),
       boxBorder: s.agree ? '0' : (s.aErr ? '2px solid #C62F35' : '2px solid #C5CAD6'),
@@ -913,7 +919,14 @@ class Component extends DCLogic {
         const r = check();
         const ok = !r.eErr && !r.mErr && !r.aErr;
         this.setState({ ...r, tried: true, ready: ok });
-        if (ok) { clearTimeout(this._go); this._go = setTimeout(() => PS.go(PS.payUrl(O, s.m)), 1600); }
+        if (ok && s.removed) { this.setState({ ready: false, toast: 'Корзина пуста — выберите пакет' }); return; }
+        if (ok) {
+          const method = s.m === 0 ? (splitOn ? ['sbp', 'usdt'][s.top] : 'balance') : (s.m === 2 ? 'usdt' : 'sbp');
+          PSA.then(PSA.createOrder({ kind: 'esim', code: O.code, pkg: O.pkg, d: O.d, qty: s.qty, email: em.trim(), method, useBal: splitOn ? BALT : 0, promo: s.applied }), (o) => {
+            if (!o || o.err) return this.setState({ ready: false });
+            clearTimeout(this._go); this._go = setTimeout(() => PS.go(o.status === 'paid' ? PSA.doneUrl(o) : PSA.payUrl(o)), 900);
+          });
+        }
       }
     };
   }

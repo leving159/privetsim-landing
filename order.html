@@ -8,14 +8,19 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610201428"></script>
-<script src="assets/catalog.js?v=202610201428"></script>
-<script src="assets/site.js?v=202610201428"></script>
+<script src="config.js?v=202610211649"></script>
+<script src="assets/catalog.js?v=202610211649"></script>
+<script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
+<script src="assets/site.js?v=202610211649"></script>
+<script src="assets/account.js?v=202610211649"></script>
+<script src="assets/vendor/qrcode.min.js"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610211649">
+<script src="assets/chat.js?v=202610211649" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610201428"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610201428">
-<script src="assets/motion.js?v=202610201428" defer></script>
+<script src="assets/dc-runtime.js?v=202610211649"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610211649">
+<script src="assets/motion.js?v=202610211649" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -507,7 +512,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
     <div class="sh-in">
       <a class="sh-logo" href="index.html" aria-label="Привет SIM — на главную"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Привет</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">eSIM для&nbsp;путешествий<br>в&nbsp;200+ стран</span></a>
       <nav class="sh-nav" aria-label="Основная"><a href="countries.html">Страны</a><a href="index.html#how">Как&nbsp;это&nbsp;работает</a><a href="compatibility.html">Совместимость</a><a href="help.html">Помощь</a></nav>
-      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="en" lang="en" aria-label="{{langAria}}" title="English" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><a class="sh-btn sh-gho sh-hm" href="login.html" aria-label="Активная eSIM: Турция, осталось 2,6 из 5 ГБ" style="gap: 10px; padding: 0 14px 0 8px"><img src="assets/flags/tr.svg" alt="" style="width: 24px; height: 24px"><span style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; line-height: 1">2,6&nbsp;ГБ · 9&nbsp;дн</span><span style="width: 64px; height: 4px; border-radius: 999px; background: #EDEFF3; overflow: hidden"><span style="display: block; width: 52%; height: 100%; border-radius: 999px; background: #2F5BFF"></span></span></span></a><a class="sh-btn sh-pri" href="countries.html">Купить eSIM</a><a class="sh-ava sh-hm" href="login.html" aria-label="Профиль name@mail.ru">N<span aria-hidden="true" style="position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border-radius: 50%; background: #0B7A3E; box-shadow: 0 0 0 2px #FFFFFF"></span></a><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Открыть меню"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
+      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="en" lang="en" aria-label="{{langAria}}" title="English" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><sc-if value="{{psChip}}" hint-placeholder-val="{{ true }}"><a class="sh-btn sh-gho sh-hm" href="{{psChipHref}}" aria-label="{{psChipAria}}" style="gap: 10px; padding: 0 14px 0 8px"><img src="{{psChipFlag}}" alt="" style="width: 24px; height: 24px"><span style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; line-height: 1">{{psChipText}}</span><span style="width: 64px; height: 4px; border-radius: 999px; background: #EDEFF3; overflow: hidden"><span style="display: block; width: {{psChipW}}; height: 100%; border-radius: 999px; background: #2F5BFF"></span></span></span></a></sc-if><a class="sh-btn sh-pri" href="countries.html">Купить eSIM</a><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ true }}"><a class="sh-ava sh-hm" href="profile.html" aria-label="{{psAvaAria}}">{{psAva}}<span aria-hidden="true" style="position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border-radius: 50%; background: #0B7A3E; box-shadow: 0 0 0 2px #FFFFFF"></span></a></sc-if><sc-if value="{{psGuest}}" hint-placeholder-val="{{ false }}"><a class="sh-btn sh-gho sh-hm" href="login.html">Войти</a></sc-if><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Открыть меню"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
     </div>
   </header>
 
@@ -521,23 +526,21 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         <circle cx="186" cy="16" r="8" fill="#FF7A45"></circle>
       </svg>
       <h1 class="t-h1">Оплата прошла. Осталось установить eSIM {{c.for}}</h1>
-      <p style="margin: 0; font-size: 18px; line-height: 28px; color: #2B3142">Сделайте это за&nbsp;день до&nbsp;вылета, пока есть Wi-Fi. Раньше не&nbsp;нужно: у&nbsp;части пакетов срок идёт с&nbsp;момента установки. Копию QR-кода и&nbsp;инструкцию мы&nbsp;отправили на <b style="font-weight: 600">name@mail.ru</b>.</p>
+      <p style="margin: 0; font-size: 18px; line-height: 28px; color: #2B3142">Сделайте это за&nbsp;день до&nbsp;вылета, пока есть Wi-Fi. Раньше не&nbsp;нужно: у&nbsp;части пакетов срок идёт с&nbsp;момента установки. Копию QR-кода и&nbsp;инструкцию мы&nbsp;отправили на <b style="font-weight: 600">{{psE.email}}</b>.</p>
     </div>
 
+    <sc-if value="{{psMulti}}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><span style="font-size: 15px; color: #2B3142; margin-right: 4px">Оплачено {{psCount}} eSIM: каждую ставьте на&nbsp;свой телефон</span><sc-for list="{{psTabs}}" as="t" hint-placeholder-count="3"><button type="button" aria-pressed="{{t.on}}" sc-camel-on-click="{{t.pick}}" style="height: 40px; padding: 0 16px; border: 0; border-radius: 999px; cursor: pointer; font: 600 14px/40px 'Onest', system-ui, sans-serif; background: {{t.bg}}; color: {{t.fg}}; box-shadow: {{t.ring}}">{{t.label}}</button></sc-for></div></sc-if>
     <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
       <!-- QR и данные -->
       <section aria-labelledby="qr-h" style="flex: 1 1 380px; min-width: 0; padding: 32px; border-radius: 28px; background: #FFFFFF; display: flex; flex-direction: column; gap: 24px">
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
-          <h2 id="qr-h" class="t-h3" style="display: inline-flex; align-items: center; gap: 10px"><img src="{{c.flag}}" alt="" style="width: 28px; height: 28px; display: block; flex: none">{{c.name}} · 5&nbsp;ГБ · 30&nbsp;дней</h2>
-          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 8px; background: #F2F5FF; color: #1F45D6; font: 600 13px/1 'Onest', system-ui, sans-serif; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 50%; background: #1F45D6"></span>Ждёт установки</span>
+          <h2 id="qr-h" class="t-h3" style="display: inline-flex; align-items: center; gap: 10px"><img src="{{c.flag}}" alt="" style="width: 28px; height: 28px; display: block; flex: none">{{psE.what}}</h2>
+          <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 8px; background: {{psE.pbg}}; color: {{psE.pfg}}; font: 600 13px/1 'Onest', system-ui, sans-serif; white-space: nowrap"><span style="width: 6px; height: 6px; border-radius: 50%; background: {{psE.pfg}}"></span>{{psE.stText}}</span>
         </div>
-        <div role="img" aria-label="QR-код для установки eSIM" style="align-self: center; width: 240px; height: 240px; border-radius: 20px; border: 1px solid #E3E6ED; padding: 20px; box-sizing: border-box; position: relative; background: #FFFFFF">
-          <span style="position: absolute; left: 20px; top: 20px; width: 52px; height: 52px; border: 8px solid #0E1220; border-radius: 10px; box-sizing: border-box"></span>
-          <span style="position: absolute; right: 20px; top: 20px; width: 52px; height: 52px; border: 8px solid #0E1220; border-radius: 10px; box-sizing: border-box"></span>
-          <span style="position: absolute; left: 20px; bottom: 20px; width: 52px; height: 52px; border: 8px solid #0E1220; border-radius: 10px; box-sizing: border-box"></span>
-          <span class="mono" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #5A6175"><svg viewBox="-1 -1 27 27" width="100%" height="100%" role="img" aria-label="QR-код" style="display: block"><rect x="-1" y="-1" width="27" height="27" fill="#FFFFFF"></rect><g fill="#0E1220"><path d="M9 0h1v1h-1zM11 0h1v1h-1zM13 0h1v1h-1zM15 0h1v1h-1zM10 1h1v1h-1zM13 1h1v1h-1zM15 1h1v1h-1zM9 2h1v1h-1zM13 2h1v1h-1zM15 2h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM13 3h1v1h-1zM12 4h1v1h-1zM15 4h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM16 5h1v1h-1zM9 6h1v1h-1zM11 6h1v1h-1zM13 6h1v1h-1zM14 6h1v1h-1zM8 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM0 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM9 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM13 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM0 9h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM6 9h1v1h-1zM10 9h1v1h-1zM11 9h1v1h-1zM13 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM3 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM9 10h1v1h-1zM12 10h1v1h-1zM13 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM21 10h1v1h-1zM22 10h1v1h-1zM23 10h1v1h-1zM2 11h1v1h-1zM3 11h1v1h-1zM10 11h1v1h-1zM12 11h1v1h-1zM15 11h1v1h-1zM16 11h1v1h-1zM17 11h1v1h-1zM20 11h1v1h-1zM22 11h1v1h-1zM0 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM15 12h1v1h-1zM17 12h1v1h-1zM19 12h1v1h-1zM20 12h1v1h-1zM0 13h1v1h-1zM1 13h1v1h-1zM3 13h1v1h-1zM6 13h1v1h-1zM9 13h1v1h-1zM10 13h1v1h-1zM13 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM17 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM13 14h1v1h-1zM19 14h1v1h-1zM20 14h1v1h-1zM22 14h1v1h-1zM1 15h1v1h-1zM2 15h1v1h-1zM3 15h1v1h-1zM5 15h1v1h-1zM6 15h1v1h-1zM11 15h1v1h-1zM13 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM23 15h1v1h-1zM0 16h1v1h-1zM1 16h1v1h-1zM2 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM13 16h1v1h-1zM14 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM9 17h1v1h-1zM10 17h1v1h-1zM11 17h1v1h-1zM15 17h1v1h-1zM20 17h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM13 18h1v1h-1zM14 18h1v1h-1zM19 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM10 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM20 19h1v1h-1zM24 19h1v1h-1zM8 20h1v1h-1zM13 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM19 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM11 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM19 21h1v1h-1zM21 21h1v1h-1zM24 21h1v1h-1zM9 22h1v1h-1zM10 22h1v1h-1zM14 22h1v1h-1zM17 22h1v1h-1zM19 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM16 23h1v1h-1zM17 23h1v1h-1zM18 23h1v1h-1zM21 23h1v1h-1zM23 23h1v1h-1zM24 23h1v1h-1zM10 24h1v1h-1zM11 24h1v1h-1zM12 24h1v1h-1zM14 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM18 24h1v1h-1zM19 24h1v1h-1zM21 24h1v1h-1zM23 24h1v1h-1z"></path><path d="M0 0h7v7h-7z M1 1v5h5v-5z" fill-rule="evenodd"></path><path d="M2 2h3v3h-3z"></path><path d="M18 0h7v7h-7z M19 1v5h5v-5z" fill-rule="evenodd"></path><path d="M20 2h3v3h-3z"></path><path d="M0 18h7v7h-7z M1 19v5h5v-5z" fill-rule="evenodd"></path><path d="M2 20h3v3h-3z"></path></g></svg></span>
-        </div>
-        <a class="btn btn-primary btn-lg" href="https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$rsp.esimaccess.com$K2-7QF4-91XM-2LDA-8C3P" style="width: 100%; box-sizing: border-box" target="_blank" rel="noopener">
+        <sc-if value="{{psPrep}}" hint-placeholder-val="{{ false }}"><div style="align-self: stretch; display: flex; align-items: center; gap: 14px; padding: 20px; border-radius: 20px; background: #F2F5FF; color: #1F45D6"><span class="ps-spin"></span><span style="display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 20px"><b style="font-size: 16px">Оплата прошла. Готовим eSIM…</b><span>Обычно до&nbsp;30 секунд. Можно закрыть страницу: QR-код придёт на&nbsp;{{psE.email}}</span></span></div></sc-if>
+        <sc-if value="{{psReady}}" hint-placeholder-val="{{ true }}"><div role="img" aria-label="QR-код для установки eSIM" style="align-self: center; width: 240px; height: 240px; border-radius: 20px; border: 1px solid #E3E6ED; padding: 16px; box-sizing: border-box; background: #FFFFFF; display: grid; grid-template-columns: repeat({{qrN}}, 1fr); grid-auto-rows: 1fr"><sc-for list="{{qrCells}}" as="q" hint-placeholder-count="20"><i style="display: block; background: {{q}}"></i></sc-for></div></sc-if>
+        <sc-if value="{{psE.hasNote}}" hint-placeholder-val="{{ false }}"><div class="ps-note ps-n-{{psE.noteC}}">{{psE.note}}</div></sc-if>
+        <a class="btn btn-primary btn-lg" href="{{psE.installUrl}}" style="width: 100%; box-sizing: border-box" target="_blank" rel="noopener">
           <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7 10l5 5 5-5"></path><path d="M5 20h14"></path></svg>
           Установить в&nbsp;один тап
         </a>
@@ -547,7 +550,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           <div style="display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
             <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
               <span style="font-size: 12px; color: #5A6175">Адрес SM-DP+</span>
-              <span class="mono" style="font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">rsp.esimaccess.com</span>
+              <span class="mono" style="font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{psE.smdpAddr}}</span>
             </div>
             <button class="btn btn-ghost btn-sm" type="button" aria-label="Скопировать адрес SM-DP+" style="width: 40px; padding: 0" sc-camel-on-click="{{cpSmdp}}">
               <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg>
@@ -556,7 +559,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           <div style="display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
             <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
               <span style="font-size: 12px; color: #5A6175">Код активации</span>
-              <span class="mono" style="font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">K2-7QF4-91XM-2LDA-8C3P</span>
+              <span class="mono" style="font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{psE.act}}</span>
             </div>
             <button class="btn btn-ghost btn-sm" type="button" aria-label="Скопировать код активации" style="width: 40px; padding: 0" sc-camel-on-click="{{cpCode}}">
               <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg>
@@ -597,10 +600,10 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
         <div class="ac-made" style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 18px; background: #F2F5FF">
           <span style="width: 40px; height: 40px; border-radius: 12px; background: #2F5BFF; display: inline-flex; align-items: center; justify-content: center; flex: none"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
-          <span style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 20px"><b style="font-size: 15px">Личный кабинет создан на&nbsp;name@mail.ru</b><span style="color: #5A6175">Там QR-код, остаток гигабайтов, пополнение и&nbsp;квитанции. Пароль не&nbsp;нужен&nbsp;— вход по&nbsp;коду из&nbsp;письма.</span></span>
+          <span style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 20px"><b style="font-size: 15px">{{psE.cabTitle}}</b><span style="color: #5A6175">Там QR-код, остаток гигабайтов, пополнение и&nbsp;квитанции. Пароль не&nbsp;нужен&nbsp;— вход по&nbsp;коду из&nbsp;письма.</span></span>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
-          <a class="btn btn-ghost" href="login.html">Открыть личный кабинет</a>
+          <a class="btn btn-ghost" href="{{psE.cabHref}}">Открыть личный кабинет</a>
           <a class="btn btn-ghost" href="https://t.me/privetsim_support" target="_blank" rel="noopener">Помощь в&nbsp;Telegram</a>
         </div>
       </section>
@@ -626,7 +629,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
         <div class="sf-col"><span class="sf-mono">Направления</span><a href="country.html?c=TR">Турция</a><a href="country.html?c=AE">ОАЭ</a><a href="country.html?c=TH">Таиланд</a><a href="region.html?r=EU">Европа</a><a href="countries.html">Все&nbsp;страны</a></div>
         <div class="sf-col"><span class="sf-mono">Помощь</span><a href="help.html#install">Как&nbsp;установить</a><a href="compatibility.html">Совместимость</a><a href="help.html#faq">Вопросы</a><a href="https://t.me/privetsim_support" target="_blank" rel="noopener">Поддержка в&nbsp;Telegram</a></div>
-        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><a href="login.html">Войти</a><a href="login.html">Мои eSIM</a><a href="login.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
+        <div class="sf-col"><span class="sf-mono">Аккаунт и&nbsp;документы</span><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a href="login.html">Войти</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a href="login.html?logout=1">Выйти</a></sc-if><a href="account.html">Мои eSIM</a><a href="referral.html">Партнёрская программа · 25%</a><a href="legal.html?doc=offer">Публичная оферта</a><a href="legal.html?doc=privacy">Конфиденциальность</a><a href="legal.html?doc=req">Реквизиты</a></div>
       </div>
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid #EDEFF3; font-size: 13px; color: #5A6175">
         <span>© 2026 Привет SIM{{psSellerLine}}</span>
@@ -688,7 +691,7 @@ class Component extends DCLogic {
       toastOn: !!s.toast, toastText: s.toast || '',
       langLbl: s.uiLang === 'en' ? 'RU' : 'EN', langAria: s.uiLang === 'en' ? 'Переключить на русский' : 'Switch to English',
       toggleLang: () => { const en = s.uiLang !== 'en'; this.setState({ uiLang: en ? 'en' : 'ru' }); toast(en ? 'Switched to English' : 'Сайт на русском')(); },
-      cpSmdp: toast('Адрес SM-DP+ скопирован'), cpCode: toast('Код активации скопирован'),
+      cpSmdp: () => { PSA.copy(v.psE.smdpAddr); toast('Адрес SM-DP+ скопирован')(); }, cpCode: () => { PSA.copy(v.psE.act); toast('Код активации скопирован')(); },
     });
   }
 
@@ -701,7 +704,11 @@ class Component extends DCLogic {
       GE: { name: 'Грузия', to: 'в Грузию', in: 'в Грузии', for: 'для Грузии', flag: 'assets/flags/ge.svg' },
       EU: { name: 'Европа', to: 'в Европу', in: 'в Европе', for: 'для Европы', flag: 'assets/flags/eu.svg' }
     };
-    const c = PS.successC(this.props.country) || C[this.props.country ?? 'TR'] || C.TR;
+    const LIST = PSA.orderEsims();
+    if (!this._un) this._un = PSA.sub(() => this.setState({ v: Date.now() }));
+    if (!LIST.length && !this._nf) { this._nf = 1; setTimeout(() => PS.go(PSA.authed() ? 'account.html' : 'login.html'), 0); }
+    const E = LIST[Math.min(this.state.ix || 0, Math.max(0, LIST.length - 1))];
+    const c = PS.successC(E ? E.code : this.props.country) || C[this.props.country ?? 'TR'] || C.TR;
     const all = {
       ios: [
         { n: '1', t: 'Откройте «Настройки» → «Сотовая связь»', d: 'Нажмите «Добавить eSIM» → «Использовать QR-код».' },
@@ -720,7 +727,17 @@ class Component extends DCLogic {
       const on = this.state.os === id;
       return { label, on: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#0E1220' : '#5A6175', sh: on ? '0 1px 2px rgba(14,18,32,0.08)' : 'none', pick: () => this.setState({ os: id }) };
     });
-    return { tabs, c, steps: all[this.state.os].map((x) => ({ ...x, hasTag: !!x.tag })) };
+    const O = E ? E.order : {};
+    const prep = !!E && (!!E.preparing || (PSA.now() - (O.paidAt || 0) < 2500 && E.st === 'new'));
+    if (prep && !this._pt) this._pt = setTimeout(() => this.setState({ pt: 1 }), 2600);
+    const NOTE = { failed: ['Телефон скачал eSIM, но установка не\u00a0завершилась. Повторно отсканировать QR нельзя: он одноразовый. Напишите в\u00a0поддержку.', 'amber'], installed: ['eSIM уже установлена. QR-код одноразовый, повторно он не\u00a0понадобится.', 'green'], active: ['eSIM уже установлена и\u00a0работает.', 'green'], low: ['eSIM уже установлена. Трафик заканчивается — пополните в\u00a0кабинете.', 'amber'], burned: ['eSIM не\u00a0установили вовремя, и\u00a0она перестала действовать.', 'gray'], refunded: ['Деньги за\u00a0эту eSIM возвращены на\u00a0баланс, она отключена.', 'gray'], deleted: ['eSIM удалили из\u00a0телефона. Установить её заново нельзя.', 'gray'], expired: ['Срок eSIM закончился.', 'gray'] };
+    const q = E ? PSA.qr(E.ac) : { n: 21, cells: [] };
+    const em = (O && O.email) || (PSA.user() && PSA.user().email) || '';
+    const psE = E ? { email: em, what: E.name + ' · ' + PSA.gb(E.total) + ' · ' + PSA.days(E.raw.d), stText: E.stText, pbg: E.pill[0], pfg: E.pill[1], installUrl: E.installUrl, smdpAddr: E.smdpAddr, act: E.act,
+      hasNote: !!NOTE[E.st], note: NOTE[E.st] ? NOTE[E.st][0] : '', noteC: NOTE[E.st] ? NOTE[E.st][1] : 'gray',
+      cabTitle: PSA.authed() ? 'eSIM уже в\u00a0вашем кабинете' : 'Личный кабинет создан на\u00a0' + em, cabHref: PSA.authed() ? 'account.html' : 'login.html?email=' + encodeURIComponent(em) + '&next=account.html' } : { email: '', what: '', stText: '', pbg: '', pfg: '', installUrl: '#', smdpAddr: '', act: '', hasNote: false, note: '', noteC: 'gray', cabTitle: '', cabHref: 'account.html' };
+    const psTabs = LIST.map((x, i) => { const on = (this.state.ix || 0) === i; return { label: 'eSIM ' + (i + 1), on: on ? 'true' : 'false', bg: on ? '#0E1220' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0E1220', ring: on ? 'none' : 'inset 0 0 0 1px #E3E6ED', pick: () => this.setState({ ix: i }) }; });
+    return { psE, psPrep: prep, psReady: !prep && !!E && { new: 1, failed: 1 }[E.st] === 1, qrN: q.n, qrCells: q.cells, psMulti: LIST.length > 1, psCount: LIST.length, psTabs, tabs, c, steps: all[this.state.os].map((x) => ({ ...x, hasTag: !!x.tag })) };
   }
 }
 </script>
