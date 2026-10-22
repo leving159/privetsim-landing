@@ -3,22 +3,44 @@
 <meta charset="utf-8">
 <title>Совместимость телефона с eSIM — Привет SIM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="eSIM для путешествий в 190+ стран: интернет за границей без роуминга, цена в рублях, установка за 2 минуты.">
+<meta name="description" content="Проверьте, поддерживает ли ваш телефон eSIM: iPhone, Samsung Galaxy, Google Pixel, Xiaomi, Honor и другие модели последних лет.">
+<link rel="canonical" href="https://privetsim.net/compatibility.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Привет SIM">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Совместимость телефона с eSIM — Привет SIM">
+<meta property="og:description" content="Проверьте, поддерживает ли ваш телефон eSIM: iPhone, Samsung Galaxy, Google Pixel, Xiaomi, Honor и другие модели последних лет.">
+<meta property="og:url" content="https://privetsim.net/compatibility.html">
+<meta property="og:image" content="https://privetsim.net/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Привет SIM — eSIM для путешествий">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Совместимость телефона с eSIM — Привет SIM">
+<meta name="twitter:description" content="Проверьте, поддерживает ли ваш телефон eSIM: iPhone, Samsung Galaxy, Google Pixel, Xiaomi, Honor и другие модели последних лет.">
+<meta name="twitter:image" content="https://privetsim.net/assets/og.jpg">
+<meta name="apple-mobile-web-app-title" content="Привет SIM">
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://bot.privetsim.net" crossorigin>
+<link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+<script>window.PS_FAST = true</script>
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610220208"></script>
-<script src="assets/catalog.js?v=202610220208"></script>
-<script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
-<script src="assets/site.js?v=202610220208"></script>
-<script src="assets/account.js?v=202610220208"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610220208">
-<script src="assets/chat.js?v=202610220208" defer></script>
+<script src="config.js?v=202610221555"></script>
+<script src="assets/catalog.js?v=202610221555"></script>
+<script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
+<script src="assets/site.js?v=202610221555"></script>
+<script src="assets/account.js?v=202610221555"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610221555">
+<script src="assets/chat.js?v=202610221555" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610220208"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610220208">
-<script src="assets/motion.js?v=202610220208" defer></script>
+<script src="assets/dc-runtime.js?v=202610221555"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610221555">
+<script src="assets/ui.js?v=202610221555"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610221555">
+<script src="assets/motion.js?v=202610221555" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -687,7 +709,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
 </sc-if>
 </noscript></x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1680}}">
-class Component extends DCLogic {
+class Component extends (window.PSLogic || DCLogic) {
   renderVals() {
     const v = this._rv0() || {};
     const s = this.state || {};
@@ -703,17 +725,19 @@ class Component extends DCLogic {
   constructor(props) { super(props); this.state = { q: '', picked: '', brand: 'apple' }; }
   _rv0() {
     const db = {
-      apple: [['iPhone 16 / 16 Pro','yes'],['iPhone 15 / 15 Pro','yes'],['iPhone 14 / 14 Pro','yes'],['iPhone 13 / 13 mini / 13 Pro','yes'],['iPhone 12 / 12 mini / 12 Pro','yes'],['iPhone 11 / 11 Pro','yes'],['iPhone XS / XS Max / XR','yes'],['iPhone SE (2020, 2022)','yes'],['iPhone X','no'],['iPhone 8 / 8 Plus','no'],['iPad Pro / Air (Cellular)','yes']],
-      samsung: [['Galaxy S24 / S24+ / Ultra','check'],['Galaxy S23 / S23+ / Ultra','check'],['Galaxy S22 / S22+ / Ultra','check'],['Galaxy Z Fold / Flip 4–6','check'],['Galaxy A54','check'],['Galaxy A34','check'],['Galaxy A14','no']],
-      google: [['Pixel 9 / 9 Pro','yes'],['Pixel 8 / 8 Pro','yes'],['Pixel 7 / 7a / 7 Pro','yes'],['Pixel 6 / 6a / 6 Pro','yes'],['Pixel 4 / 5','yes']],
-      xiaomi: [['Xiaomi 14 / 14 Pro','check'],['Xiaomi 13 / 13 Pro','check'],['Xiaomi 12T Pro','check'],['Redmi Note 13','no']],
-      other: [['Huawei P40 / P40 Pro','check'],['Huawei Mate 40 Pro','check'],['Motorola Razr 40','check'],['OnePlus 12','check'],['Honor Magic 5 Pro','check']]
+      apple: [['iPhone 17 / 17 Pro / 17 Pro Max','yes'],['iPhone Air','yes'],['iPhone 16 / 16 Plus / 16 Pro / 16 Pro Max','yes'],['iPhone 16e','yes'],['iPhone 15 / 15 Plus / 15 Pro / 15 Pro Max','yes'],['iPhone 14 / 14 Plus / 14 Pro / 14 Pro Max','yes'],['iPhone 13 / 13 mini / 13 Pro / 13 Pro Max','yes'],['iPhone 12 / 12 mini / 12 Pro / 12 Pro Max','yes'],['iPhone 11 / 11 Pro / 11 Pro Max','yes'],['iPhone SE (2020, 2022)','yes'],['iPhone XS / XS Max / XR','yes'],['iPhone из Китая, Гонконга и Макао (две SIM-карты)','no'],['iPhone X','no'],['iPhone 8 / 8 Plus','no'],['iPad Pro / Air / mini / iPad (Wi-Fi + Cellular)','yes']],
+      samsung: [['Galaxy S25 / S25+ / S25 Ultra / S25 Edge','check'],['Galaxy S25 FE','check'],['Galaxy S24 / S24+ / S24 Ultra / S24 FE','check'],['Galaxy S23 / S23+ / S23 Ultra / S23 FE','check'],['Galaxy S22 / S22+ / S22 Ultra','check'],['Galaxy S21 / S21+ / S21 Ultra / S21 FE','check'],['Galaxy Z Fold 7 / Z Flip 7','check'],['Galaxy Z Fold 6 / Z Flip 6','check'],['Galaxy Z Fold 5 / Z Flip 5','check'],['Galaxy Z Fold 4 / Z Flip 4','check'],['Galaxy Z Fold 3 / Z Flip 3','check'],['Galaxy Note 20 / Note 20 Ultra','check'],['Galaxy A56 / A55 / A54','check'],['Galaxy A36 / A35 / A34','check'],['Galaxy A26 / A25 / A16 / A15 / A14','no']],
+      google: [['Pixel 10 / 10 Pro / 10 Pro XL / 10 Pro Fold','yes'],['Pixel 9 / 9 Pro / 9 Pro XL / 9 Pro Fold','yes'],['Pixel 9a','yes'],['Pixel 8 / 8 Pro / 8a','yes'],['Pixel Fold','yes'],['Pixel 7 / 7 Pro / 7a','yes'],['Pixel 6 / 6 Pro / 6a','yes'],['Pixel 5 / 5a','yes'],['Pixel 4 / 4 XL / 4a','yes']],
+      xiaomi: [['Xiaomi 15 / 15 Pro / 15 Ultra','check'],['Xiaomi 15T / 15T Pro','check'],['Xiaomi 14 / 14 Pro / 14 Ultra','check'],['Xiaomi 14T / 14T Pro','check'],['Xiaomi 13 / 13 Pro / 13 Ultra','check'],['Xiaomi 13T / 13T Pro','check'],['Xiaomi 12T Pro','check'],['Redmi Note 14 Pro / 14 Pro+','check'],['Redmi Note 13 / 13 Pro / 13 Pro+','no'],['POCO X6 / X7 / F6','no']],
+      other: [['Honor Magic 7 Pro / Magic 6 Pro','check'],['Honor Magic V3 / V2','check'],['Honor Magic 5 Pro','check'],['Huawei Pura 70 / P60 / P50','no'],['Huawei Mate 40 Pro / P40 / P40 Pro','check'],['OnePlus 13 / 12 / Open','check'],['Motorola Razr 50 / 50 Ultra / Razr 40 / 40 Ultra','check'],['Motorola Edge 50 Pro / Edge 40','check'],['Sony Xperia 1 VI / 1 V / 1 IV','yes'],['Sony Xperia 10 VI / 10 V / 10 IV','yes'],['Nothing Phone (3)','check'],['OPPO Find X8 Pro / Find X5 Pro','check'],['Vivo X200 Pro / X100 Pro','check'],['Realme, Tecno, Infinix (большинство моделей)','no']]
     };
     const dot = (s) => s === 'yes' ? '#0B7A3E' : s === 'no' ? '#C62F35' : '#E8B95A';
     const note = (s) => s === 'yes' ? 'да' : s === 'no' ? 'нет' : 'проверьте';
     const flat = Object.values(db).flat();
     const q = (this.state.q || '').trim().toLowerCase();
-    const matches = q ? flat.filter(([n]) => n.toLowerCase().includes(q)).slice(0, 5) : [];
+    const toks = q.replace(/(\d)([a-zа-я])/g, '$1 $2').split(/\s+/).filter(Boolean);
+    const hay = (n) => n.toLowerCase().replace(/(\d)([a-zа-я])/g, '$1 $2').replace(/[()+\/,-]/g, ' ');
+    const matches = q ? flat.filter(([n]) => toks.every((t) => hay(n).split(/\s+/).some((w) => w.indexOf(t) === 0) || hay(n).includes(t))).slice(0, 6) : [];
     const pickedRow = flat.find(([n]) => n === this.state.picked);
     const status = this.state.picked ? (pickedRow ? pickedRow[1] : 'unknown') : (q.length > 2 && matches.length === 0 ? 'unknown' : '');
     const brands = [['apple','Apple'],['samsung','Samsung'],['google','Google'],['xiaomi','Xiaomi'],['other','Другие']].map(([id, label]) => {

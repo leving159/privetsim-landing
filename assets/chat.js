@@ -126,6 +126,10 @@
     if (!orig || root) return !!root;
     root = orig.cloneNode(true);
     root.removeAttribute('open');
+    // На главной в макете два экрана чата (форма гостя и переписка, переключаются чекбоксом).
+    // Оставляем один — переписку с полем ввода, иначе после входа поле ввода спрятано
+    var s1 = root.querySelector('.cw-s1'), s2 = root.querySelector('.cw-s2');
+    if (s1 && s2) { s1.remove(); var cb = root.querySelector('.cw-go'); if (cb) cb.remove(); s2.style.display = 'flex'; }
     var st = doc.createElement('style'); st.textContent = '#dc-root details.cw{display:none !important}'; doc.head.appendChild(st);
     doc.body.appendChild(root);
     // Поле ввода и кнопки

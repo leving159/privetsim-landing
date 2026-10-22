@@ -366,6 +366,135 @@
     };
   }
 
+  /* ---------- Живой каталог с API: приходит после показа страницы ---------- */
+  // Страница рисуется сразу по снимку assets/catalog.js, свежие цены подставляются без перезагрузки
+  PS.setCatalog = function (cat) {
+    if (!cat || !cat.countries || !CAT) return false;
+    CAT = root.PS_CATALOG = cat;
+    PS.TOTAL = Math.floor(Object.keys(cat.countries).length / 10) * 10;
+    if (cat.meta && cat.meta.usdRub) PS.USDT_RATE = Math.round(cat.meta.usdRub * 100) / 100;
+    return true;
+  };
+  // Перерисовать экран (данные кабинета или цены обновились)
+  PS.refresh = function () {
+    try { root.dispatchEvent(new root.Event('ps:refresh')); } catch (e) {}
+  };
+
+  /* ---------- Поиск направления: страна, регион, город, остров, штат ---------- */
+  // Места → код страны. Ищем по началу слова, без учёта регистра, «ё» и дефисов
+  var PLACES = 'TR:стамбул,анталья,анталия,аланья,кемер,белек,сиде,бодрум,мармарис,фетхие,даламан,измир,каппадокия,гёреме,анкара,трабзон,дидим,кушадасы,istanbul,antalya,alanya;' +
+    'AE:дубай,абу-даби,абудаби,шарджа,рас-эль-хайма,фуджейра,аджман,эмираты,dubai,abu dhabi;' +
+    'TH:пхукет,бангкок,паттайя,самуи,панган,краби,чиангмай,чианг май,ко чанг,ко тао,хуахин,као лак,phuket,bangkok,pattaya,samui;' +
+    'EG:шарм-эль-шейх,шарм,хургада,каир,марса-алам,дахаб,макади,сома-бей,эль-гуна,луксор,александрия,sharm,hurghada,cairo;' +
+    'CN:пекин,шанхай,хайнань,санья,гуанчжоу,шэньчжэнь,харбин,сиань,чэнду,ханчжоу,beijing,shanghai,hainan;' +
+    'VN:нячанг,фукуок,ханой,хошимин,сайгон,дананг,фантьет,муйне,халонг,nha trang,phu quoc,hanoi;' +
+    'GE:тбилиси,батуми,кутаиси,казбеги,гудаури,бакуриани,мцхета,сигнахи,кобулети,tbilisi,batumi;' +
+    'AM:ереван,севан,гюмри,дилижан,цахкадзор,yerevan;' +
+    'AZ:баку,габала,шеки,baku;' +
+    'KZ:алматы,алма-ата,астана,шымкент,актау,медеу,almaty,astana;' +
+    'UZ:ташкент,самарканд,бухара,хива,фергана,tashkent,samarkand;' +
+    'KG:бишкек,иссык-куль,чолпон-ата,каракол,bishkek;' +
+    'TJ:душанбе;BY:минск,брест,гродно,витебск,minsk;' +
+    'ID:бали,джакарта,ломбок,гили,убуд,чангу,кута,нуса дуа,ява,bali,jakarta,lombok;' +
+    'IN:гоа,дели,нью-дели,мумбаи,агра,керала,джайпур,goa,delhi,mumbai;' +
+    'LK:коломбо,хиккадува,унаватуна,бентота,велигама,мирисса,канди,colombo;' +
+    'MV:мале,male;MU:маврикий;SC:сейшелы,маэ,праслин;TZ:занзибар,дар-эс-салам,килиманджаро,zanzibar;' +
+    'JP:токио,осака,киото,хоккайдо,окинава,саппоро,нара,фудзи,tokyo,osaka,kyoto;' +
+    'KR:сеул,пусан,чеджу,seoul,busan,jeju;' +
+    'MY:куала-лумпур,лангкави,пенанг,борнео,kuala lumpur;SG:сингапур,singapore;' +
+    'PH:манила,боракай,себу,палаван,бохоль,manila,boracay;KH:пномпень,сиемреап,ангкор,сиануквиль;LA:вьентьян,луангпрабанг;' +
+    'HK:гонконг,hong kong;MO:макао,macau;TW:тайбэй,taipei;MN:улан-батор;NP:катманду,эверест,покхара;' +
+    'IL:тель-авив,иерусалим,эйлат,хайфа,мертвое море,tel aviv;JO:амман,акаба,петра,вади-рам;' +
+    'SA:эр-рияд,джидда,мекка,медина,riyadh;QA:доха,doha;OM:маскат,салала,muscat;BH:манама;KW:эль-кувейт;' +
+    'MA:марракеш,касабланка,агадир,фес,танжер,marrakech;TN:тунис,джерба,сусс,хаммамет,монастир,djerba;' +
+    'ZA:кейптаун,йоханнесбург,cape town;KE:найроби,момбаса,кения;' +
+    'FR:париж,ницца,канны,марсель,лион,корсика,лазурный берег,бордо,шамони,paris,nice;' +
+    'IT:рим,милан,венеция,флоренция,неаполь,сицилия,сардиния,римини,тоскана,капри,доломиты,rome,milan,venice;' +
+    'ES:барселона,мадрид,тенерифе,майорка,ибица,канары,канарские острова,гран-канария,коста-брава,коста-дель-соль,малага,валенсия,севилья,аликанте,бенидорм,barcelona,madrid,tenerife,mallorca,ibiza;' +
+    'PT:лиссабон,порту,мадейра,алгарве,азорские острова,lisbon,porto;' +
+    'GR:афины,крит,родос,корфу,санторини,халкидики,закинф,кос,миконос,салоники,athens,crete,rhodes,santorini;' +
+    'CY:ларнака,лимассол,айя-напа,пафос,никосия,протарас,larnaca,limassol;' +
+    'ME:будва,бар,котор,тиват,херцег-нови,подгорица,петровац,ульцинь,budva;' +
+    'RS:белград,нови-сад,златибор,belgrade;HR:дубровник,сплит,загреб,истрия,пула,dubrovnik,split;' +
+    'BA:сараево,мостар;AL:тирана,дуррес,саранда,влёра;MK:скопье,охрид;BG:софия,варна,бургас,солнечный берег,золотые пески,банско,несебр;' +
+    'RO:бухарест,брашов,трансильвания;HU:будапешт,хевиз,балатон,budapest;CZ:прага,карловы вары,брно,prague;SK:братислава,татры;' +
+    'AT:вена,зальцбург,инсбрук,тироль,vienna;CH:цюрих,женева,церматт,люцерн,берн,zurich,geneva;' +
+    'DE:берлин,мюнхен,франкфурт,гамбург,кёльн,дрезден,бавария,berlin,munich;NL:амстердам,роттердам,гаага,amsterdam;' +
+    'BE:брюссель,брюгге,антверпен;LU:люксембург;GB:лондон,эдинбург,манчестер,ливерпуль,шотландия,англия,уэльс,london;' +
+    'IE:дублин,dublin;IS:рейкьявик,исландия;NO:осло,берген,лофотены,тромсё;SE:стокгольм,гётеборг;FI:хельсинки,лапландия,рованиеми;DK:копенгаген;' +
+    'PL:варшава,краков,гданьск;EE:таллин;LV:рига,юрмала;LT:вильнюс;SI:любляна,блед;MT:валлетта;MC:монте-карло;VA:ватикан;SM:сан-марино;AD:андорра-ла-велья;' +
+    'US:нью-йорк,лос-анджелес,майами,лас-вегас,сан-франциско,чикаго,вашингтон,бостон,сиэтл,гавайи,гонолулу,флорида,калифорния,техас,невада,аляска,орландо,new york,los angeles,miami,hawaii,california,florida;' +
+    'CA:торонто,ванкувер,монреаль,оттава,toronto,vancouver;MX:канкун,мехико,тулум,плайя-дель-кармен,cancun;' +
+    'CU:гавана,варадеро;DO:пунта-кана,санто-доминго,пуэрто-плата,punta cana;JM:ямайка;' +
+    'BR:рио-де-жанейро,рио,сан-паулу,rio;AR:буэнос-айрес,патагония;CL:сантьяго,атакама;PE:лима,куско,мачу-пикчу;CO:богота,картахена,медельин;' +
+    'CR:сан-хосе;PA:панама;EC:кито,галапагосы;' +
+    'AU:сидней,мельбурн,брисбен,перт,голд-кост,sydney,melbourne;NZ:окленд,веллингтон,квинстаун,auckland;PF:таити,бора-бора;FJ:нади;' +
+    'RU:москва,санкт-петербург,питер,сочи,калининград,крым,moscow';
+  var PLACE = null;
+  function norm(s) { return String(s || '').toLowerCase().replace(/ё/g, 'е').replace(/[ ‐-―‑\-_.,·«»"']/g, ' ').replace(/\s+/g, ' ').trim(); }
+  // Набрали в английской раскладке: «nehwbz» → «турция»
+  var EN = 'qwertyuiop[]asdfghjkl;\'zxcvbnm,.`', RU = 'йцукенгшщзхъфывапролджэячсмитьбюё';
+  function swapLayout(s) { return String(s).toLowerCase().split('').map(function (ch) { var i = EN.indexOf(ch); return i < 0 ? ch : RU.charAt(i); }).join(''); }
+  function places() {
+    if (PLACE) return PLACE;
+    PLACE = [];
+    PLACES.split(';').forEach(function (part) {
+      var p = part.split(':'); if (p.length < 2) return;
+      p[1].split(',').forEach(function (n) { if (n) PLACE.push([p[0], n.trim()]); });
+    });
+    return PLACE;
+  }
+  var dnRu = null, dnEn = null;
+  try { dnRu = new Intl.DisplayNames(['ru'], { type: 'region' }); dnEn = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+  // Популярность для сортировки равных совпадений (чаще ездят из России)
+  PS.POPULAR = ['TR', 'AE', 'TH', 'EG', 'CN', 'VN', 'GE', 'AM', 'ID', 'KZ', 'UZ', 'MV', 'LK', 'IN', 'RS', 'ME', 'JP', 'KR', 'AZ', 'KG', 'CY', 'IT', 'ES', 'FR', 'GR', 'DE', 'US', 'BY', 'TZ', 'MY'];
+  function score(nameN, q) {
+    if (!nameN || !q) return 0;
+    if (nameN === q) return 4;
+    if (nameN.indexOf(q) === 0) return 3;
+    if ((' ' + nameN).indexOf(' ' + q) !== -1) return 2;
+    return q.length >= 3 && nameN.indexOf(q) !== -1 ? 1 : 0;
+  }
+  // q → [{ code, name, via, region, href, flag, price }], лучшие сверху
+  PS.search = function (q, limit) {
+    var cat = CAT || { countries: {}, regions: {} };
+    var tries = [norm(q)];
+    var sw = norm(swapLayout(q)); if (sw !== tries[0]) tries.push(sw);
+    var best = {};
+    function add(code, s, via, isReg) {
+      if (!s) return;
+      var k = (isReg ? 'r:' : 'c:') + code, cur = best[k];
+      if (!cur || s > cur.s || (s === cur.s && !via && cur.via)) best[k] = { code: code, s: s, via: via || '', isReg: !!isReg };
+    }
+    for (var t = 0; t < tries.length; t++) {
+      var qq = tries[t]; if (!qq) continue;
+      Object.keys(cat.countries).forEach(function (c) {
+        var names = [C[c] ? C[c][0] : cat.countries[c].name, cat.countries[c].name];
+        if (dnRu) try { names.push(dnRu.of(c)); names.push(dnEn.of(c)); } catch (e) {}
+        var s = 0; names.forEach(function (n) { s = Math.max(s, score(norm(n), qq)); });
+        add(c, s, '', false);
+      });
+      Object.keys(cat.regions).forEach(function (r) { add(r, score(norm(cat.regions[r].name), qq), '', true); });
+      places().forEach(function (p) {
+        if (!cat.countries[p[0]]) return;
+        var s = score(norm(p[1]), qq);
+        if (s) add(p[0], s, p[1], false);
+      });
+      if (Object.keys(best).length) break; // в своей раскладке что-то нашлось — вторую не пробуем
+    }
+    var pop = function (c) { var i = PS.POPULAR.indexOf(c); return i < 0 ? 99 : i; };
+    return Object.keys(best).map(function (k) { return best[k]; })
+      .sort(function (a, b) { return b.s - a.s || pop(a.code) - pop(b.code) || (a.isReg - b.isReg); })
+      .slice(0, limit || 8)
+      .map(function (x) {
+        var e = x.isReg ? cat.regions[x.code] : cat.countries[x.code];
+        var name = x.isReg ? e.name : (C[x.code] ? C[x.code][0] : e.name);
+        var via = x.via ? x.via.replace(/(^|[\s-])([а-яa-z])/g, function (m, a, b) { return a + b.toUpperCase(); }) : '';
+        return { key: (x.isReg ? 'r:' : 'c:') + x.code, code: x.code, name: name, via: via, isRegion: x.isReg, href: PS.dest(x.code), flag: x.isReg ? (x.code === 'EU' ? PS.flagOf('eu') : '') : PS.flagOf(x.code), price: PS.fmt(e.from),
+          sub: x.isReg ? PS.nStran(e.countries.length) : (e.net || '') };
+      });
+  };
+
   /* ---------- Общие значения для всех экранов ---------- */
   PS.vals = function () { return { psSellerLine: PS.sellerLine() }; };
 
@@ -417,7 +546,9 @@
   if (root.document) {
     var searchGo = function (input) {
       var v = (input.value || '').trim();
-      PS.go('countries.html' + (v ? '?q=' + encodeURIComponent(v) : ''));
+      // Нашлось направление (страна, регион, город, остров) — сразу на его страницу
+      var best = v && PS.search ? PS.search(v, 1)[0] : null;
+      PS.go(best ? best.href : 'countries.html' + (v ? '?q=' + encodeURIComponent(v) : ''));
     };
     root.document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href="countries.html"]');

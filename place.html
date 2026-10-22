@@ -4,21 +4,43 @@
 <title>Где это — Привет SIM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="eSIM для путешествий в 190+ стран: интернет за границей без роуминга, цена в рублях, установка за 2 минуты.">
+<link rel="canonical" href="https://privetsim.net/place.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Привет SIM">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Где это — Привет SIM">
+<meta property="og:description" content="eSIM для путешествий в 190+ стран: интернет за границей без роуминга, цена в рублях, установка за 2 минуты.">
+<meta property="og:url" content="https://privetsim.net/place.html">
+<meta property="og:image" content="https://privetsim.net/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Привет SIM — eSIM для путешествий">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Где это — Привет SIM">
+<meta name="twitter:description" content="eSIM для путешествий в 190+ стран: интернет за границей без роуминга, цена в рублях, установка за 2 минуты.">
+<meta name="twitter:image" content="https://privetsim.net/assets/og.jpg">
+<meta name="apple-mobile-web-app-title" content="Привет SIM">
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://bot.privetsim.net" crossorigin>
+<link rel="preload" href="assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+<script>window.PS_FAST = true</script>
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610220208"></script>
-<script src="assets/catalog.js?v=202610220208"></script>
-<script>if (window.SITE_CONFIG && SITE_CONFIG.apiUrl) document.write('<script src="' + SITE_CONFIG.apiUrl.replace(/\/$/, '') + '/api/catalog/storefront.js"><\/script>');</script>
-<script src="assets/site.js?v=202610220208"></script>
-<script src="assets/account.js?v=202610220208"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610220208">
-<script src="assets/chat.js?v=202610220208" defer></script>
+<script src="config.js?v=202610221555"></script>
+<script src="assets/catalog.js?v=202610221555"></script>
+<script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
+<script src="assets/site.js?v=202610221555"></script>
+<script src="assets/account.js?v=202610221555"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610221555">
+<script src="assets/chat.js?v=202610221555" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610220208"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610220208">
-<script src="assets/motion.js?v=202610220208" defer></script>
+<script src="assets/dc-runtime.js?v=202610221555"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610221555">
+<script src="assets/ui.js?v=202610221555"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610221555">
+<script src="assets/motion.js?v=202610221555" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -581,7 +603,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
 
     <!-- Заголовок -->
     <header class="hero" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px">
-      <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px 0 5px; border-radius: 999px; background: #F5F6F9; color: #0E1220; font-size: 13px; font-weight: 600"><sc-if value="{{p.hasFlag}}" hint-placeholder-val="{{ true }}"><img src="{{p.flag}}" alt="" style="width: 24px; height: 24px; display: block"></sc-if>{{p.country}}</span>
+      <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px 0 5px; border-radius: 999px; background: #F5F6F9; color: #0E1220; font-size: 13px; font-weight: 600"><sc-if value="{{p.hasFlag}}" hint-placeholder-val="{{ true }}"><img loading="lazy" decoding="async" src="{{p.flag}}" alt="" style="width: 24px; height: 24px; display: block"></sc-if>{{p.country}}</span>
       <h1 style="margin: 0; font-size: clamp(40px, 5.4vw, 72px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 600">{{p.title}}</h1>
       <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 18px; color: #5A6175"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FF7A45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>{{p.where}}</span>
     </header>
@@ -594,7 +616,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
       </div>
       <div class="g-stage" sc-camel-on-click="{{openLb}}" role="button" tabindex="0" aria-label="Открыть фото на весь экран">
         <sc-for list="{{gCur}}" as="c" hint-placeholder-count="1">
-          <img src="{{c.src}}" alt="{{c.cap}}">
+          <img loading="lazy" decoding="async" src="{{c.src}}" alt="{{c.cap}}">
         </sc-for>
         <span aria-hidden="true" style="position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(180deg, rgba(14,18,32,0), rgba(14,18,32,.6)); pointer-events: none"></span>
         <span style="position: absolute; left: 24px; bottom: 20px; right: 120px; color: #FFFFFF; font-size: 16px; font-weight: 500; pointer-events: none">{{gCap}}</span>
@@ -604,13 +626,13 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
       </div>
       <div class="g-strip" role="tablist" aria-label="Миниатюры">
         <sc-for list="{{gal}}" as="g" hint-placeholder-count="5">
-          <button class="g-th" type="button" role="tab" aria-selected="{{g.on}}" aria-label="{{g.cap}}" sc-camel-on-click="{{g.pick}}" style="opacity: {{g.op}}; box-shadow: {{g.ring}}"><img src="{{g.src}}" alt=""></button>
+          <button class="g-th" type="button" role="tab" aria-selected="{{g.on}}" aria-label="{{g.cap}}" sc-camel-on-click="{{g.pick}}" style="opacity: {{g.op}}; box-shadow: {{g.ring}}"><img loading="lazy" decoding="async" src="{{g.src}}" alt=""></button>
         </sc-for>
       </div>
       <sc-if value="{{lb}}" hint-placeholder-val="{{ false }}">
         <div class="lb" role="dialog" aria-modal="true" aria-label="Просмотр фото">
           <button type="button" sc-camel-on-click="{{closeLb}}" aria-label="Закрыть" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255,255,255,.14); color: #FFFFFF; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-          <sc-for list="{{gCur}}" as="c" hint-placeholder-count="1"><img src="{{c.src}}" alt="{{c.cap}}"></sc-for>
+          <sc-for list="{{gCur}}" as="c" hint-placeholder-count="1"><img loading="lazy" decoding="async" src="{{c.src}}" alt="{{c.cap}}"></sc-for>
           <span style="color: #FFFFFF; font-size: 16px">{{gCap}} <span class="mono" style="color: #8C92A3; margin-left: 8px">{{gNum}} / {{gTotal}}</span></span>
           <button class="g-nav" type="button" sc-camel-on-click="{{prev}}" aria-label="Предыдущее фото" style="left: 24px"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
           <button class="g-nav" type="button" sc-camel-on-click="{{next}}" aria-label="Следующее фото" style="right: 24px"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
@@ -641,7 +663,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 12px">
             <sc-for list="{{todo}}" as="d" hint-placeholder-count="4">
               <article class="todo">
-                <span class="todo-ph"><img src="{{d.img}}" alt="{{d.t}}"><span class="todo-tag" style="background: {{d.tbg}}; color: {{d.tfg}}">{{d.kind}}</span></span>
+                <span class="todo-ph"><img loading="lazy" decoding="async" src="{{d.img}}" alt="{{d.t}}"><span class="todo-tag" style="background: {{d.tbg}}; color: {{d.tfg}}">{{d.kind}}</span></span>
                 <span style="display: flex; flex-direction: column; gap: 6px; padding: 4px 6px 6px">
                   <b style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">{{d.t}}</b>
                   <span style="font-size: 14px; line-height: 21px; color: #5A6175">{{d.d}}</span>
@@ -733,7 +755,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
       <!-- Покупка -->
       <aside style="flex: 1 1 320px; min-width: 0">
         <div class="sticky" style="display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 28px; border: 1px solid #E3E6ED; background: #FFFFFF">
-          <span style="display: flex; align-items: center; gap: 12px"><sc-if value="{{p.hasFlag}}" hint-placeholder-val="{{ true }}"><img src="{{p.flag}}" alt="" style="width: 44px; height: 44px; display: block"></sc-if><span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 18px; font-weight: 600">eSIM · {{p.country}}</b><span style="font-size: 14px; color: #5A6175">от&nbsp;{{p.from}} ₽ · {{p.gen}}</span></span></span>
+          <span style="display: flex; align-items: center; gap: 12px"><sc-if value="{{p.hasFlag}}" hint-placeholder-val="{{ true }}"><img loading="lazy" decoding="async" src="{{p.flag}}" alt="" style="width: 44px; height: 44px; display: block"></sc-if><span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 18px; font-weight: 600">eSIM · {{p.country}}</b><span style="font-size: 14px; color: #5A6175">от&nbsp;{{p.from}} ₽ · {{p.gen}}</span></span></span>
           <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #2B3142">
             <li style="display: flex; gap: 10px"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0B7A3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Установите за&nbsp;день до&nbsp;вылета&nbsp;— заработает после посадки</li>
             <li style="display: flex; gap: 10px"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0B7A3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Основной номер и&nbsp;SMS от&nbsp;банка остаются</li>
@@ -846,7 +868,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px">
         <sc-for list="{{more}}" as="m" hint-placeholder-count="3">
           <a class="more" href="{{m.href}}">
-            <img src="{{m.img}}" alt="{{m.title}}">
+            <img loading="lazy" decoding="async" src="{{m.img}}" alt="{{m.title}}">
             <span style="display: flex; flex-direction: column; gap: 2px; padding: 0 8px"><b style="font-size: 17px; font-weight: 600">{{m.title}}</b><span style="font-size: 14px; color: #5A6175">{{m.country}}</span></span>
           </a>
         </sc-for>
@@ -940,7 +962,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
 </sc-if>
 </noscript></x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;place&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;TR&quot;,&quot;AE&quot;,&quot;TH&quot;,&quot;GE&quot;,&quot;EG&quot;,&quot;CN&quot;,&quot;VN&quot;,&quot;AM&quot;,&quot;GB&quot;,&quot;US&quot;,&quot;AU&quot;,&quot;RU&quot;,&quot;EU&quot;,&quot;LA&quot;,&quot;NZ&quot;],&quot;default&quot;:&quot;CN&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:5810}}">
-class Component extends DCLogic {
+class Component extends (window.PSLogic || DCLogic) {
   renderVals() {
     const v = this._rv0() || {};
     const s = this.state || {};

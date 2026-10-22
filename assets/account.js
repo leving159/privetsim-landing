@@ -185,9 +185,14 @@
     save();
     return { ok: true, isNew: isNew, invited: !!u.invitedBy };
   };
-  // Код друга из ссылки (?ref=CODE на любой странице) запоминаем до регистрации
+  // Код друга из ссылки (?r=CODE, старые ссылки — ?ref=CODE) запоминаем до регистрации.
+  // ?r= на странице региона — это код региона (region.html?r=EU), его не трогаем
+  PSA.REF_RE = /^[A-Z]+-[A-Z0-9]{4,}$/;
   PSA.pendingRef = function () { try { return root.localStorage.getItem('ps.ref') || ''; } catch (e) { return ''; } };
-  (function () { var r = PS.qp && PS.qp('ref'); if (r) try { root.localStorage.setItem('ps.ref', up(r)); } catch (e) {} })();
+  (function () {
+    var r = PS.qp && (PS.qp('ref') || PS.qp('r'));
+    if (r && PSA.REF_RE.test(up(r))) try { root.localStorage.setItem('ps.ref', up(r)); } catch (e) {}
+  })();
 
   /* ---------- Демо-«почта»: письма показываются уведомлением ---------- */
   PSA.mail = function (to, subject, text) {
@@ -582,7 +587,7 @@
   PSA.refLink = function () {
     var u = PSA.user(); if (!u) return '';
     var base = root.location ? root.location.origin + root.location.pathname.replace(/[^/]*$/, '') : '';
-    return base + '?ref=' + u.ref;
+    return base + '?r=' + u.ref;
   };
 
   /* ---------- Профиль ---------- */
@@ -643,6 +648,74 @@
       q.cells.forEach(function (v, i) { if (v !== 'transparent') x.fillRect((i % q.n + pad) * k, (Math.floor(i / q.n) + pad) * k, k, k); });
       return c.toDataURL('image/png');
     } catch (e) { return ''; }
+  };
+  // Постер с QR-приглашением в стиле бренда: для печати (кассы, стойки, витрины) и чтобы показать с телефона.
+  // 1240×1754 — пропорции A4 (печать A4 / A5 без полей). Возвращает Promise с PNG (data URL)
+  PSA.invitePoster = function (link, code) {
+    var doc = root.document;
+    if (!doc || !root.PSQR || !link) return Promise.resolve('');
+    var ready = doc.fonts && doc.fonts.load ? Promise.all(['700 80px Onest', '600 40px Onest', '400 34px Onest', '500 34px "JetBrains Mono"'].map(function (f) { return doc.fonts.load(f).catch(function () {}); })) : Promise.resolve();
+    return ready.then(function () {
+      var W = 1240, H = 1754, c = doc.createElement('canvas'); c.width = W; c.height = H;
+      var x = c.getContext('2d');
+      var rr = function (X, Y, w, h, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); };
+      var logo = function (X, Y, s) {
+        var k = s / 40;
+        x.fillStyle = '#2F5BFF'; rr(X, Y, s, s, 12 * k); x.fill();
+        x.fillStyle = '#FFFFFF'; x.beginPath(); x.arc(X + 13.5 * k, Y + 15.5 * k, 3.2 * k, 0, Math.PI * 2); x.fill();
+        x.fillStyle = '#FF7A45'; x.beginPath(); x.arc(X + 26.5 * k, Y + 15.5 * k, 3.2 * k, 0, Math.PI * 2); x.fill();
+        x.strokeStyle = '#FFFFFF'; x.lineWidth = 3 * k; x.lineCap = 'round'; x.beginPath(); x.moveTo(X + 11 * k, Y + 23.5 * k); x.bezierCurveTo(X + 13.5 * k, Y + 30.5 * k, X + 26.5 * k, Y + 30.5 * k, X + 29 * k, Y + 23.5 * k); x.stroke();
+      };
+      // Фон: синий с переходом в фиолетовый, пунктир маршрута с самолётиком
+      var g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#2F5BFF'); g.addColorStop(1, '#5B4CF5');
+      x.fillStyle = g; x.fillRect(0, 0, W, H);
+      x.save(); x.strokeStyle = 'rgba(255,255,255,.28)'; x.lineWidth = 5; x.setLineDash([18, 22]); x.lineCap = 'round';
+      x.beginPath(); x.moveTo(-40, 1180); x.bezierCurveTo(260, 1010, 380, 520, 760, 470); x.bezierCurveTo(1010, 440, 1120, 300, 1300, 150); x.stroke(); x.restore();
+      x.save(); x.translate(1080, 300); x.rotate(-0.72); x.fillStyle = '#FFFFFF';
+      x.beginPath(); x.moveTo(-34, -9); x.lineTo(26, -3); x.lineTo(40, 0); x.lineTo(26, 3); x.lineTo(-34, 9); x.closePath(); x.fill();
+      x.beginPath(); x.moveTo(-6, -3); x.lineTo(-20, -30); x.lineTo(-9, -30); x.lineTo(14, -3); x.closePath(); x.fill();
+      x.beginPath(); x.moveTo(-6, 3); x.lineTo(-20, 30); x.lineTo(-9, 30); x.lineTo(14, 3); x.closePath(); x.fill(); x.restore();
+      // Логотип
+      x.fillStyle = '#FFFFFF'; rr(96, 96, 104, 104, 30); x.fill(); logo(108, 108, 80);
+      x.fillStyle = '#FFFFFF'; x.font = '700 64px Onest, sans-serif'; x.textBaseline = 'middle'; x.fillText('Привет', 228, 150);
+      var pw = x.measureText('Привет').width;
+      x.fillStyle = '#FFFFFF'; rr(228 + pw + 14, 124, 92, 52, 12); x.fill();
+      x.fillStyle = '#2F5BFF'; x.font = '500 30px "JetBrains Mono", monospace'; x.textAlign = 'center'; x.fillText('SIM', 228 + pw + 60, 151); x.textAlign = 'left';
+      // Заголовок
+      x.textBaseline = 'alphabetic'; x.fillStyle = '#FFFFFF'; x.font = '700 92px Onest, sans-serif';
+      x.fillText('Интернет в поездке', 96, 360); x.fillText('с первой минуты', 96, 466);
+      x.fillStyle = '#E6ECFF'; x.font = '400 38px Onest, sans-serif';
+      x.fillText('Наведите камеру телефона на QR-код —', 96, 548);
+      x.fillText('и получите 100 ₽ на первую eSIM', 96, 600);
+      // Карточка с QR
+      var cy = 680, cw = W - 192, ch = 900;
+      x.save(); x.shadowColor = 'rgba(14,18,32,.28)'; x.shadowBlur = 60; x.shadowOffsetY = 24; x.fillStyle = '#FFFFFF'; rr(96, cy, cw, ch, 64); x.fill(); x.restore();
+      var q = root.PSQR(link, 'H'), n = q.n, size = 640, cell = size / n, qx = (W - size) / 2, qy = cy + 64;
+      x.fillStyle = '#0E1220';
+      q.cells.forEach(function (v, i) { if (v !== 'transparent') { var cx2 = i % n, cy2 = Math.floor(i / n); x.fillRect(Math.floor(qx + cx2 * cell), Math.floor(qy + cy2 * cell), Math.ceil(cell), Math.ceil(cell)); } });
+      // Логотип в центре QR (уровень коррекции H выдерживает)
+      x.fillStyle = '#FFFFFF'; rr(W / 2 - 74, qy + size / 2 - 74, 148, 148, 36); x.fill(); logo(W / 2 - 60, qy + size / 2 - 60, 120);
+      x.textAlign = 'center'; x.fillStyle = '#0E1220'; x.font = '600 44px Onest, sans-serif';
+      x.fillText(link.replace(/^https?:\/\//, '').replace(/\/\?/, '/?'), W / 2, qy + size + 86);
+      if (code) {
+        x.font = '500 34px "JetBrains Mono", monospace'; var t = 'КОД ДРУГА  ' + code, tw = x.measureText(t).width + 56;
+        x.fillStyle = '#F2F5FF'; rr((W - tw) / 2, qy + size + 120, tw, 64, 32); x.fill();
+        x.fillStyle = '#1F45D6'; x.fillText(t, W / 2, qy + size + 164);
+      }
+      // Низ
+      x.fillStyle = '#FFFFFF'; x.font = '600 40px Onest, sans-serif';
+      x.fillText('eSIM для путешествий в 190+ стран', W / 2, 1666);
+      x.fillStyle = '#E6ECFF'; x.font = '400 32px Onest, sans-serif';
+      x.fillText('Без роуминга и пластика · установка за 2 минуты · privetsim.net', W / 2, 1714);
+      return c.toDataURL('image/png');
+    }).catch(function () { return ''; });
+  };
+  // Распечатать картинку (постер с QR) — отдельное окно с одной страницей
+  PSA.printImage = function (src, title) {
+    var w = root.open('', '_blank');
+    if (!w) return;
+    w.document.write('<!doctype html><title>' + (title || 'Печать') + '</title><style>@page{size:A4;margin:0}html,body{margin:0;height:100%}img{display:block;width:100%;height:100%;object-fit:contain}</style><img src="' + src + '" onload="setTimeout(function(){print()},200)">');
+    w.document.close();
   };
   // Демо-адреса кошельков для USDT по сетям
   PSA.NETS = [
@@ -910,12 +983,22 @@
       link(d);
       mem = d;
     }
+    // Последнее состояние кабинета — чтобы шапка (аватар, баланс) была видна сразу, до ответа сервера
+    var CACHE = 'ps.st.v1';
+    function cache(st) { try { if (st && st.user) root.localStorage.setItem(CACHE, JSON.stringify(st)); else root.localStorage.removeItem(CACHE); } catch (e) {} }
     function load() {
       return call('GET', '/account/state').then(function (st) {
         if (st.error === 'network') { fail(st); return; }
-        ingest(st.error ? null : st); save();
+        ingest(st.error ? null : st); cache(st.error ? null : st); save();
+        // Вход через Telegram / Google: код друга из ссылки ?r= отправляем после входа
+        var ref = st.user && PSA.pendingRef();
+        if (ref) {
+          try { root.localStorage.removeItem('ps.ref'); } catch (e) {}
+          if (!st.user.invited) return call('POST', '/account/referral', { code: ref }).then(function (r) { if (r.invited) return load(); });
+        }
       });
     }
+    try { var cached = JSON.parse(root.localStorage.getItem(CACHE) || 'null'); if (cached && cached.user && !PS.qp('logout')) ingest(cached); } catch (e) {}
     // Один заказ по ссылке (гость: ?o=&k=) или для слежения за оплатой и выдачей
     function fetchOrder(id, token) {
       return call('GET', '/orders/' + encodeURIComponent(id) + (token ? '?t=' + encodeURIComponent(token) : '')).then(function (r) {
@@ -983,7 +1066,7 @@
     };
     PSA.hasAccount = function () { return false; };
     PSA.logout = function () {
-      mem = blank(); save();
+      mem = blank(); save(); cache(null);
       try { root.localStorage.removeItem('ps.chat.v2'); } catch (e) {}
       return call('POST', '/auth/logout', {});
     };
@@ -1186,5 +1269,7 @@
         if (oid && !db().orders[oid] && k) return fetchOrder(oid, k).then(function () { save(); });
       })
       .catch(function (e) { try { console.error('[PSA] загрузка кабинета', e); } catch (x) {} });
+    // Публичные страницы показываются сразу (PSA.fast) — после загрузки кабинета перерисовываем шапку и данные
+    PSA.ready.then(function () { if (PS.refresh) PS.refresh(); });
   }
 })(typeof window !== 'undefined' ? window : globalThis);
