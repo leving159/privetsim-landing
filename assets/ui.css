@@ -167,3 +167,14 @@ a.pc:hover { box-shadow: 0 30px 60px rgba(14, 18, 32, .35); }
   .sh-in { gap: 8px !important; padding: 0 8px 0 14px !important; }
   .sh-act .sh-pri { padding: 0 12px !important; }
 }
+
+/* ---------- Баланс: суммы пополнения на телефоне — три в ряд, сумма и валюта в одну строку ---------- */
+.am { container-type: inline-size; min-width: 0; }
+.am .mono { white-space: nowrap; font-size: clamp(11px, 19cqi, 20px) !important; }
+@media (max-width: 599px) {
+  div:has(> .am) { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 6px !important; }
+  .am { padding: 12px 10px !important; border-radius: 16px !important; }
+  .am > span:last-child { font-size: 11px !important; line-height: 14px; }
+  .am-hit { right: 6px !important; }
+}
+@media (max-width: 360px) { .am { padding: 12px 8px !important; } }
