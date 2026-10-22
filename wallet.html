@@ -26,22 +26,22 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610221555"></script>
-<script src="assets/catalog.js?v=202610221555"></script>
+<script src="config.js?v=202610221615"></script>
+<script src="assets/catalog.js?v=202610221615"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610221555"></script>
-<script src="assets/account.js?v=202610221555"></script>
+<script src="assets/site.js?v=202610221615"></script>
+<script src="assets/account.js?v=202610221615"></script>
 <script>PSA.guard()</script>
 <script src="assets/vendor/qrcode.min.js"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610221555">
-<script src="assets/chat.js?v=202610221555" defer></script>
+<link rel="stylesheet" href="assets/account.css?v=202610221615">
+<script src="assets/chat.js?v=202610221615" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610221555"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610221555">
-<script src="assets/ui.js?v=202610221555"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610221555">
-<script src="assets/motion.js?v=202610221555" defer></script>
+<script src="assets/dc-runtime.js?v=202610221615"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610221615">
+<script src="assets/ui.js?v=202610221615"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610221615">
+<script src="assets/motion.js?v=202610221615" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -874,8 +874,8 @@ class Component extends (window.PSLogic || DCLogic) {
     const seg = (on) => ({ bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#0E1220' : '#5A6175', sh: on ? '0 1px 2px rgba(14,18,32,.08)' : 'none', on: on ? 'true' : 'false' });
     const ways = [['rub', 'СБП'], ['usdt', 'USDT']].map(([id, label]) => ({ label, ...seg(s.way === id), pick: () => this.setState({ way: id, step: 'form', err: '' }) }));
     const raw = isCrypto
-      ? [['20', 'на 1–2 eSIM', false], ['50', 'на поездку', false], ['100', 'на несколько поездок', true], ['200', 'на год вперёд', false]]
-      : [['1000', '', false], ['3000', '', true], ['5000', '', false], ['10000', '', false]];
+      ? [['20', 'на 1–2 eSIM', false], ['50', 'на поездку', false], ['100', 'на несколько поездок', true]]
+      : [['1000', '', false], ['3000', '', true], ['5000', '', false]];
     const cur = isCrypto ? 'USDT' : '₽';
     const val = s.amt[s.way];
     const amts = raw.map(([v, sub, hit]) => {
