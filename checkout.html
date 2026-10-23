@@ -26,20 +26,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610232256"></script>
-<script src="assets/catalog.js?v=202610232256"></script>
+<script src="config.js?v=202610240058"></script>
+<script src="assets/catalog.js?v=202610240058"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610232256"></script>
-<script src="assets/account.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610232256">
-<script src="assets/chat.js?v=202610232256" defer></script>
+<script src="assets/site.js?v=202610240058"></script>
+<script src="assets/account.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610240058">
+<script src="assets/chat.js?v=202610240058" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610232256">
-<script src="assets/ui.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610232256">
-<script src="assets/motion.js?v=202610232256" defer></script>
+<script src="assets/dc-runtime.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610240058">
+<script src="assets/ui.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610240058">
+<script src="assets/motion.js?v=202610240058" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -692,7 +692,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </sc-if>
         <dl style="margin: 0; display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid #EDEFF3; font-size: 15px">
           <div style="display: flex; justify-content: space-between"><dt style="color: #5A6175">{{pkgLabel}}</dt><dd style="margin: 0">{{pkgSum}}</dd></div>
-          <div style="display: flex; justify-content: space-between"><dt style="color: #5A6175">Скидка</dt><dd style="margin: 0; color: {{discColor}}">{{disc}}</dd></div>
+          <div style="display: flex; justify-content: space-between"><dt style="color: #5A6175">{{discLabel}}</dt><dd style="margin: 0; color: {{discColor}}">{{disc}}</dd></div>
           <sc-if value="{{walLine}}" hint-placeholder-val="{{ false }}"><div style="display: flex; justify-content: space-between"><dt style="color: #5A6175">С&nbsp;баланса</dt><dd class="mono" style="margin: 0">{{walAmt}}</dd></div></sc-if>
           <sc-if value="{{splitOn}}" hint-placeholder-val="{{ false }}"><div style="display: flex; justify-content: space-between"><dt style="color: #5A6175">Доплата · {{topName}}</dt><dd class="mono" style="margin: 0">{{psMinus80}} ₽</dd></div></sc-if>
         </dl>
@@ -838,8 +838,12 @@ class Component extends (window.PSLogic || DCLogic) {
     const s = this.state;
     const O = PS.order();
     const SUM = O.price * s.qty;
-    const DISC = s.applied ? Math.round(SUM * 0.1) : 0;
-    const TOT = SUM - DISC;
+    const DISC = s.applied ? PSA.promoDisc(s.pr, SUM) : 0;
+    const Q = PSA.quote({ pkg: O.pkg, qty: s.qty, d: O.d, promo: s.applied }, () => this.setState({ qt: Date.now() }));
+    const TIERD = Q ? Q.tierDiscountKopecks / 100 : 0;
+    const PDISC = Q ? Q.promoDiscountKopecks / 100 : DISC;
+    const TOT = Q ? Q.sumKopecks / 100 : SUM - DISC;
+    const DLABEL = Q && Q.tier ? (Q.tier.key === 'own' ? 'Цена для своих' : 'Скидка ' + Q.tier.name + ' −' + Q.tier.percent + '%') + (PDISC > 0 ? ' и промокод' : '') : 'Скидка';
     const R = (n) => PS.fmt(n) + ' ₽';
     const raw = [
       { key: 'wallet', title: 'С баланса', sub: (PSA.balance().total < TOT ? 'Доступно ' + R(PSA.balance().total) + ' · остаток доплатите по СБП или в USDT' : 'Доступно ' + R(PSA.balance().total) + ' · без комиссии'), hint: 'Спишем с баланса — без комиссии сети и ввода реквизитов. Не хватает? Пополните баланс USDT в кабинете.' },
@@ -907,11 +911,14 @@ class Component extends (window.PSLogic || DCLogic) {
       onPromo: (e) => this.setState({ promo: e.target.value, pErr: '' }),
       applyPromo: () => {
         if (!promoUp) return;
-        const pr = PSA.checkPromo(promoUp);
-        if (pr.ok) return this.setState({ applied: pr.code, pErr: '', promo: '' });
-        this.setState({ pErr: pr.err });
+        if (s.pBusy) return;
+        this.setState({ pBusy: true });
+        PSA.then(PSA.checkPromo(promoUp, { pkg: O.pkg, qty: s.qty, d: O.d, email: em }), (pr) => {
+          if (pr.ok) return this.setState({ pBusy: false, applied: pr.code, pr, pErr: '', promo: '' });
+          this.setState({ pBusy: false, pErr: pr.err });
+        });
       },
-      removePromo: () => this.setState({ applied: '' }),
+      removePromo: () => this.setState({ applied: '', pr: null }),
       qty: s.qty, multi: s.qty > 1, single: s.qty <= 1, inCart: !s.removed, removed: s.removed, removeItem: () => this.setState({ removed: true }), restoreItem: () => this.setState({ removed: false, qty: 1 }), qMinDis: s.qty <= 1, qMaxDis: s.qty >= 10,
       qMinus: () => this.setState({ qty: Math.max(1, s.qty - 1) }), qPlus: () => this.setState({ qty: Math.min(10, s.qty + 1) }),
       qtyNote: 'Придёт ' + s.qty + ' отдельных QR‑код' + (s.qty < 5 ? 'а' : 'ов') + ' на один email',
@@ -928,7 +935,7 @@ class Component extends (window.PSLogic || DCLogic) {
       quick, balLine: authed, walLine: authed && s.m === 0, balUsed: used, balLeft: BAL - used,
       splitOn, tops, topName: TOPS[s.top], walAmt: splitOn ? '−' + R(BALT) : '−' + R(TOT),
       payBtn: splitOn ? 'Доплатить ' + R(TOT - BALT) + ' · ' + TOPS[s.top] : (authed && s.m === 0 ? 'Оплатить с баланса' : 'Оплатить ' + R(TOT)), totalLabel: splitOn ? R(TOT - BALT) : (authed && s.m === 0 ? '0 ₽' : R(TOT)),
-      disc: s.applied ? '−' + R(DISC) : '—', psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' стран' : O.info.net), back: O.back }, psMinus80: PS.fmt(TOT - BALT), psSuccess: PS.successUrl(O), psBalT: R(BALT), psLogin: PSA.loginUrl(PS.checkoutBack()), psHasAcc: !authed && PSA.validEmail(em) && PSA.hasAccount(em), psPay: PS.payUrl(O, s.m), discColor: s.applied ? '#0B7A3E' : '#0E1220',
+      disc: TIERD + PDISC > 0 ? '−' + R(TIERD + PDISC) : '—', discLabel: DLABEL, psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' стран' : O.info.net), back: O.back }, psMinus80: PS.fmt(TOT - BALT), psSuccess: PS.successUrl(O), psBalT: R(BALT), psLogin: PSA.loginUrl(PS.checkoutBack()), psHasAcc: !authed && PSA.validEmail(em) && PSA.hasAccount(em), psPay: PS.payUrl(O, s.m), discColor: TIERD + PDISC > 0 ? '#0B7A3E' : '#0E1220',
       agree: s.agree, agreeAria: s.agree ? 'true' : 'false', hasAErr: s.aErr,
       boxBg: s.agree ? '#2F5BFF' : (s.aErr ? '#FFFBFB' : '#FFFFFF'),
       boxBorder: s.agree ? '0' : (s.aErr ? '2px solid #C62F35' : '2px solid #C5CAD6'),

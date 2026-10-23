@@ -27,20 +27,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610232256"></script>
-<script src="assets/catalog.js?v=202610232256"></script>
+<script src="config.js?v=202610240058"></script>
+<script src="assets/catalog.js?v=202610240058"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610232256"></script>
-<script src="assets/account.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610232256">
-<script src="assets/chat.js?v=202610232256" defer></script>
+<script src="assets/site.js?v=202610240058"></script>
+<script src="assets/account.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610240058">
+<script src="assets/chat.js?v=202610240058" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610232256">
-<script src="assets/ui.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610232256">
-<script src="assets/motion.js?v=202610232256" defer></script>
+<script src="assets/dc-runtime.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610240058">
+<script src="assets/ui.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610240058">
+<script src="assets/motion.js?v=202610240058" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -724,13 +724,13 @@ class Component extends (window.PSLogic || DCLogic) {
 
   constructor(props) { super(props); this.state = { q: '', picked: '', brand: 'apple' }; }
   _rv0() {
-    const db = {
+    const db = PS.devicesDb({
       apple: [['iPhone 17 / 17 Pro / 17 Pro Max','yes'],['iPhone Air','yes'],['iPhone 16 / 16 Plus / 16 Pro / 16 Pro Max','yes'],['iPhone 16e','yes'],['iPhone 15 / 15 Plus / 15 Pro / 15 Pro Max','yes'],['iPhone 14 / 14 Plus / 14 Pro / 14 Pro Max','yes'],['iPhone 13 / 13 mini / 13 Pro / 13 Pro Max','yes'],['iPhone 12 / 12 mini / 12 Pro / 12 Pro Max','yes'],['iPhone 11 / 11 Pro / 11 Pro Max','yes'],['iPhone SE (2020, 2022)','yes'],['iPhone XS / XS Max / XR','yes'],['iPhone из Китая, Гонконга и Макао (две SIM-карты)','no'],['iPhone X','no'],['iPhone 8 / 8 Plus','no'],['iPad Pro / Air / mini / iPad (Wi-Fi + Cellular)','yes']],
       samsung: [['Galaxy S25 / S25+ / S25 Ultra / S25 Edge','check'],['Galaxy S25 FE','check'],['Galaxy S24 / S24+ / S24 Ultra / S24 FE','check'],['Galaxy S23 / S23+ / S23 Ultra / S23 FE','check'],['Galaxy S22 / S22+ / S22 Ultra','check'],['Galaxy S21 / S21+ / S21 Ultra / S21 FE','check'],['Galaxy Z Fold 7 / Z Flip 7','check'],['Galaxy Z Fold 6 / Z Flip 6','check'],['Galaxy Z Fold 5 / Z Flip 5','check'],['Galaxy Z Fold 4 / Z Flip 4','check'],['Galaxy Z Fold 3 / Z Flip 3','check'],['Galaxy Note 20 / Note 20 Ultra','check'],['Galaxy A56 / A55 / A54','check'],['Galaxy A36 / A35 / A34','check'],['Galaxy A26 / A25 / A16 / A15 / A14','no']],
       google: [['Pixel 10 / 10 Pro / 10 Pro XL / 10 Pro Fold','yes'],['Pixel 9 / 9 Pro / 9 Pro XL / 9 Pro Fold','yes'],['Pixel 9a','yes'],['Pixel 8 / 8 Pro / 8a','yes'],['Pixel Fold','yes'],['Pixel 7 / 7 Pro / 7a','yes'],['Pixel 6 / 6 Pro / 6a','yes'],['Pixel 5 / 5a','yes'],['Pixel 4 / 4 XL / 4a','yes']],
       xiaomi: [['Xiaomi 15 / 15 Pro / 15 Ultra','check'],['Xiaomi 15T / 15T Pro','check'],['Xiaomi 14 / 14 Pro / 14 Ultra','check'],['Xiaomi 14T / 14T Pro','check'],['Xiaomi 13 / 13 Pro / 13 Ultra','check'],['Xiaomi 13T / 13T Pro','check'],['Xiaomi 12T Pro','check'],['Redmi Note 14 Pro / 14 Pro+','check'],['Redmi Note 13 / 13 Pro / 13 Pro+','no'],['POCO X6 / X7 / F6','no']],
       other: [['Honor Magic 7 Pro / Magic 6 Pro','check'],['Honor Magic V3 / V2','check'],['Honor Magic 5 Pro','check'],['Huawei Pura 70 / P60 / P50','no'],['Huawei Mate 40 Pro / P40 / P40 Pro','check'],['OnePlus 13 / 12 / Open','check'],['Motorola Razr 50 / 50 Ultra / Razr 40 / 40 Ultra','check'],['Motorola Edge 50 Pro / Edge 40','check'],['Sony Xperia 1 VI / 1 V / 1 IV','yes'],['Sony Xperia 10 VI / 10 V / 10 IV','yes'],['Nothing Phone (3)','check'],['OPPO Find X8 Pro / Find X5 Pro','check'],['Vivo X200 Pro / X100 Pro','check'],['Realme, Tecno, Infinix (большинство моделей)','no']]
-    };
+    });
     const dot = (s) => s === 'yes' ? '#0B7A3E' : s === 'no' ? '#C62F35' : '#E8B95A';
     const note = (s) => s === 'yes' ? 'да' : s === 'no' ? 'нет' : 'проверьте';
     const flat = Object.values(db).flat();

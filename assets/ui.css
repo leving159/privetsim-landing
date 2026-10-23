@@ -178,3 +178,10 @@ a.pc:hover { box-shadow: 0 30px 60px rgba(14, 18, 32, .35); }
   .am-hit { right: 6px !important; }
 }
 @media (max-width: 360px) { .am { padding: 12px 8px !important; } }
+
+/* Баннеры и техработы из админки (ui.js → banners) */
+.ps-bnr { position: relative; z-index: 60; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 48px 10px 16px; font: 500 14px/20px 'Onest', system-ui, sans-serif; text-align: center; }
+.ps-bnr.warn { background: #FFF4DE; color: #8A5A00; }
+.ps-bnr.info { background: #F2F5FF; color: #1F45D6; }
+.ps-bnr button { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; color: inherit; font-size: 14px; cursor: pointer; }
+.ps-bnr button:hover { background: rgba(14, 18, 32, .06); }

@@ -27,20 +27,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610232256"></script>
-<script src="assets/catalog.js?v=202610232256"></script>
+<script src="config.js?v=202610240058"></script>
+<script src="assets/catalog.js?v=202610240058"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610232256"></script>
-<script src="assets/account.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610232256">
-<script src="assets/chat.js?v=202610232256" defer></script>
+<script src="assets/site.js?v=202610240058"></script>
+<script src="assets/account.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610240058">
+<script src="assets/chat.js?v=202610240058" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610232256">
-<script src="assets/ui.js?v=202610232256"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610232256">
-<script src="assets/motion.js?v=202610232256" defer></script>
+<script src="assets/dc-runtime.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610240058">
+<script src="assets/ui.js?v=202610240058"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610240058">
+<script src="assets/motion.js?v=202610240058" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -735,7 +735,7 @@ class Component extends (window.PSLogic || DCLogic) {
       const on = this.state.os === id;
       return { label, on: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#0E1220' : '#5A6175', sh: on ? '0 1px 2px rgba(14,18,32,0.08)' : 'none', pick: () => this.setState({ os: id }) };
     });
-    const all = [
+    const all = PS.helpFaq([
       { c: 'before', q: 'Как понять, что мой телефон поддерживает eSIM?', a: 'Наберите *#06#. Если видите строку EID — поддерживает. Или проверьте модель на странице «Совместимость».' },
       { c: 'before', q: 'Будет ли у меня номер телефона?', a: 'Нет, eSIM даёт только мобильный интернет. Звонить можно через мессенджеры, а ваш обычный номер продолжит работать.' },
       { c: 'pay', q: 'Какие способы оплаты есть?', a: 'СБП из приложения любого банка, USDT в сетях TRON, TON и BEP-20 и внутренний баланс. Оплата картой пока недоступна.' },
@@ -744,7 +744,7 @@ class Component extends (window.PSLogic || DCLogic) {
       { c: 'trip', q: 'Прилетел, а интернета нет', a: 'Проверьте, что для данных выбрана линия Привет SIM и включён роуминг данных. Перезагрузите телефон. Не помогло — напишите нам.' },
       { c: 'trip', q: 'Как пополнить трафик?', a: 'В личном кабинете или в Telegram-боте: «Мои eSIM» → «Пополнить». Переустанавливать eSIM не нужно.' },
       { c: 'refund', q: 'Можно ли вернуть деньги?', a: 'Да, если eSIM ещё не установлена и не активирована: вернём полностью на баланс, сразу. После установки возврат только по заявке, мы рассмотрим её индивидуально. Вывести деньги на счёт СБП или в USDT можно по запросу в поддержку. Подробности — в условиях возврата.' }
-    ];
+    ]);
     const cats = [['all', 'Все'], ['before', 'Перед покупкой'], ['pay', 'Оплата'], ['install', 'Установка'], ['trip', 'В поездке'], ['refund', 'Возврат']].map(([id, label]) => {
       const on = this.state.cat === id;
       return { label, on: on ? 'true' : 'false', bg: on ? '#0E1220' : '#F5F6F9', fg: on ? '#FFFFFF' : '#0E1220', pick: () => this.setState({ cat: id }) };

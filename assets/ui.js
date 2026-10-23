@@ -65,6 +65,67 @@
     if (doc.readyState === 'complete') setTimeout(go, 0); else root.addEventListener('load', function () { setTimeout(go, 0); });
   })();
 
+  /* ---------- Контент из админки: баннеры и техработы, «Помощь», «Совместимость» ---------- */
+  // GET /api/content/*; страница рисуется сразу по встроенным текстам, ответ API подставляется следом
+  PS.CONTENT = PS.CONTENT || {};
+  (function () {
+    var api = root.SITE_CONFIG && root.SITE_CONFIG.apiUrl;
+    if (!api || !root.fetch) return;
+    var base = api.replace(/\/$/, '') + '/api/content/', page = location.pathname.split('/').pop() || 'index.html';
+    function get(path, key, then) {
+      root.fetch(base + path).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+        if (!j) return;
+        PS.CONTENT[key] = j;
+        if (then) then(j); else PS.refresh();
+      }).catch(function () {});
+    }
+    get('status', 'status', banners);
+    if (page === 'help.html') get('help', 'help');
+    if (page === 'compatibility.html') get('devices', 'devices');
+  })();
+  // Плашки над страницей: техработы (покупки закрыты) и баннеры — на весь сайт или на страницу страны (scope = код)
+  function banners(st) {
+    var here = (PS.qp && (PS.qp('c') || PS.qp('r')) || '').toUpperCase(), list = [], hidden = {};
+    try { hidden = JSON.parse(sessionStorage.getItem('ps.bnr') || '{}'); } catch (e) {}
+    if (st.maintenance) list.push({ id: 'mt', kind: 'warn', text: 'Технические работы: покупки временно недоступны' + (st.maintenance.until ? ' до ' + st.maintenance.until : '') + '. ' + (st.maintenance.message || 'Купленные eSIM работают, кабинет и поддержка доступны.') });
+    (st.banners || []).forEach(function (b) { if (b.scope === 'all' || b.scope.toUpperCase() === here) list.push(b); });
+    list.forEach(function (b) {
+      if (hidden[b.id] || doc.getElementById('ps-bnr-' + b.id)) return;
+      var el = doc.createElement('div');
+      el.id = 'ps-bnr-' + b.id; el.className = 'ps-bnr ' + (b.kind === 'info' ? 'info' : 'warn'); el.setAttribute('role', 'status');
+      var t = doc.createElement('span'); t.textContent = b.text; el.appendChild(t);
+      var x = doc.createElement('button'); x.type = 'button'; x.setAttribute('aria-label', 'Скрыть'); x.textContent = '✕';
+      x.onclick = function () { el.remove(); hidden[b.id] = 1; try { sessionStorage.setItem('ps.bnr', JSON.stringify(hidden)); } catch (e) {} };
+      if (b.id !== 'mt') el.appendChild(x);
+      doc.body.insertBefore(el, doc.body.firstChild);
+    });
+  }
+  // «Помощь»: статьи из админки (вкладки — по разделам), иначе встроенный список
+  var HELP_TABS = { 'Перед покупкой': 'before', 'Оплата': 'pay', 'Установка': 'install', 'В поездке': 'trip', 'Возврат': 'refund' };
+  PS.helpFaq = function (fallback) {
+    var h = PS.CONTENT.help;
+    if (!h || !h.articles || !h.articles.length) return fallback;
+    return h.articles.map(function (a) { return { c: HELP_TABS[a.section] || 'before', q: a.title, a: a.body }; });
+  };
+  // «Совместимость»: модели из админки по вкладкам брендов, иначе встроенный список
+  var BRAND_TABS = { apple: 'apple', samsung: 'samsung', google: 'google', xiaomi: 'xiaomi', redmi: 'xiaomi', poco: 'xiaomi' };
+  PS.devicesDb = function (fallback) {
+    var d = PS.CONTENT.devices;
+    if (!d || !d.devices || !d.devices.length) return fallback;
+    var out = { apple: [], samsung: [], google: [], xiaomi: [], other: [] };
+    d.devices.forEach(function (x) {
+      var tab = BRAND_TABS[String(x.brand).toLowerCase()] || 'other';
+      var name = tab !== 'other' || String(x.model).toLowerCase().indexOf(String(x.brand).toLowerCase()) === 0 ? x.model : x.brand + ' ' + x.model;
+      out[tab].push([name, x.esim === 'yes' || x.esim === 'no' ? x.esim : 'check']);
+    });
+    // Порядок — как во встроенном списке (новые модели сверху), добавленные в админке — первыми
+    Object.keys(out).forEach(function (tab) {
+      var known = (fallback[tab] || []).map(function (r) { return r[0]; });
+      out[tab].sort(function (a, b) { return known.indexOf(a[0]) - known.indexOf(b[0]); });
+    });
+    return out;
+  };
+
   /* ---------- Согласие на cookie ---------- */
   function consent() {
     var m = doc.cookie.match(/(?:^|;\s*)ps_consent=([a-z]+)/);

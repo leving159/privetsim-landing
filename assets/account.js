@@ -307,12 +307,20 @@
 
   /* ================= Заказы и оплата ================= */
   PSA.PROMO = { TRIP10: { pc: 10 }, SUMMER25: { expired: true } };
+  // ctx: { pkg, qty, d, email, esimId } — в живом режиме сервер проверяет код для этого заказа (ответ — промис)
   PSA.checkPromo = function (code) {
     var p = PSA.PROMO[up(code)];
     if (!p) return { err: 'Такого промокода нет. Проверьте буквы и цифры' };
     if (p.expired) return { err: 'Срок действия промокода закончился' };
-    return { ok: true, code: up(code), pc: p.pc };
+    return { ok: true, code: up(code), kind: 'percent', value: p.pc, pc: p.pc };
   };
+  // Скидка по промокоду (₽) для суммы sum — так же, как считает сервер (процент — с округлением вниз до рубля)
+  PSA.promoDisc = function (pr, sum) {
+    if (!pr || !pr.ok) return 0;
+    return pr.kind === 'fixed' ? Math.max(0, Math.min(pr.value / 100, sum - 1)) : Math.floor(sum * pr.value / 100);
+  };
+  // Сумма корзины с сервера (скидка по метке клиента и промокод); в демо — нет, корзина считает сама
+  PSA.quote = function () { return null; };
   PSA.balance = function () {
     var u = PSA.user();
     if (!u) return { own: 0, bonus: 0, total: 0, pending: 0 };
@@ -347,7 +355,7 @@
       o.label = o.kind === 'topup' ? 'Пополнение ' + I.name + ' · +' + PSA.gb(o.n) : I.name + ' · ' + o.gbLabel + ' · ' + PSA.days(days);
       o.esimId = p.esimId || null;
       var gross = unit * o.qty, pr = p.promo ? PSA.checkPromo(p.promo) : null;
-      o.promo = pr && pr.ok ? pr.code : ''; o.disc = pr && pr.ok ? Math.round(gross * pr.pc / 100) : 0;
+      o.promo = pr && pr.ok ? pr.code : ''; o.disc = PSA.promoDisc(pr, gross);
       o.sum = gross - o.disc;
     }
     o.fromBal = 0;
@@ -1148,7 +1156,35 @@
     }
 
     /* ---------- Заказы и оплата ---------- */
-    PSA.checkPromo = function () { return { err: 'Такого промокода нет. Проверьте буквы и цифры' }; };
+    PSA.checkPromo = function (code, ctx) {
+      ctx = ctx || {};
+      var body = { packageCode: ctx.pkg, promoCode: up(code), quantity: ctx.esimId ? undefined : Math.min(10, Math.max(1, ctx.qty || 1)) };
+      if (ctx.esimId) body.topupEsimId = ctx.esimId;
+      if (ctx.email && PSA.validEmail(ctx.email)) body.email = normEmail(ctx.email);
+      var f = ctx.pkg ? planByPkg(ctx.pkg) : null;
+      if (f && f.t === 'daily') body.days = Math.min(90, Math.max(1, parseInt(ctx.d, 10) || 10));
+      return call('POST', '/orders/quote', body).then(function (r) {
+        if (r.promo) return { ok: true, code: r.promo.code, kind: r.promo.kind, value: r.promo.value };
+        if (r.error === 'promo_invalid' && r.message) return { err: r.message };
+        if (r.error === 'network') return { err: r.message };
+        return { err: 'Не удалось проверить промокод. Попробуйте ещё раз' };
+      });
+    };
+    // Сумма корзины так же, как посчитает заказ: «Свои» — по себестоимости, «Вип» / «Голд Вип» — скидка, затем промокод.
+    // Только для вошедших (метка — у аккаунта). Пока ответа нет — null, корзина показывает цену витрины; done — перерисовать
+    var quotes = {};
+    PSA.quote = function (ctx, done) {
+      if (!me() || !ctx.pkg) return null;
+      var f = planByPkg(ctx.pkg), qty = Math.min(10, Math.max(1, ctx.qty || 1));
+      var d = f && f.t === 'daily' ? Math.min(90, Math.max(1, parseInt(ctx.d, 10) || 10)) : undefined;
+      var key = [ctx.pkg, qty, d || 0, ctx.promo ? up(ctx.promo) : ''].join('|');
+      if (quotes[key]) return quotes[key].r;
+      quotes[key] = { r: null };
+      call('POST', '/orders/quote', { packageCode: ctx.pkg, quantity: qty, days: d, promoCode: ctx.promo ? up(ctx.promo) : undefined }).then(function (r) {
+        if (r && r.sumKopecks != null) { quotes[key].r = r; if (done) done(); }
+      });
+      return null;
+    };
     PSA.createOrder = function (p) {
       var u = me(), body = { source: 'web', returnTo: 'site', method: p.method === 'usdt' ? 'usdt' : (p.method === 'balance' ? 'balance' : 'sbp') };
       if (p.kind === 'balance') { body.balanceRub = Math.round(p.amount); if (body.method === 'balance') body.method = 'sbp'; }
@@ -1162,6 +1198,7 @@
         }
         if (p.email) body.email = normEmail(p.email);
         if (u && p.useBal) body.useBalanceKopecks = Math.round(p.useBal * 100);
+        if (p.promo) body.promoCode = up(p.promo);
       }
       return call('POST', '/orders', body).then(function (r) {
         if (!r.id) return fail(r, r.error === 'balance_low' || /^crypto_/.test(r.error || '') ? r.message : 'Не удалось создать заказ. Попробуйте ещё раз');
