@@ -1,13 +1,14 @@
 /*
   Чат поддержки (макет site-23): кнопка в углу каждой страницы.
-  Гость оставляет email и тему, вошедший сразу пишет. Первым отвечает помощник
-  (ответы по ключевым словам), сложные вопросы уходят оператору: днём он «подключается»,
-  ночью вопрос встаёт в очередь. В рабочей версии сообщения пойдут на сервер (apps/api).
+  Гость оставляет email и тему, вошедший сразу пишет. Первым отвечает ИИ-помощник,
+  сложные вопросы уходят оператору (админка → «Диалоги»).
+  • рабочий режим (SITE_CONFIG.demo: false): сообщения идут в apps/api — /api/chat/start, send, poll (long-poll), rate, upload;
+  • демо (demo: true): ответы по ключевым словам прямо в браузере, оператор «подключается» понарошку.
   Ссылки href="#chat" на любой странице открывают чат.
 */
 (function () {
   'use strict';
-  var KEY = 'ps.chat.v2';
+  var KEY = 'ps.chat.v3';
   var PSA = window.PSA || {};
   var doc = document;
   var NB = ' ';
@@ -21,7 +22,10 @@
   var MAIL = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A6175" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>';
   var TOPICS = ['Не' + NB + 'работает интернет', 'Как' + NB + 'установить', 'Возврат', 'Оплата'];
 
-  var c = load(), root = null, typing = false;
+  var CFG = window.SITE_CONFIG || {};
+  var API = PSA.DEMO ? '' : String(CFG.apiUrl || '').replace(/\/$/, '');
+  var LIVE = !!API;
+  var c = load(), root = null, typing = false, polling = false, typingTimer = 0;
   function me() { return PSA.user ? PSA.user() : null; }
   function email() { var u = me(); return u ? u.email : c.email || ''; }
 
@@ -37,9 +41,83 @@
     push({ who: 'op', text: 'Здравствуйте! Я ИИ-помощник Привет SIM. ' + see + 'Чем помочь? Если понадобится, позову оператора.', meta: 'ИИ-помощник' });
   }
   function start(topic) {
+    if (LIVE) return liveStart(topic);
     c.started = true; c.email = email(); c.uid = me() ? me().id : ''; c.ended = false; c.msgs = []; greet();
     if (topic) send(topic.replace(/ /g, ' '));
   }
+  /* ---------- Рабочий режим: сервер поддержки ---------- */
+  function call(method, path, body, type) {
+    var opt = { method: method, credentials: 'include', headers: {} };
+    if (body !== undefined) { opt.headers['Content-Type'] = type || 'application/json'; opt.body = type ? body : JSON.stringify(body); }
+    return fetch(API + '/api' + path, opt).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || 'error'); e.status = r.status; throw e; } return j; });
+    });
+  }
+  function fromServer(m) {
+    var att = (m.attachments || []).map(function (a) { return a.kind === 'image' && a.url ? (/^https?:/.test(a.url) ? a.url : API + a.url) : null; }).filter(Boolean);
+    return { id: m.id, who: m.who === 'me' ? 'me' : m.who === 'sys' ? 'sys' : 'op', text: m.text, meta: m.meta, img: att[0] || null, ts: Date.parse(m.at) };
+  }
+  // Новые сообщения с сервера: свои «отправляется…» заменяем подтверждёнными, дубли отбрасываем
+  function merge(list) {
+    c.msgs = c.msgs || [];
+    var seen = {}; c.msgs.forEach(function (m) { if (m.id) seen[m.id] = 1; });
+    list.forEach(function (raw) {
+      var m = fromServer(raw);
+      if (seen[m.id]) return;
+      if (m.who === 'me') { for (var i = 0; i < c.msgs.length; i++) if (c.msgs[i].pending && c.msgs[i].text === m.text) { c.msgs.splice(i, 1); break; } }
+      if (m.who === 'op') typing = false;
+      c.msgs.push(m); seen[m.id] = 1; c.last = raw.at;
+      if (m.who !== 'me' && !isOpen()) c.unread = true;
+    });
+    store(c);
+  }
+  function state(conv) { if (!conv) return; c.ended = conv.status === 'closed'; if (conv.rating) c.rating = conv.rating; store(c); }
+  function liveStart(topic) {
+    c.started = true; c.email = email(); c.uid = me() ? me().id : ''; c.msgs = c.msgs || []; store(c);
+    return call('POST', '/chat/start', { token: c.token || undefined, email: c.email || undefined, page: location.pathname, tz: (Intl.DateTimeFormat().resolvedOptions() || {}).timeZone })
+      .then(function (r) {
+        if (r.token) c.token = r.token;
+        c.msgs = []; c.last = null; merge(r.messages || []); state(r.conversation);
+        if (!c.msgs.length) c.msgs.push({ who: 'op', text: 'Здравствуйте! Я ИИ-помощник Привет SIM. Чем помочь? Если понадобится, позову оператора.', meta: 'ИИ-помощник', ts: Date.now() });
+        store(c); render(); poll();
+        if (topic) send(topic);
+      })
+      .catch(function () { c.started = false; store(c); push({ who: 'sys', text: 'Не получилось подключиться к поддержке. Проверьте интернет и попробуйте ещё раз' }); render(); });
+  }
+  function liveSend(text) {
+    c.ended = false;
+    push({ who: 'me', text: text, pending: true });
+    typing = true; render();
+    clearTimeout(typingTimer); typingTimer = setTimeout(function () { typing = false; render(); }, 45000);
+    call('POST', '/chat/send', { token: c.token || undefined, text: text, page: location.pathname })
+      .then(function (r) {
+        if (r.rated) { c.rating = r.rated; c.msgs = c.msgs.filter(function (m) { return !m.pending; }); typing = false; store(c); render(); return; }
+        state(r.conversation); poll();
+      })
+      .catch(function (e) {
+        typing = false;
+        c.msgs.forEach(function (m) { if (m.pending && m.text === text) { m.pending = false; m.failed = true; } });
+        store(c); render();
+        if (e.status === 401) { c.token = null; c.started = false; store(c); }
+      });
+  }
+  // Long-poll: сервер держит запрос до 25 секунд и отвечает, как только появится сообщение
+  function poll() {
+    if (polling || !LIVE || !c.started) return;
+    polling = true;
+    (function loop() {
+      if (!c.started) { polling = false; return; }
+      var q = '/chat/poll?' + (c.token ? 'token=' + encodeURIComponent(c.token) + '&' : '') + (c.last ? 'after=' + encodeURIComponent(c.last) : '');
+      call('GET', q).then(function (r) {
+        merge(r.messages || []); state(r.conversation); render();
+        setTimeout(loop, doc.hidden ? 15000 : 300);
+      }).catch(function (e) {
+        if (e.status === 404) { c = { email: c.email }; store(c); polling = false; render(); return; }
+        setTimeout(loop, 5000);
+      });
+    })();
+  }
+
 
   // Ответы помощника по ключевым словам (в рабочей версии — ИИ с доступом к заказам)
   var RULES = [
@@ -78,6 +156,7 @@
   function later(ms, fn) { typing = true; render(); setTimeout(function () { typing = false; fn(); if (!isOpen()) { c.unread = true; store(c); } render(); }, ms); }
   function send(text) {
     text = String(text || '').trim(); if (!text) return;
+    if (LIVE) return liveSend(text);
     if (c.ended) { c.ended = false; c.rating = 0; }
     push({ who: 'me', text: text });
     later(1100, function () { reply(text); });
@@ -87,7 +166,8 @@
   function bubbles() {
     var h = '';
     (c.msgs || []).forEach(function (m) {
-      if (m.who === 'me') h += '<div class="cw-m cw-me">' + esc(m.text) + '</div>';
+      if (m.img) h += '<a href="' + esc(m.img) + '" target="_blank" rel="noopener" class="cw-m ' + (m.who === 'me' ? 'cw-me' : 'cw-op') + '" style="padding: 4px"><img src="' + esc(m.img) + '" alt="Скриншот" style="display: block; max-width: 220px; max-height: 260px; border-radius: 14px"></a>';
+      else if (m.who === 'me') h += '<div class="cw-m cw-me"' + (m.pending ? ' style="opacity: .6"' : '') + '>' + esc(m.text) + '</div>' + (m.failed ? '<span class="cw-meta" style="align-self: flex-end; color: #C62F35">Не отправлено. Проверьте интернет</span>' : '');
       else if (m.who === 'op') h += '<div class="cw-m cw-op">' + esc(m.text) + '</div>' + (m.meta ? '<span class="cw-meta">' + esc(m.meta) + ' · ' + hm(m.ts) + '</span>' : '');
       else if (m.who === 'sysb') h += '<span class="cw-sys" style="background: #F2F5FF; color: #1F45D6">' + esc(m.text) + '</span>';
       else h += '<span class="cw-sys">' + OK + esc(m.text) + '</span>';
@@ -135,13 +215,23 @@
     // Поле ввода и кнопки
     var input = root.querySelector('.cw-ft input'), sendBtn = root.querySelector('.cw-ft .cw-send'), clip = root.querySelector('.cw-ft .cw-ic');
     var file = doc.createElement('input'); file.type = 'file'; file.accept = 'image/*'; file.hidden = true; root.appendChild(file);
-    var go = function () { if (!c.started) start(); send(input.value); input.value = ''; };
+    var go = function () { var v = input.value; input.value = ''; if (!String(v).trim()) return; if (!c.started) start(v); else send(v); };
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); go(); } });
     sendBtn.setAttribute('role', 'button'); sendBtn.tabIndex = 0; sendBtn.style.cursor = 'pointer';
     sendBtn.addEventListener('click', function (e) { e.preventDefault(); go(); });
     clip.setAttribute('role', 'button'); clip.tabIndex = 0; clip.style.cursor = 'pointer';
     clip.addEventListener('click', function () { file.click(); });
-    file.addEventListener('change', function () { if (file.files[0]) { if (!c.started) start(); push({ who: 'me', text: 'Скриншот: ' + file.files[0].name }); later(1000, function () { push({ who: 'op', text: 'Спасибо, скриншот получили. Посмотрим и ответим здесь.', meta: 'ИИ-помощник' }); }); file.value = ''; } });
+    file.addEventListener('change', function () {
+      var f = file.files[0]; file.value = '';
+      if (!f) return;
+      if (!LIVE) { if (!c.started) start(); push({ who: 'me', text: 'Скриншот: ' + f.name }); later(1000, function () { push({ who: 'op', text: 'Спасибо, скриншот получили. Посмотрим и ответим здесь.', meta: 'ИИ-помощник' }); }); return; }
+      if (f.size > 5 * 1024 * 1024 || !/^image\/(png|jpeg|webp|gif)$/.test(f.type)) { push({ who: 'sys', text: 'Можно отправить картинку PNG, JPG или WebP до 5 МБ' }); render(); return; }
+      var up = function () { return call('POST', '/chat/upload?' + (c.token ? 'token=' + encodeURIComponent(c.token) + '&' : '') + 'name=' + encodeURIComponent(f.name), f, f.type).then(function () { poll(); }).catch(function () { push({ who: 'sys', text: 'Скриншот не отправился. Попробуйте ещё раз' }); render(); }); };
+      if (!c.started) liveStart().then(up); else up();
+    });
+    // «Клиент печатает…» — оператор видит черновик в админке
+    var tt = 0;
+    input.addEventListener('input', function () { if (!LIVE || !c.started) return; clearTimeout(tt); tt = setTimeout(function () { call('POST', '/chat/typing', { token: c.token || undefined, text: input.value.slice(0, 500) }).catch(function () {}); }, 600); });
     // Гостевая форма
     root.querySelector('.cw-bd').addEventListener('click', function (e) {
       var t = e.target.closest('[data-topic]'), s = e.target.closest('[data-start]'), r = e.target.closest('[data-rate]');
@@ -151,10 +241,11 @@
         if (!PSA.validEmail || !PSA.validEmail(v)) { root.querySelector('[data-err]').style.display = ''; return; }
         c.email = v; var tp = c.topic != null ? TOPICS[c.topic] : ''; c.topic = null; start(tp); render();
       }
-      if (r) { c.rating = +r.dataset.rate; store(c); render(); }
+      if (r) { c.rating = +r.dataset.rate; store(c); render(); if (LIVE) call('POST', '/chat/rate', { token: c.token || undefined, rating: c.rating }).catch(function () {}); }
     });
-    root.addEventListener('toggle', function () { if (root.open) { c.unread = false; store(c); if (me() && !c.started) start(); render(); setTimeout(function () { var i = root.querySelector('.cw-ft input'); if (i && root.querySelector('.cw-ft').style.display !== 'none') i.focus(); }, 60); } else render(); });
+    root.addEventListener('toggle', function () { if (root.open) { c.unread = false; store(c); if (me() && !c.started) start(); else if (c.started) poll(); render(); setTimeout(function () { var i = root.querySelector('.cw-ft input'); if (i && root.querySelector('.cw-ft').style.display !== 'none') i.focus(); }, 60); } else render(); });
     render();
+    if (LIVE && c.started && c.token) poll();
     return true;
   }
   // Ссылки «Поддержка», «Написать в поддержку» → открыть чат
