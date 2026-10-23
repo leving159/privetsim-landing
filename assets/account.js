@@ -717,6 +717,12 @@
     w.document.write('<!doctype html><title>' + (title || 'Печать') + '</title><style>@page{size:A4;margin:0}html,body{margin:0;height:100%}img{display:block;width:100%;height:100%;object-fit:contain}</style><img src="' + src + '" onload="setTimeout(function(){print()},200)">');
     w.document.close();
   };
+  // Сети USDT заказа: в рабочем режиме — адреса из счёта (сервер), в демо — демо-адреса ниже
+  PSA.netsFor = function (o) {
+    var list = o && o.crypto && o.crypto.networks;
+    if (!list || !list.length) return PSA.NETS;
+    return list.map(function (n) { return { id: n.name, name: n.name, std: n.std, addr: n.address, memo: !!n.memo, fee: n.fee, sub: n.sub }; });
+  };
   // Демо-адреса кошельков для USDT по сетям
   PSA.NETS = [
     { id: 'TRON', name: 'TRON', std: 'TRC-20', addr: 'TQ7hXk2mP9vR4sLw8NcY3bJ6tF1eGz5Ad0', memo: false },
@@ -896,6 +902,14 @@
         qty: x.quantity || 1, email: x.email || '', userId: uid || null, sum: bal + toPay, fromBal: bal, toPay: toPay, disc: 0, promo: '',
         payBy: tms(x.createdAt) + 60 * MIN, paidAt: tms(x.paidAt), paymentUrl: x.paymentUrl || '', esimIds: [], esimId: x.topupEsimId || null,
         usdt: 0, net: '', preparing: x.status === 'paid' || x.status === 'provisioning' || (x.status === 'failed' && !!x.paidAt) };
+      // Счёт USDT (свой шлюз): сумма к переводу, сколько уже пришло, адреса по сетям, срок
+      var c = x.crypto;
+      if (c) {
+        o.crypto = c; o.usdt = parseFloat(c.amount) || 0; o.usdtGot = parseFloat(c.received) || 0; o.usdtDue = parseFloat(c.due) || 0;
+        o.memo = c.memo || ''; o.net = c.network ? (c.network === 'BSC' ? 'BEP-20' : c.network) : '';
+        if (c.expiresAt) o.payBy = tms(c.expiresAt);
+        if (x.status === 'pending_payment' && c.status === 'expired') o.status = 'expired';
+      }
       if (kind === 'balance') { o.label = 'Пополнение баланса'; return o; }
       var f = planByPkg(x.packageCode);
       o.pkg = x.packageCode; o.code = f ? f.code : destCode(x.dest); o.t = f ? f.t : 'total';
@@ -1150,7 +1164,7 @@
         if (u && p.useBal) body.useBalanceKopecks = Math.round(p.useBal * 100);
       }
       return call('POST', '/orders', body).then(function (r) {
-        if (!r.id) return fail(r, r.error === 'balance_low' ? r.message : 'Не удалось создать заказ. Попробуйте ещё раз');
+        if (!r.id) return fail(r, r.error === 'balance_low' || /^crypto_/.test(r.error || '') ? r.message : 'Не удалось создать заказ. Попробуйте ещё раз');
         return fetchOrder(r.id, r.token).then(function (o) {
           if (!o) return fail({}, 'Заказ создан, но не загрузился. Обновите страницу');
           if (u) o.userId = u.id;

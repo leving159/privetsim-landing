@@ -26,21 +26,21 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610221620"></script>
-<script src="assets/catalog.js?v=202610221620"></script>
+<script src="config.js?v=202610231230"></script>
+<script src="assets/catalog.js?v=202610231230"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610221620"></script>
-<script src="assets/account.js?v=202610221620"></script>
+<script src="assets/site.js?v=202610231230"></script>
+<script src="assets/account.js?v=202610231230"></script>
 <script src="assets/vendor/qrcode.min.js"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610221620">
-<script src="assets/chat.js?v=202610221620" defer></script>
+<link rel="stylesheet" href="assets/account.css?v=202610231230">
+<script src="assets/chat.js?v=202610231230" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610221620"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610221620">
-<script src="assets/ui.js?v=202610221620"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610221620">
-<script src="assets/motion.js?v=202610221620" defer></script>
+<script src="assets/dc-runtime.js?v=202610231230"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610231230">
+<script src="assets/ui.js?v=202610231230"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610231230">
+<script src="assets/motion.js?v=202610231230" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -544,7 +544,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
             <div role="img" aria-label="QR-код адреса кошелька" style="width: 168px; height: 168px; border-radius: 16px; border: 1px solid #E3E6ED; padding: 10px; box-sizing: border-box; background: #FFFFFF; flex: none; display: grid; grid-template-columns: repeat({{qrN}}, 1fr); grid-auto-rows: 1fr"><sc-for list="{{qrCells}}" as="q" hint-placeholder-count="20"><i style="display: block; background: {{q}}"></i></sc-for></div>
             <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 12px">
               <div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
-                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Адрес</span><span class="mono" style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Демо-адрес</span></div>
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Адрес</span><span class="mono" style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{addr}}</span></div>
                 <button class="btn btn-ghost btn-sm" type="button" aria-label="Скопировать адрес" style="width: 40px; padding: 0" sc-camel-on-click="{{cpAddr}}"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg></button>
               </div>
               <div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
@@ -577,7 +577,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
             <div role="img" aria-label="QR-код адреса кошелька" style="width: 168px; height: 168px; border-radius: 16px; border: 1px solid #E3E6ED; padding: 10px; box-sizing: border-box; background: #FFFFFF; flex: none; display: grid; grid-template-columns: repeat({{qrN}}, 1fr); grid-auto-rows: 1fr"><sc-for list="{{qrCells}}" as="q" hint-placeholder-count="20"><i style="display: block; background: {{q}}"></i></sc-for></div>
             <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 12px">
               <div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
-                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Адрес</span><span class="mono" style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Демо-адрес</span></div>
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #5A6175">Адрес</span><span class="mono" style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{addr}}</span></div>
                 <button class="btn btn-ghost btn-sm" type="button" aria-label="Скопировать адрес" style="width: 40px; padding: 0" sc-camel-on-click="{{cpAddr}}"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg></button>
               </div>
               <div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 16px; border-radius: 16px; background: #F5F6F9">
@@ -588,7 +588,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           </div>
           <div role="note" style="display: flex; gap: 10px; padding: 14px 16px; border-radius: 16px; background: #FFF4DE; font-size: 14px; line-height: 21px; color: #2B3142">
             <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8A5A00" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M12 3l9.5 17h-19z"></path><path d="M12 10v4M12 17.5v.01"></path></svg>
-            <span>Отправьте ровно {{psDue}} USDT в&nbsp;сети {{netName}}: по этой сумме мы узнаём доплату. Если за&nbsp;30 минут доплата не&nbsp;придёт, заказ отменим, а&nbsp;полученные {{psGot}} USDT зачислим на&nbsp;баланс.</span>
+            <span>Отправьте ровно {{psDue}} USDT в&nbsp;сети {{netName}}: по этой сумме мы узнаём доплату. Если за&nbsp;час доплата не&nbsp;придёт, заказ отменим, а&nbsp;полученные {{psGot}} USDT зачислим на&nbsp;баланс.</span>
           </div>
           <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #5A6175">
             <svg width="18" height="18" sc-camel-view-box="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#2F5BFF" stroke-opacity="0.25" stroke-width="3" fill="none"></circle><path d="M21 12a9 9 0 0 0-9-9" stroke="#2F5BFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg>
@@ -751,18 +751,21 @@ class Component extends (window.PSLogic || DCLogic) {
     if (PSA.DEMO && st === 'pending' && !this._auto) this._auto = setTimeout(() => { if (PSA.orderStatus(O) === 'pending' && !O.hold) PSA.confirmPayment(O.id); }, O.method === 'usdt' ? 20000 : 4000);
     const left = Math.max(0, O.payBy - PSA.now());
     const mm = String(Math.floor(left / 60000)).padStart(2, '0') + ':' + String(Math.floor(left / 1000) % 60).padStart(2, '0');
-    const ni = s.net == null ? 0 : s.net;
-    const N = PSA.NETS[ni];
-    const due = O.usdtGot ? Math.round((O.usdt - O.usdtGot) * 10000) / 10000 : O.usdt;
+    // Сети и адреса — из счёта USDT (рабочий режим) или демо-адреса; сеть по умолчанию — выбранная при пополнении (?net=) или сеть первого перевода
+    const NETS = PSA.netsFor(O);
+    const pre = NETS.findIndex((n) => n.id === (PS.qp('net') || O.net));
+    const ni = s.net == null ? Math.max(0, pre) : s.net;
+    const N = NETS[ni] || NETS[0];
+    const due = O.crypto ? O.usdtDue : (O.usdtGot ? Math.round((O.usdt - O.usdtGot) * 10000) / 10000 : O.usdt);
     const q = PSA.qr(N.addr);
     const retry = O.kind === 'balance' ? 'wallet.html' : (O.kind === 'topup' ? 'account.html?topup=' + O.esimId : PS.checkoutUrl(O.code, O.pkg, O.t === 'daily' ? O.d : 0));
     const pend = st === 'pending' || st === 'paid' || st === 'late';
-    const usdt = PSA.DEMO && O.method === 'usdt';
+    const usdt = O.method === 'usdt' && (PSA.DEMO || !!O.crypto);
     return {
       isCrypto: st === 'pending' && usdt && !O.usdtGot, isTopup: st === 'pending' && usdt && O.usdtGot > 0,
       isPending: pend && !(st === 'pending' && usdt), isFailed: st === 'failed', isExpired: st === 'expired' || st === 'cancelled',
       left: mm, addr: N.addr, netName: N.name, qrN: q.n, qrCells: q.cells,
-      nets: PSA.NETS.map((n, i) => ({ name: n.name, on: i === ni ? 'true' : 'false', bg: i === ni ? '#0E1220' : '#F5F6F9', fg: i === ni ? '#FFFFFF' : '#0E1220', pick: () => this.setState({ net: i }) })),
+      nets: NETS.map((n, i) => ({ name: n.name, on: i === ni ? 'true' : 'false', bg: i === ni ? '#0E1220' : '#F5F6F9', fg: i === ni ? '#FFFFFF' : '#0E1220', pick: () => this.setState({ net: i }) })),
       psUsdt: PSA.usdtStr(O.usdt), psDue: PSA.usdtStr(due), psDueRaw: PSA.usdtStr(due), psGot: PSA.usdtStr(O.usdtGot || 0), psGotPc: Math.round((O.usdtGot || 0) / O.usdt * 100) + '%', psBack: retry
     };
   }
