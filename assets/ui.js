@@ -4,7 +4,7 @@
 
     • PSLogic — логика экранов перерисовывается по событию ps:refresh (данные кабинета, свежие цены);
     • свежие цены с API — в фоне, страница их не ждёт;
-    • согласие на cookie — запоминается (cookie ps_consent на год);
+    • cookie-баннер макета скрыт (на сайте только необходимые cookie);
     • якоря: плавная прокрутка, index.html#how с другой страницы;
     • «Как это работает» на главной: шаги кликабельны, после 4-го остаётся последний экран;
     • подсказки в поиске направлений (страна, регион, город, остров, штат);
@@ -126,21 +126,9 @@
     return out;
   };
 
-  /* ---------- Согласие на cookie ---------- */
-  function consent() {
-    var m = doc.cookie.match(/(?:^|;\s*)ps_consent=([a-z]+)/);
-    if (m) return m[1];
-    try { return localStorage.getItem('ps.consent') || ''; } catch (e) { return ''; }
-  }
-  if (consent()) html.classList.add('ps-ck-done');
-  doc.addEventListener('click', function (e) {
-    var l = e.target.closest && e.target.closest('label[for="ck-ok"]');
-    if (!l) return;
-    var v = /необходим|necessary/i.test(l.textContent) ? 'necessary' : 'all';
-    doc.cookie = 'ps_consent=' + v + '; max-age=31536000; path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
-    try { localStorage.setItem('ps.consent', v); } catch (x) {}
-    setTimeout(function () { html.classList.add('ps-ck-done'); }, 0);
-  });
+  /* ---------- Cookie-баннер макета не показываем ---------- */
+  // На сайте только необходимые cookie (Политика cookie) — согласие не нужно, баннер закрывал первый экран
+  html.classList.add('ps-ck-done');
 
   /* ---------- Якоря: плавная прокрутка, переход на якорь другой страницы ---------- */
   function samePage(a) {

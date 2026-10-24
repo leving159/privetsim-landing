@@ -32,21 +32,21 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610242039"></script>
-<script src="assets/catalog.js?v=202610242039"></script>
+<script src="config.js?v=202610242055"></script>
+<script src="assets/catalog.js?v=202610242055"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
 <script>window.PS_DEST = {"c":"LI"}</script>
-<script src="assets/site.js?v=202610242039"></script>
-<script src="assets/account.js?v=202610242039"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610242039">
-<script src="assets/chat.js?v=202610242039" defer></script>
+<script src="assets/site.js?v=202610242055"></script>
+<script src="assets/account.js?v=202610242055"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610242055">
+<script src="assets/chat.js?v=202610242055" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610242039"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610242039">
-<script src="assets/ui.js?v=202610242039"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610242039">
-<script src="assets/motion.js?v=202610242039" defer></script>
+<script src="assets/dc-runtime.js?v=202610242055"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610242055">
+<script src="assets/ui.js?v=202610242055"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610242055">
+<script src="assets/motion.js?v=202610242055" defer></script>
 
 </head>
 <body>
@@ -617,7 +617,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
               <p style="margin: 0; font-size: 18px; line-height: 28px; color: #2B3142; max-width: 600px">{{psLead}} Установите за&nbsp;день до&nbsp;вылета&nbsp;— подключится после посадки.</p>
             </div>
             <figure class="ct-photo">
-              <img loading="lazy" decoding="async" src="{{psC.photo}}" alt="{{psC.alt}}">
+              <img src="{{psC.photo}}" alt="{{psC.alt}}" loading="eager" fetchpriority="high">
               <figcaption class="mono">{{psC.cap}}</figcaption>
             </figure>
           </div>

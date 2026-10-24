@@ -31,20 +31,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610242039"></script>
-<script src="assets/catalog.js?v=202610242039"></script>
+<script src="config.js?v=202610242055"></script>
+<script src="assets/catalog.js?v=202610242055"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610242039"></script>
-<script src="assets/account.js?v=202610242039"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610242039">
-<script src="assets/chat.js?v=202610242039" defer></script>
+<script src="assets/site.js?v=202610242055"></script>
+<script src="assets/account.js?v=202610242055"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610242055">
+<script src="assets/chat.js?v=202610242055" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610242039"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610242039">
-<script src="assets/ui.js?v=202610242039"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610242039">
-<script src="assets/motion.js?v=202610242039" defer></script>
+<script src="assets/dc-runtime.js?v=202610242055"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610242055">
+<script src="assets/ui.js?v=202610242055"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610242055">
+<script src="assets/motion.js?v=202610242055" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -842,29 +842,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
     </section>
 
     <!-- Отзывы с форума -->
-    <section aria-labelledby="rev-h" style="display: flex; flex-direction: column; gap: 20px">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
-        <div style="display: flex; flex-direction: column; gap: 8px">
-          <h2 id="rev-h" class="t-h2">Отзывы с&nbsp;форума путешественников</h2>
-          <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: #5A6175"><span class="stars">★★★★★</span><b style="color: #0E1220">4,8</b> · 126 обсуждений о&nbsp;месте «{{p.title}}»</span>
-        </div>
-        <a class="btn btn-ghost btn-sm" style="cursor: pointer" role="button" tabindex="0" sc-camel-on-click="{{goForum}}">Все&nbsp;обсуждения на&nbsp;форуме</a>
-      </div>
-      <span style="align-self: flex-start; height: 26px; padding: 0 10px; border-radius: 8px; background: #FFF6E5; color: #8A5300; font: 600 12px/26px 'Onest', system-ui, sans-serif">Макет: тексты‑примеры, на&nbsp;сайте подтягиваются реальные отзывы с&nbsp;форума</span>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 12px">
-        <sc-for list="{{reviews}}" as="r" hint-placeholder-count="3">
-          <article class="rev">
-            <span style="display: flex; align-items: center; gap: 10px">
-              <span style="width: 40px; height: 40px; border-radius: 50%; background: {{r.bg}}; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex: none">{{r.l}}</span>
-              <span style="flex: 1; display: flex; flex-direction: column"><b style="font-size: 15px; font-weight: 600">{{r.name}}</b><span style="font-size: 12px; color: #8C92A3">{{r.meta}}</span></span>
-              <span class="stars" aria-label="Оценка 5 из 5">★★★★★</span>
-            </span>
-            <p style="margin: 0; font-size: 15px; line-height: 23px; color: #2B3142">{{r.text}}</p>
-            <span style="display: flex; gap: 6px; flex-wrap: wrap"><span style="height: 24px; padding: 0 8px; border-radius: 7px; background: #FFFFFF; font-size: 12px; line-height: 24px; color: #5A6175">{{r.tag}}</span><span style="height: 24px; padding: 0 8px; border-radius: 7px; background: #FFFFFF; font-size: 12px; line-height: 24px; color: #5A6175">Привет SIM · {{p.gen}}</span></span>
-          </article>
-        </sc-for>
-      </div>
-    </section>
+    
 
     <!-- Ещё места -->
     <section style="display: flex; flex-direction: column; gap: 20px">
