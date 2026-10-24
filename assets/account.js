@@ -348,7 +348,7 @@
     } else {
       var code = up(p.code), plan = PS.findPlan(code, p.pkg), I = info(code);
       var days = plan.t === 'daily' ? Math.min(90, Math.max(1, parseInt(p.d, 10) || 10)) : parseInt(plan.p.daysShort, 10);
-      var unit = plan.t === 'daily' ? PS.dailyTotal(plan.p.price, days) : plan.p.price;
+      var unit = plan.t === 'daily' ? PS.dailyTotal(plan.p, days) : plan.p.price;
       o.code = code; o.pkg = plan.p.code; o.t = plan.t; o.d = days; o.n = plan.t === 'daily' ? plan.p.n * days : plan.p.n;
       o.top = plan.p.top; o.name = I.name; o.qty = o.kind === 'topup' ? 1 : Math.min(10, Math.max(1, p.qty || 1));
       o.unit = unit; o.gbLabel = plan.t === 'daily' ? plan.p.gb : PSA.gb(plan.p.n);

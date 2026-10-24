@@ -31,20 +31,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610241457"></script>
-<script src="assets/catalog.js?v=202610241457"></script>
+<script src="config.js?v=202610241503"></script>
+<script src="assets/catalog.js?v=202610241503"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610241457"></script>
-<script src="assets/account.js?v=202610241457"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610241457">
-<script src="assets/chat.js?v=202610241457" defer></script>
+<script src="assets/site.js?v=202610241503"></script>
+<script src="assets/account.js?v=202610241503"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610241503">
+<script src="assets/chat.js?v=202610241503" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610241457"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610241457">
-<script src="assets/ui.js?v=202610241457"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610241457">
-<script src="assets/motion.js?v=202610241457" defer></script>
+<script src="assets/dc-runtime.js?v=202610241503"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610241503">
+<script src="assets/ui.js?v=202610241503"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610241503">
+<script src="assets/motion.js?v=202610241503" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -948,7 +948,7 @@ class Component extends (window.PSLogic || DCLogic) {
     const qDayOpts = Array.from({ length: 30 }, (_, k) => ({ v: String(k + 1), t: plural(k + 1) })).concat([45, 60, 90].map((d) => ({ v: String(d), t: plural(d) })));
     const selP = type === 'daily' ? { ...raw[si], days: plural(dn), daysShort: dn + ' ДН', gb: raw[si].gb } : raw[si];
     const fmtGb = (x) => x < 1 ? Math.round(x * 1000) + ' МБ' : (String(Math.round(x * 10) / 10).replace('.', ',') + ' ГБ');
-    return { psC: PSC, psLead: PSC.code === 'TR' ? 'Мобильный интернет в\u00a0Стамбуле, Анталье и\u00a0по\u00a0всей стране.' : 'Мобильный интернет ' + PSC.inn.replace(' ', '\u00a0') + '\u00a0— по\u00a0всей стране.', psNetSp: PSC.net.replace('/', ' / '), psOps: (PSC.ops.length ? PSC.ops.slice(0, 2).join(' · ') : 'Местные операторы').toUpperCase(), psOpsLong: PSC.ops.length ? PSC.ops.join(', ') : 'Лучшая сеть выбирается автоматически', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si].price, dn) : raw[si].price), psCheckout: PS.checkoutUrl(PSC.code, raw[si].code, type === 'daily' ? dn : 0), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Гигабайт в день' : 'Гигабайты и срок', qHint: type === 'daily' ? 'лимит обновляется каждые 24 ч' : 'общий объём на поездку',
+    return { psC: PSC, psLead: PSC.code === 'TR' ? 'Мобильный интернет в\u00a0Стамбуле, Анталье и\u00a0по\u00a0всей стране.' : 'Мобильный интернет ' + PSC.inn.replace(' ', '\u00a0') + '\u00a0— по\u00a0всей стране.', psNetSp: PSC.net.replace('/', ' / '), psOps: (PSC.ops.length ? PSC.ops.slice(0, 2).join(' · ') : 'Местные операторы').toUpperCase(), psOpsLong: PSC.ops.length ? PSC.ops.join(', ') : 'Лучшая сеть выбирается автоматически', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psCheckout: PS.checkoutUrl(PSC.code, raw[si].code, type === 'daily' ? dn : 0), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Гигабайт в день' : 'Гигабайты и срок', qHint: type === 'daily' ? 'лимит обновляется каждые 24 ч' : 'общий объём на поездку',
       onQType: (e) => this.setState({ type: e.target.value }),
       onQPkg: (e) => this.setState({ sel: { ...this.state.sel, [type]: parseInt(e.target.value, 10) || 0 } }),
       typeNote, pkCols: type === 'daily' ? 'repeat(3, minmax(0, 1fr))' : 'repeat(4, minmax(0, 1fr))', isDaily: type === 'daily', dCount: dn, dCountLabel: plural(dn), dTotal: fmtGb(raw[si].n * dn), dChips, qDays: String(dn), qDayOpts,

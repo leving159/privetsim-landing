@@ -32,21 +32,21 @@
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <script>window.PS_LANG = "en"</script>
-<script src="../config.js?v=202610241457"></script>
-<script src="../assets/en/names.js?v=202610241457"></script>
-<script src="../assets/catalog.js?v=202610241457"></script>
+<script src="../config.js?v=202610241503"></script>
+<script src="../assets/en/names.js?v=202610241503"></script>
+<script src="../assets/catalog.js?v=202610241503"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="../assets/en/site.js?v=202610241457"></script>
-<script src="../assets/en/account.js?v=202610241457"></script>
-<link rel="stylesheet" href="../assets/account.css?v=202610241457">
-<script src="../assets/en/chat.js?v=202610241457" defer></script>
+<script src="../assets/en/site.js?v=202610241503"></script>
+<script src="../assets/en/account.js?v=202610241503"></script>
+<link rel="stylesheet" href="../assets/account.css?v=202610241503">
+<script src="../assets/en/chat.js?v=202610241503" defer></script>
 <script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/dc-runtime.js?v=202610241457"></script>
-<link rel="stylesheet" href="../assets/ui.css?v=202610241457">
-<script src="../assets/en/ui.js?v=202610241457"></script>
-<link rel="stylesheet" href="../assets/motion.css?v=202610241457">
-<script src="../assets/en/motion.js?v=202610241457" defer></script>
+<script src="../assets/dc-runtime.js?v=202610241503"></script>
+<link rel="stylesheet" href="../assets/ui.css?v=202610241503">
+<script src="../assets/en/ui.js?v=202610241503"></script>
+<link rel="stylesheet" href="../assets/motion.css?v=202610241503">
+<script src="../assets/en/motion.js?v=202610241503" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -992,7 +992,7 @@ class Component extends (window.PSLogic || DCLogic) {
     const selP = type === 'daily' ? { ...raw[si], days: plural(dn), daysShort: dn + ' DAYS', gb: raw[si].gb } : raw[si];
     const fmtGb = (x) => x < 1 ? Math.round(x * 1000) + ' MB' : (String(Math.round(x * 10) / 10).replace(',', '.') + ' GB');
     return { cn, cnEmpty: cnF.length === 0, cnMore: !qq && CN.length > 12, cnMoreLabel: this.state.cnAll ? 'Collapse list' : 'Show all ' + PSR.list.length + ' countries', toggleCn: () => this.setState({ cnAll: !this.state.cnAll }), q: this.state.q, onQ: (e) => this.setState({ q: e.target.value }),
-      psR: PSR, psLead: 'One eSIM for ' + PSR.n + ' countries: ' + PSR.list.slice(0, 4).map((x) => x[1]).join(', ') + ' and others.', psHead: PSR.head.map((c) => ({ flag: PS.flagOf(c) })), psMore: Math.max(0, PSR.n - 7), psCover: PSR.code === 'EU' ? PSR.n + ' European countries' : PSR.n + ' countries', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si].price, dn) : raw[si].price), psCheckout: PS.checkoutUrl(PSR.code, raw[si].code, type === 'daily' ? dn : 0),
+      psR: PSR, psLead: 'One eSIM for ' + PSR.n + ' countries: ' + PSR.list.slice(0, 4).map((x) => x[1]).join(', ') + ' and others.', psHead: PSR.head.map((c) => ({ flag: PS.flagOf(c) })), psMore: Math.max(0, PSR.n - 7), psCover: PSR.code === 'EU' ? PSR.n + ' European countries' : PSR.n + ' countries', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psCheckout: PS.checkoutUrl(PSR.code, raw[si].code, type === 'daily' ? dn : 0),
       qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Gigabytes per day' : 'Gigabytes and validity', qHint: type === 'daily' ? 'limit resets every 24 h' : 'total allowance for the trip',
       onQType: (e) => this.setState({ type: e.target.value }),
       onQPkg: (e) => this.setState({ sel: { ...this.state.sel, [type]: parseInt(e.target.value, 10) || 0 } }),
