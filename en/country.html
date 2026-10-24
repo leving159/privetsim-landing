@@ -32,21 +32,21 @@
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <script>window.PS_LANG = "en"</script>
-<script src="../config.js?v=202610241503"></script>
-<script src="../assets/en/names.js?v=202610241503"></script>
-<script src="../assets/catalog.js?v=202610241503"></script>
+<script src="../config.js?v=202610241526"></script>
+<script src="../assets/en/names.js?v=202610241526"></script>
+<script src="../assets/catalog.js?v=202610241526"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="../assets/en/site.js?v=202610241503"></script>
-<script src="../assets/en/account.js?v=202610241503"></script>
-<link rel="stylesheet" href="../assets/account.css?v=202610241503">
-<script src="../assets/en/chat.js?v=202610241503" defer></script>
+<script src="../assets/en/site.js?v=202610241526"></script>
+<script src="../assets/en/account.js?v=202610241526"></script>
+<link rel="stylesheet" href="../assets/account.css?v=202610241526">
+<script src="../assets/en/chat.js?v=202610241526" defer></script>
 <script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/dc-runtime.js?v=202610241503"></script>
-<link rel="stylesheet" href="../assets/ui.css?v=202610241503">
-<script src="../assets/en/ui.js?v=202610241503"></script>
-<link rel="stylesheet" href="../assets/motion.css?v=202610241503">
-<script src="../assets/en/motion.js?v=202610241503" defer></script>
+<script src="../assets/dc-runtime.js?v=202610241526"></script>
+<link rel="stylesheet" href="../assets/ui.css?v=202610241526">
+<script src="../assets/en/ui.js?v=202610241526"></script>
+<link rel="stylesheet" href="../assets/motion.css?v=202610241526">
+<script src="../assets/en/motion.js?v=202610241526" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -777,6 +777,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
             <span style="font-size: 16px; font-weight: 500">Total</span>
             <span style="font-size: 28px; font-weight: 600; letter-spacing: -0.02em" data-ps-tick>{{psTotal}} ₽</span>
           </div>
+          <sc-if value="{{psSave}}" hint-placeholder-val="{{ false }}"><span style="margin-top: -8px; font-size: 13px; font-weight: 500; color: #0B7A3E; text-align: right">{{psSave}}</span></sc-if>
           <a class="btn btn-primary btn-lg" href="{{psCheckout}}" style="width: 100%; box-sizing: border-box">Proceed to payment  <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
           </a>
           <p style="margin: 0; font-size: 13px; line-height: 19px; color: #5A6175; text-align: center">SBP or cryptocurrency.  <a href="compatibility.html">Check your phone</a></p>
@@ -949,7 +950,7 @@ class Component extends (window.PSLogic || DCLogic) {
     const qDayOpts = Array.from({ length: 30 }, (_, k) => ({ v: String(k + 1), t: plural(k + 1) })).concat([45, 60, 90].map((d) => ({ v: String(d), t: plural(d) })));
     const selP = type === 'daily' ? { ...raw[si], days: plural(dn), daysShort: dn + ' DAYS', gb: raw[si].gb } : raw[si];
     const fmtGb = (x) => x < 1 ? Math.round(x * 1000) + ' MB' : (String(Math.round(x * 10) / 10).replace(',', '.') + ' GB');
-    return { psC: PSC, psLead: PSC.code === 'TR' ? 'Mobile internet in Istanbul, Antalya and across the country.' : 'Mobile internet ' + PSC.inn.replace(' ', '\u00a0') + ' — across the country.', psNetSp: PSC.net.replace('/', ' / '), psOps: (PSC.ops.length ? PSC.ops.slice(0, 2).join(' · ') : 'Local carriers').toUpperCase(), psOpsLong: PSC.ops.length ? PSC.ops.join(', ') : 'The best network is selected automatically', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psCheckout: PS.checkoutUrl(PSC.code, raw[si].code, type === 'daily' ? dn : 0), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Gigabytes per day' : 'Gigabytes and validity', qHint: type === 'daily' ? 'limit resets every 24 h' : 'total allowance for the trip',
+    return { psC: PSC, psLead: PSC.code === 'TR' ? 'Mobile internet in Istanbul, Antalya and across the country.' : 'Mobile internet ' + PSC.inn.replace(' ', '\u00a0') + ' — across the country.', psNetSp: PSC.net.replace('/', ' / '), psOps: (PSC.ops.length ? PSC.ops.slice(0, 2).join(' · ') : 'Local carriers').toUpperCase(), psOpsLong: PSC.ops.length ? PSC.ops.join(', ') : 'The best network is selected automatically', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psSave: type === 'daily' ? PS.dailySaveText(raw[si], dn) : '', psCheckout: PS.checkoutUrl(PSC.code, raw[si].code, type === 'daily' ? dn : 0), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Gigabytes per day' : 'Gigabytes and validity', qHint: type === 'daily' ? 'limit resets every 24 h' : 'total allowance for the trip',
       onQType: (e) => this.setState({ type: e.target.value }),
       onQPkg: (e) => this.setState({ sel: { ...this.state.sel, [type]: parseInt(e.target.value, 10) || 0 } }),
       typeNote, pkCols: type === 'daily' ? 'repeat(3, minmax(0, 1fr))' : 'repeat(4, minmax(0, 1fr))', isDaily: type === 'daily', dCount: dn, dCountLabel: plural(dn), dTotal: fmtGb(raw[si].n * dn), dChips, qDays: String(dn), qDayOpts,

@@ -203,6 +203,15 @@
     for (var i = 0; i < PS.DAILY_DISCOUNT.length; i++) if (d >= PS.DAILY_DISCOUNT[i][0]) { pc = PS.DAILY_DISCOUNT[i][1]; break; }
     return Math.max(step, Math.ceil((p.x || p.price * 100) * d * pc / 100 / step) * step) / 100;
   };
+  // Сколько клиент экономит на сроке: цена дня × d минус итог за d дней (показываем от 5 дней)
+  PS.dailySave = function (p, d) {
+    var base = PS.dailyTotal(p, 1) * d, save = base - PS.dailyTotal(p, d);
+    return d >= 5 && save > 0 ? { rub: save, pct: Math.round(save / base * 100) } : null;
+  };
+  PS.dailySaveText = function (p, d) {
+    var s = p && PS.dailySave(p, d);
+    return s ? 'Скидка за срок' + ' −' + s.pct + '% · ' + 'экономия' + ' ' + PS.fmt(s.rub) + ' ₽' : '';
+  };
   PS.planPrice = function (code, t, n, d) { return t === 'daily' ? PS.dailyTotal({ price: PS.priceDay(code, n) }, d) : PS.priceTotal(code, n, d); };
   PS.checkoutUrl = function (code, t, n, d) { return 'checkout.html?c=' + code + '&t=' + t + '&n=' + n + '&d=' + d; };
   PS.order = function () {
@@ -395,7 +404,7 @@
       var f = PS.findPlan(info.code, q('pkg'));
       var d = f.t === 'daily' ? Math.min(90, Math.max(1, parseInt(q('d'), 10) || 10)) : parseInt(f.p.daysShort, 10);
       var price = f.t === 'daily' ? PS.dailyTotal(f.p, d) : f.p.price;
-      return { code: info.code, isRegion: isReg, info: info, t: f.t, n: f.p.n, d: d, pkg: f.p.code, price: price, priceStr: PS.fmt(price),
+      return { code: info.code, isRegion: isReg, info: info, t: f.t, n: f.p.n, d: d, pkg: f.p.code, price: price, priceStr: PS.fmt(price), save: f.t === 'daily' ? PS.dailySaveText(f.p, d) : '',
         label: (f.t === 'daily' ? f.p.gb : f.p.gb) + ' · ' + PS.daysWord(d), back: PS.dest(info.code) };
     };
     PS.payUrl = function (O, m) { return 'payment.html?variant=' + (m === 2 ? 'crypto' : 'pending') + '&c=' + O.code + '&pkg=' + encodeURIComponent(O.pkg) + (O.t === 'daily' ? '&d=' + O.d : ''); };

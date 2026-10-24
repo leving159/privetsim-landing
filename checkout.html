@@ -27,20 +27,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610241503"></script>
-<script src="assets/catalog.js?v=202610241503"></script>
+<script src="config.js?v=202610241526"></script>
+<script src="assets/catalog.js?v=202610241526"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610241503"></script>
-<script src="assets/account.js?v=202610241503"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610241503">
-<script src="assets/chat.js?v=202610241503" defer></script>
+<script src="assets/site.js?v=202610241526"></script>
+<script src="assets/account.js?v=202610241526"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610241526">
+<script src="assets/chat.js?v=202610241526" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610241503"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610241503">
-<script src="assets/ui.js?v=202610241503"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610241503">
-<script src="assets/motion.js?v=202610241503" defer></script>
+<script src="assets/dc-runtime.js?v=202610241526"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610241526">
+<script src="assets/ui.js?v=202610241526"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610241526">
+<script src="assets/motion.js?v=202610241526" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -936,7 +936,7 @@ class Component extends (window.PSLogic || DCLogic) {
       quick, balLine: authed, walLine: authed && s.m === 0, balUsed: used, balLeft: BAL - used,
       splitOn, tops, topName: TOPS[s.top], walAmt: splitOn ? '−' + R(BALT) : '−' + R(TOT),
       payBtn: splitOn ? 'Доплатить ' + R(TOT - BALT) + ' · ' + TOPS[s.top] : (authed && s.m === 0 ? 'Оплатить с баланса' : 'Оплатить ' + R(TOT)), totalLabel: splitOn ? R(TOT - BALT) : (authed && s.m === 0 ? '0 ₽' : R(TOT)),
-      disc: TIERD + PDISC > 0 ? '−' + R(TIERD + PDISC) : '—', discLabel: DLABEL, psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' стран' : O.info.net), back: O.back }, psMinus80: PS.fmt(TOT - BALT), psSuccess: PS.successUrl(O), psBalT: R(BALT), psLogin: PSA.loginUrl(PS.checkoutBack()), psHasAcc: !authed && PSA.validEmail(em) && PSA.hasAccount(em), psPay: PS.payUrl(O, s.m), discColor: TIERD + PDISC > 0 ? '#0B7A3E' : '#0E1220',
+      disc: TIERD + PDISC > 0 ? '−' + R(TIERD + PDISC) : '—', discLabel: DLABEL, psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' стран' : O.info.net) + (O.save ? ' · ' + O.save : ''), back: O.back }, psMinus80: PS.fmt(TOT - BALT), psSuccess: PS.successUrl(O), psBalT: R(BALT), psLogin: PSA.loginUrl(PS.checkoutBack()), psHasAcc: !authed && PSA.validEmail(em) && PSA.hasAccount(em), psPay: PS.payUrl(O, s.m), discColor: TIERD + PDISC > 0 ? '#0B7A3E' : '#0E1220',
       agree: s.agree, agreeAria: s.agree ? 'true' : 'false', hasAErr: s.aErr,
       boxBg: s.agree ? '#2F5BFF' : (s.aErr ? '#FFFBFB' : '#FFFFFF'),
       boxBorder: s.agree ? '0' : (s.aErr ? '2px solid #C62F35' : '2px solid #C5CAD6'),
