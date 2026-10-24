@@ -22,9 +22,17 @@ header.sh, #dc-root > div > header:first-of-type { view-transition-name: ps-head
 @keyframes ps-vt-out { to { opacity: 0; } }
 @keyframes ps-vt-in { from { opacity: 0; transform: translateY(8px); } }
 
-/* 2. Мягкое появление страницы после загрузки */
-#dc-root { animation: ps-boot .36s var(--ps-ease) both; }
-@keyframes ps-boot { from { opacity: 0; } }
+/* 2. Первый экран без долгого проявления: страница видна сразу после загрузки (без общего затухания),
+   заголовок главной — без размытия и задержки (в макете 1,2 с + 0,15 с), блоки .in — 0,3 с с задержкой до 0,1 с
+   вместо 0,8 с и до 0,42 с. Декоративные анимации макета не трогаем */
+#dc-root .blurin { animation: ps-hero .3s var(--ps-ease) both; }
+@keyframes ps-hero { from { opacity: 0; transform: translateY(8px); } }
+#dc-root .in { animation-duration: .3s; animation-delay: 0s; }
+#dc-root .in.d1 { animation-delay: .02s; }
+#dc-root .in.d2 { animation-delay: .04s; }
+#dc-root .in.d3 { animation-delay: .06s; }
+#dc-root .in.d4 { animation-delay: .08s; }
+#dc-root .in.d5 { animation-delay: .1s; }
 
 /* 3. Волна от нажатия (ripple) на кнопках */
 .ps-rp { position: relative; overflow: hidden; isolation: isolate; }
@@ -112,7 +120,7 @@ input.ps-typing::placeholder { transition: none; }
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
-  #dc-root, .ps-in, .ps-tick, .ps-rp.ps-rp-go::before, .ps-shine:hover::after { animation: none !important; }
+  #dc-root .blurin, .ps-in, .ps-tick, .ps-rp.ps-rp-go::before, .ps-shine:hover::after { animation: none !important; }
   [data-ps-seg]::before, .ps-spot::after, .ps-press { transition: none !important; }
   .ps-progress, .ps-confetti { display: none; }
 }
