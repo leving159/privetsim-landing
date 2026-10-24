@@ -435,12 +435,12 @@
       if (o.fromBal) addOp(u, { t: 'eSIM ' + o.label, d: PSA.dt(now()) + ' · оплата с баланса, без комиссии', b: 'main', a: -o.fromBal, kind: 'out', orderId: o.id });
       PSA.mail(o.email, 'eSIM ' + o.name + ' готова к установке', 'QR-код и инструкция · заказ ' + o.no);
     }
-    // 25% пригласившему — от суммы, оплаченной деньгами (без баланса и скидок), начислим после окончания eSIM
+    // 20% пригласившему — от суммы, оплаченной деньгами (без баланса и скидок), начислим после окончания eSIM
     var paidMoney = o.kind === 'balance' ? 0 : o.toPay;
     if (u.invitedBy && paidMoney > 0 && d.users[u.invitedBy]) {
-      var r = d.users[u.invitedBy], amt = Math.round(paidMoney * 0.25);
+      var r = d.users[u.invitedBy], amt = Math.round(paidMoney * 0.2);
       o.reward = { to: r.id, amount: amt, status: 'pending' };
-      addOp(r, { t: '25% с заказа друга · ожидает', d: PSA.d(now()) + ' · ' + PSA.mask(u.email) + ' купил eSIM · начислим после окончания её срока', b: 'bonus', a: amt, kind: 'gift', pend: true, orderId: o.id });
+      addOp(r, { t: '20% с заказа друга · ожидает', d: PSA.d(now()) + ' · ' + PSA.mask(u.email) + ' купил eSIM · начислим после окончания её срока', b: 'bonus', a: amt, kind: 'gift', pend: true, orderId: o.id });
     }
     save();
     return o;
@@ -448,7 +448,7 @@
   PSA.failPayment = function (id) { var o = db().orders[id]; if (o && o.status === 'pending') { o.status = 'failed'; save(); } return o; };
   PSA.cancelOrder = function (id) { var o = db().orders[id]; if (o && o.status === 'pending') { o.status = 'cancelled'; save(); } return o; };
 
-  // Начисления, которые ждут окончания eSIM: бонус пригласившему и 100 ₽ другу за первую eSIM
+  // Начисления, которые ждут окончания eSIM: бонус пригласившему (другу — скидка 100 ₽ на первую покупку, сразу в корзине)
   PSA.settle = function () {
     var d = db(), changed = false;
     values(d.orders).forEach(function (o) {
@@ -462,16 +462,10 @@
         if (r) r.ops.forEach(function (op) {
           if (op.orderId === o.id && op.pend) {
             op.pend = false;
-            if (refunded) { op.t = '25% с заказа друга · отменено'; op.a = 0; op.cancel = true; }
-            else { op.t = '25% с заказа друга'; r.bonus += op.a; }
+            if (refunded) { op.t = '20% с заказа друга · отменено'; op.a = 0; op.cancel = true; }
+            else { op.t = '20% с заказа друга'; r.bonus += op.a; }
           }
         });
-        changed = true;
-      }
-      var u = d.users[o.userId];
-      if (u && u.invitedBy && !u.welcomePaid && !refunded) {
-        u.welcomePaid = true; u.bonus += 100;
-        addOp(u, { t: 'Подарок от друга за первую eSIM', d: PSA.d(now()) + ' · по приглашению', b: 'bonus', a: 100, kind: 'gift' });
         changed = true;
       }
     });
@@ -694,7 +688,7 @@
       x.fillText('Интернет в поездке', 96, 360); x.fillText('с первой минуты', 96, 466);
       x.fillStyle = '#E6ECFF'; x.font = '400 38px Onest, sans-serif';
       x.fillText('Наведите камеру телефона на QR-код —', 96, 548);
-      x.fillText('и получите 100 ₽ на первую eSIM', 96, 600);
+      x.fillText('и получите скидку 100 ₽ на первую eSIM', 96, 600);
       // Карточка с QR
       var cy = 680, cw = W - 192, ch = 900;
       x.save(); x.shadowColor = 'rgba(14,18,32,.28)'; x.shadowBlur = 60; x.shadowOffsetY = 24; x.fillStyle = '#FFFFFF'; rr(96, cy, cw, ch, 64); x.fill(); x.restore();
