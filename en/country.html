@@ -29,21 +29,21 @@
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <script>window.PS_LANG = "en"</script>
-<script src="../config.js?v=202610250134"></script>
-<script src="../assets/en/names.js?v=202610250134"></script>
-<script src="../assets/catalog.js?v=202610250134"></script>
+<script src="../config.js?v=202610250232"></script>
+<script src="../assets/en/names.js?v=202610250232"></script>
+<script src="../assets/catalog.js?v=202610250232"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="../assets/en/site.js?v=202610250134"></script>
-<script src="../assets/en/account.js?v=202610250134"></script>
-<link rel="stylesheet" href="../assets/account.css?v=202610250134">
-<script src="../assets/en/chat.js?v=202610250134" defer></script>
+<script src="../assets/en/site.js?v=202610250232"></script>
+<script src="../assets/en/account.js?v=202610250232"></script>
+<link rel="stylesheet" href="../assets/account.css?v=202610250232">
+<script src="../assets/en/chat.js?v=202610250232" defer></script>
 <script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/dc-runtime.js?v=202610250134"></script>
-<link rel="stylesheet" href="../assets/ui.css?v=202610250134">
-<script src="../assets/en/ui.js?v=202610250134"></script>
-<link rel="stylesheet" href="../assets/motion.css?v=202610250134">
-<script src="../assets/en/motion.js?v=202610250134" defer></script>
+<script src="../assets/dc-runtime.js?v=202610250232"></script>
+<link rel="stylesheet" href="../assets/ui.css?v=202610250232">
+<script src="../assets/en/ui.js?v=202610250232"></script>
+<link rel="stylesheet" href="../assets/motion.css?v=202610250232">
+<script src="../assets/en/motion.js?v=202610250232" defer></script>
 <script>(function () { var p = new URLSearchParams(location.search), c = p.get('c'), r = p.get('r'), u = c ? (PS.isRegion(c.toUpperCase()) ? '' : PS.dest(c)) : r && PS.isRegion(r.toUpperCase()) ? PS.dest(r) : ''; if (/^esim-/.test(u)) location.replace(u + location.hash); })()</script>
 </head>
 <body>
@@ -734,6 +734,27 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
             <div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">APN setup</dt><dd class="mono" style="margin: 0; font-weight: 500">Automatic</dd></div>
           </dl>
         </section>
+        <sc-if value="{{psGuide}}" hint-placeholder-val="{{ false }}">
+        <section aria-labelledby="guide-h" style="display: flex; flex-direction: column; gap: 24px">
+          <h2 id="guide-h" class="t-h2">{{psGuide.title}}</h2>
+          <sc-for list="{{psGuide.parts}}" as="g" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 10px">
+              <h3 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 600; letter-spacing: -0.01em">{{g.h}}</h3>
+              <sc-for list="{{g.p}}" as="x" hint-placeholder-count="2"><p style="margin: 0; font-size: 16px; line-height: 25px; color: #2B3142">{{x.t}}</p></sc-for>
+            </div>
+          </sc-for>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <h3 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 600; letter-spacing: -0.01em">{{psGuide.faqTitle}}</h3>
+            <sc-for list="{{psGuide.faq}}" as="f" hint-placeholder-count="4">
+              <div style="display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border-radius: 16px; background: #F5F6F9">
+                <b style="font-size: 16px; font-weight: 600">{{f.q}}</b>
+                <span style="font-size: 15px; line-height: 23px; color: #5A6175">{{f.a}}</span>
+              </div>
+            </sc-for>
+          </div>
+          <span style="font-size: 13px; color: #8C92A3">{{psGuide.updated}}</span>
+        </section>
+        </sc-if>
       </div>
 
       <!-- Правая колонка: итог -->
@@ -948,7 +969,7 @@ class Component extends (window.PSLogic || DCLogic) {
     const qDayOpts = Array.from({ length: 30 }, (_, k) => ({ v: String(k + 1), t: plural(k + 1) })).concat([45, 60, 90].map((d) => ({ v: String(d), t: plural(d) })));
     const selP = type === 'daily' ? { ...raw[si], days: plural(dn), daysShort: dn + ' DAYS', gb: raw[si].gb } : raw[si];
     const fmtGb = (x) => x < 1 ? Math.round(x * 1000) + ' MB' : (String(Math.round(x * 10) / 10).replace(',', '.') + ' GB');
-    return { psC: PSC, psLead: PSC.code === 'TR' ? 'Mobile internet in Istanbul, Antalya and across the country.' : 'Mobile internet ' + PSC.inn.replace(' ', '\u00a0') + ' — across the country.', psNetSp: PSC.net.replace('/', ' / '), psOps: (PSC.ops.length ? PSC.ops.slice(0, 2).join(' · ') : 'Local carriers').toUpperCase(), psOpsLong: PSC.ops.length ? PSC.ops.join(', ') : 'The best network is selected automatically', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psSave: type === 'daily' ? PS.dailySaveText(raw[si], dn) : '', psCheckout: PS.checkoutUrl(PSC.code, raw[si].code, type === 'daily' ? dn : 0), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Gigabytes per day' : 'Gigabytes and validity', qHint: type === 'daily' ? 'limit resets every 24 h' : 'total allowance for the trip',
+    return { psGuide: window.PS_GUIDE || null, psC: PSC, psLead: PSC.code === 'TR' ? 'Mobile internet in Istanbul, Antalya and across the country.' : 'Mobile internet ' + PSC.inn.replace(' ', '\u00a0') + ' — across the country.', psNetSp: PSC.net.replace('/', ' / '), psOps: (PSC.ops.length ? PSC.ops.slice(0, 2).join(' · ') : 'Local carriers').toUpperCase(), psOpsLong: PSC.ops.length ? PSC.ops.join(', ') : 'The best network is selected automatically', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psSave: type === 'daily' ? PS.dailySaveText(raw[si], dn) : '', psCheckout: PS.checkoutUrl(PSC.code, raw[si].code, type === 'daily' ? dn : 0), qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Gigabytes per day' : 'Gigabytes and validity', qHint: type === 'daily' ? 'limit resets every 24 h' : 'total allowance for the trip',
       onQType: (e) => this.setState({ type: e.target.value }),
       onQPkg: (e) => this.setState({ sel: { ...this.state.sel, [type]: parseInt(e.target.value, 10) || 0 } }),
       typeNote, pkCols: type === 'daily' ? 'repeat(3, minmax(0, 1fr))' : 'repeat(4, minmax(0, 1fr))', isDaily: type === 'daily', dCount: dn, dCountLabel: plural(dn), dTotal: fmtGb(raw[si].n * dn), dChips, qDays: String(dn), qDayOpts,
