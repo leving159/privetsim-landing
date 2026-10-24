@@ -195,7 +195,14 @@
   PS.daysWord = function (n) {
     return n + '\u00a0' + (n % 10 === 1 && n % 100 !== 11 ? 'день' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'дня' : 'дней'));
   };
-  PS.planPrice = function (code, t, n, d) { return t === 'daily' ? PS.priceDay(code, n) * d : PS.priceTotal(code, n, d); };
+  // Суточный тариф на d дней: цена дня × d со скидкой за срок (как у поставщика). Та же таблица — в apps/api/src/modules/pricing.ts
+  PS.DAILY_DISCOUNT = [[30, 82], [20, 85], [10, 89], [5, 92], [1, 96]];
+  PS.dailyTotal = function (dayPrice, d) {
+    var pc = 100;
+    for (var i = 0; i < PS.DAILY_DISCOUNT.length; i++) if (d >= PS.DAILY_DISCOUNT[i][0]) { pc = PS.DAILY_DISCOUNT[i][1]; break; }
+    return Math.round(dayPrice * d * pc / 100);
+  };
+  PS.planPrice = function (code, t, n, d) { return t === 'daily' ? PS.dailyTotal(PS.priceDay(code, n), d) : PS.priceTotal(code, n, d); };
   PS.checkoutUrl = function (code, t, n, d) { return 'checkout.html?c=' + code + '&t=' + t + '&n=' + n + '&d=' + d; };
   PS.order = function () {
     var code = (q('c') || 'TR').toUpperCase();
@@ -386,7 +393,7 @@
       var info = isReg ? PS.region(code) : PS.country(code);
       var f = PS.findPlan(info.code, q('pkg'));
       var d = f.t === 'daily' ? Math.min(90, Math.max(1, parseInt(q('d'), 10) || 10)) : parseInt(f.p.daysShort, 10);
-      var price = f.t === 'daily' ? f.p.price * d : f.p.price;
+      var price = f.t === 'daily' ? PS.dailyTotal(f.p.price, d) : f.p.price;
       return { code: info.code, isRegion: isReg, info: info, t: f.t, n: f.p.n, d: d, pkg: f.p.code, price: price, priceStr: PS.fmt(price),
         label: (f.t === 'daily' ? f.p.gb : f.p.gb) + ' · ' + PS.daysWord(d), back: PS.dest(info.code) };
     };
