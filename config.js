@@ -13,11 +13,14 @@ window.SITE_CONFIG = {
   // Бот для кнопок «Купить в Telegram»: t.me/<бот>?start=c_TR
   telegramBot: 'PrivetSimBot',
 
-  // Реквизиты продавца: строка в подвале и вкладка «Реквизиты» в документах
+  // Реквизиты продавца: строка в подвале, вкладка «Реквизиты» в документах, квитанции в кабинете.
+  // Российский продавец — inn и ogrn; иностранный — reg (регистрационный номер). en — для английской версии
   seller: {
-    name: '',    // 'ИП Иванов Иван Иванович'
+    name: 'Диджиталпэй ФЗЕ (Digitalpay FZE)',
     inn: '',
     ogrn: '',
-    address: ''
+    reg: '4309356',
+    address: 'Бизнес-центр, Свободная экономическая зона Шарджа Паблишинг Сити, Шарджа, ОАЭ',
+    en: { name: 'Digitalpay FZE', address: 'Business Centre, Sharjah Publishing City Free Zone, Sharjah, UAE' }
   }
 };

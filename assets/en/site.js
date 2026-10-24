@@ -490,8 +490,8 @@
   var PLACE = null;
   function norm(s) { return String(s || '').toLowerCase().replace(/ё/g, 'е').replace(/[ ‐-―‑\-_.,·«»"']/g, ' ').replace(/\s+/g, ' ').trim(); }
   // Набрали в английской раскладке: «nehwbz» → «турция»
-  var EN = 'qwertyuiop[]asdfghjkl;\'zxcvbnm,.`', RU = 'йцукенгшщзхъфывапролджэячсмитьбюё';
-  function swapLayout(s) { return String(s).toLowerCase().split('').map(function (ch) { var i = EN.indexOf(ch); return i < 0 ? ch : RU.charAt(i); }).join(''); }
+  var KB_EN = 'qwertyuiop[]asdfghjkl;\'zxcvbnm,.`', RU = 'йцукенгшщзхъфывапролджэячсмитьбюё';
+  function swapLayout(s) { return String(s).toLowerCase().split('').map(function (ch) { var i = KB_EN.indexOf(ch); return i < 0 ? ch : RU.charAt(i); }).join(''); }
   function places() {
     if (PLACE) return PLACE;
     PLACE = [];
@@ -570,15 +570,15 @@
   /* ---------- Реквизиты из config.js ---------- */
   PS.seller = function () {
     var s = (root.SITE_CONFIG && root.SITE_CONFIG.seller) || {};
-    return s;
+    return EN && s.en ? Object.assign({}, s, s.en) : s;
   };
   PS.sellerFields = function () {
     var s = PS.seller();
-    return { name: s.name || '[Sole proprietor full name]', inn: s.inn || '[INN]', ogrn: s.ogrn || '[OGRNIP]', address: s.address || '[Address]' };
+    return { name: s.name || '[Sole proprietor full name]', inn: s.inn || '[INN]', ogrn: s.ogrn || '[OGRNIP]', reg: s.reg || s.inn || '[number]', address: s.address || '[Address]' };
   };
   PS.sellerLine = function () {
     var s = PS.seller();
-    var parts = [s.name, s.inn && 'Taxpayer ID (INN) ' + s.inn, s.address].filter(Boolean);
+    var parts = [s.name, s.inn && 'Taxpayer ID (INN) ' + s.inn, s.reg && 'reg. No. ' + s.reg, s.address].filter(Boolean);
     return parts.length ? ' · ' + parts.join(', ') : '';
   };
 
