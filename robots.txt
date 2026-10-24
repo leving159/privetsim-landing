@@ -1,0 +1,25 @@
+User-agent: *
+Disallow: /checkout.html
+Disallow: /en/checkout.html
+Disallow: /payment.html
+Disallow: /en/payment.html
+Disallow: /order.html
+Disallow: /en/order.html
+Disallow: /login.html
+Disallow: /en/login.html
+Disallow: /account.html
+Disallow: /en/account.html
+Disallow: /esim.html
+Disallow: /en/esim.html
+Disallow: /wallet.html
+Disallow: /en/wallet.html
+Disallow: /profile.html
+Disallow: /en/profile.html
+Disallow: /referral.html
+Disallow: /en/referral.html
+Disallow: /payments.html
+Disallow: /en/payments.html
+Disallow: /menu.html
+Disallow: /en/menu.html
+
+Sitemap: https://privetsim.net/sitemap.xml

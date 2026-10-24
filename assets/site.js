@@ -138,7 +138,8 @@
   PS.priceDay = function (code, n) { return round10(PS.base(code) * (0.16 + 0.12 * Math.pow(n, 0.8))); };
 
   /* ---------- Текущее направление страницы (?c=TR или ?r=EU) ---------- */
-  function q(k) { try { return new URLSearchParams(root.location.search).get(k); } catch (e) { return null; } }
+  // На статической странице направления (esim-turkey.html) код задан в самой странице: PS_DEST = { c: 'TR' }
+  function q(k) { var d = root.PS_DEST; if (d && d[k]) return d[k]; try { return new URLSearchParams(root.location.search).get(k); } catch (e) { return null; } }
   PS.country = function (code) {
     code = (code || q('c') || 'TR').toUpperCase();
     var c = C[code] || C.TR;
@@ -558,6 +559,9 @@
   PS.dest = function (code) {
     if (!code) return 'countries.html';
     code = code.toUpperCase();
+    // Своя страница у каждого направления из каталога (адреса — tools/build-site.mjs, в catalog.js)
+    var slug = root.PS_SLUGS && root.PS_SLUGS[RALIAS[code] || code];
+    if (slug) return 'esim-' + slug + '.html';
     if (code === 'EU' || PS.isRegion(code)) return 'region.html?r=' + (RALIAS[code] || code);
     return 'country.html?c=' + code;
   };

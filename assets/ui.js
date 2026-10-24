@@ -278,7 +278,7 @@
     var box = sugBox();
     input.setAttribute('aria-controls', 'ps-sug'); input.setAttribute('aria-autocomplete', 'list');
     if (!sugItems.length) {
-      box.innerHTML = '<div class="ps-sug-none">Не нашли «' + esc(q) + '». <a href="countries.html?q=' + encodeURIComponent(q) + '">Все страны</a> или <a href="region.html?r=GL">eSIM «Весь мир»</a></div>';
+      box.innerHTML = '<div class="ps-sug-none">Не нашли «' + esc(q) + '». <a href="countries.html?q=' + encodeURIComponent(q) + '">Все страны</a> или <a href="' + PS.dest('GL') + '">eSIM «Весь мир»</a></div>';
     } else {
       box.innerHTML = sugItems.map(function (x, i) {
         var ico = x.flag ? '<img src="' + esc(x.flag) + '" alt="">' : '<span class="ps-sug-g" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>';
