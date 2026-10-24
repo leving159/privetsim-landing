@@ -10,6 +10,31 @@
   'use strict';
   var PS = root.PS = root.PS || {};
 
+  /* ---------- Язык: русская версия в корне, английская — в /en/ (собирает tools/build-site.mjs) ---------- */
+  PS.lang = root.PS_LANG === 'en' ? 'en' : 'ru';
+  var EN = PS.lang === 'en';
+  // Тот же адрес на другом языке
+  PS.langUrl = function (to) {
+    var l = root.location, p = l.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
+    return (to === 'en' ? '/en' : '') + p + l.search + l.hash;
+  };
+  // Выбор запоминается в браузере и в аккаунте (оттуда его берут письма, бот и Mini App)
+  PS.switchLang = function (to) {
+    try { root.localStorage.setItem('ps.lang', to); } catch (e) { /* приватный режим */ }
+    var go = function () { root.location.href = PS.langUrl(to); };
+    var r = root.PSA && root.PSA.authed && root.PSA.authed() ? root.PSA.setSettings({ lang: to }) : null;
+    if (r && r.then) { r.then(go, go); setTimeout(go, 1500); } else go();
+  };
+  // Множественное число: в английском только «1 — остальные»
+  PS.plural = function (n, one, few, many) {
+    if (EN) return n === 1 ? one : many;
+    return n % 10 === 1 && n % 100 !== 11 ? one : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? few : many);
+  };
+  PS.dec = function (n) { return EN ? String(n) : String(n).replace('.', ','); };
+  // Названия стран и регионов по-английски: код → [название, с артиклем] (assets/en/names.js)
+  var NAMES = EN ? root.PS_EN_NAMES || {} : null;
+  PS.enName = function (code, the) { var n = NAMES && NAMES[code]; return n ? n[the ? 1 : 0] : null; };
+
   /* ---------- Страны каталога (как в макете «Все страны») ---------- */
   // код: [название, «для …», «в …» (где), «в …» (куда), сеть, цена «от» (1 ГБ / 7 дней), регион, фото, подпись фото]
   var C = {
@@ -202,6 +227,19 @@
   /* ============ Каталог поставщика (assets/catalog.js ← tools/sync-catalog.mjs) ============ */
   // Когда каталог загружен, цены, тарифы, страны и регионы берутся из него.
   var CAT = root.PS_CATALOG;
+  // Английская версия: названия из каталога (он по-русски, как в API) — по коду страны
+  function enCat(cat) {
+    if (!EN || !cat || cat.en) return cat;
+    Object.keys(cat.countries || {}).forEach(function (c) { var n = PS.enName(c); if (n) cat.countries[c].name = n; });
+    Object.keys(cat.regions || {}).forEach(function (c) {
+      var r = cat.regions[c], n = PS.enName(c), g = PS.enName(c, true);
+      if (n) { r.name = n; r.gen = g; }
+      (r.countries || []).forEach(function (x) { x[1] = PS.enName(x[0]) || x[1]; });
+    });
+    cat.en = true;
+    return cat;
+  }
+  CAT = enCat(CAT);
   var CONT = { Europe: 'EU', Asia: 'XA', Africa: 'XF', 'North America': 'XN', 'South America': 'XL', Oceania: 'XO' };
   var ME_CODES = ' AE SA QA KW OM BH JO IL IQ IR LB YE SY PS ';
   var CA_CODES = ' AM GE AZ KZ UZ KG TJ TM ';
@@ -371,7 +409,7 @@
   // Страница рисуется сразу по снимку assets/catalog.js, свежие цены подставляются без перезагрузки
   PS.setCatalog = function (cat) {
     if (!cat || !cat.countries || !CAT) return false;
-    CAT = root.PS_CATALOG = cat;
+    CAT = root.PS_CATALOG = enCat(cat);
     PS.TOTAL = Math.floor(Object.keys(cat.countries).length / 10) * 10;
     if (cat.meta && (cat.meta.usdtRate || cat.meta.usdRub)) PS.USDT_RATE = Math.round((cat.meta.usdtRate || cat.meta.usdRub) * 100) / 100;
     return true;
@@ -564,6 +602,35 @@
       var a = e.target.parentElement && e.target.parentElement.querySelector('a[href="countries.html"]');
       if (a) { e.preventDefault(); searchGo(e.target); }
     });
+  }
+
+  /* ---------- Английская версия: названия и предлоги по коду направления ---------- */
+  if (EN) {
+    var the = function (o) {
+      var n = PS.enName(o.code), g = PS.enName(o.code, true);
+      if (n) { o.name = n; o.alt = n; }
+      if (g) { o.gen = g; o.inn = 'in\u00a0' + g; o.to = 'to\u00a0' + g; }
+      return o;
+    };
+    var countryRu = PS.country, regionRu = PS.region, successRu = PS.successC;
+    PS.country = function (code) { return the(countryRu(code)); };
+    PS.region = function (code) {
+      var o = regionRu(code), n = PS.enName(o.code), g = PS.enName(o.code, true);
+      if (n) { o.name = n; o.gen = g; }
+      o.list = o.list.map(function (x) { return [x[0], PS.enName(x[0]) || x[1], x[2]]; });
+      return o;
+    };
+    PS.successC = function (code) {
+      var o = successRu(code);
+      if (!o) return o;
+      var c = PS.isRegion(String(code).toUpperCase()) ? null : String(code).toUpperCase(), r = c ? null : PS.regionCode(String(code).toUpperCase());
+      var n = PS.enName(c || r), g = PS.enName(c || r, true);
+      if (n) o.name = n;
+      if (g) { o.for = 'for\u00a0' + g; if (c) { o.to = 'to\u00a0' + g; o.in = 'in\u00a0' + g; } }
+      return o;
+    };
+    var cNameRu = PS.cName;
+    PS.cName = function (code) { return PS.enName(code) || cNameRu(code); };
   }
 
   // Runtime не перечитывает страницу сетевым запросом — шаблон уже в документе

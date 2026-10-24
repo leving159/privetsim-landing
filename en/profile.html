@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Profile — Privet SIM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Travel eSIM for 190+ countries: mobile internet abroad without roaming, prices in rubles, set up in 2 minutes.">
+<script>try{var l=localStorage.getItem('ps.lang'),e=/^\/en(\/|$)/.test(location.pathname);if(l==='en'&&!e||l==='ru'&&e)location.replace((l==='en'?'/en':'')+(location.pathname.replace(/^\/en(?=\/|$)/,'')||'/')+location.search+location.hash)}catch(x){}</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Privet SIM">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Profile — Privet SIM">
+<meta property="og:description" content="Travel eSIM for 190+ countries: mobile internet abroad without roaming, prices in rubles, set up in 2 minutes.">
+<meta property="og:url" content="https://privetsim.net/en/profile.html">
+<meta property="og:image" content="https://privetsim.net/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Privet SIM — travel eSIM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Profile — Privet SIM">
+<meta name="twitter:description" content="Travel eSIM for 190+ countries: mobile internet abroad without roaming, prices in rubles, set up in 2 minutes.">
+<meta name="twitter:image" content="https://privetsim.net/assets/og.jpg">
+<meta name="apple-mobile-web-app-title" content="Privet SIM">
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://bot.privetsim.net" crossorigin>
+<link rel="preload" href="../assets/fonts/9b1449528242.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<script>window.PS_LANG = "en"</script>
+<script src="../config.js?v=202610241254"></script>
+<script src="../assets/en/names.js?v=202610241254"></script>
+<script src="../assets/catalog.js?v=202610241254"></script>
+<script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
+<script src="../assets/en/site.js?v=202610241254"></script>
+<script src="../assets/en/account.js?v=202610241254"></script>
+<script>PSA.guard()</script>
+<link rel="stylesheet" href="../assets/account.css?v=202610241254">
+<script src="../assets/en/chat.js?v=202610241254" defer></script>
+<script src="../assets/vendor/react.production.min.js"></script>
+<script src="../assets/vendor/react-dom.production.min.js"></script>
+<script src="../assets/dc-runtime.js?v=202610241254"></script>
+<link rel="stylesheet" href="../assets/ui.css?v=202610241254">
+<script src="../assets/en/ui.js?v=202610241254"></script>
+<link rel="stylesheet" href="../assets/motion.css?v=202610241254">
+<script src="../assets/en/motion.js?v=202610241254" defer></script>
+</head>
+<body>
+<x-dc><noscript data-tpl>
+<helmet>
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/5562e9683b0f.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/676ac43d8546.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/4a2cce2eb437.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/3d2f77ff5932.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/7eed183e419e.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/340e696a9550.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/5562e9683b0f.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/676ac43d8546.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/4a2cce2eb437.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/3d2f77ff5932.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/7eed183e419e.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/340e696a9550.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/310002a221c6.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/9b1449528242.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* math */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/767cb74d6020.woff2") format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-209F, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/1f418388ee20.woff2") format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AE, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F8D0-1F8D8, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FAC6, U+1FAC8, U+1FACC-1FADD, U+1FADF-1FAEB, U+1FAEF-1FAFA, U+1FB00-1FBFF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/576e2f6b7daa.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/2e84fbcabaef.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/324d4be3f27a.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/310002a221c6.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/9b1449528242.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* math */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/767cb74d6020.woff2") format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-209F, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/1f418388ee20.woff2") format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AE, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F8D0-1F8D8, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FAC6, U+1FAC8, U+1FACC-1FADD, U+1FADF-1FAEB, U+1FAEF-1FAFA, U+1FB00-1FBFF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/576e2f6b7daa.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/2e84fbcabaef.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/324d4be3f27a.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/310002a221c6.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/9b1449528242.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* math */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/767cb74d6020.woff2") format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-209F, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/1f418388ee20.woff2") format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AE, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F8D0-1F8D8, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FAC6, U+1FAC8, U+1FACC-1FADD, U+1FADF-1FAEB, U+1FAEF-1FAFA, U+1FB00-1FBFF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/576e2f6b7daa.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/2e84fbcabaef.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/324d4be3f27a.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/310002a221c6.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/9b1449528242.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* math */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/767cb74d6020.woff2") format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-209F, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/1f418388ee20.woff2") format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AE, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F8D0-1F8D8, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FAC6, U+1FAC8, U+1FACC-1FADD, U+1FADF-1FAEB, U+1FAEF-1FAFA, U+1FB00-1FBFF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/576e2f6b7daa.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/2e84fbcabaef.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/324d4be3f27a.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;background:#F5F6F9;color:#0E1220;font-family:'Onest',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#2F5BFF}a:hover{color:#1F45D6}
+.mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:999px;border:0;font:600 15px/1 'Onest',system-ui,sans-serif;cursor:pointer;transition:background-color .16s cubic-bezier(.2,.8,.2,1),color .16s;text-decoration:none;white-space:nowrap}
+.btn:focus-visible{outline:3px solid rgba(47,91,255,.35);outline-offset:2px}
+.btn-sm{height:40px;padding:0 16px;font-size:14px}
+.btn-primary{background:#2F5BFF;color:#FFFFFF}.btn-primary:hover{background:#1F45D6;color:#FFFFFF}
+.btn-secondary{background:#F2F5FF;color:#1F45D6}.btn-secondary:hover{background:#E6ECFF;color:#1F45D6}
+.btn-ghost{background:#FFFFFF;color:#0E1220;box-shadow:inset 0 0 0 1px #E3E6ED}.btn-ghost:hover{background:#F5F6F9;color:#0E1220}
+.btn-danger{background:#FDEBEC;color:#C62F35}.btn-danger:hover{background:#F9D6D8;color:#A8262B}
+.btn-danger-solid{background:#C62F35;color:#FFFFFF}.btn-danger-solid:hover{background:#A8262B;color:#FFFFFF}
+.side a{display:flex;align-items:center;gap:12px;height:48px;padding:0 16px;border-radius:14px;color:#2B3142;text-decoration:none;font-size:15px;font-weight:500;transition:background-color .16s}
+.side a:hover{background:#EDEFF3;color:#0E1220}
+.side a.on{background:#FFFFFF;color:#0E1220;font-weight:600;box-shadow:0 1px 2px rgba(14,18,32,0.06)}
+.card{padding:28px;border-radius:28px;background:#FFFFFF;display:flex;flex-direction:column;gap:20px}
+.rowx{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid #EDEFF3}
+.sw{width:44px;height:26px;border-radius:999px;border:0;position:relative;cursor:pointer;flex:none;padding:0}
+.sw:focus-visible{outline:3px solid rgba(47,91,255,.35);outline-offset:2px}
+@media (max-width:899px){.side{flex-direction:row !important;overflow-x:auto}.side a{white-space:nowrap}}
+@media (max-width:767px){.wrap{padding:0 16px}}
+/* движение */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+main>*{animation:fadeUp .7s cubic-bezier(.2,.8,.2,1) both}
+main>*:nth-child(2){animation-delay:.08s}main>*:nth-child(3){animation-delay:.16s}main>*:nth-child(4){animation-delay:.24s}
+[role=status],[role=alertdialog]{animation:fadeUp .3s cubic-bezier(.2,.8,.2,1) both}
+.sw span{transition:left .25s cubic-bezier(.2,.8,.2,1)}
+.sw{transition:background-color .25s}
+.btn{transition:background-color .16s,color .16s,transform .2s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.98)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+
+.nt-head{display:inline-flex;gap:14px;font:600 12px/1 'Onest',sans-serif;color:#5A6175}
+.nt-head span{width:46px;text-align:center}
+.nt-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid #EDEFF3}
+.nt-sw{display:inline-flex;gap:14px;flex:none}
+.nt-opt{height:30px;padding:0 12px;border:0;border-radius:999px;cursor:pointer;font:600 12px/1 'Onest',system-ui,sans-serif}
+/* ———— Чат поддержки (виджет) ———— */
+.cw{position:fixed;right:24px;bottom:24px;z-index:60;font-family:'Onest',ui-sans-serif,system-ui,sans-serif;color:#0E1220}
+.cw>summary{list-style:none;cursor:pointer;position:relative;display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 20px 0 16px;border-radius:999px;background:#2F5BFF;color:#FFFFFF;font:600 15px/1 'Onest',system-ui,sans-serif;box-shadow:0 16px 36px rgba(47,91,255,.35);transition:transform .2s cubic-bezier(.2,.8,.2,1),background-color .16s;float:right}
+.cw>summary::-webkit-details-marker{display:none}
+.cw>summary:hover{background:#1F45D6;transform:translateY(-2px)}
+.cw-x{display:none}
+.cw[open]>summary{width:56px;padding:0;justify-content:center;background:#0E1220}
+.cw[open] .cw-i,.cw[open] .cw-l,.cw[open] .cw-dot{display:none}
+.cw[open] .cw-x{display:block}
+.cw-dot{position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:#FF7A45;box-shadow:0 0 0 3px #FFFFFF}
+@keyframes cwIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.cw-pop{position:absolute;right:0;bottom:72px;width:380px;height:560px;max-height:calc(100vh - 110px);display:flex;flex-direction:column;border-radius:28px;background:#FFFFFF;box-shadow:0 30px 80px rgba(14,18,32,.22),0 0 0 1px #EDEFF3;overflow:hidden;transform-origin:bottom right;animation:cwIn .3s cubic-bezier(.2,.8,.2,1) both}
+.cw-hd{display:flex;align-items:center;gap:12px;padding:18px 20px;background:linear-gradient(135deg,#2F5BFF,#6A4CF5);color:#FFFFFF}
+.cw-avs{display:flex}
+.cw-avs span{width:36px;height:36px;border-radius:50%;box-shadow:0 0 0 2px #4A47F0;display:inline-flex;align-items:center;justify-content:center;font:600 13px/1 'Onest',sans-serif;color:#0E1220}
+.cw-avs span+span{margin-left:-10px}
+.cw-on{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3DDC84;margin-right:6px;box-shadow:0 0 0 3px rgba(61,220,132,.25)}
+.cw-bd{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:18px 18px 14px;background:#F5F6F9}
+.cw-go{position:absolute;opacity:0;pointer-events:none}
+.cw-s2{display:none}
+.cw-go:checked~.cw-s1{display:none}
+.cw-go:checked~.cw-s2{display:flex}
+.cw-m{max-width:84%;padding:10px 14px;border-radius:18px;font-size:14px;line-height:20px}
+.cw-op{align-self:flex-start;background:#FFFFFF;border-bottom-left-radius:6px;box-shadow:0 1px 2px rgba(14,18,32,.05)}
+.cw-me{align-self:flex-end;background:#2F5BFF;color:#FFFFFF;border-bottom-right-radius:6px}
+.cw-meta{font-size:11px;color:#8C92A3}
+.cw-sys{align-self:center;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#E4F5EA;color:#0B5C2E;font-size:12px;font-weight:500}
+.cw-in{min-width:0;box-sizing:border-box;display:flex;align-items:center;gap:8px;height:48px;padding:0 6px 0 16px;border-radius:999px;background:#FFFFFF;box-shadow:inset 0 0 0 1px #E3E6ED}
+.cw-in input{flex:1;min-width:0;border:0;outline:none;background:transparent;font:400 15px/20px 'Onest',system-ui,sans-serif;color:#0E1220}
+.cw-send{width:36px;height:36px;border-radius:50%;border:0;background:#2F5BFF;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+.cw-btn{display:flex;align-items:center;justify-content:center;height:48px;border-radius:999px;background:#2F5BFF;color:#FFFFFF;font:600 15px/1 'Onest',system-ui,sans-serif;cursor:pointer;transition:background-color .16s}
+.cw-btn:hover{background:#1F45D6}
+.cw-q{display:flex;flex-wrap:wrap;gap:6px}
+.cw-q span{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#FFFFFF;box-shadow:inset 0 0 0 1px #E3E6ED;font-size:13px;font-weight:500;color:#1F45D6;cursor:pointer}
+.cw-ft{display:flex;align-items:center;gap:8px;padding:12px 14px;border-top:1px solid #EDEFF3;background:#FFFFFF}
+.cw-ic{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#5A6175;flex:none}
+@keyframes cwType{0%,60%,100%{opacity:.25;transform:none}30%{opacity:1;transform:translateY(-2px)}}
+.cw-typ{display:inline-flex;gap:4px;padding:12px 14px}
+.cw-typ i{width:6px;height:6px;border-radius:50%;background:#8C92A3;animation:cwType 1.2s infinite}
+.cw-typ i:nth-child(2){animation-delay:.15s}.cw-typ i:nth-child(3){animation-delay:.3s}
+@media (max-width:599px){.cw{right:16px;bottom:16px}.cw-pop{position:fixed;inset:12px 12px 84px;width:auto;max-height:none}.cw-l{display:none}.cw>summary{width:56px;padding:0;justify-content:center}}
+/* ———— Общая шапка и подвал (единые для всех страниц) ———— */
+.sh{position:sticky;top:0;z-index:30;padding:12px 16px 0}
+.sh-in{max-width:1200px;margin:0 auto;height:64px;padding:0 12px 0 20px;border-radius:20px;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border:1px solid #EDEFF3;box-shadow:0 10px 30px rgba(14,18,32,.06);display:flex;align-items:center;justify-content:space-between;gap:24px;box-sizing:border-box}
+.sh-logo{display:flex;align-items:center;gap:10px;color:#0E1220;text-decoration:none;flex:none}
+.sh-logo:hover{color:#0E1220}
+.sh-desc{font-size:12px;line-height:15px;color:#5A6175;white-space:nowrap}
+.sh-sep{width:1px;height:28px;background:#E3E6ED;margin-left:4px}
+.sh-nav{display:flex;gap:28px;font:500 15px/1 'Onest',system-ui,sans-serif}
+.sh-nav a{color:#2B3142;text-decoration:none;padding:8px 0;position:relative;transition:color .16s}
+.sh-nav a:hover{color:#2F5BFF}
+.sh-nav a.on{color:#0E1220;font-weight:600}
+.sh-nav a.on::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:#2F5BFF}
+.sh-act{display:flex;gap:8px;align-items:center;flex:none}
+.sh-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:0;font:600 14px/1 'Onest',system-ui,sans-serif;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .16s,color .16s,transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s;box-sizing:border-box}
+.sh-btn:hover{transform:translateY(-1px)}
+.sh-pri{background:#2F5BFF;color:#FFFFFF}.sh-pri:hover{background:#1F45D6;color:#FFFFFF;box-shadow:0 10px 24px rgba(47,91,255,.28)}
+.sh-gho{background:#FFFFFF;color:#0E1220;box-shadow:inset 0 0 0 1px #E3E6ED}.sh-gho:hover{background:#F5F6F9;color:#0E1220}
+.sh-ava{position:relative;width:40px;height:40px;border-radius:50%;background:#E6ECFF;color:#1F45D6;display:inline-flex;align-items:center;justify-content:center;font:600 15px/1 'Onest',system-ui,sans-serif;text-decoration:none;flex:none}
+.sh-ava:hover{color:#1F45D6}
+.sh-burger{display:none;width:40px;padding:0}
+.sf{background:#FFFFFF;border-top:1px solid #EDEFF3;padding:64px 0 0;overflow:hidden;font-family:'Onest',ui-sans-serif,system-ui,sans-serif;color:#0E1220}
+.sf-w{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:56px;box-sizing:border-box}
+.sf-mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#5A6175}
+.sf-col{display:flex;flex-direction:column;gap:12px;font-size:15px}
+.sf-col a{color:#2B3142;text-decoration:none;transition:color .16s}.sf-col a:hover{color:#2F5BFF}
+.sf-pay{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:10px;background:#FFFFFF;font-size:13px;font-weight:500;color:#2B3142}
+.sf-line{margin-top:-16px;padding-bottom:40px}.sf-line svg{display:block;width:100%;height:auto;overflow:visible}@keyframes sfDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}.sf-draw{stroke-dasharray:1;animation:sfDraw 2.4s cubic-bezier(.2,.8,.2,1) both}@keyframes sfFlow{to{stroke-dashoffset:-56}}.sf-flow{animation:sfFlow 2.4s linear infinite}@keyframes sfPulse{0%{transform:scale(1);opacity:.45}100%{transform:scale(3);opacity:0}}.sf-pulse{transform-box:fill-box;transform-origin:center;animation:sfPulse 2.4s ease-out infinite}
+@media (max-width:899px){.sh-nav{display:none !important}.sh-hm{display:none !important}.sh-burger{display:inline-flex}}
+@media (max-width:767px){.sf-w{padding:0 16px}}
+
+/* ———— Типографика: без висячих строк ———— */
+body{text-wrap:pretty}
+h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
+
+.xm-back{position:fixed;inset:0;z-index:120;background:rgba(14,18,32,.55);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;padding:96px 24px 24px;box-sizing:border-box}
+.xm{width:100%;max-width:480px;background:#FFFFFF;border-radius:28px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px;box-shadow:0 24px 64px rgba(14,18,32,.24);font-family:'Onest',system-ui,sans-serif;color:#0E1220}
+.xm-h{display:flex;align-items:flex-start;gap:14px}
+.xm-h b{flex:1;font-size:22px;line-height:28px;font-weight:600;letter-spacing:-0.02em}
+.xm-x{width:40px;height:40px;border-radius:50%;border:0;background:#F5F6F9;color:#0E1220;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+.xm-kv{display:flex;flex-direction:column;border-top:1px solid #EDEFF3}
+.xm-kv div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #EDEFF3;font-size:14px;line-height:20px}
+.xm-kv span{color:#5A6175}.xm-kv b{font-weight:500;text-align:right}
+.xm-btns{display:flex;flex-wrap:wrap;gap:8px}
+.xm-b{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 22px;border-radius:999px;border:0;font:600 15px/1 'Onest',system-ui,sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap;box-sizing:border-box;flex:1}
+.xm-pri{background:#2F5BFF;color:#FFFFFF}.xm-pri:hover{background:#1F45D6;color:#FFFFFF}
+.xm-gho{background:#FFFFFF;color:#0E1220;box-shadow:inset 0 0 0 1px #E3E6ED}.xm-gho:hover{background:#F5F6F9;color:#0E1220}
+.xm-note{padding:12px 14px;border-radius:14px;background:#F5F6F9;color:#5A6175;font-size:13px;line-height:19px}
+.xm-toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%);z-index:130;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px 0 16px;border-radius:999px;background:#0E1220;color:#FFFFFF;font:500 14px/1 'Onest',system-ui,sans-serif;box-shadow:0 12px 32px rgba(14,18,32,.24);white-space:nowrap}
+</style>
+</helmet>
+<div style="background: #F5F6F9; ">
+  <!-- Шапка (единая) -->
+  <header class="sh">
+    <div class="sh-in">
+      <a class="sh-logo" href="index.html" aria-label="Privet SIM — home"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Privet</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">Travel eSIM<br>in 200+ countries</span></a>
+      <nav class="sh-nav" aria-label="Main"><a href="countries.html">Countries</a><a href="index.html#how">How it works</a><a href="compatibility.html">Compatibility</a><a href="help.html">Help</a></nav>
+      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="ru" lang="ru" aria-label="{{langAria}}" title="Русский" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><sc-if value="{{psChip}}" hint-placeholder-val="{{ true }}"><a class="sh-btn sh-gho sh-hm" href="{{psChipHref}}" aria-label="{{psChipAria}}" style="gap: 10px; padding: 0 14px 0 8px"><img loading="lazy" decoding="async" src="{{psChipFlag}}" alt="" style="width: 24px; height: 24px"><span style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; line-height: 1">{{psChipText}}</span><span style="width: 64px; height: 4px; border-radius: 999px; background: #EDEFF3; overflow: hidden"><span style="display: block; width: {{psChipW}}; height: 100%; border-radius: 999px; background: #2F5BFF"></span></span></span></a></sc-if><a class="sh-btn sh-pri" href="countries.html">Buy eSIM</a><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ true }}"><a class="sh-ava sh-hm" href="profile.html" aria-label="{{psAvaAria}}">{{psAva}}<span aria-hidden="true" style="position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border-radius: 50%; background: #0B7A3E; box-shadow: 0 0 0 2px #FFFFFF"></span></a></sc-if><sc-if value="{{psGuest}}" hint-placeholder-val="{{ false }}"><a class="sh-btn sh-gho sh-hm" href="login.html">Log in</a></sc-if><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Open menu"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
+    </div>
+  </header>
+
+  <div class="wrap" style="padding-top: 40px; padding-bottom: 120px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+    <nav class="side" aria-label="Account" style="flex: 1 1 220px; max-width: 100%; display: flex; flex-direction: column; gap: 4px">
+      <a href="account.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path><rect x="9" y="11" width="6" height="6" rx="1"></rect></svg>My eSIMs</a>
+      <a href="wallet.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h11v4"></path><path d="M4 7v11a2 2 0 0 0 2 2h14V9H6a2 2 0 0 1-2-2z"></path><path d="M16 14.5h1"></path></svg>Balance<span class="mono" style="margin-left: auto; font-size: 12px; font-weight: 500; color: #5A6175">{{psBal}}</span></a>
+      <a class="on" href="profile.html" aria-current="page"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+      <a href="referral.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1"></rect><path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-3-5-3.5-5-1.5S10 8 12 8zM12 8c1.5-3 5-3.5 5-1.5S14 8 12 8z"></path></svg><span style="white-space: nowrap">Invite friends</span><span style="margin-left: auto; flex: none; white-space: nowrap; height: 22px; padding: 0 7px; border-radius: 8px; background: #FF7A45; color: #0E1220; font: 600 12px/22px 'Onest', system-ui, sans-serif">20%</span></a>
+      <a href="#chat"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"></path></svg>Support</a>
+      <a href="legal.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg>Documents</a>
+      <a href="login.html?logout=1"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4v16h-4"></path><path d="M10 8l-4 4 4 4M6 12h10"></path></svg>Log out</a>
+    </nav>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+      <h1 style="margin: 0; font-size: clamp(30px, 3.4vw, 40px); line-height: 1.15; letter-spacing: -0.025em; font-weight: 600">Profile</h1>
+
+      <section class="card" aria-labelledby="p-contacts">
+        <h2 id="p-contacts" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Contacts</h2>
+        <sc-if value="{{viewEmail}}" hint-placeholder-val="{{ true }}">
+          <div class="rowx">
+            <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 13px; color: #5A6175">Email for eSIMs and receipts</span><span style="font-size: 16px; font-weight: 500">{{email}}</span></div>
+            <button class="btn btn-ghost btn-sm" type="button" sc-camel-on-click="{{startEdit}}">Change</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{editEmail}}" hint-placeholder-val="{{ false }}">
+          <div class="rowx" style="align-items: flex-start">
+            <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 8px">
+              <label for="p-email" style="font-size: 14px; font-weight: 500">New email</label>
+              <input id="p-email" type="email" value="{{draft}}" sc-camel-on-change="{{onDraft}}" aria-invalid="{{dInvalid}}" style="height: 56px; box-sizing: border-box; border-radius: 16px; border: 1px solid {{dBorder}}; background: {{dBg}}; padding: 0 16px; font: 400 16px/24px 'Onest', system-ui, sans-serif; color: #0E1220; outline: none">
+              <sc-if value="{{hasDErr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; color: #C62F35">{{dErr}}</span></sc-if>
+              <span style="font-size: 13px; color: #5A6175">We'll send a confirmation code to the new address</span>
+            </div>
+            <div style="display: flex; gap: 8px; padding-top: 28px">
+              <button class="btn btn-ghost" type="button" sc-camel-on-click="{{cancelEdit}}">Cancel</button>
+              <button class="btn btn-primary" type="button" sc-camel-on-click="{{saveEmail}}">Save</button>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{codeEmail}}" hint-placeholder-val="{{ false }}">
+          <div class="rowx" style="align-items: flex-start">
+            <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 8px">
+              <span style="font-size: 16px; font-weight: 600">Confirm your new email</span>
+              <span style="font-size: 14px; line-height: 21px; color: #5A6175">We sent a code to  <b style="color: #0E1220; font-weight: 600">{{pending}}</b>. Until you confirm, eSIMs and receipts go to the old address.<sc-if value="{{hasDemo}}" hint-placeholder-val="{{ false }}">  Demo mode, code:  <span class="mono">{{demoCode}}</span></sc-if></span>
+              <input id="p-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="{{code}}" sc-camel-on-change="{{onCode}}" placeholder="••••••" aria-label="Code from the email" style="height: 56px; box-sizing: border-box; border-radius: 16px; border: 1px solid {{cBorder}}; background: #FFFFFF; padding: 0 16px; font: 500 22px/1 'JetBrains Mono', monospace; letter-spacing: .4em; color: #0E1220; outline: none; width: 100%; max-width: 260px">
+              <sc-if value="{{hasCErr}}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size: 13px; color: #C62F35">{{cErr}}</span></sc-if>
+            </div>
+            <div style="display: flex; gap: 8px; padding-top: 28px">
+              <button class="btn btn-ghost" type="button" sc-camel-on-click="{{cancelCode}}">Cancel</button>
+              <button class="btn btn-primary" type="button" sc-camel-on-click="{{confirmCode}}">Confirm</button>
+            </div>
+          </div>
+        </sc-if>
+        <div class="rowx">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 40px; height: 40px; border-radius: 50%; background: #0E1220; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4L3 11l6 2.5L11.5 20 15 15l4 3z"></path><path d="M9 13.5L21 4"></path></svg></span>
+            <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 500">Telegram</span><span style="font-size: 13px; color: {{tgColor}}">{{tgText}}</span></div>
+          </div>
+          <button class="btn btn-sm {{tgBtnClass}}" type="button" sc-camel-on-click="{{toggleTg}}">{{tgBtn}}</button>
+        </div>
+        <div class="rowx">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span aria-hidden="true" title="Official Google logo from the brand guidelines" style="width: 40px; height: 40px; border-radius: 50%; background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #E3E6ED; display: inline-flex; align-items: center; justify-content: center; font: 700 16px/1 'Onest', sans-serif; color: #5A6175">G</span>
+            <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 500">Google</span><span style="font-size: 13px; color: {{gColor}}">{{gText}}</span></div>
+          </div>
+          <button class="btn btn-sm {{gBtnClass}}" type="button" sc-camel-on-click="{{toggleG}}">{{gBtn}}</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="p-pref">
+        <h2 id="p-pref" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Settings</h2>
+        <div class="rowx">
+          <span style="font-size: 16px; font-weight: 500">Language</span>
+          <div role="radiogroup" aria-label="Language" style="display: inline-flex; padding: 4px; border-radius: 999px; background: #F5F6F9; gap: 4px">
+            <sc-for list="{{langs}}" as="l" hint-placeholder-count="2">
+              <button type="button" role="radio" aria-checked="{{l.on}}" sc-camel-on-click="{{l.pick}}" style="height: 36px; padding: 0 16px; border-radius: 999px; border: 0; cursor: pointer; font: 600 14px/1 'Onest', system-ui, sans-serif; background: {{l.bg}}; color: {{l.fg}}; box-shadow: {{l.sh}}">{{l.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div class="rowx">
+          <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px; font-weight: 500">Email and newsletter language</span><span style="font-size: 13px; color: #5A6175">Order emails, notifications and newsletters</span></span>
+          <div role="radiogroup" aria-label="Email and newsletter language" style="display: inline-flex; padding: 4px; border-radius: 999px; background: #F5F6F9; gap: 4px">
+            <sc-for list="{{mlangs}}" as="l" hint-placeholder-count="2">
+              <button type="button" role="radio" aria-checked="{{l.on}}" sc-camel-on-click="{{l.pick}}" style="height: 36px; padding: 0 16px; border-radius: 999px; border: 0; cursor: pointer; font: 600 14px/1 'Onest', system-ui, sans-serif; background: {{l.bg}}; color: {{l.fg}}; box-shadow: {{l.sh}}">{{l.label}}</button>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- Уведомления -->
+      <section class="card" aria-labelledby="p-notif">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap">
+          <div style="display: flex; flex-direction: column; gap: 4px"><h2 id="p-notif" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Notifications</h2><span style="font-size: 14px; color: #5A6175">Choose what to notify you about and where</span></div>
+          <span class="nt-head"><span>Email</span><span>Telegram</span></span>
+        </div>
+        <sc-for list="{{ngroups}}" as="g" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column">
+            <span class="mono" style="font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #8C92A3; padding: 18px 0 6px">{{g.title}}</span>
+            <sc-for list="{{g.items}}" as="n" hint-placeholder-count="3">
+              <div class="nt-row">
+                <div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 4px; min-width: 0">
+                  <span style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span style="font-size: 16px; font-weight: 500">{{n.t}}</span><sc-if value="{{n.req}}" hint-placeholder-val="{{ false }}"><span style="height: 22px; padding: 0 8px; border-radius: 7px; background: #F5F6F9; color: #5A6175; font: 600 11px/22px 'Onest', sans-serif">Required</span></sc-if></span>
+                  <span style="font-size: 13px; line-height: 19px; color: #5A6175">{{n.d}}</span>
+                  <sc-if value="{{n.hasOpts}}" hint-placeholder-val="{{ false }}">
+                    <span style="display: flex; flex-wrap: wrap; gap: 6px; padding-top: 6px">
+                      <sc-for list="{{n.opts}}" as="o" hint-placeholder-count="3">
+                        <button type="button" sc-camel-on-click="{{o.pick}}" class="nt-opt" style="background: {{o.bg}}; color: {{o.fg}}; box-shadow: {{o.ring}}">{{o.label}}</button>
+                      </sc-for>
+                    </span>
+                  </sc-if>
+                </div>
+                <span class="nt-sw">
+                  <span class="nt-c"><span class="nt-l">Email</span><button class="sw" type="button" role="switch" aria-checked="{{n.eOn}}" aria-label="{{n.t}} — email" sc-camel-on-click="{{n.flipE}}" style="background: {{n.eBg}}; opacity: {{n.op}}"><span style="position: absolute; top: 3px; left: {{n.eX}}; width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: left .2s"></span></button></span>
+                  <span class="nt-c"><span class="nt-l">Telegram</span><button class="sw" type="button" role="switch" aria-checked="{{n.tOn}}" aria-label="{{n.t}} — Telegram" sc-camel-on-click="{{n.flipT}}" style="background: {{n.tBg}}"><span style="position: absolute; top: 3px; left: {{n.tX}}; width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: left .2s"></span></button></span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+        
+      </section>
+
+      <section class="card" aria-labelledby="p-danger">
+        <h2 id="p-danger" style="margin: 0; font-size: 20px; line-height: 28px; font-weight: 600">Delete account</h2>
+        <sc-if value="{{noConfirm}}" hint-placeholder-val="{{ true }}">
+          <div class="rowx">
+            <span style="font-size: 14px; line-height: 21px; color: #5A6175; max-width: 520px">We'll delete your profile and order history. Active eSIMs will keep working until the end of their validity.</span>
+            <button class="btn btn-danger btn-sm" type="button" sc-camel-on-click="{{askDelete}}">Delete account</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{confirm}}" hint-placeholder-val="{{ false }}">
+          <div role="alertdialog" aria-labelledby="del-t" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 20px; border-radius: 20px; background: #FDEBEC">
+            <sc-if value="{{hasMoney}}" hint-placeholder-val="{{ false }}"><div style="flex: 1 1 100%; display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 16px; background: #FFFFFF"><b style="font-size: 17px; font-weight: 600">Balance {{balT}}</b><div class="ps-kv"><div><span>Own funds</span><b>{{balOwn}} · refundable</b></div><div><span>Referral bonuses</span><b>{{balBonus}} · will be lost</b></div></div><span style="font-size: 14px; line-height: 21px; color: #2B3142">Before deleting, request a refund of your own funds. Bonuses are canceled on deletion; active eSIMs will keep working until the end of their validity.</span><span><a class="btn btn-primary btn-sm" href="#chat">Refund {{balOwn}}</a></span></div></sc-if>
+            <span id="del-t" style="font-size: 15px; line-height: 22px; color: #0E1220; max-width: 480px"><b style="font-weight: 600">Are you sure?</b>  This can't be undone. Your receipts will stay in your email.</span>
+            <div style="display: flex; gap: 8px">
+              <button class="btn btn-ghost btn-sm" type="button" sc-camel-on-click="{{cancelDelete}}">Keep</button>
+              <button class="btn btn-danger-solid btn-sm" type="button" sc-camel-on-click="{{delDo}}">{{delLabel}}</button>
+            </div>
+          </div>
+        </sc-if>
+      </section>
+
+      <sc-if value="{{saved}}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="align-self: center; display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 18px 0 14px; border-radius: 999px; background: #0E1220; color: #FFFFFF; font-size: 14px">
+          <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6EE7A0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Saved  </div>
+      </sc-if>
+    </main>
+  </div>
+  <!-- Подвал (единый) -->
+  <footer class="sf">
+    <div class="sf-w">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+        <div style="flex: 2 1 420px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 28px; border-radius: 28px; background: #0E1220; color: #FFFFFF">
+          <span style="display: flex; flex-direction: column; gap: 6px"><b style="font-size: 20px; font-weight: 600; letter-spacing: -0.01em">Privet SIM on Telegram</b><span style="font-size: 14px; color: #C5CAD6">Bot and Mini App: buy, top up and check your data without leaving the chat</span></span>
+          <span style="display: flex; gap: 8px"><a class="sh-btn" href="https://t.me/privetsim_bot" style="height: 48px; padding: 0 22px; font-size: 15px; background: #FFFFFF; color: #1F45D6" target="_blank" rel="noopener">Open the bot</a><a class="sh-btn" href="https://t.me/privetsim_bot/app" style="height: 48px; padding: 0 22px; font-size: 15px; background: #2B3142; color: #FFFFFF" target="_blank" rel="noopener">Mini App</a></span>
+        </div>
+        <div style="flex: 1 1 280px; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 24px 28px; border-radius: 28px; background: #F5F6F9">
+          <span class="sf-mono">We accept</span>
+          <span style="display: flex; flex-wrap: wrap; gap: 6px"><span class="sf-pay">SBP</span><span class="sf-pay">USDT · TRON, TON, BEP-20</span></span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 40px">
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <a class="sh-logo" href="index.html" aria-label="Privet SIM — home"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Privet</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span></a>
+          <span style="font-size: 14px; line-height: 21px; color: #5A6175">Travel eSIM</span>
+        </div>
+        <div class="sf-col"><span class="sf-mono">Destinations</span><a href="country.html?c=TR">Turkey</a><a href="country.html?c=AE">UAE</a><a href="country.html?c=TH">Thailand</a><a href="region.html?r=EU">Europe</a><a href="countries.html">All countries</a></div>
+        <div class="sf-col"><span class="sf-mono">Help</span><a href="help.html#install">How to install</a><a href="compatibility.html">Compatibility</a><a href="help.html#faq">FAQ</a><a href="https://t.me/privetsim_support" target="_blank" rel="noopener">Support on Telegram</a></div>
+        <div class="sf-col"><span class="sf-mono">Account and documents</span><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a href="login.html">Log in</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a href="login.html?logout=1">Log out</a></sc-if><a href="account.html">My eSIMs</a><a href="referral.html">Referral program · 20%</a><a href="legal.html?doc=offer">Terms of Service</a><a href="legal.html?doc=privacy">Privacy</a><a href="legal.html?doc=req">Company details</a></div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid #EDEFF3; font-size: 13px; color: #5A6175">
+        <span>© 2026 Privet SIM{{psSellerLine}}</span>
+        <span>Made for travelers</span>
+      </div>
+      <div class="sf-line" aria-hidden="true"><svg sc-camel-view-box="0 0 1120 132" sc-camel-preserve-aspect-ratio="xMidYMid meet">
+        <g fill="none" stroke-linecap="round" stroke-width="2.5">
+          <path d="M300 52C250 20 190 18 150 30" stroke="#E3E6ED" stroke-dasharray="2 10"></path>
+          <path d="M640 86C700 120 780 118 840 108" stroke="#E3E6ED" stroke-dasharray="2 10"></path>
+          <path class="sf-draw" sc-camel-path-length="1" d="M20 104C120 104 180 60 300 52S520 96 640 86" stroke="#0E1220"></path>
+          <path class="sf-flow" d="M640 86C780 74 880 20 1090 34" stroke="#2F5BFF" stroke-dasharray="6 8"></path>
+        </g>
+        <circle cx="20" cy="104" r="8" fill="#0E1220"></circle>
+        <circle cx="150" cy="30" r="5" fill="#C5CAD6"></circle>
+        <circle cx="840" cy="108" r="5" fill="#C5CAD6"></circle>
+        <circle cx="300" cy="52" r="18" fill="#2F5BFF" opacity=".12"></circle>
+        <circle cx="300" cy="52" r="7" fill="#2F5BFF"></circle>
+        <circle cx="640" cy="86" r="18" fill="#2F5BFF" opacity=".12"></circle>
+        <circle cx="640" cy="86" r="7" fill="#2F5BFF"></circle>
+        <circle class="sf-pulse" cx="1090" cy="34" r="12" fill="#FF7A45"></circle>
+        <circle cx="1090" cy="34" r="24" fill="#FF7A45" opacity=".16"></circle>
+        <circle cx="1090" cy="34" r="10" fill="#FF7A45"></circle>
+      </svg></div>
+    </div>
+  </footer>
+  <!-- Чат поддержки (виджет) -->
+  <details class="cw">
+    <summary aria-label="Support chat"><span class="cw-dot" aria-hidden="true"></span><svg class="cw-i" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10.5H10l-5 4v-4H4z"></path><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"></path></svg><svg class="cw-x" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg><span class="cw-l">Support chat</span></summary>
+    <div class="cw-pop" role="dialog" aria-label="Support chat">
+      <div class="cw-hd">
+        <span class="cw-avs"><span style="background: #FFE7C9">A</span><span style="background: #E4F5EA">M</span><span style="background: #FFFFFF; color: #2F5BFF"><svg width="20" height="20" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg></span></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><b style="font-size: 16px; font-weight: 600">Privet SIM Support</b><span style="font-size: 12px; color: #E6ECFF"><i class="cw-on"></i>Instant replies · a human agent within 5 min</span></span>
+      </div>
+      <div style="position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column">
+        <div class="cw-bd">
+          <span class="cw-sys"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>You're logged in as name@mail.ru</span>
+          <div class="cw-m cw-op">Hello! I'm the Privet SIM AI assistant. I can see your eSIM “Turkey · 5 GB” — it's active. How can I help? I'll bring in a human agent if needed.</div>
+          <span class="cw-meta">AI assistant · 14:05</span>
+          <div class="cw-m cw-me">No network after landing</div>
+          <div class="cw-m cw-op">Please check: Settings → Cellular → Privet SIM → “Data Roaming” must be on. I'll send a screenshot showing where it is.</div>
+          <span class="cw-m cw-op cw-typ" aria-label="Assistant is typing"><i></i><i></i><i></i></span>
+        </div>
+        <div class="cw-ft"><span class="cw-ic" aria-label="Attach a screenshot"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5l-8.2 8.2a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4L15 7"></path></svg></span><label class="cw-in" style="flex: 1"><input type="text" placeholder="Type a message" aria-label="Message"><span class="cw-send" aria-label="Send"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></label></div>
+      </div>
+    </div>
+  </details>
+</div>
+<sc-if value="{{delOn}}" hint-placeholder-val="{{ false }}">
+  <div class="xm-back" role="dialog" aria-modal="true" aria-labelledby="del-done-h">
+    <div class="xm" style="align-items: center; text-align: center">
+      <span style="width: 64px; height: 64px; border-radius: 50%; background: #0E1220; display: inline-flex; align-items: center; justify-content: center"><svg width="28" height="28" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+      <b id="del-done-h" style="font-size: 22px; font-weight: 600; letter-spacing: -0.02em">Account deleted</b>
+      <span style="font-size: 15px; line-height: 23px; color: #5A6175; max-width: 380px">Your profile and order history have been deleted. Active eSIMs work until the end of their validity; receipts remain in your email.</span>
+      <a class="xm-b xm-pri" href="index.html" style="width: 100%; flex: none">Home</a>
+    </div>
+  </div>
+</sc-if>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+  <div class="xm-toast" role="status"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#22B25F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{toastText}}</div>
+</sc-if>
+</noscript></x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2940}}">
+class Component extends (window.PSLogic || DCLogic) {
+  renderVals() {
+    const v = this._rv0() || {};
+    const s = this.state || {};
+    const toast = (t) => () => { this.setState({ toast: t }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 2200); };
+    return Object.assign(v, PS.vals(), {
+      toastOn: !!s.toast, toastText: s.toast || '',
+      langLbl: PS.lang === 'en' ? 'RU' : 'EN', langAria: PS.lang === 'en' ? 'Switch to Russian' : 'Switch to English',
+      toggleLang: () => PS.switchLang(PS.lang === 'en' ? 'ru' : 'en'),
+      delOn: !!s.delDone, delDo: () => PSA.then(PSA.deleteAccount(), (r) => { if (!r || !r.err) this.setState({ delDone: true }); }),
+    });
+  }
+
+  constructor(props) { super(props); const u = PSA.user() || { email: '', set: {} }; const st = u.set || {}; this.state = { email: u.email, editing: false, draft: '', dErr: '', lang: PS.lang, mlang: st.mlang || PS.lang, cur: st.cur || 'rub', nt: st.nt || {}, expAt: st.expAt ?? 1, quiet: st.quiet !== false, confirm: false, saved: false, code: '', cErr: '' }; }
+  _rv0() {
+    const s = this.state;
+    const u = PSA.user();
+    if (!u) return { email: '', viewEmail: true, editEmail: false, codeEmail: false, langs: [], mlangs: [], curs: [], ngroups: [], notif: [], confirm: false, noConfirm: true, saved: false };
+    const save = (patch) => { PSA.setSettings(patch); this.setState({ ...patch, saved: true }); clearTimeout(this._sv); this._sv = setTimeout(() => this.setState({ saved: false }), 1800); };
+    const seg = (list, key) => list.map(([id, label]) => {
+      const on = s[key] === id;
+      return { label, on: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#0E1220' : '#5A6175', sh: on ? '0 1px 2px rgba(14,18,32,0.08)' : 'none', pick: () => (key === 'lang' ? id !== PS.lang && PS.switchLang(id) : save({ [key]: id })) };
+    });
+    const NG = [
+      ['eSIM and data', [
+        ['low', 'Low data', 'We\'ll notify you when 25% is left and when the data runs out', false],
+        ['exp', 'eSIM validity ending', 'We\'ll remind you before the plan ends', false, ['1 day before', '2 days before', '3 days before'], 'expAt'],
+        ['act', 'eSIM connected to the network', 'We\'ll let you know when your phone connects in the destination country', false],
+        ['top', 'Top-up and auto top-up', 'When data is added to the eSIM', false]
+      ]],
+      ['Purchases', [
+        ['pay', 'Payments and receipts', 'Payment receipt and eSIM QR code', true]
+      ]],
+      ['Promotions and news', [
+        ['promo', 'Discounts and promo codes', 'No more than twice a month', false],
+        ['ref', 'Referral rewards', 'When a friend pays for an order and you\'re credited 20% of the amount', false]
+      ]]
+    ];
+    const swv = (on) => ({ bg: on ? '#2F5BFF' : '#C5CAD6', x: on ? '21px' : '3px', aria: on ? 'true' : 'false' });
+    const ngroups = NG.map(([title, items]) => ({ title, items: items.map(([key, t, d, req, opts, okey]) => {
+      const v = s.nt[key] || [0, 0]; const e = swv(req ? true : !!v[0]); const tg = swv(!!v[1]);
+      const flip = (ix) => {
+        if (req && ix === 0) return;
+        if (ix === 1 && !u.set.tg) { this.setState({ toast: 'Connect Telegram first — for now, notifications are sent by email' }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 2600); return; }
+        const nt = { ...this.state.nt }; const a = (nt[key] || [0, 0]).slice(); a[ix] = a[ix] ? 0 : 1; nt[key] = a; save({ nt });
+      };
+      return { t, d, req: !!req, eOn: e.aria, eBg: e.bg, eX: e.x, tOn: tg.aria, tBg: tg.bg, tX: tg.x, op: req ? 0.55 : 1, flipE: () => flip(0), flipT: () => flip(1),
+        hasOpts: !!opts, opts: (opts || []).map((label, i) => { const on = s[okey] === i; return { label, bg: on ? '#0E1220' : '#FFFFFF', fg: on ? '#FFFFFF' : '#2B3142', ring: on ? 'none' : 'inset 0 0 0 1px #E3E6ED', pick: () => save({ [okey]: i }) }; }) };
+    }) }));
+    const q = swv(s.quiet);
+    const later = (what) => () => { this.setState({ toast: what + ' will be available once the server is connected. For now, log in with a code from the email' }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 3000); };
+    // Telegram и Google: подключить (вход через бота / Google с привязкой к этому кабинету) и отвязать
+    const note = (text, ms) => { this.setState({ toast: text }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), ms || 3000); };
+    if (!this._qn) { this._qn = 1; const m = PSA.authMessage(); if (m) setTimeout(() => note(m, 4500), 0); }
+    const tgw = s.tgw;
+    const toggleTg = () => {
+      if (PSA.DEMO) return later('Connecting Telegram')();
+      if (tgw && !tgw.opened) { window.open(tgw.url, '_blank', 'noopener'); return this.setState({ tgw: { ...tgw, opened: true } }); }
+      if (tgw) { PSA.tgCancel(); return this.setState({ tgw: null }); }
+      if (u.set.tg) return PSA.then(PSA.unlink('telegram'), (r) => { if (r.ok) note('Telegram disconnected'); });
+      if (!PSA.providers().telegram) return note('Connecting Telegram is temporarily unavailable');
+      PSA.tgStart(true, (st) => {
+        if (st.status === 'wait') return this.setState({ tgw: { code: st.code, url: st.url, opened: st.opened } });
+        if (st.status === 'ok') { this.setState({ tgw: null }); return note('Telegram connected — purchases from the bot are now here'); }
+        if (st.status === 'fail') { this.setState({ tgw: null }); note(st.text || 'Telegram didn\'t confirm the login. Try again', 4500); }
+      });
+    };
+    const toggleG = () => {
+      if (PSA.DEMO) return later('Log in with Google')();
+      if (u.set.g) return PSA.then(PSA.unlink('google'), (r) => { if (r.ok) note('Google unlinked'); });
+      if (!PSA.providers().google) return note(PSA.authError('google_off'));
+      window.location.href = PSA.googleUrl('profile.html', true);
+    };
+    const B = PSA.balance();
+    const pending = u.pendingEmail || '';
+    return {
+      email: u.email || 'Not set', viewEmail: !s.editing && !pending, editEmail: s.editing && !pending, codeEmail: !!pending, pending, draft: s.draft,
+      dErr: s.dErr, hasDErr: !!s.dErr, dInvalid: s.dErr ? 'true' : 'false',
+      dBorder: s.dErr ? '#C62F35' : '#2F5BFF', dBg: s.dErr ? '#FFFBFB' : '#FFFFFF',
+      startEdit: () => this.setState({ editing: true, draft: u.email, dErr: '', saved: false }),
+      cancelEdit: () => this.setState({ editing: false, dErr: '' }),
+      onDraft: (e) => this.setState({ draft: e.target.value, dErr: '' }),
+      saveEmail: () => {
+        const v = s.draft.trim();
+        if (!v) return this.setState({ dErr: 'Enter your email' });
+        if (!PSA.validEmail(v)) return this.setState({ dErr: 'Looks like there\'s a typo in the address. Example: name@mail.com' });
+        PSA.then(PSA.startEmailChange(v), (r) => {
+          if (r.err) return this.setState({ dErr: r.err });
+          this.setState({ editing: false, code: '', cErr: '' });
+        });
+      },
+      code: s.code, cErr: s.cErr, hasCErr: !!s.cErr, cBorder: s.cErr ? '#C62F35' : '#E3E6ED', demoCode: PSA.demoCode(pending), hasDemo: !!PSA.demoCode(pending),
+      onCode: (e) => this.setState({ code: e.target.value.replace(/\D/g, '').slice(0, 6), cErr: '' }),
+      cancelCode: () => { PSA.cancelEmailChange(); this.setState({ code: '', cErr: '' }); },
+      confirmCode: () => {
+        if (s.code.length < 6) return this.setState({ cErr: 'Enter all 6 digits' });
+        PSA.then(PSA.confirmEmailChange(s.code), (r) => {
+        if (r.ok) return save({});
+        if (r.text) return this.setState({ cErr: r.text });
+        this.setState({ cErr: r.err === 'invalid' ? 'Wrong code. Attempts left: ' + r.left : (r.err === 'expired' ? 'The code has expired. Change the email again' : 'Too many attempts. Change the email again') });
+        });
+      },
+      tgText: tgw ? 'Confirm in the bot: tap “It\'s me”, code ' + tgw.code : (u.set.tg ? 'Connected' + (u.tgName ? ' · @' + u.tgName : '') : 'Not connected — notifications will be sent by email only'),
+      tgColor: u.set.tg && !tgw ? '#0B7A3E' : '#5A6175', tgBtn: tgw ? (tgw.opened ? 'Cancel' : 'Open Telegram') : (u.set.tg ? 'Disconnect' : 'Connect'), tgBtnClass: u.set.tg || tgw ? 'btn-ghost' : 'btn-secondary', toggleTg,
+      gText: u.set.g ? 'Connected — you can log in with one click' : 'Not connected — link it to log in without an email code', gColor: u.set.g ? '#0B7A3E' : '#5A6175', gBtn: u.set.g ? 'Unlink' : 'Link', gBtnClass: u.set.g ? 'btn-ghost' : 'btn-secondary', toggleG,
+      langs: seg([['ru', 'Русский'], ['en', 'English']], 'lang'),
+      mlangs: seg([['ru', 'Русский'], ['en', 'English']], 'mlang'),
+      curs: seg([['rub', '₽'], ['usd', '$'], ['usdt', 'USDT']], 'cur'),
+      ngroups, quietOn: q.aria, quietBg: q.bg, quietX: q.x, flipQuiet: () => save({ quiet: !s.quiet }),
+      notif: [],
+      confirm: s.confirm, noConfirm: !s.confirm,
+      askDelete: () => this.setState({ confirm: true }), cancelDelete: () => this.setState({ confirm: false }),
+      hasMoney: B.total > 0, balT: PSA.rub(B.total), balOwn: PSA.rub(B.own), balBonus: PSA.rub(B.bonus), delLabel: B.total > 0 ? 'Delete without refund' : 'Delete forever',
+      saved: s.saved
+    };
+  }
+}
+</script>
+
+
+<script>window.PS && PS.applyUrlProps();</script>
+</body></html>

@@ -247,7 +247,7 @@
     if (reduce || input.__psType) return;
     input.__psType = true;
     var base = input.getAttribute('placeholder') || '';
-    var m = base.match(/^(.*Например,\s)/);
+    var m = base.match(/^(.*(?:Например|For example),\s)/);
     if (!m) return;
     var prefix = m[1], words = ['Турция', 'Таиланд', 'Грузия', 'ОАЭ', 'Европа', 'Япония'], wi = 0, ci = words[0].length, dir = -1, timer;
     var tick = function () {

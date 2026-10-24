@@ -73,7 +73,7 @@
     if (!api || !root.fetch) return;
     var base = api.replace(/\/$/, '') + '/api/content/', page = location.pathname.split('/').pop() || 'index.html';
     function get(path, key, then) {
-      root.fetch(base + path).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      root.fetch(base + path, PS.lang === 'en' ? { headers: { 'x-lang': 'en' } } : undefined).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
         if (!j) return;
         PS.CONTENT[key] = j;
         if (then) then(j); else PS.refresh();
@@ -87,7 +87,7 @@
   function banners(st) {
     var here = (PS.qp && (PS.qp('c') || PS.qp('r')) || '').toUpperCase(), list = [], hidden = {};
     try { hidden = JSON.parse(sessionStorage.getItem('ps.bnr') || '{}'); } catch (e) {}
-    if (st.maintenance) list.push({ id: 'mt', kind: 'warn', text: 'Технические работы: покупки временно недоступны' + (st.maintenance.until ? ' до ' + st.maintenance.until : '') + '. ' + (st.maintenance.message || 'Купленные eSIM работают, кабинет и поддержка доступны.') });
+    if (st.maintenance) list.push({ id: 'mt', kind: 'warn', text: 'Технические работы: покупки временно недоступны' + (st.maintenance.until ? ' до\u00a0' + st.maintenance.until : '') + '. ' + (st.maintenance.message || 'Купленные eSIM работают, кабинет и поддержка доступны.') });
     (st.banners || []).forEach(function (b) { if (b.scope === 'all' || b.scope.toUpperCase() === here) list.push(b); });
     list.forEach(function (b) {
       if (hidden[b.id] || doc.getElementById('ps-bnr-' + b.id)) return;
@@ -136,7 +136,7 @@
   doc.addEventListener('click', function (e) {
     var l = e.target.closest && e.target.closest('label[for="ck-ok"]');
     if (!l) return;
-    var v = /необходим/i.test(l.textContent) ? 'necessary' : 'all';
+    var v = /необходим|necessary/i.test(l.textContent) ? 'necessary' : 'all';
     doc.cookie = 'ps_consent=' + v + '; max-age=31536000; path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
     try { localStorage.setItem('ps.consent', v); } catch (x) {}
     setTimeout(function () { html.classList.add('ps-ck-done'); }, 0);
@@ -282,7 +282,7 @@
     } else {
       box.innerHTML = sugItems.map(function (x, i) {
         var ico = x.flag ? '<img src="' + esc(x.flag) + '" alt="">' : '<span class="ps-sug-g" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>';
-        var sub = x.via ? 'eSIM ' + x.name + (x.sub ? ' · ' + x.sub : '') : (x.isRegion ? 'Регион · ' + x.sub : 'eSIM' + NB + '· ' + x.sub);
+        var sub = x.via ? 'eSIM ' + x.name + (x.sub ? ' · ' + x.sub : '') : (x.isRegion ? 'Регион · ' + x.sub : 'eSIM · ' + x.sub);
         return '<a role="option" id="ps-sug-' + i + '" href="' + esc(x.href) + '" class="ps-sug-i">' + ico +
           '<span class="ps-sug-t"><b>' + esc(x.via || x.name) + '</b><small>' + esc(sub) + '</small></span><span class="ps-sug-p">от' + NB + esc(x.price) + NB + '₽</span></a>';
       }).join('');
@@ -334,12 +334,12 @@
         '<label class="ps-msearch">' + ICO.find + '<input type="search" placeholder="Куда едете?" aria-label="Куда едете?" enterkeyhint="search"><a href="countries.html" hidden>Найти</a></label>' +
         (u ? '<a class="ps-menu-me" href="profile.html"><span class="ps-menu-ava">' + esc((u.email || '?').charAt(0).toUpperCase()) + '</span><span><b>' + esc(u.email || 'Профиль') + '</b><small>Профиль и настройки</small></span>' + ICO.arr + '</a>' : '') +
         '<nav aria-label="Основная">' +
-          mi('countries.html', 'Страны') + mi(howHref, 'Как' + NB + 'это' + NB + 'работает') + mi('compatibility.html', 'Совместимость') + mi('help.html', 'Помощь') +
+          mi('countries.html', 'Страны') + mi(howHref, 'Как это работает') + mi('compatibility.html', 'Совместимость') + mi('help.html', 'Помощь') +
           (u ? mi('account.html', 'Мои eSIM') +
             mi('wallet.html', 'Баланс', '<span class="mono ps-menu-bal">' + esc(bal) + '</span>') +
             mi('referral.html', 'Пригласить друзей', '<span class="ps-menu-25">25%</span>') : '') +
         '</nav>' +
-        '<a class="btn btn-dark ps-menu-tg" href="https://t.me/' + esc(bot) + '" target="_blank" rel="noopener">' + ICO.tg + 'Открыть бота в' + NB + 'Telegram</a>' +
+        '<a class="btn btn-dark ps-menu-tg" href="https://t.me/' + esc(bot) + '" target="_blank" rel="noopener">' + ICO.tg + 'Открыть бота в Telegram</a>' +
       '</div>' +
       '<div class="ps-menu-ft">' +
         (u ? '<a class="btn btn-ghost" href="login.html?logout=1">Выйти</a>' : '<a class="btn btn-ghost" href="' + (PSA && PSA.loginUrl ? PSA.loginUrl('account.html') : 'login.html') + '">Личный кабинет</a>') +

@@ -4,6 +4,7 @@
 <title>Оформление заказа — Привет SIM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="eSIM для путешествий в 190+ стран: интернет за границей без роуминга, цена в рублях, установка за 2 минуты.">
+<script>try{var l=localStorage.getItem('ps.lang'),e=/^\/en(\/|$)/.test(location.pathname);if(l==='en'&&!e||l==='ru'&&e)location.replace((l==='en'?'/en':'')+(location.pathname.replace(/^\/en(?=\/|$)/,'')||'/')+location.search+location.hash)}catch(x){}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Привет SIM">
 <meta property="og:locale" content="ru_RU">
@@ -26,20 +27,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610241224"></script>
-<script src="assets/catalog.js?v=202610241224"></script>
+<script src="config.js?v=202610241254"></script>
+<script src="assets/catalog.js?v=202610241254"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610241224"></script>
-<script src="assets/account.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610241224">
-<script src="assets/chat.js?v=202610241224" defer></script>
+<script src="assets/site.js?v=202610241254"></script>
+<script src="assets/account.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610241254">
+<script src="assets/chat.js?v=202610241254" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610241224">
-<script src="assets/ui.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610241224">
-<script src="assets/motion.js?v=202610241224" defer></script>
+<script src="assets/dc-runtime.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610241254">
+<script src="assets/ui.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610241254">
+<script src="assets/motion.js?v=202610241254" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -824,8 +825,8 @@ class Component extends (window.PSLogic || DCLogic) {
     const toast = (t) => () => { this.setState({ toast: t }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: '' }), 2200); };
     return Object.assign(v, PS.vals(), {
       toastOn: !!s.toast, toastText: s.toast || '',
-      langLbl: s.uiLang === 'en' ? 'RU' : 'EN', langAria: s.uiLang === 'en' ? 'Переключить на русский' : 'Switch to English',
-      toggleLang: () => { const en = s.uiLang !== 'en'; this.setState({ uiLang: en ? 'en' : 'ru' }); toast(en ? 'Switched to English' : 'Сайт на русском')(); },
+      langLbl: PS.lang === 'en' ? 'RU' : 'EN', langAria: PS.lang === 'en' ? 'Переключить на русский' : 'Switch to English',
+      toggleLang: () => PS.switchLang(PS.lang === 'en' ? 'ru' : 'en'),
       
     });
   }

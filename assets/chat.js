@@ -20,7 +20,7 @@
   function dayMsk() { var h = (new Date().getUTCHours() + 3) % 24; return h >= 9 && h < 21; }
   var OK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
   var MAIL = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A6175" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>';
-  var TOPICS = ['Не' + NB + 'работает интернет', 'Как' + NB + 'установить', 'Возврат', 'Оплата'];
+  var TOPICS = ['Не работает интернет', 'Как установить', 'Возврат', 'Оплата'];
 
   var CFG = window.SITE_CONFIG || {};
   var API = PSA.DEMO ? '' : String(CFG.apiUrl || '').replace(/\/$/, '');
@@ -37,7 +37,7 @@
     var u = me(), list = PSA.esims ? PSA.esims() : [], live = list.filter(function (e) { return e.live; })[0], wait = list.filter(function (e) { return e.waiting; })[0];
     var see = live ? 'Вижу вашу eSIM «' + live.short + '» — ' + live.stText.toLowerCase() + '. ' : (wait ? 'Вижу вашу eSIM «' + wait.short + '» — она ждёт установки. ' : '');
     var n = PSA.ordersByEmail ? PSA.ordersByEmail(email()) : 0;
-    push({ who: 'sys', text: u ? 'Вы' + NB + 'вошли как' + NB + u.email : (n ? 'Нашли ' + n + ' ' + PSA.plural(n, 'заказ', 'заказа', 'заказов') + ' на' + NB + email() : 'Ответы продублируем на' + NB + email()) });
+    push({ who: 'sys', text: u ? 'Вы вошли как' + NB + u.email : (n ? 'Нашли ' + n + ' ' + PSA.plural(n, 'заказ', 'заказа', 'заказов') + ' на' + NB + email() : 'Ответы продублируем на' + NB + email()) });
     push({ who: 'op', text: 'Здравствуйте! Я ИИ-помощник Привет SIM. ' + see + 'Чем помочь? Если понадобится, позову оператора.', meta: 'ИИ-помощник' });
   }
   function start(topic) {
@@ -48,6 +48,7 @@
   /* ---------- Рабочий режим: сервер поддержки ---------- */
   function call(method, path, body, type) {
     var opt = { method: method, credentials: 'include', headers: {} };
+    if (window.PS && PS.lang === 'en') opt.headers['x-lang'] = 'en';
     if (body !== undefined) { opt.headers['Content-Type'] = type || 'application/json'; opt.body = type ? body : JSON.stringify(body); }
     return fetch(API + '/api' + path, opt).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || 'error'); e.status = r.status; throw e; } return j; });
@@ -121,15 +122,15 @@
 
   // Ответы помощника по ключевым словам (в рабочей версии — ИИ с доступом к заказам)
   var RULES = [
-    [/спасиб|благодар|помогл|всё понятно|разобрал/i, 'end'],
-    [/оператор|человек|живой|специалист/i, 'op'],
-    [/не (ловит|работает|подключ)|нет сети|интернет|роуминг|сеть|скорост/i, 'Проверьте, пожалуйста: Настройки → Сотовая связь → Привет SIM → «Роуминг данных» должен быть включён, а для сотовых данных выбрана линия Привет SIM. Если не поможет — напишите, позову оператора.'],
-    [/установ|qr|куар|скан|актив/i, 'Откройте «Мои eSIM» → нужная eSIM → «QR и установка». На iPhone с iOS 17.4+ есть установка в один тап. Ставьте eSIM за день до вылета, пока есть Wi‑Fi: QR-код одноразовый.'],
-    [/возврат|вернуть|верните|деньги назад/i, 'Оформите возврат на странице eSIM → «Покупка и пополнения» → «Вернуть». Если eSIM не устанавливалась — вернём полностью на баланс, сразу. После установки — по заявке, ответим в течение 24 часов.'],
-    [/оплат|сбп|usdt|крипт|карт|банк|списал/i, 'Оплатить можно по СБП (без комиссии), в USDT (TRON, TON, BEP-20) или с баланса. Ссылка на оплату действует 30 минут. Если деньги списались, а eSIM не пришла — напишите номер заказа, проверим.'],
-    [/баланс|пополн/i, 'Баланс пополняется в кабинете → «Баланс» по СБП или в USDT и тратится на любые eSIM и гигабайты. Пополнить саму eSIM можно на её странице кнопкой «Пополнить».'],
-    [/друг|реферал|приглас|20%/i, 'В разделе «Позвать друзей» есть ваша ссылка и код. Другу — скидка 100 ₽ на первую покупку по вашему коду, вам — 20% от стоимости каждой его eSIM.'],
-    [/телефон|поддерж|совмест|iphone|android|samsung/i, 'Проверить телефон можно на странице «Совместимость»: там список моделей. Важно, чтобы телефон был без привязки к оператору.']
+    [/спасиб|благодар|помогл|всё понятно|разобрал|thank|helped|got it/i, 'end'],
+    [/оператор|человек|живой|специалист|agent|human|operator|person/i, 'op'],
+    [/не (ловит|работает|подключ)|нет сети|интернет|роуминг|сеть|скорост|internet|roaming|network|signal|speed|not working/i, 'Проверьте, пожалуйста: Настройки → Сотовая связь → Привет SIM → «Роуминг данных» должен быть включён, а для сотовых данных выбрана линия Привет SIM. Если не поможет — напишите, позову оператора.'],
+    [/установ|qr|куар|скан|актив|install|scan|activat/i, 'Откройте «Мои eSIM» → нужная eSIM → «QR и установка». На iPhone с iOS 17.4+ есть установка в один тап. Ставьте eSIM за день до вылета, пока есть Wi‑Fi: QR-код одноразовый.'],
+    [/возврат|вернуть|верните|деньги назад|refund|money back/i, 'Оформите возврат на странице eSIM → «Покупка и пополнения» → «Вернуть». Если eSIM не устанавливалась — вернём полностью на баланс, сразу. После установки — по заявке, ответим в течение 24 часов.'],
+    [/оплат|сбп|usdt|крипт|карт|банк|списал|pay|sbp|crypto|card|bank|charged/i, 'Оплатить можно по СБП (без комиссии), в USDT (TRON, TON, BEP-20) или с баланса. Ссылка на оплату действует 30 минут. Если деньги списались, а eSIM не пришла — напишите номер заказа, проверим.'],
+    [/баланс|пополн|balance|top.?up/i, 'Баланс пополняется в кабинете → «Баланс» по СБП или в USDT и тратится на любые eSIM и гигабайты. Пополнить саму eSIM можно на её странице кнопкой «Пополнить».'],
+    [/друг|реферал|приглас|20%|friend|referr|invite/i, 'В разделе «Позвать друзей» есть ваша ссылка и код. Другу — скидка 100 ₽ на первую покупку по вашему коду, вам — 20% от стоимости каждой его eSIM.'],
+    [/телефон|поддерж|совмест|iphone|android|samsung|phone|support|compatib/i, 'Проверить телефон можно на странице «Совместимость»: там список моделей. Важно, чтобы телефон был без привязки к оператору.']
   ];
   function reply(text) {
     var r = null;
@@ -176,19 +177,19 @@
     if (c.ended) {
       h += '<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px; border-radius: 20px; background: #FFFFFF; margin-top: auto"><b style="font-size: 15px">' + (c.rating ? 'Спасибо за оценку!' : 'Насколько помог ответ?') + '</b><span style="display: flex; gap: 6px">';
       for (var i = 1; i <= 5; i++) { var on = i <= (c.rating || 0); h += '<button type="button" data-rate="' + i + '" aria-label="Оценка ' + i + '" style="width: 36px; height: 36px; border: 0; border-radius: 12px; cursor: pointer; font: 600 14px/1 \'Onest\', system-ui, sans-serif; background: ' + (on ? '#FF7A45' : '#F5F6F9') + '; color: ' + (on ? '#FFFFFF' : '#8C92A3') + '">' + i + '</button>'; }
-      h += '</span><span style="font-size: 12px; color: #8C92A3">Напишите снова' + NB + '— продолжим в' + NB + 'этом же' + NB + 'диалоге</span></div>';
+      h += '</span><span style="font-size: 12px; color: #8C92A3">Напишите снова — продолжим в этом же диалоге</span></div>';
     }
     return h;
   }
   function intro() {
-    return '<div class="cw-m cw-op">Здравствуйте! Оставьте email' + NB + '— по' + NB + 'нему мы' + NB + 'найдём ваши заказы и' + NB + 'eSIM и' + NB + 'ответим на' + NB + 'почту, даже если вы' + NB + 'закроете сайт.</div><span class="cw-meta">Привет SIM · сейчас</span>' +
+    return '<div class="cw-m cw-op">Здравствуйте! Оставьте email — по нему мы найдём ваши заказы и eSIM и ответим на почту, даже если вы закроете сайт.</div><span class="cw-meta">Привет SIM · сейчас</span>' +
       '<div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding: 14px; border-radius: 20px; background: #FFFFFF">' +
       '<label class="cw-in" data-mail style="box-shadow: inset 0 0 0 1.5px #2F5BFF">' + MAIL + '<input type="email" placeholder="name@mail.ru" aria-label="Ваш email" value="' + esc(c.draftEmail || '') + '"></label>' +
-      '<span data-err role="alert" style="display: none; font-size: 12px; color: #C62F35">Проверьте email' + NB + '— на' + NB + 'него придут ответы</span>' +
-      '<span style="font-size: 12px; color: #5A6175">О' + NB + 'чём хотите спросить?</span><span class="cw-q">' +
+      '<span data-err role="alert" style="display: none; font-size: 12px; color: #C62F35">Проверьте email — на него придут ответы</span>' +
+      '<span style="font-size: 12px; color: #5A6175">О чём хотите спросить?</span><span class="cw-q">' +
       TOPICS.map(function (t, i) { var on = c.topic === i; return '<span role="button" tabindex="0" data-topic="' + i + '" aria-pressed="' + on + '" style="' + (on ? 'background: #2F5BFF; color: #FFFFFF; box-shadow: none' : '') + '">' + t + '</span>'; }).join('') + '</span>' +
       '<button type="button" class="cw-btn" data-start style="border: 0; width: 100%">Начать чат</button>' +
-      '<span style="font-size: 11px; line-height: 15px; color: #8C92A3">Нажимая «Начать чат», вы' + NB + 'соглашаетесь с <a href="legal.html?doc=consent">обработкой персональных данных</a></span></div>';
+      '<span style="font-size: 11px; line-height: 15px; color: #8C92A3">Нажимая «Начать чат», вы соглашаетесь с <a href="legal.html?doc=consent">обработкой персональных данных</a></span></div>';
   }
   function isOpen() { return !!(root && root.open); }
   function render() {

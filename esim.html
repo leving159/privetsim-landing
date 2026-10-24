@@ -4,6 +4,7 @@
 <title>eSIM — Привет SIM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="eSIM для путешествий в 190+ стран: интернет за границей без роуминга, цена в рублях, установка за 2 минуты.">
+<script>try{var l=localStorage.getItem('ps.lang'),e=/^\/en(\/|$)/.test(location.pathname);if(l==='en'&&!e||l==='ru'&&e)location.replace((l==='en'?'/en':'')+(location.pathname.replace(/^\/en(?=\/|$)/,'')||'/')+location.search+location.hash)}catch(x){}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Привет SIM">
 <meta property="og:locale" content="ru_RU">
@@ -26,22 +27,22 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610241224"></script>
-<script src="assets/catalog.js?v=202610241224"></script>
+<script src="config.js?v=202610241254"></script>
+<script src="assets/catalog.js?v=202610241254"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610241224"></script>
-<script src="assets/account.js?v=202610241224"></script>
+<script src="assets/site.js?v=202610241254"></script>
+<script src="assets/account.js?v=202610241254"></script>
 <script>PSA.guard()</script>
 <script src="assets/vendor/qrcode.min.js"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610241224">
-<script src="assets/chat.js?v=202610241224" defer></script>
+<link rel="stylesheet" href="assets/account.css?v=202610241254">
+<script src="assets/chat.js?v=202610241254" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610241224">
-<script src="assets/ui.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610241224">
-<script src="assets/motion.js?v=202610241224" defer></script>
+<script src="assets/dc-runtime.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610241254">
+<script src="assets/ui.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610241254">
+<script src="assets/motion.js?v=202610241254" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -919,8 +920,8 @@ class Component extends (window.PSLogic || DCLogic) {
     const RC = (v.hist || []).map((o) => o.rc);
     return Object.assign(v, PS.vals(), {
       toastOn: !!s.toast, toastText: s.toast || '',
-      langLbl: s.uiLang === 'en' ? 'RU' : 'EN', langAria: s.uiLang === 'en' ? 'Переключить на русский' : 'Switch to English',
-      toggleLang: () => { const en = s.uiLang !== 'en'; this.setState({ uiLang: en ? 'en' : 'ru' }); toast(en ? 'Switched to English' : 'Сайт на русском')(); },
+      langLbl: PS.lang === 'en' ? 'RU' : 'EN', langAria: PS.lang === 'en' ? 'Переключить на русский' : 'Switch to English',
+      toggleLang: () => PS.switchLang(PS.lang === 'en' ? 'ru' : 'en'),
       rcOn: s.rc != null && s.rc >= 0, rc: RC[s.rc] || RC[0], rcClose: () => this.setState({ rc: -1 }), rcMail: () => { this.setState({ rc: -1 }); toast('Квитанцию отправили на ' + PSA.user().email)(); },
       rc: RC[s.rc] || RC[0] || {}, rcPdf: () => PSA.printReceipt(((v.hist || [])[s.rc] || {}).id), hist: (v.hist || []).map((o, i) => ({ ...o, rcOpen: () => this.setState({ rc: i }) })),
     });
@@ -946,28 +947,28 @@ class Component extends (window.PSLogic || DCLogic) {
     const up = PSA.topupPlans(E.id).find((p) => p.n >= 3);
     // Статус и заметка (site-26)
     const NOTE = {
-      new: ['Установите eSIM за' + NB + 'день до' + NB + 'вылета. Срок на' + NB + 'установку — до' + NB + PSA.dy(E.installBy) + ', потом eSIM сгорит.', 'blue'],
-      failed: ['Телефон скачал eSIM, но установка не' + NB + 'завершилась. Повторно отсканировать QR нельзя: он одноразовый. Напишите в' + NB + 'поддержку — разберёмся.', 'amber'],
-      installed: ['eSIM подключится, когда вы прилетите. Срок пакета начнётся с' + NB + 'первого подключения в' + NB + 'стране. После посадки включите eSIM для данных и' + NB + '«Роуминг данных».', 'gray'],
-      low: ['Осталось меньше 25% трафика. Пополните заранее — интернет не' + NB + 'прервётся.', 'amber'],
-      usedup: ['Гигабайты закончились, eSIM действует до' + NB + PSA.d(E.expiresAt) + '. Пополните, и' + NB + 'интернет вернётся сразу, переустанавливать ничего не' + NB + 'нужно.', 'red'],
+      new: ['Установите eSIM за\u00a0день до\u00a0вылета. Срок на\u00a0установку — до' + NB + PSA.dy(E.installBy) + ', потом eSIM сгорит.', 'blue'],
+      failed: ['Телефон скачал eSIM, но установка не\u00a0завершилась. Повторно отсканировать QR нельзя: он одноразовый. Напишите в\u00a0поддержку — разберёмся.', 'amber'],
+      installed: ['eSIM подключится, когда вы прилетите. Срок пакета начнётся с\u00a0первого подключения в\u00a0стране. После посадки включите eSIM для данных и\u00a0«Роуминг данных».', 'gray'],
+      low: ['Осталось меньше 25% трафика. Пополните заранее — интернет не\u00a0прервётся.', 'amber'],
+      usedup: ['Гигабайты закончились, eSIM действует до' + NB + PSA.d(E.expiresAt) + '. Пополните, и\u00a0интернет вернётся сразу, переустанавливать ничего не\u00a0нужно.', 'red'],
       expired: ['Срок закончился ' + PSA.dy(E.expiresAt) + ' в' + NB + PSA.hm(E.expiresAt) + '. Пополнить эту eSIM уже нельзя.', 'gray'],
-      burned: ['eSIM не' + NB + 'установили до' + NB + PSA.dy(E.installBy) + ', и' + NB + 'она перестала действовать.', 'gray'],
-      deleted: ['eSIM удалили из' + NB + 'телефона. Установить её заново нельзя, это ограничение eSIM.', 'gray'],
-      disabled: ['eSIM выключена в' + NB + 'настройках телефона. Включите её: Настройки → Сотовая связь → Привет SIM.', 'amber'],
-      refunded: ['Возврат одобрен, деньги на' + NB + 'балансе. eSIM отключена.', 'gray'],
-      blocked: ['eSIM приостановлена. Если это ошибка или телефон нашёлся, напишите в' + NB + 'поддержку.', 'red']
+      burned: ['eSIM не\u00a0установили до' + NB + PSA.dy(E.installBy) + ', и\u00a0она перестала действовать.', 'gray'],
+      deleted: ['eSIM удалили из\u00a0телефона. Установить её заново нельзя, это ограничение eSIM.', 'gray'],
+      disabled: ['eSIM выключена в\u00a0настройках телефона. Включите её: Настройки → Сотовая связь → Привет SIM.', 'amber'],
+      refunded: ['Возврат одобрен, деньги на\u00a0балансе. eSIM отключена.', 'gray'],
+      blocked: ['eSIM приостановлена. Если это ошибка или телефон нашёлся, напишите в\u00a0поддержку.', 'red']
     };
     const ops = (PS.country(E.code).ops || [])[0];
-    const stText = (E.st === 'active' || E.st === 'low') && ops && !E.isRegion ? E.stText + ' · в' + NB + 'сети ' + ops + ', ' + E.net : E.stText;
+    const stText = (E.st === 'active' || E.st === 'low') && ops && !E.isRegion ? E.stText + ' · в\u00a0сети ' + ops + ', ' + E.net : E.stText;
     const uL = on ? 'Подключилась ' + PSA.d(E.activatedAt) : (E.installedAt ? 'Установлена ' + PSA.d(E.installedAt) : 'Куплена ' + PSA.d(E.created));
-    const uR = E.st === 'expired' ? 'Закончилась ' + PSA.dt(E.expiresAt) : (on ? 'Действует до' + NB + PSA.dt(E.expiresAt) + ' по' + NB + 'вашему времени' : (E.st === 'burned' ? 'Не установлена вовремя' : 'Срок начнётся с' + NB + 'первого подключения к' + NB + 'сети'));
+    const uR = E.st === 'expired' ? 'Закончилась ' + PSA.dt(E.expiresAt) : (on ? 'Действует до' + NB + PSA.dt(E.expiresAt) + ' по\u00a0вашему времени' : (E.st === 'burned' ? 'Не установлена вовремя' : 'Срок начнётся с\u00a0первого подключения к\u00a0сети'));
     // История
     const P = { buy: 'M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6', top: 'M12 5v14M5 12h14' };
     const hist = PSA.esimOrders(E.id).map((o) => {
       const ri = o.status === 'paid' ? PSA.refundInfo(o.id) : null;
       const canRefund = !!ri && !o.refund && E.canRefund !== false && !PSA.FINISHED[E.st] && E.st !== 'blocked' && !(o.kind === 'esim' && E.refund);
-      const st = o.status === 'refunded' ? 'Возвращено на' + NB + 'баланс' : (o.refund ? 'Заявка ' + o.refund.no : '');
+      const st = o.status === 'refunded' ? 'Возвращено на\u00a0баланс' : (o.refund ? 'Заявка ' + o.refund.no : '');
       return { id: o.id, no: '#' + o.no, t: o.kind === 'topup' ? 'Пополнение · +' + PSA.gb(o.n) : 'Покупка eSIM · ' + o.label + (o.qty > 1 ? ' · eSIM ' + (E.raw.idx + 1) + ' из ' + o.qty : ''), d: PSA.d(o.paidAt || o.created) + ' · ' + PSA.payName(o).toLowerCase().replace('сбп', 'СБП').replace('usdt', 'USDT'), a: R(o.kind === 'esim' && o.qty > 1 ? Math.round(o.sum / o.qty) : o.sum),
         icon: o.kind === 'topup' ? P.top : P.buy, ibg: o.kind === 'topup' ? '#E4F5EA' : '#F2F5FF', ifg: o.kind === 'topup' ? '#0B7A3E' : '#2F5BFF',
         canRefund, isBuy: o.kind === 'esim', hasState: !canRefund && !!st, state: st, rc: PSA.receipt(o),
@@ -979,8 +980,8 @@ class Component extends (window.PSLogic || DCLogic) {
     const reasons = RS.map((label, i) => { const on2 = s.reason === i; return { label, on: on2 ? 'true' : 'false', ring: on2 ? 'inset 0 0 0 2px #2F5BFF' : (s.rErr ? 'inset 0 0 0 1px #C62F35' : 'inset 0 0 0 1px #E3E6ED'), bg: on2 ? '#F2F5FF' : '#FFFFFF', dot: on2 ? '5px solid #2F5BFF' : '2px solid #C5CAD6', pick: () => this.setState({ reason: i, rErr: false }) }; });
     const used = ri ? !ri.instant : false;
     const rInfo = !ri ? { t: '', bg: '#F5F6F9', fg: '#2B3142' } : (used
-      ? { t: 'eSIM уже установлена и' + NB + 'подключалась к' + NB + 'сети. Возврат после установки не' + NB + 'гарантирован: опишите проблему, и' + NB + 'мы рассмотрим заявку индивидуально.', bg: '#FFF6E5', fg: '#5C3D00' }
-      : { t: ri.order.kind === 'topup' ? 'Гигабайты из' + NB + 'этого пополнения ещё не' + NB + 'использованы — вернём полную сумму на' + NB + 'баланс сразу.' : 'eSIM ещё не' + NB + 'установлена — вернём полную сумму на' + NB + 'баланс сразу. eSIM отключится.', bg: '#E4F5EA', fg: '#0B5C2E' });
+      ? { t: 'eSIM уже установлена и\u00a0подключалась к\u00a0сети. Возврат после установки не\u00a0гарантирован: опишите проблему, и\u00a0мы рассмотрим заявку индивидуально.', bg: '#FFF6E5', fg: '#5C3D00' }
+      : { t: ri.order.kind === 'topup' ? 'Гигабайты из\u00a0этого пополнения ещё не\u00a0использованы — вернём полную сумму на\u00a0баланс сразу.' : 'eSIM ещё не\u00a0установлена — вернём полную сумму на\u00a0баланс сразу. eSIM отключится.', bg: '#E4F5EA', fg: '#0B5C2E' });
     const res = s.rRes;
     const email = PSA.user() ? PSA.user().email : '';
     // Статус заявки (site-28)
@@ -1000,11 +1001,11 @@ class Component extends (window.PSLogic || DCLogic) {
       gOpenFn: () => this.setState({ gOpen: true, gDone: false, gErr: false }),
       gClose: () => this.setState({ gOpen: false, gDone: false }),
       gSend: () => { const v = (s.gEmail || '').trim(); if (!PSA.validEmail(v)) { this.setState({ gErr: true }); return; } PSA.sendToFriend(E.id, v, s.gMsg); this.setState({ gDone: true }); },
-      uBig: PSA.gb(on ? E.left : E.total), uSub: on ? 'осталось из' + NB + PSA.gb(E.total) : (E.archived ? 'не использовано' : 'доступно, ещё не' + NB + 'использовано'), uDays: (on ? E.daysLeft : E.raw.d) + NB + 'дн.', uW: (on ? E.pc : (E.archived ? 0 : 100)) + '%',
+      uBig: PSA.gb(on ? E.left : E.total), uSub: on ? 'осталось из' + NB + PSA.gb(E.total) : (E.archived ? 'не использовано' : 'доступно, ещё не\u00a0использовано'), uDays: (on ? E.daysLeft : E.raw.d) + NB + 'дн.', uW: (on ? E.pc : (E.archived ? 0 : 100)) + '%',
       uC: E.st === 'low' ? '#FF7A45' : (E.st === 'usedup' ? '#C62F35' : '#2F5BFF'), uL, uR,
       stBg: E.pill[0], stFg: E.pill[1], stText, hasNote: !!NOTE[E.st] && E.st !== 'active', note: NOTE[E.st] ? NOTE[E.st][0] : '', noteC: NOTE[E.st] ? NOTE[E.st][1] : 'gray',
       hasR: !!Rinfo, R: Rinfo || {},
-      ways, wIos: s.way === 'ios', wAnd: s.way === 'and', wMan: s.way === 'man', qr: q.cells, qrN: q.n, showQr, noQr: !showQr, noQrText: E.archived ? 'QR-код больше не' + NB + 'действует.' : 'eSIM уже установлена в' + NB + 'телефон. QR-код одноразовый, повторно он не' + NB + 'понадобится.',
+      ways, wIos: s.way === 'ios', wAnd: s.way === 'and', wMan: s.way === 'man', qr: q.cells, qrN: q.n, showQr, noQr: !showQr, noQrText: E.archived ? 'QR-код больше не\u00a0действует.' : 'eSIM уже установлена в\u00a0телефон. QR-код одноразовый, повторно он не\u00a0понадобится.',
       hasUsage: on && D.length > 0, days, avg: PSA.gb(avgN), fc: on && fcN < E.daysLeft && E.left > 0, fcDays: PSA.days(Math.max(1, fcN)), fcLeft: String(E.daysLeft), hasUp: !!up && E.canTopup, upLabel: up ? '+' + PSA.gb(up.n) + ' за' + NB + R(up.price) : '',
       hist,
       // Возврат прямо из карточки eSIM (не только из истории оплат): покупка этой eSIM
@@ -1012,9 +1013,9 @@ class Component extends (window.PSLogic || DCLogic) {
       cA: s.copied === 'a' ? 'Скопировано' : 'Копировать', cB: s.copied === 'b' ? 'Скопировано' : 'Копировать', copyA: copy('a', E.smdpAddr), copyB: copy('b', E.act),
       cIccid: s.copied === 'i' ? 'скопирован' : 'копировать', copyIccid: copy('i', E.iccid),
       rOpen: !!ri, rForm: !!ri && !s.rDone, rDone: !!s.rDone, rOrder: ri ? { no: '#' + ri.order.no, what: ri.order.label, sum: R(ri.amount) } : { no: '', what: '', sum: '' }, rInfo, reasons, rErr: s.rErr, rText: s.rText || '', onRText: (e) => this.setState({ rText: e.target.value }),
-      rBtn: used ? 'Отправить заявку' : 'Вернуть ' + (ri ? R(ri.amount) : '') + ' на' + NB + 'баланс', rFoot: used ? 'Ответим на ' + email + ' в' + NB + 'течение 24 часов' : 'Возврат оформится сразу, без проверки',
+      rBtn: used ? 'Отправить заявку' : 'Вернуть ' + (ri ? R(ri.amount) : '') + ' на\u00a0баланс', rFoot: used ? 'Ответим на ' + email + ' в\u00a0течение 24 часов' : 'Возврат оформится сразу, без проверки',
       rDoneH: res ? (res.instant ? 'Возврат оформлен' : 'Заявка ' + res.r.no + ' принята') : '',
-      rDoneText: res ? (res.instant ? R(res.r.amount) + ' уже на' + NB + 'балансе, ими можно оплатить любую eSIM. Вывести на' + NB + 'счёт СБП или в' + NB + 'USDT можно по' + NB + 'запросу в' + NB + 'поддержку.' : 'Если заявку одобрим, деньги придут на' + NB + 'баланс сразу после решения. Статус пришлём на ' + email + ' и' + NB + 'в' + NB + 'чат поддержки.') : '',
+      rDoneText: res ? (res.instant ? R(res.r.amount) + ' уже на\u00a0балансе, ими можно оплатить любую eSIM. Вывести на\u00a0счёт СБП или в\u00a0USDT можно по\u00a0запросу в\u00a0поддержку.' : 'Если заявку одобрим, деньги придут на\u00a0баланс сразу после решения. Статус пришлём на ' + email + ' и\u00a0в\u00a0чат поддержки.') : '',
       sendR: () => { if (s.reason < 0) { this.setState({ rErr: true }); return; } PSA.then(PSA.refund(s.r, RS[s.reason], s.rText), (r) => { if (r.ok) this.setState({ rDone: true, rRes: r }); }); },
       closeR: () => this.setState({ r: '', rDone: false, rRes: null })
     };

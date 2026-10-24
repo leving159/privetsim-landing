@@ -4,6 +4,7 @@
 <title>Меню — Привет SIM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="eSIM для путешествий в 190+ стран: интернет за границей без роуминга, цена в рублях, установка за 2 минуты.">
+<script>try{var l=localStorage.getItem('ps.lang'),e=/^\/en(\/|$)/.test(location.pathname);if(l==='en'&&!e||l==='ru'&&e)location.replace((l==='en'?'/en':'')+(location.pathname.replace(/^\/en(?=\/|$)/,'')||'/')+location.search+location.hash)}catch(x){}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Привет SIM">
 <meta property="og:locale" content="ru_RU">
@@ -27,20 +28,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610241224"></script>
-<script src="assets/catalog.js?v=202610241224"></script>
+<script src="config.js?v=202610241254"></script>
+<script src="assets/catalog.js?v=202610241254"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610241224"></script>
-<script src="assets/account.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610241224">
-<script src="assets/chat.js?v=202610241224" defer></script>
+<script src="assets/site.js?v=202610241254"></script>
+<script src="assets/account.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610241254">
+<script src="assets/chat.js?v=202610241254" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610241224">
-<script src="assets/ui.js?v=202610241224"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610241224">
-<script src="assets/motion.js?v=202610241224" defer></script>
+<script src="assets/dc-runtime.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610241254">
+<script src="assets/ui.js?v=202610241254"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610241254">
+<script src="assets/motion.js?v=202610241254" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -499,11 +500,11 @@ class Component extends (window.PSLogic || DCLogic) {
     });
   }
 
-  constructor(props) { super(props); this.state = { lang: 'ru' }; }
+  constructor(props) { super(props); this.state = { lang: PS.lang }; }
   _rv0() {
     const langs = [['ru', 'RU'], ['en', 'EN']].map(([id, label]) => {
       const on = this.state.lang === id;
-      return { label, on: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#0E1220' : '#5A6175', sh: on ? '0 1px 2px rgba(14,18,32,0.08)' : 'none', pick: () => this.setState({ lang: id }) };
+      return { label, on: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#0E1220' : '#5A6175', sh: on ? '0 1px 2px rgba(14,18,32,0.08)' : 'none', pick: () => { if (id !== PS.lang) PS.switchLang(id); } };
     });
     return { langs };
   }

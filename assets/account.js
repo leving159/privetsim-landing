@@ -859,6 +859,7 @@
     // Запрос к API. Не бросает: ошибка сети → { error: 'network' }
     function call(method, path, body) {
       var opt = { method: method, credentials: 'include', headers: {} };
+      if (PS.lang === 'en') opt.headers['x-lang'] = 'en';
       if (method !== 'GET') { opt.headers['content-type'] = 'application/json'; opt.body = JSON.stringify(body || {}); }
       return root.fetch(API + path, opt).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (j) { if (!res.ok && !j.error) j.error = 'http_' + res.status; return j; });
@@ -968,6 +969,8 @@
       var def = { lang: 'ru', mlang: 'ru', cur: 'rub', nt: { low: [1, 1], exp: [1, 1], act: [0, 1], top: [1, 1], pay: [1, 1], inst: [1, 1], promo: [0, 0], dest: [0, 1], ref: [1, 1] }, expAt: 1, quiet: true, auto: false, balFirst: false };
       var s2 = Object.assign({}, def, set || {});
       s2.nt = Object.assign({}, def.nt, (set || {}).nt || {});
+      // Язык писем не выбран отдельно — письма на языке интерфейса (как на сервере)
+      if (!(set || {}).mlang) s2.mlang = s2.lang;
       return s2;
     }
     function ingest(st) {
@@ -983,6 +986,12 @@
             return { id: x.id, ts: tms(x.createdAt), t: x.title, d: PSA.dt(tms(x.createdAt)) + (x.note ? ' · ' + x.note : ''), b: x.bucket, a: x.amountKopecks / 100, kind: x.kind, pend: x.pending, cancel: x.cancelled, orderId: x.orderId };
           }) };
         u.set.tg = !!U.telegram; u.set.g = !!U.google; u.tgName = U.telegramUsername || '';
+        // Язык аккаунта общий с ботом и Mini App: выбран там — открываем эту версию сайта; не выбран — запоминаем текущую
+        var L = U.settings && U.settings.lang;
+        if (L === 'en' || L === 'ru') {
+          try { root.localStorage.setItem('ps.lang', L); } catch (e) {}
+          if (root.PS && PS.lang !== L && !PSA.leaving) { PSA.leaving = true; root.location.replace(PS.langUrl(L)); }
+        } else if (root.PS && PS.lang === 'en') setTimeout(function () { PSA.setSettings({ lang: 'en' }); }, 0);
         d.users[u.id] = u; d.byEmail[u.email] = u.id; d.refs[u.ref] = u.id; d.sid = u.id;
         st.orders.forEach(function (x) { putOrder(d, x, u.id); });
         // Возвраты: к заказу и eSIM (как в демо)
