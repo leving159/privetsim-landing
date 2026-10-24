@@ -438,9 +438,13 @@
     // 20% пригласившему — от суммы, оплаченной деньгами (без баланса и скидок), начислим после окончания eSIM
     var paidMoney = o.kind === 'balance' ? 0 : o.toPay;
     if (u.invitedBy && paidMoney > 0 && d.users[u.invitedBy]) {
-      var r = d.users[u.invitedBy], amt = Math.round(paidMoney * 0.2);
-      o.reward = { to: r.id, amount: amt, status: 'pending' };
-      addOp(r, { t: '20% с заказа друга · ожидает', d: PSA.d(now()) + ' · ' + PSA.mask(u.email) + ' купил eSIM · начислим после окончания её срока', b: 'bonus', a: amt, kind: 'gift', pend: true, orderId: o.id });
+      // Не больше 3000 ₽ с одного друга за всё время (ожидающие + начисленные)
+      var got = values(d.orders).reduce(function (a, x) { return a + (x.userId === u.id && x.reward && x.reward.to === u.invitedBy && x.reward.status !== 'cancelled' ? x.reward.amount : 0); }, 0);
+      var r = d.users[u.invitedBy], amt = Math.min(Math.round(paidMoney * 0.2), 3000 - got);
+      if (amt > 0) {
+        o.reward = { to: r.id, amount: amt, status: 'pending' };
+        addOp(r, { t: '20% с заказа друга · ожидает', d: PSA.d(now()) + ' · ' + PSA.mask(u.email) + ' купил eSIM · начислим после окончания её срока', b: 'bonus', a: amt, kind: 'gift', pend: true, orderId: o.id });
+      }
     }
     save();
     return o;

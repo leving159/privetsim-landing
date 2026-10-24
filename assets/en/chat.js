@@ -129,7 +129,7 @@
     [/возврат|вернуть|верните|деньги назад|refund|money back/i, 'Request a refund on the eSIM page → “Purchase and top-ups” → “Refund”. If the eSIM wasn\'t installed, we\'ll refund the full amount to your balance right away. After installation, it\'s by request; we\'ll reply within 24 hours.'],
     [/оплат|сбп|usdt|крипт|карт|банк|списал|pay|sbp|crypto|card|bank|charged/i, 'You can pay via SBP (no fees), in USDT (TRON, TON, BEP-20) or from your balance. The payment link is valid for 30 minutes. If money was charged but the eSIM didn\'t arrive, send us the order number and we\'ll check.'],
     [/баланс|пополн|balance|top.?up/i, 'Top up your balance in your account → “Balance” via SBP or USDT and spend it on any eSIMs and gigabytes. To top up the eSIM itself, use the “Top up” button on its page.'],
-    [/друг|реферал|приглас|20%|friend|referr|invite/i, 'The “Invite friends” section has your link and code. Your friend gets 100 ₽ off their first purchase with your code, and you get 20% of the cost of every eSIM they buy.'],
+    [/друг|реферал|приглас|20%|friend|referr|invite/i, 'The “Invite friends” section has your link and code. Your friend gets 100 ₽ off their first purchase with your code, and you get 20% of the cost of every eSIM they buy, up to 3,000 ₽ per friend.'],
     [/телефон|поддерж|совмест|iphone|android|samsung|phone|support|compatib/i, 'You can check your phone on the “Compatibility” page: it has a list of models. It\'s important that the phone isn\'t carrier-locked.']
   ];
   function reply(text) {
