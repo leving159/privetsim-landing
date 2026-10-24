@@ -33,6 +33,9 @@ header.sh, #dc-root > div > header:first-of-type { view-transition-name: ps-head
 #dc-root .in.d3 { animation-delay: .06s; }
 #dc-root .in.d4 { animation-delay: .08s; }
 #dc-root .in.d5 { animation-delay: .1s; }
+/* Готовая копия первого экрана (предрендер при сборке) видна сразу, без появления; живая страница,
+   которая её подменяет, тоже не проявляется заново */
+#dc-pre .in, #dc-pre .blurin, html.ps-pre #dc-root .in, html.ps-pre #dc-root .blurin { animation: none !important; }
 
 /* 3. Волна от нажатия (ripple) на кнопках */
 .ps-rp { position: relative; overflow: hidden; isolation: isolate; }
