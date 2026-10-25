@@ -168,6 +168,12 @@
     };
   };
   PS.cName = cName;
+  // Где трафик выходит в интернет (ipExport поставщика, catalog.json → ip): "HK,TH" → «Гонконг, Таиланд», "FR/NL/UK" → «Франция / Нидерланды / Великобритания»
+  PS.ipName = function (ip) {
+    return String(ip || '').split(',').filter(Boolean).map(function (v) {
+      return v.split('/').map(function (c) { return c === 'Europe' ? (EN ? 'Europe' : 'Европа') : PS.cName(c === 'UK' ? 'GB' : c) || c; }).join(' / ');
+    }).join(', ');
+  };
   // Какие флаги есть в assets/flags (список дописывает сборщик в catalog.js)
   PS.flagOf = function (code) {
     var c = String(code || '').toLowerCase(), list = root.PS_FLAGS || '';
@@ -323,7 +329,7 @@
         o = { code: code, name: k.name, gen: d.gen, inn: d.inn, to: d.to,
           photo: 'assets/photos/' + reg[3] + '.jpg', cap: reg[4].toUpperCase(), alt: k.name, place: '', region: rc, regionName: reg[0] };
       }
-      o.net = k.net; o.ops = k.ops || []; o.from = PS.fmt(k.from); o.flag = PS.flagOf(code);
+      o.net = k.net; o.ops = k.ops || []; o.from = PS.fmt(k.from); o.flag = PS.flagOf(code); o.ip = PS.ipName(k.ip);
       return o;
     };
 
@@ -333,7 +339,7 @@
       var k = CAT.regions[code];
       if (!k) { code = 'EU'; k = CAT.regions.EU; }
       var o = regionOld(code);
-      o.name = k.name; o.gen = k.gen; o.from = PS.fmt(k.from); o.n = k.countries.length; o.net = k.net;
+      o.name = k.name; o.gen = k.gen; o.from = PS.fmt(k.from); o.n = k.countries.length; o.net = k.net; o.ip = PS.ipName(k.ip);
       o.list = k.countries.slice();
       o.head = o.list.slice(0, 7).map(function (x) { return x[0]; });
       o.icon = code === 'EU' ? 'assets/flags/eu.svg' : PS.flagOf(o.head[0]);

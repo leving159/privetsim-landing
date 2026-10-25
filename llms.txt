@@ -52,6 +52,10 @@
 - [Совместимость телефонов с eSIM](https://privetsim.net/compatibility.html)
 - [Публичная оферта](https://privetsim.net/legal.html?doc=offer), [условия возврата](https://privetsim.net/legal.html?doc=refund), [политика конфиденциальности](https://privetsim.net/legal.html?doc=privacy)
 - [Для бизнеса и партнёров](https://privetsim.net/business.html)
+- [Что такое eSIM и как она работает в путешествии](https://privetsim.net/guide-kak-rabotaet-esim.html)
+- [Как проверить, поддерживает ли телефон eSIM](https://privetsim.net/guide-kak-proverit-esim.html)
+- [Как установить eSIM на Android](https://privetsim.net/guide-ustanovka-esim-android.html)
+- [Как оплатить eSIM для поездки российской картой](https://privetsim.net/guide-oplata-esim-iz-rossii.html)
 - [Карта сайта](https://privetsim.net/sitemap.xml)
 
 ## English
