@@ -30,9 +30,9 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/account.css?v=202610251535">
-<link rel="stylesheet" href="../assets/ui.css?v=202610251535">
-<link rel="stylesheet" href="../assets/motion.css?v=202610251535">
+<link rel="stylesheet" href="../assets/account.css?v=202610251556">
+<link rel="stylesheet" href="../assets/ui.css?v=202610251556">
+<link rel="stylesheet" href="../assets/motion.css?v=202610251556">
 <style>x-dc{display:none!important}html.ps-nopre #dc-pre{display:none!important}
 
     .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
@@ -722,6 +722,13 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
       </div>
     </section>
 
+    <!-- -->
+    <section data-dc-tpl="143" id="guides" aria-labelledby="gd-h" style="display: flex; flex-direction: column; gap: 24px;">
+      <h2 data-dc-tpl="144" id="gd-h" class="t-h2">Guides</h2>
+      <div data-dc-tpl="145" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 12px;">
+        <a data-dc-tpl="147" href="guide-kak-rabotaet-esim.html" style="display: flex; flex-direction: column; gap: 6px; padding: 24px; border-radius: 24px; background: rgb(245, 246, 249); color: rgb(14, 18, 32); text-decoration: none;"><b data-dc-tpl="148" style="font-size: 18px; line-height: 24px; font-weight: 600;"><span class="sc-interp">How eSIM works</span></b><span data-dc-tpl="149" style="font-size: 15px; line-height: 22px; color: rgb(90, 97, 117);"><span class="sc-interp">What it is, why it beats roaming and a local SIM, what happens to your main number</span></span></a><a data-dc-tpl="147" href="guide-kak-proverit-esim.html" style="display: flex; flex-direction: column; gap: 6px; padding: 24px; border-radius: 24px; background: rgb(245, 246, 249); color: rgb(14, 18, 32); text-decoration: none;"><b data-dc-tpl="148" style="font-size: 18px; line-height: 24px; font-weight: 600;"><span class="sc-interp">Check eSIM support</span></b><span data-dc-tpl="149" style="font-size: 15px; line-height: 22px; color: rgb(90, 97, 117);"><span class="sc-interp">The *#06# code, settings and carrier lock — in a couple of minutes</span></span></a><a data-dc-tpl="147" href="guide-ustanovka-esim-android.html" style="display: flex; flex-direction: column; gap: 6px; padding: 24px; border-radius: 24px; background: rgb(245, 246, 249); color: rgb(14, 18, 32); text-decoration: none;"><b data-dc-tpl="148" style="font-size: 18px; line-height: 24px; font-weight: 600;"><span class="sc-interp">Install eSIM on Android</span></b><span data-dc-tpl="149" style="font-size: 15px; line-height: 22px; color: rgb(90, 97, 117);"><span class="sc-interp">Samsung, Pixel and Xiaomi: QR code, manual entry, roaming setup</span></span></a><a data-dc-tpl="147" href="guide-oplata-esim-iz-rossii.html" style="display: flex; flex-direction: column; gap: 6px; padding: 24px; border-radius: 24px; background: rgb(245, 246, 249); color: rgb(14, 18, 32); text-decoration: none;"><b data-dc-tpl="148" style="font-size: 18px; line-height: 24px; font-weight: 600;"><span class="sc-interp">Paying for eSIM from Russia</span></b><span data-dc-tpl="149" style="font-size: 15px; line-height: 22px; color: rgb(90, 97, 117);"><span class="sc-interp">SBP from any bank app, USDT, prices in rubles</span></span></a>
+      </div>
+    </section>
     <!-- -->
     <section data-dc-tpl="150" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; padding: clamp(28px, 4vw, 48px); border-radius: 32px; background: rgb(14, 18, 32); color: rgb(255, 255, 255);">
       <div data-dc-tpl="151" style="display: flex; flex-direction: column; gap: 10px; max-width: 560px;">
@@ -1565,17 +1572,18 @@ class Component extends (window.PSLogic || DCLogic) {
 
 <script>window.PS_FAST = true</script>
 <script>window.PS_LANG = "en"</script>
-<script src="../config.js?v=202610251535"></script>
-<script src="../assets/en/names.js?v=202610251535"></script>
-<script src="../assets/catalog.js?v=202610251535"></script>
+<script src="../config.js?v=202610251556"></script>
+<script src="../assets/en/names.js?v=202610251556"></script>
+<script src="../assets/catalog.js?v=202610251556"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="../assets/en/site.js?v=202610251535"></script>
-<script src="../assets/en/account.js?v=202610251535"></script>
-<script src="../assets/en/chat.js?v=202610251535" defer></script>
+<script>window.PS_GUIDES = [{"t":"How eSIM works","d":"What it is, why it beats roaming and a local SIM, what happens to your main number","href":"guide-kak-rabotaet-esim.html"},{"t":"Check eSIM support","d":"The *#06# code, settings and carrier lock — in a couple of minutes","href":"guide-kak-proverit-esim.html"},{"t":"Install eSIM on Android","d":"Samsung, Pixel and Xiaomi: QR code, manual entry, roaming setup","href":"guide-ustanovka-esim-android.html"},{"t":"Paying for eSIM from Russia","d":"SBP from any bank app, USDT, prices in rubles","href":"guide-oplata-esim-iz-rossii.html"}]</script>
+<script src="../assets/en/site.js?v=202610251556"></script>
+<script src="../assets/en/account.js?v=202610251556"></script>
+<script src="../assets/en/chat.js?v=202610251556" defer></script>
 <script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/dc-runtime.js?v=202610251535"></script>
-<script src="../assets/en/ui.js?v=202610251535"></script>
-<script src="../assets/en/motion.js?v=202610251535" defer></script>
+<script src="../assets/dc-runtime.js?v=202610251556"></script>
+<script src="../assets/en/ui.js?v=202610251556"></script>
+<script src="../assets/en/motion.js?v=202610251556" defer></script>
 <script>window.PS && PS.applyUrlProps();</script>
 </body></html>
