@@ -71,7 +71,7 @@
   (function () {
     var api = root.SITE_CONFIG && root.SITE_CONFIG.apiUrl;
     if (!api || !root.fetch) return;
-    var base = api.replace(/\/$/, '') + '/api/content/', page = location.pathname.split('/').pop() || 'index.html';
+    var base = api.replace(/\/$/, '') + '/api/content/', page = PS.page();
     function get(path, key, then) {
       root.fetch(base + path, PS.lang === 'en' ? { headers: { 'x-lang': 'en' } } : undefined).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
         if (!j) return;
@@ -80,8 +80,8 @@
       }).catch(function () {});
     }
     get('status', 'status', banners);
-    if (page === 'help.html') get('help', 'help');
-    if (page === 'compatibility.html') get('devices', 'devices');
+    if (page === 'help') get('help', 'help');
+    if (page === 'compatibility') get('devices', 'devices');
   })();
   // Плашки над страницей: техработы (покупки закрыты) и баннеры — на весь сайт или на страницу страны (scope = код)
   function banners(st) {
@@ -132,7 +132,7 @@
 
   /* ---------- Якоря: плавная прокрутка, переход на якорь другой страницы ---------- */
   function samePage(a) {
-    var p = function (x) { return x.replace(/\/index\.html$/, '/'); };
+    var p = function (x) { return x.replace(/\.html$/, '').replace(/\/index$/, '/'); };
     return a.origin === location.origin && p(a.pathname) === p(location.pathname);
   }
   function toHash(hash, smooth) {
@@ -266,7 +266,7 @@
     var box = sugBox();
     input.setAttribute('aria-controls', 'ps-sug'); input.setAttribute('aria-autocomplete', 'list');
     if (!sugItems.length) {
-      box.innerHTML = '<div class="ps-sug-none">Nothing found for “' + esc(q) + '». <a href="countries.html?q=' + encodeURIComponent(q) + '">All countries</a> or <a href="' + PS.dest('GL') + '">“Whole world” eSIM</a></div>';
+      box.innerHTML = '<div class="ps-sug-none">Nothing found for “' + esc(q) + '». <a href="countries?q=' + encodeURIComponent(q) + '">All countries</a> or <a href="' + PS.dest('GL') + '">“Whole world” eSIM</a></div>';
     } else {
       box.innerHTML = sugItems.map(function (x, i) {
         var ico = x.flag ? '<img src="' + esc(x.flag) + '" alt="">' : '<span class="ps-sug-g" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg></span>';
@@ -312,26 +312,25 @@
   function menuHtml() {
     var PSA = root.PSA, u = PSA && PSA.user ? PSA.user() : null;
     var bot = (root.SITE_CONFIG && root.SITE_CONFIG.telegramBot) || 'PrivetSimBot';
-    var here = location.pathname.split('/').pop() || 'index.html';
-    var howHref = here === 'index.html' ? '#how' : 'index.html#how';
+    var howHref = PS.page() === 'index' ? '#how' : './#how';
     var mi = function (href, label, tail) { return '<a class="mi" href="' + href + '">' + label + (tail || ICO.arr) + '</a>'; };
     var bal = u && PSA.balance ? PSA.rub(PSA.balance().total) : '';
-    return '<div class="ps-menu-hd"><a href="index.html" class="ps-menu-logo" aria-label="Privet SIM — home">' + ICO.logo +
+    return '<div class="ps-menu-hd"><a href="./" class="ps-menu-logo" aria-label="Privet SIM — home">' + ICO.logo +
       '<span><b>Privet</b><i class="mono">SIM</i></span></a><button type="button" class="ps-menu-x" data-menu-close aria-label="Close menu">' + ICO.x + '</button></div>' +
       '<div class="ps-menu-bd">' +
-        '<label class="ps-msearch">' + ICO.find + '<input type="search" placeholder="Where are you going?" aria-label="Where are you going?" enterkeyhint="search"><a href="countries.html" hidden>Search</a></label>' +
-        (u ? '<a class="ps-menu-me" href="profile.html"><span class="ps-menu-ava">' + esc((u.email || '?').charAt(0).toUpperCase()) + '</span><span><b>' + esc(u.email || 'Profile') + '</b><small>Profile and settings</small></span>' + ICO.arr + '</a>' : '') +
+        '<label class="ps-msearch">' + ICO.find + '<input type="search" placeholder="Where are you going?" aria-label="Where are you going?" enterkeyhint="search"><a href="countries" hidden>Search</a></label>' +
+        (u ? '<a class="ps-menu-me" href="profile"><span class="ps-menu-ava">' + esc((u.email || '?').charAt(0).toUpperCase()) + '</span><span><b>' + esc(u.email || 'Profile') + '</b><small>Profile and settings</small></span>' + ICO.arr + '</a>' : '') +
         '<nav aria-label="Main">' +
-          mi('countries.html', 'Countries') + mi(howHref, 'How it works') + mi('compatibility.html', 'Compatibility') + mi('help.html', 'Help') +
-          (u ? mi('account.html', 'My eSIMs') +
-            mi('wallet.html', 'Balance', '<span class="mono ps-menu-bal">' + esc(bal) + '</span>') +
-            mi('referral.html', 'Invite friends', '<span class="ps-menu-25">25%</span>') : '') +
+          mi('countries', 'Countries') + mi(howHref, 'How it works') + mi('compatibility', 'Compatibility') + mi('help', 'Help') +
+          (u ? mi('account', 'My eSIMs') +
+            mi('wallet', 'Balance', '<span class="mono ps-menu-bal">' + esc(bal) + '</span>') +
+            mi('referral', 'Invite friends', '<span class="ps-menu-25">25%</span>') : '') +
         '</nav>' +
         '<a class="btn btn-dark ps-menu-tg" href="https://t.me/' + esc(bot) + '" target="_blank" rel="noopener">' + ICO.tg + 'Open the bot on Telegram</a>' +
       '</div>' +
       '<div class="ps-menu-ft">' +
-        (u ? '<a class="btn btn-ghost" href="login.html?logout=1">Log out</a>' : '<a class="btn btn-ghost" href="' + (PSA && PSA.loginUrl ? PSA.loginUrl('account.html') : 'login.html') + '">My account</a>') +
-        '<a class="btn btn-primary" href="countries.html">Buy eSIM</a>' +
+        (u ? '<a class="btn btn-ghost" href="login?logout=1">Log out</a>' : '<a class="btn btn-ghost" href="' + (PSA && PSA.loginUrl ? PSA.loginUrl('account') : 'login') + '">My account</a>') +
+        '<a class="btn btn-primary" href="countries">Buy eSIM</a>' +
       '</div>';
   }
   function openMenu() {
@@ -359,7 +358,7 @@
   }
   PS.openMenu = openMenu;
   doc.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href="menu.html"]');
+    var a = e.target.closest && e.target.closest('a[href="menu"]');
     if (!a || e.metaKey || e.ctrlKey) return;
     e.preventDefault();
     openMenu();

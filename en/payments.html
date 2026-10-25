@@ -10,7 +10,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="Payment methods — Privet SIM">
 <meta property="og:description" content="Travel eSIM for 190+ countries: mobile internet abroad without roaming, prices in rubles, set up in 2 minutes.">
-<meta property="og:url" content="https://privetsim.net/en/payments.html">
+<meta property="og:url" content="https://privetsim.net/en/payments">
 <meta property="og:image" content="https://privetsim.net/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -28,22 +28,22 @@
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <script>window.PS_LANG = "en"</script>
-<script src="../config.js?v=202610251556"></script>
-<script src="../assets/en/names.js?v=202610251556"></script>
-<script src="../assets/catalog.js?v=202610251556"></script>
+<script src="../config.js?v=202610251607"></script>
+<script src="../assets/en/names.js?v=202610251607"></script>
+<script src="../assets/catalog.js?v=202610251607"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="../assets/en/site.js?v=202610251556"></script>
-<script src="../assets/en/account.js?v=202610251556"></script>
+<script src="../assets/en/site.js?v=202610251607"></script>
+<script src="../assets/en/account.js?v=202610251607"></script>
 <script>PSA.guard()</script>
-<link rel="stylesheet" href="../assets/account.css?v=202610251556">
-<script src="../assets/en/chat.js?v=202610251556" defer></script>
+<link rel="stylesheet" href="../assets/account.css?v=202610251607">
+<script src="../assets/en/chat.js?v=202610251607" defer></script>
 <script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/dc-runtime.js?v=202610251556"></script>
-<link rel="stylesheet" href="../assets/ui.css?v=202610251556">
-<script src="../assets/en/ui.js?v=202610251556"></script>
-<link rel="stylesheet" href="../assets/motion.css?v=202610251556">
-<script src="../assets/en/motion.js?v=202610251556" defer></script>
+<script src="../assets/dc-runtime.js?v=202610251607"></script>
+<link rel="stylesheet" href="../assets/ui.css?v=202610251607">
+<script src="../assets/en/ui.js?v=202610251607"></script>
+<link rel="stylesheet" href="../assets/motion.css?v=202610251607">
+<script src="../assets/en/motion.js?v=202610251607" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -574,22 +574,22 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
   <!-- Шапка (единая) -->
   <header class="sh">
     <div class="sh-in">
-      <a class="sh-logo" href="index.html" aria-label="Privet SIM — home"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Privet</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">Travel eSIM<br>in 200+ countries</span></a>
-      <nav class="sh-nav" aria-label="Main"><a href="countries.html">Countries</a><a href="index.html#how">How it works</a><a href="compatibility.html">Compatibility</a><a href="help.html">Help</a></nav>
-      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="ru" lang="ru" aria-label="{{langAria}}" title="Русский" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><sc-if value="{{psChip}}" hint-placeholder-val="{{ true }}"><a class="sh-btn sh-gho sh-hm" href="{{psChipHref}}" aria-label="{{psChipAria}}" style="gap: 10px; padding: 0 14px 0 8px"><img loading="lazy" decoding="async" src="{{psChipFlag}}" alt="" style="width: 24px; height: 24px"><span style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; line-height: 1">{{psChipText}}</span><span style="width: 64px; height: 4px; border-radius: 999px; background: #EDEFF3; overflow: hidden"><span style="display: block; width: {{psChipW}}; height: 100%; border-radius: 999px; background: #2F5BFF"></span></span></span></a></sc-if><a class="sh-btn sh-pri" href="countries.html">Buy eSIM</a><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ true }}"><a class="sh-ava sh-hm" href="profile.html" aria-label="{{psAvaAria}}">{{psAva}}<span aria-hidden="true" style="position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border-radius: 50%; background: #0B7A3E; box-shadow: 0 0 0 2px #FFFFFF"></span></a></sc-if><sc-if value="{{psGuest}}" hint-placeholder-val="{{ false }}"><a class="sh-btn sh-gho sh-hm" href="login.html">Log in</a></sc-if><a class="sh-btn sh-gho sh-burger" href="menu.html" aria-label="Open menu"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
+      <a class="sh-logo" href="./" aria-label="Privet SIM — home"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Privet</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span><span class="sh-sep sh-hm" aria-hidden="true"></span><span class="sh-desc sh-hm">Travel eSIM<br>in 200+ countries</span></a>
+      <nav class="sh-nav" aria-label="Main"><a href="countries">Countries</a><a href="./#how">How it works</a><a href="compatibility">Compatibility</a><a href="help">Help</a></nav>
+      <div class="sh-act"><button type="button" class="sh-btn sh-gho sh-hm" hreflang="ru" lang="ru" aria-label="{{langAria}}" title="Русский" sc-camel-on-click="{{toggleLang}}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"></path></svg>{{langLbl}}</button><sc-if value="{{psChip}}" hint-placeholder-val="{{ true }}"><a class="sh-btn sh-gho sh-hm" href="{{psChipHref}}" aria-label="{{psChipAria}}" style="gap: 10px; padding: 0 14px 0 8px"><img loading="lazy" decoding="async" src="{{psChipFlag}}" alt="" style="width: 24px; height: 24px"><span style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; line-height: 1">{{psChipText}}</span><span style="width: 64px; height: 4px; border-radius: 999px; background: #EDEFF3; overflow: hidden"><span style="display: block; width: {{psChipW}}; height: 100%; border-radius: 999px; background: #2F5BFF"></span></span></span></a></sc-if><a class="sh-btn sh-pri" href="countries">Buy eSIM</a><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ true }}"><a class="sh-ava sh-hm" href="profile" aria-label="{{psAvaAria}}">{{psAva}}<span aria-hidden="true" style="position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border-radius: 50%; background: #0B7A3E; box-shadow: 0 0 0 2px #FFFFFF"></span></a></sc-if><sc-if value="{{psGuest}}" hint-placeholder-val="{{ false }}"><a class="sh-btn sh-gho sh-hm" href="login">Log in</a></sc-if><a class="sh-btn sh-gho sh-burger" href="menu" aria-label="Open menu"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
     </div>
   </header>
 
   <div class="wrap" style="padding-top: 40px; padding-bottom: 120px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
     <nav class="side" aria-label="Account" style="flex: 1 1 220px; max-width: 100%; display: flex; flex-direction: column; gap: 4px">
-      <a href="account.html">
+      <a href="account">
         <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path><rect x="9" y="11" width="6" height="6" rx="1"></rect></svg>My eSIMs</a>
-      <a href="wallet.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h11v4"></path><path d="M4 7v11a2 2 0 0 0 2 2h14V9H6a2 2 0 0 1-2-2z"></path><path d="M16 14.5h1"></path></svg>Balance<span class="mono" style="margin-left: auto; font-size: 12px; font-weight: 500; color: #5A6175">{{psBal}}</span></a>
-      <a href="profile.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
-      <a href="referral.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1"></rect><path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-3-5-3.5-5-1.5S10 8 12 8zM12 8c1.5-3 5-3.5 5-1.5S14 8 12 8z"></path></svg><span style="white-space: nowrap">Invite friends</span><span style="margin-left: auto; flex: none; white-space: nowrap; height: 22px; padding: 0 7px; border-radius: 8px; background: #FF7A45; color: #0E1220; font: 600 12px/22px 'Onest', system-ui, sans-serif">20%</span></a>
+      <a href="wallet"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h11v4"></path><path d="M4 7v11a2 2 0 0 0 2 2h14V9H6a2 2 0 0 1-2-2z"></path><path d="M16 14.5h1"></path></svg>Balance<span class="mono" style="margin-left: auto; font-size: 12px; font-weight: 500; color: #5A6175">{{psBal}}</span></a>
+      <a href="profile"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Profile</a>
+      <a href="referral"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="8" width="17" height="4" rx="1"></rect><path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-3-5-3.5-5-1.5S10 8 12 8zM12 8c1.5-3 5-3.5 5-1.5S14 8 12 8z"></path></svg><span style="white-space: nowrap">Invite friends</span><span style="margin-left: auto; flex: none; white-space: nowrap; height: 22px; padding: 0 7px; border-radius: 8px; background: #FF7A45; color: #0E1220; font: 600 12px/22px 'Onest', system-ui, sans-serif">20%</span></a>
       <a href="#chat"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h16v10H9l-5 4z"></path></svg>Support</a>
-      <a href="legal.html"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg>Documents</a>
-      <a href="login.html?logout=1"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4v16h-4"></path><path d="M10 8l-4 4 4 4M6 12h10"></path></svg>Log out</a>
+      <a href="legal"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg>Documents</a>
+      <a href="login?logout=1"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h4v16h-4"></path><path d="M10 8l-4 4 4 4M6 12h10"></path></svg>Log out</a>
     </nav>
 
         <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
@@ -612,7 +612,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         <div class="pm">
           <span class="pw-ic" style="background: #FFF1E8"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="#E05A25" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h12v4"></path><path d="M4 7v10a2 2 0 0 0 2 2h14V9H6a2 2 0 0 1-2-2z"></path><path d="M16 14h.01"></path></svg></span>
           <span style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 4px"><b style="font-size: 15px; font-weight: 600">Privet SIM balance ·  <span class="mono" style="font-weight: 500">{{psBal}}</span></b><span style="font-size: 13px; line-height: 19px; color: #5A6175">Topped up via SBP or USDT, plus 20% from friends</span></span>
-          <a class="btn btn-secondary btn-sm" href="wallet.html">Top up</a>
+          <a class="btn btn-secondary btn-sm" href="wallet">Top up</a>
         </div>
         <div class="pm" style="opacity: .6">
           <span class="pw-ic" style="background: #F5F6F9"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="#5A6175" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"></rect><path d="M3 10h18"></path></svg></span>
@@ -633,7 +633,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
         </div>
         <div class="pm">
           <span style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 4px"><b style="font-size: 15px; font-weight: 600">Receipts by email</b><span style="font-size: 13px; color: #5A6175">{{psEmail}}</span></span>
-          <a class="lnk" href="profile.html" style="text-decoration: none">Change</a>
+          <a class="lnk" href="profile" style="text-decoration: none">Change</a>
         </div>
       </section>
 
@@ -658,12 +658,12 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 40px">
         <div style="display: flex; flex-direction: column; gap: 16px">
-          <a class="sh-logo" href="index.html" aria-label="Privet SIM — home"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Privet</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span></a>
+          <a class="sh-logo" href="./" aria-label="Privet SIM — home"><svg width="32" height="32" sc-camel-view-box="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#2F5BFF"></rect><circle cx="13.5" cy="15.5" r="3.2" fill="#FFFFFF"></circle><circle cx="26.5" cy="15.5" r="3.2" fill="#FF7A45"></circle><path d="M11 23.5C13.5 30.5 26.5 30.5 29 23.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"></path></svg><span style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">Privet</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.04em; line-height: 1; color: #FFFFFF; background: #2F5BFF; border-radius: 5px; padding: 4px 6px">SIM</span></span></a>
           <span style="font-size: 14px; line-height: 21px; color: #5A6175">Travel eSIM</span>
         </div>
-        <div class="sf-col"><span class="sf-mono">Destinations</span><a href="esim-turkey.html">Turkey</a><a href="esim-uae.html">UAE</a><a href="esim-thailand.html">Thailand</a><a href="esim-europe.html">Europe</a><a href="countries.html">All countries</a></div>
-        <div class="sf-col"><span class="sf-mono">Help</span><a href="help.html#install">How to install</a><a href="compatibility.html">Compatibility</a><a href="help.html#faq">FAQ</a><a href="https://t.me/PrivetSimBot" target="_blank" rel="noopener">Support on Telegram</a></div>
-        <div class="sf-col"><span class="sf-mono">Account and documents</span><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a href="login.html">Log in</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a href="login.html?logout=1">Log out</a></sc-if><a href="account.html">My eSIMs</a><a href="referral.html">Referral program · 20%</a><a href="promo.html">Promotions · up to 50% for a review</a><a href="legal.html?doc=offer">Terms of Service</a><a href="legal.html?doc=privacy">Privacy</a><a href="legal.html?doc=req">Company details</a></div>
+        <div class="sf-col"><span class="sf-mono">Destinations</span><a href="esim-turkey">Turkey</a><a href="esim-uae">UAE</a><a href="esim-thailand">Thailand</a><a href="esim-europe">Europe</a><a href="countries">All countries</a></div>
+        <div class="sf-col"><span class="sf-mono">Help</span><a href="help#install">How to install</a><a href="compatibility">Compatibility</a><a href="help#faq">FAQ</a><a href="https://t.me/PrivetSimBot" target="_blank" rel="noopener">Support on Telegram</a></div>
+        <div class="sf-col"><span class="sf-mono">Account and documents</span><sc-if value="{{psGuest}}" hint-placeholder-val="{{ true }}"><a href="login">Log in</a></sc-if><sc-if value="{{psAuthed}}" hint-placeholder-val="{{ false }}"><a href="login?logout=1">Log out</a></sc-if><a href="account">My eSIMs</a><a href="referral">Referral program · 20%</a><a href="promo">Promotions · up to 50% for a review</a><a href="legal?doc=offer">Terms of Service</a><a href="legal?doc=privacy">Privacy</a><a href="legal?doc=req">Company details</a></div>
       </div>
       <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid #EDEFF3; font-size: 13px; color: #5A6175">
         <span>© 2026 Privet SIM</span>

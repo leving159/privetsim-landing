@@ -11,51 +11,51 @@
 - Пакеты двух видов: «на весь срок» (один объём на всю поездку) и «с лимитом в день» (после дневного объёма скорость снижается).
 - Оплата: СБП из приложения любого банка, USDT (TON, TRC-20, BEP-20) или с баланса личного кабинета. Цена в рублях фиксируется при переходе к оплате.
 - Возврат: полный, пока eSIM не установлена и не активирована; по установленной eSIM — по заявке в поддержку. На баланс — сразу, на счёт по СБП или в USDT — обычно сразу, в редких случаях до 3 рабочих дней.
-- Нужен телефон с поддержкой eSIM, не привязанный к оператору: [список совместимых моделей](https://privetsim.net/compatibility.html).
+- Нужен телефон с поддержкой eSIM, не привязанный к оператору: [список совместимых моделей](https://privetsim.net/compatibility).
 - Поддержка: чат на сайте, Telegram @PrivetSimBot, support@privetsim.net.
 
 ## Популярные направления (цены на 24.10.2026)
 
-- [Турция](https://privetsim.net/esim-turkey.html): от 60 ₽, 5 ГБ на 30 дней — 410 ₽, сеть 4G/5G (Vodafone, Avea/Türk Telekom)
-- [ОАЭ](https://privetsim.net/esim-uae.html): от 60 ₽, 5 ГБ на 30 дней — 1 420 ₽, сеть 4G/5G (Du)
-- [Таиланд](https://privetsim.net/esim-thailand.html): от 60 ₽, 5 ГБ на 30 дней — 480 ₽, сеть 4G/5G (TrueMove H, DTAC, True Move, AIS)
-- [Египет](https://privetsim.net/esim-egypt.html): от 60 ₽, 5 ГБ на 30 дней — 980 ₽, сеть 4G/5G (Orange, Etisalat, Vodafone)
-- [Китай](https://privetsim.net/esim-china.html): от 60 ₽, 5 ГБ на 30 дней — 530 ₽, сеть 4G/5G (China Mobile, China Unicom, China Telecom)
-- [Вьетнам](https://privetsim.net/esim-vietnam.html): от 60 ₽, 5 ГБ на 30 дней — 670 ₽, сеть 4G/5G (Viettel Mobile, Vinaphone, MobiFone)
-- [Грузия](https://privetsim.net/esim-georgia.html): от 100 ₽, 5 ГБ на 30 дней — 680 ₽, сеть 4G/5G (Magti, Beeline, Geocell)
-- [Армения](https://privetsim.net/esim-armenia.html): от 60 ₽, 5 ГБ на 30 дней — 870 ₽, сеть 4G/5G (Vivacell)
-- [Индонезия · Бали](https://privetsim.net/esim-indonesia-bali.html): от 60 ₽, 5 ГБ на 30 дней — 480 ₽, сеть 4G/5G (Telkomsel, XL, Indosat)
-- [Казахстан](https://privetsim.net/esim-kazakhstan.html): от 60 ₽, 5 ГБ на 30 дней — 610 ₽, сеть 4G (Beeline)
-- [Узбекистан](https://privetsim.net/esim-uzbekistan.html): от 60 ₽, 5 ГБ на 30 дней — 520 ₽, сеть 4G/5G (Beeline)
-- [Мальдивы](https://privetsim.net/esim-maldives.html): от 1 000 ₽, 5 ГБ на 30 дней — 5 610 ₽, сеть 4G (Dhiraagu)
-- [Шри‑Ланка](https://privetsim.net/esim-sri-lanka.html): от 60 ₽, 5 ГБ на 30 дней — 820 ₽, сеть 4G (Hutch)
-- [Индия](https://privetsim.net/esim-india.html): от 80 ₽, 5 ГБ на 30 дней — 950 ₽, сеть 4G/5G (AirTel)
-- [Сербия](https://privetsim.net/esim-serbia.html): от 60 ₽, 5 ГБ на 30 дней — 680 ₽, сеть 4G/5G (VIP)
+- [Турция](https://privetsim.net/esim-turkey): от 60 ₽, 5 ГБ на 30 дней — 410 ₽, сеть 4G/5G (Vodafone, Avea/Türk Telekom)
+- [ОАЭ](https://privetsim.net/esim-uae): от 60 ₽, 5 ГБ на 30 дней — 1 420 ₽, сеть 4G/5G (Du)
+- [Таиланд](https://privetsim.net/esim-thailand): от 60 ₽, 5 ГБ на 30 дней — 480 ₽, сеть 4G/5G (TrueMove H, DTAC, True Move, AIS)
+- [Египет](https://privetsim.net/esim-egypt): от 60 ₽, 5 ГБ на 30 дней — 980 ₽, сеть 4G/5G (Orange, Etisalat, Vodafone)
+- [Китай](https://privetsim.net/esim-china): от 60 ₽, 5 ГБ на 30 дней — 530 ₽, сеть 4G/5G (China Mobile, China Unicom, China Telecom)
+- [Вьетнам](https://privetsim.net/esim-vietnam): от 60 ₽, 5 ГБ на 30 дней — 670 ₽, сеть 4G/5G (Viettel Mobile, Vinaphone, MobiFone)
+- [Грузия](https://privetsim.net/esim-georgia): от 100 ₽, 5 ГБ на 30 дней — 680 ₽, сеть 4G/5G (Magti, Beeline, Geocell)
+- [Армения](https://privetsim.net/esim-armenia): от 60 ₽, 5 ГБ на 30 дней — 870 ₽, сеть 4G/5G (Vivacell)
+- [Индонезия · Бали](https://privetsim.net/esim-indonesia-bali): от 60 ₽, 5 ГБ на 30 дней — 480 ₽, сеть 4G/5G (Telkomsel, XL, Indosat)
+- [Казахстан](https://privetsim.net/esim-kazakhstan): от 60 ₽, 5 ГБ на 30 дней — 610 ₽, сеть 4G (Beeline)
+- [Узбекистан](https://privetsim.net/esim-uzbekistan): от 60 ₽, 5 ГБ на 30 дней — 520 ₽, сеть 4G/5G (Beeline)
+- [Мальдивы](https://privetsim.net/esim-maldives): от 1 000 ₽, 5 ГБ на 30 дней — 5 610 ₽, сеть 4G (Dhiraagu)
+- [Шри‑Ланка](https://privetsim.net/esim-sri-lanka): от 60 ₽, 5 ГБ на 30 дней — 820 ₽, сеть 4G (Hutch)
+- [Индия](https://privetsim.net/esim-india): от 80 ₽, 5 ГБ на 30 дней — 950 ₽, сеть 4G/5G (AirTel)
+- [Сербия](https://privetsim.net/esim-serbia): от 60 ₽, 5 ГБ на 30 дней — 680 ₽, сеть 4G/5G (VIP)
 
 ## Регионы и весь мир
 
-- [Европа](https://privetsim.net/esim-europe.html): 41 страна, от 250 ₽, 5 ГБ на 30 дней — 1 750 ₽
-- [Азия](https://privetsim.net/esim-asia.html): 20 стран, от 450 ₽, 5 ГБ на 30 дней — 1 690 ₽
-- [Ближний Восток](https://privetsim.net/esim-middle-east.html): 12 стран, от 1 240 ₽, 5 ГБ на 30 дней — 5 040 ₽
-- [Латинская Америка](https://privetsim.net/esim-latin-america.html): 20 стран, от 940 ₽, 5 ГБ на 30 дней — 3 710 ₽
-- [Океания](https://privetsim.net/esim-oceania.html): 8 стран, от 470 ₽, 5 ГБ на 30 дней — 2 060 ₽
-- [Северная Америка](https://privetsim.net/esim-north-america.html): 3 страны, от 200 ₽, 5 ГБ на 30 дней — 1 560 ₽
-- [Центральная Азия](https://privetsim.net/esim-central-asia.html): 4 страны, от 250 ₽, 5 ГБ на 30 дней — 1 210 ₽
-- [Африка](https://privetsim.net/esim-africa.html): 21 страна, от 650 ₽, 5 ГБ на 30 дней — 2 890 ₽
-- [Весь мир](https://privetsim.net/esim-whole-world.html): 117 стран, от 760 ₽, 5 ГБ на 30 дней — 4 730 ₽
-- [Весь мир · 130+](https://privetsim.net/esim-whole-world-130.html): 127 стран, от 940 ₽, 5 ГБ на 30 дней — 3 660 ₽
+- [Европа](https://privetsim.net/esim-europe): 41 страна, от 250 ₽, 5 ГБ на 30 дней — 1 750 ₽
+- [Азия](https://privetsim.net/esim-asia): 20 стран, от 450 ₽, 5 ГБ на 30 дней — 1 690 ₽
+- [Ближний Восток](https://privetsim.net/esim-middle-east): 12 стран, от 1 240 ₽, 5 ГБ на 30 дней — 5 040 ₽
+- [Латинская Америка](https://privetsim.net/esim-latin-america): 20 стран, от 940 ₽, 5 ГБ на 30 дней — 3 710 ₽
+- [Океания](https://privetsim.net/esim-oceania): 8 стран, от 470 ₽, 5 ГБ на 30 дней — 2 060 ₽
+- [Северная Америка](https://privetsim.net/esim-north-america): 3 страны, от 200 ₽, 5 ГБ на 30 дней — 1 560 ₽
+- [Центральная Азия](https://privetsim.net/esim-central-asia): 4 страны, от 250 ₽, 5 ГБ на 30 дней — 1 210 ₽
+- [Африка](https://privetsim.net/esim-africa): 21 страна, от 650 ₽, 5 ГБ на 30 дней — 2 890 ₽
+- [Весь мир](https://privetsim.net/esim-whole-world): 117 стран, от 760 ₽, 5 ГБ на 30 дней — 4 730 ₽
+- [Весь мир · 130+](https://privetsim.net/esim-whole-world-130): 127 стран, от 940 ₽, 5 ГБ на 30 дней — 3 660 ₽
 
 ## Страницы
 
-- [Все страны и регионы](https://privetsim.net/countries.html)
-- [Как установить eSIM и частые вопросы](https://privetsim.net/help.html)
-- [Совместимость телефонов с eSIM](https://privetsim.net/compatibility.html)
-- [Публичная оферта](https://privetsim.net/legal.html?doc=offer), [условия возврата](https://privetsim.net/legal.html?doc=refund), [политика конфиденциальности](https://privetsim.net/legal.html?doc=privacy)
-- [Для бизнеса и партнёров](https://privetsim.net/business.html)
-- [Что такое eSIM и как она работает в путешествии](https://privetsim.net/guide-kak-rabotaet-esim.html)
-- [Как проверить, поддерживает ли телефон eSIM](https://privetsim.net/guide-kak-proverit-esim.html)
-- [Как установить eSIM на Android](https://privetsim.net/guide-ustanovka-esim-android.html)
-- [Как оплатить eSIM для поездки российской картой](https://privetsim.net/guide-oplata-esim-iz-rossii.html)
+- [Все страны и регионы](https://privetsim.net/countries)
+- [Как установить eSIM и частые вопросы](https://privetsim.net/help)
+- [Совместимость телефонов с eSIM](https://privetsim.net/compatibility)
+- [Публичная оферта](https://privetsim.net/legal?doc=offer), [условия возврата](https://privetsim.net/legal?doc=refund), [политика конфиденциальности](https://privetsim.net/legal?doc=privacy)
+- [Для бизнеса и партнёров](https://privetsim.net/business)
+- [Что такое eSIM и как она работает в путешествии](https://privetsim.net/guide-kak-rabotaet-esim)
+- [Как проверить, поддерживает ли телефон eSIM](https://privetsim.net/guide-kak-proverit-esim)
+- [Как установить eSIM на Android](https://privetsim.net/guide-ustanovka-esim-android)
+- [Как оплатить eSIM для поездки российской картой](https://privetsim.net/guide-oplata-esim-iz-rossii)
 - [Карта сайта](https://privetsim.net/sitemap.xml)
 
 ## English

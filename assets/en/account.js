@@ -87,7 +87,7 @@
   PSA.authed = function () { return !!PSA.user(); };
   PSA.hasAccount = function (email) { return !!userByEmail(email); };
   PSA.logout = function () { db().sid = null; save(); try { root.localStorage.removeItem('ps.chat.v2'); } catch (e) {} };
-  PSA.loginUrl = function (next) { return 'login.html' + (next ? '?next=' + encodeURIComponent(next) : ''); };
+  PSA.loginUrl = function (next) { return 'login' + (next ? '?next=' + encodeURIComponent(next) : ''); };
   /* ---------- Вход через Telegram и Google (работают с сервером; в демо — подсказка) ---------- */
   PSA.providers = function () { return { google: false, telegram: false }; };
   PSA.googlePending = function () { return ''; };
@@ -120,7 +120,7 @@
   PSA.guard = function () {
     return PSA.whenReady(function () {
       if (PSA.authed()) return true;
-      var here = root.location.pathname.split('/').pop() + root.location.search + root.location.hash;
+      var here = PS.page() + root.location.search + root.location.hash;
       PSA.leaving = true; // страницу не монтируем — уходим на вход
       root.location.replace(PSA.loginUrl(here));
       return false;
@@ -128,7 +128,7 @@
   };
   PSA.nextUrl = function () {
     var n = PS.qp('next');
-    return n && /^[a-z0-9-]+\.html/i.test(n) ? n : 'account.html';
+    return n && /^[a-z0-9-]+(\.html)?([?#]|$)/i.test(n) ? n.replace(/^([a-z0-9-]+)\.html/i, '$1') : 'account';
   };
 
   /* ---------- Вход по коду из письма ---------- */
@@ -276,7 +276,7 @@
       canSend: st === 'new' && !e.sentTo, canRefund: !PSA.FINISHED[st] && st !== 'blocked' && !(e.refund && e.refund.status !== 'rejected'),
       waiting: st === 'new' || st === 'failed', live: { installed: 1, active: 1, low: 1, usedup: 1, disabled: 1, blocked: 1 }[st] === 1,
       archived: PSA.FINISHED[st] === 1, refund: e.refund || null, sentTo: e.sentTo || '', topups: e.topups,
-      href: 'esim.html?id=' + e.id, qrHref: 'order.html?id=' + e.id, buyHref: PS.dest(e.code)
+      href: 'esim?id=' + e.id, qrHref: 'order?id=' + e.id, buyHref: PS.dest(e.code)
     };
   }
   PSA.esimView = esimView;
@@ -388,11 +388,11 @@
     if (o.status === 'pending' && now() > o.payBy) { o.status = 'expired'; save(); }
     return o.status;
   };
-  PSA.payUrl = function (o) { return 'payment.html?o=' + o.id + '&k=' + o.token; };
+  PSA.payUrl = function (o) { return 'payment?o=' + o.id + '&k=' + o.token; };
   PSA.doneUrl = function (o) {
-    if (o.kind === 'balance') return 'wallet.html?paid=' + o.id;
-    if (o.kind === 'topup') return 'esim.html?id=' + o.esimId + '&paid=' + o.id;
-    return 'order.html?o=' + o.id + '&k=' + o.token;
+    if (o.kind === 'balance') return 'wallet?paid=' + o.id;
+    if (o.kind === 'topup') return 'esim?id=' + o.esimId + '&paid=' + o.id;
+    return 'order?o=' + o.id + '&k=' + o.token;
   };
   function rememberGuest(o) { try { var l = JSON.parse(root.sessionStorage.getItem('ps.guest') || '[]'); l.push(o.id); root.sessionStorage.setItem('ps.guest', JSON.stringify(l)); } catch (e) {} }
 
@@ -751,7 +751,7 @@
     v.psChipText = m ? (m.activatedAt ? PSA.gb(m.left) + ' · ' + m.daysLeft + NB + 'd' : m.stText) : '';
     v.psChipW = m ? (m.activatedAt ? m.pc : 100) + '%' : '0%';
     v.psChipAria = m ? 'eSIM ' + m.name + ': ' + m.stText.toLowerCase() + (m.activatedAt ? ', left ' + PSA.gb(m.left) + ' of ' + PSA.gb(m.total) : '') : '';
-    v.psChipHref = m ? m.href : 'account.html';
+    v.psChipHref = m ? m.href : 'account';
     v.psSeller = (PS.sellerLine && PS.sellerLine().replace(/^ · /, '')) || 'Privet SIM';
     return v;
   };
@@ -811,11 +811,11 @@
       if (how === 'late') { o.status = 'expired'; save(); PSA.confirmPayment(id); }
     },
     refund: function (id, how) { PSA.decideRefund(id, how); },
-    reset: function () { try { root.localStorage.removeItem(KEY); } catch (e) {} mem = null; root.location.href = 'index.html'; }
+    reset: function () { try { root.localStorage.removeItem(KEY); } catch (e) {} mem = null; root.location.href = './'; }
   };
   function demoPanel() {
     var doc = root.document; if (!PSA.DEMO || !doc.body || doc.getElementById('psa-demo')) return;
-    var page = (root.location.pathname.split('/').pop() || 'index.html');
+    var page = PS.page();
     var box = doc.createElement('div'); box.id = 'psa-demo';
     box.innerHTML = '<button type="button" aria-expanded="false">DEMO</button><div class="psa-dp" hidden></div>';
     doc.body.appendChild(box);
@@ -829,13 +829,13 @@
     function render() {
       dp.innerHTML = '<div><b>Demo mode</b><small>The server isn\'t connected yet: data is stored in this browser, emails are shown as notifications, payment is simulated.</small></div>';
       var id = PS.qp('id'), oid = PS.qp('o');
-      if (page === 'esim.html' && db().esims[id]) {
+      if (page === 'esim' && db().esims[id]) {
         var E = esimView(db().esims[id]), A = function (a) { return function () { PSA.demo.esim(id, a); }; };
         group('eSIM · ' + E.stText, [['Installed', A('install')], ['Online', A('connect')], ['−1 GB', A('use1')], ['All data', A('useAll')], ['Installation error', A('fail')], ['Off/on in phone', A('disable')], ['Deleted', A('delete'), 1], ['Expired', A('expire'), 1], ['Lapsed', A('burn'), 1], ['Block', A('block'), 1], ['First', A('reset')]]);
         var rq = db().esims[id].refund;
         if (rq && rq.status !== 'approved') group('Request ' + rq.no, [['Approve', function () { PSA.demo.refund(id, 'approved'); }], ['Details needed', function () { PSA.demo.refund(id, 'info'); }], ['Reject', function () { PSA.demo.refund(id, 'rejected'); }, 1]]);
       }
-      if (page === 'payment.html' && oid && db().orders[oid] && db().orders[oid].status === 'pending') {
+      if (page === 'payment' && oid && db().orders[oid] && db().orders[oid].status === 'pending') {
         var P = function (h) { return function () { PSA.demo.pay(oid, h); }; };
         group('Payment ' + db().orders[oid].no, [['Payment successful', P('ok')], ['Bank declined', P('fail'), 1], ['Time\'s up', P('expire'), 1]].concat(db().orders[oid].method === 'usdt' ? [['Less arrived', P('part')]] : []));
       }
@@ -1104,7 +1104,7 @@
     var prov = { google: false, telegram: false }, gPending = '';
     PSA.providers = function () { return prov; };
     PSA.googlePending = function () { return gPending; };
-    PSA.googleUrl = function (next, link) { return API + '/auth/google/start?' + (link ? 'link=1&' : '') + 'next=' + encodeURIComponent(next || 'account.html'); };
+    PSA.googleUrl = function (next, link) { return API + '/auth/google/start?' + (link ? 'link=1&' : '') + 'next=' + encodeURIComponent((next || 'account').replace(/^([a-z0-9-]+)(?=[?#]|$)/i, '$1.html')); }; // API пока принимает next только с .html
     // Сайт создаёт вход, бот спрашивает «Это я?», сайт ждёт подтверждения. link — привязать к кабинету (профиль)
     // cb получает { status: 'start' | 'wait' | 'ok' | 'fail', code, url, opened, text }
     var tgs = null, tgTimer = 0;
@@ -1218,7 +1218,7 @@
         });
       });
     };
-    PSA.payUrl = function (o) { return o.paymentUrl || 'payment.html?o=' + o.id + '&k=' + o.token; };
+    PSA.payUrl = function (o) { return o.paymentUrl || 'payment?o=' + o.id + '&k=' + o.token; };
     PSA.orderStatus = function (o) {
       watch(o);
       return o.status === 'pending' && now() > o.payBy ? 'expired' : o.status;

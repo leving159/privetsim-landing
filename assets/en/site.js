@@ -13,6 +13,8 @@
   /* ---------- Язык: русская версия в корне, английская — в /en/ (собирает tools/build-site.mjs) ---------- */
   PS.lang = root.PS_LANG === 'en' ? 'en' : 'ru';
   var EN = PS.lang === 'en';
+  // Текущая страница без .html: /esim, /esim.html → 'esim'; / → 'index'
+  PS.page = function () { return (root.location.pathname.split('/').pop() || 'index').replace(/\.html$/, ''); };
   // Тот же адрес на другом языке
   PS.langUrl = function (to) {
     var l = root.location, p = l.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
@@ -190,7 +192,7 @@
   PS.placeFor = function (code, isRegion) {
     var m = isRegion ? { EU: 'EU', LA: 'LA', AS: 'VN', ME: 'AE', OC: 'NZ', NA: 'US' } : {};
     var p = isRegion ? m[code] : code;
-    return p ? 'place.html?place=' + p : '';
+    return p ? 'place?place=' + p : '';
   };
 
   /* ---------- Пакет: из страницы страны в оформление ---------- */
@@ -220,7 +222,7 @@
     return s ? 'Period discount' + ' −' + s.pct + '% · ' + 'you save' + ' ' + PS.fmt(s.rub) + ' ₽' : '';
   };
   PS.planPrice = function (code, t, n, d) { return t === 'daily' ? PS.dailyTotal({ price: PS.priceDay(code, n) }, d) : PS.priceTotal(code, n, d); };
-  PS.checkoutUrl = function (code, t, n, d) { return 'checkout.html?c=' + code + '&t=' + t + '&n=' + n + '&d=' + d; };
+  PS.checkoutUrl = function (code, t, n, d) { return 'checkout?c=' + code + '&t=' + t + '&n=' + n + '&d=' + d; };
   PS.order = function () {
     var code = (q('c') || 'TR').toUpperCase();
     var t = q('t') === 'daily' ? 'daily' : 'total';
@@ -232,9 +234,9 @@
   };
 
   // Код для экрана «eSIM готова» и адреса страниц оплаты
-  PS.successUrl = function (O) { return 'order.html?country=' + O.code; };
+  PS.successUrl = function (O) { return 'order?country=' + O.code; };
   // m — индекс способа оплаты в макете оформления: 0 баланс, 1 СБП, 2 USDT
-  PS.payUrl = function (O, m) { return 'payment.html?variant=' + (m === 2 ? 'crypto' : 'pending') + '&c=' + O.code + '&t=' + O.t + '&n=' + O.n + '&d=' + O.d; };
+  PS.payUrl = function (O, m) { return 'payment?variant=' + (m === 2 ? 'crypto' : 'pending') + '&c=' + O.code + '&t=' + O.t + '&n=' + O.n + '&d=' + O.d; };
   PS.checkoutBack = function () { var o = PS.order(); return PS.checkoutUrl(o.code, o.t, o.n, o.d); };
   PS.USDT_RATE = 79; // ₽ за 1 USDT — для вёрстки
   PS.usdt = function () { return (Math.ceil(PS.order().price / PS.USDT_RATE * 100) / 100 + 0.0013).toFixed(4).replace(',', '.'); };
@@ -403,7 +405,7 @@
       var hit = pl.total.filter(function (p) { return p.hit; })[0] || pl.total[0];
       return hit ? { t: 'total', p: hit } : { t: 'daily', p: pl.daily[0] };
     };
-    PS.checkoutUrl = function (code, pkg, d) { return 'checkout.html?c=' + code + '&pkg=' + encodeURIComponent(pkg) + (d ? '&d=' + d : ''); };
+    PS.checkoutUrl = function (code, pkg, d) { return 'checkout?c=' + code + '&pkg=' + encodeURIComponent(pkg) + (d ? '&d=' + d : ''); };
     PS.order = function () {
       var code = (q('c') || 'TR').toUpperCase();
       var isReg = !!CAT.regions[RALIAS[code] || code] && !CAT.countries[code];
@@ -414,7 +416,7 @@
       return { code: info.code, isRegion: isReg, info: info, t: f.t, n: f.p.n, d: d, pkg: f.p.code, price: price, priceStr: PS.fmt(price), save: f.t === 'daily' ? PS.dailySaveText(f.p, d) : '',
         label: (f.t === 'daily' ? f.p.gb : f.p.gb) + ' · ' + PS.daysWord(d), back: PS.dest(info.code) };
     };
-    PS.payUrl = function (O, m) { return 'payment.html?variant=' + (m === 2 ? 'crypto' : 'pending') + '&c=' + O.code + '&pkg=' + encodeURIComponent(O.pkg) + (O.t === 'daily' ? '&d=' + O.d : ''); };
+    PS.payUrl = function (O, m) { return 'payment?variant=' + (m === 2 ? 'crypto' : 'pending') + '&c=' + O.code + '&pkg=' + encodeURIComponent(O.pkg) + (O.t === 'daily' ? '&d=' + O.d : ''); };
     PS.checkoutBack = function () { var o = PS.order(); return PS.checkoutUrl(o.code, o.pkg, o.t === 'daily' ? o.d : 0); };
     // Курс оплаты в USDT (Rapira − 7%); в старых снимках каталога его нет — тогда курс Rapira
     if (CAT.meta && (CAT.meta.usdtRate || CAT.meta.usdRub)) PS.USDT_RATE = Math.round((CAT.meta.usdtRate || CAT.meta.usdRub) * 100) / 100;
@@ -563,13 +565,13 @@
 
   /* ---------- Ссылки ---------- */
   PS.dest = function (code) {
-    if (!code) return 'countries.html';
+    if (!code) return 'countries';
     code = code.toUpperCase();
     // Своя страница у каждого направления из каталога (адреса — tools/build-site.mjs, в catalog.js)
     var slug = root.PS_SLUGS && root.PS_SLUGS[RALIAS[code] || code];
-    if (slug) return 'esim-' + slug + '.html';
-    if (code === 'EU' || PS.isRegion(code)) return 'region.html?r=' + (RALIAS[code] || code);
-    return 'country.html?c=' + code;
+    if (slug) return 'esim-' + slug;
+    if (code === 'EU' || PS.isRegion(code)) return 'region?r=' + (RALIAS[code] || code);
+    return 'country?c=' + code;
   };
   PS.go = function (url) { root.location.href = url; };
 
@@ -614,10 +616,10 @@
       var v = (input.value || '').trim();
       // Нашлось направление (страна, регион, город, остров) — сразу на его страницу
       var best = v && PS.search ? PS.search(v, 1)[0] : null;
-      PS.go(best ? best.href : 'countries.html' + (v ? '?q=' + encodeURIComponent(v) : ''));
+      PS.go(best ? best.href : 'countries' + (v ? '?q=' + encodeURIComponent(v) : ''));
     };
     root.document.addEventListener('click', function (e) {
-      var a = e.target.closest && e.target.closest('a[href="countries.html"]');
+      var a = e.target.closest && e.target.closest('a[href="countries"]');
       if (!a || !a.parentElement) return;
       var input = a.parentElement.querySelector('input[type="search"]');
       if (!input) return;
@@ -626,7 +628,7 @@
     });
     root.document.addEventListener('keydown', function (e) {
       if (e.key !== 'Enter' || !e.target.matches || !e.target.matches('input[type="search"]')) return;
-      var a = e.target.parentElement && e.target.parentElement.querySelector('a[href="countries.html"]');
+      var a = e.target.parentElement && e.target.parentElement.querySelector('a[href="countries"]');
       if (a) { e.preventDefault(); searchGo(e.target); }
     });
   }

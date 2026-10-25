@@ -271,6 +271,6 @@
       .observe(root, { childList: true, subtree: true });
     setTimeout(progress, 600);
     root.querySelectorAll('input[type="search"]').forEach(typePlaceholder);
-    if (/order\.html$/.test(location.pathname)) setTimeout(confetti, 450);
+    if (/\/order(\.html)?$/.test(location.pathname)) setTimeout(confetti, 450);
   });
 })();

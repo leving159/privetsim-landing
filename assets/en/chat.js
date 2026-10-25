@@ -189,7 +189,7 @@
       '<span style="font-size: 12px; color: #5A6175">What would you like to ask?</span><span class="cw-q">' +
       TOPICS.map(function (t, i) { var on = c.topic === i; return '<span role="button" tabindex="0" data-topic="' + i + '" aria-pressed="' + on + '" style="' + (on ? 'background: #2F5BFF; color: #FFFFFF; box-shadow: none' : '') + '">' + t + '</span>'; }).join('') + '</span>' +
       '<button type="button" class="cw-btn" data-start style="border: 0; width: 100%">Start chat</button>' +
-      '<span style="font-size: 11px; line-height: 15px; color: #8C92A3">By clicking “Start chat”, you agree to the <a href="legal.html?doc=consent">processing of personal data</a></span></div>';
+      '<span style="font-size: 11px; line-height: 15px; color: #8C92A3">By clicking “Start chat”, you agree to the <a href="legal?doc=consent">processing of personal data</a></span></div>';
   }
   function isOpen() { return !!(root && root.open); }
   function render() {
