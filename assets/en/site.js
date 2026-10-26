@@ -269,7 +269,7 @@
     });
     // Скорость после лимита у суточных: «1 Мбит/с» → «1 Mbps»
     [cat.countries, cat.regions].forEach(function (g) {
-      Object.keys(g || {}).forEach(function (c) { (g[c].plans.daily || []).forEach(function (p) { if (p.f) p.f = p.f.replace('Мбит/с', 'Mbps').replace('Кбит/с', 'Kbps'); }); });
+      Object.keys(g || {}).forEach(function (c) { (g[c].plans.daily || []).forEach(function (p) { if (p.f) p.f = p.f.replace(/Мбит\/с/, 'Mbps').replace(/Кбит\/с/, 'Kbps'); }); });
     });
     cat.en = true;
     return cat;
