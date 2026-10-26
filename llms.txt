@@ -1,6 +1,6 @@
 # Привет SIM
 
-> Привет SIM — eSIM с мобильным интернетом для путешествий: 202 страны и 10 регионов, цены в рублях, оплата по СБП и в USDT, установка за 2 минуты. Сайт https://privetsim.net, Telegram-бот и Mini App @PrivetSimBot.
+> Привет SIM — eSIM с мобильным интернетом для путешествий: 201 страна и 10 регионов, цены в рублях, оплата по СБП и в USDT, установка за 2 минуты. Сайт https://privetsim.net, Telegram-бот и Mini App @PrivetSimBot.
 
 ## Главное
 
@@ -14,11 +14,11 @@
 - Нужен телефон с поддержкой eSIM, не привязанный к оператору: [список совместимых моделей](https://privetsim.net/compatibility).
 - Поддержка: чат на сайте, Telegram @PrivetSimBot, support@privetsim.net.
 
-## Популярные направления (цены на 24.10.2026)
+## Популярные направления (цены на 26.10.2026)
 
 - [Турция](https://privetsim.net/esim-turkey): от 60 ₽, 5 ГБ на 30 дней — 410 ₽, сеть 4G/5G (Vodafone, Avea/Türk Telekom)
 - [ОАЭ](https://privetsim.net/esim-uae): от 60 ₽, 5 ГБ на 30 дней — 1 420 ₽, сеть 4G/5G (Du)
-- [Таиланд](https://privetsim.net/esim-thailand): от 60 ₽, 5 ГБ на 30 дней — 480 ₽, сеть 4G/5G (TrueMove H, DTAC, True Move, AIS)
+- [Таиланд](https://privetsim.net/esim-thailand): от 60 ₽, 5 ГБ на 30 дней — 480 ₽, сеть 4G/5G (TrueMove H, DTAC, AIS, True Move)
 - [Египет](https://privetsim.net/esim-egypt): от 60 ₽, 5 ГБ на 30 дней — 980 ₽, сеть 4G/5G (Orange, Etisalat, Vodafone)
 - [Китай](https://privetsim.net/esim-china): от 60 ₽, 5 ГБ на 30 дней — 530 ₽, сеть 4G/5G (China Mobile, China Unicom, China Telecom)
 - [Вьетнам](https://privetsim.net/esim-vietnam): от 60 ₽, 5 ГБ на 30 дней — 670 ₽, сеть 4G/5G (Viettel Mobile, Vinaphone, MobiFone)
@@ -27,7 +27,7 @@
 - [Индонезия · Бали](https://privetsim.net/esim-indonesia-bali): от 60 ₽, 5 ГБ на 30 дней — 480 ₽, сеть 4G/5G (Telkomsel, XL, Indosat)
 - [Казахстан](https://privetsim.net/esim-kazakhstan): от 60 ₽, 5 ГБ на 30 дней — 610 ₽, сеть 4G (Beeline)
 - [Узбекистан](https://privetsim.net/esim-uzbekistan): от 60 ₽, 5 ГБ на 30 дней — 520 ₽, сеть 4G/5G (Beeline)
-- [Мальдивы](https://privetsim.net/esim-maldives): от 1 000 ₽, 5 ГБ на 30 дней — 5 610 ₽, сеть 4G (Dhiraagu)
+- [Мальдивы](https://privetsim.net/esim-maldives): от 1 000 ₽, 5 ГБ на 30 дней — 5 620 ₽, сеть 4G (Dhiraagu)
 - [Шри‑Ланка](https://privetsim.net/esim-sri-lanka): от 60 ₽, 5 ГБ на 30 дней — 820 ₽, сеть 4G (Hutch)
 - [Индия](https://privetsim.net/esim-india): от 80 ₽, 5 ГБ на 30 дней — 950 ₽, сеть 4G/5G (AirTel)
 - [Сербия](https://privetsim.net/esim-serbia): от 60 ₽, 5 ГБ на 30 дней — 680 ₽, сеть 4G/5G (VIP)
@@ -37,13 +37,13 @@
 - [Европа](https://privetsim.net/esim-europe): 41 страна, от 250 ₽, 5 ГБ на 30 дней — 1 750 ₽
 - [Азия](https://privetsim.net/esim-asia): 20 стран, от 450 ₽, 5 ГБ на 30 дней — 1 690 ₽
 - [Ближний Восток](https://privetsim.net/esim-middle-east): 12 стран, от 1 240 ₽, 5 ГБ на 30 дней — 5 040 ₽
-- [Латинская Америка](https://privetsim.net/esim-latin-america): 20 стран, от 940 ₽, 5 ГБ на 30 дней — 3 710 ₽
+- [Латинская Америка](https://privetsim.net/esim-latin-america): 20 стран, от 940 ₽, 5 ГБ на 30 дней — 3 720 ₽
 - [Океания](https://privetsim.net/esim-oceania): 8 стран, от 470 ₽, 5 ГБ на 30 дней — 2 060 ₽
 - [Северная Америка](https://privetsim.net/esim-north-america): 3 страны, от 200 ₽, 5 ГБ на 30 дней — 1 560 ₽
 - [Центральная Азия](https://privetsim.net/esim-central-asia): 4 страны, от 250 ₽, 5 ГБ на 30 дней — 1 210 ₽
-- [Африка](https://privetsim.net/esim-africa): 21 страна, от 650 ₽, 5 ГБ на 30 дней — 2 890 ₽
-- [Весь мир](https://privetsim.net/esim-whole-world): 117 стран, от 760 ₽, 5 ГБ на 30 дней — 4 730 ₽
-- [Весь мир · 130+](https://privetsim.net/esim-whole-world-130): 127 стран, от 940 ₽, 5 ГБ на 30 дней — 3 660 ₽
+- [Африка](https://privetsim.net/esim-africa): 21 страна, от 660 ₽, 5 ГБ на 30 дней — 2 900 ₽
+- [Весь мир](https://privetsim.net/esim-whole-world): 117 стран, от 760 ₽, 5 ГБ на 30 дней — 4 740 ₽
+- [Весь мир · 130+](https://privetsim.net/esim-whole-world-130): 127 стран, от 950 ₽, 5 ГБ на 30 дней — 3 670 ₽
 
 ## Страницы
 
@@ -60,4 +60,4 @@
 
 ## English
 
-Privet SIM sells travel eSIMs with mobile data for 202 countries and 10 regions. Prices are in rubles; payment via SBP (Russian Faster Payments System), USDT or account balance. Data only — no phone number, calls or SMS. Install at home before the trip; the plan starts with the first connection abroad. Full refund while the eSIM is not installed. English site: https://privetsim.net/en/ · Telegram: @PrivetSimBot · support@privetsim.net
+Privet SIM sells travel eSIMs with mobile data for 201 countries and 10 regions. Prices are in rubles; payment via SBP (Russian Faster Payments System), USDT or account balance. Data only — no phone number, calls or SMS. Install at home before the trip; the plan starts with the first connection abroad. Full refund while the eSIM is not installed. English site: https://privetsim.net/en/ · Telegram: @PrivetSimBot · support@privetsim.net

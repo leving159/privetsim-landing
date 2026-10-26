@@ -176,6 +176,11 @@
       return v.split('/').map(function (c) { return c === 'Europe' ? (EN ? 'Europe' : 'Europe') : PS.cName(c === 'UK' ? 'GB' : c) || c; }).join(' / ');
     }).join(', ');
   };
+  // Описание выбранного тарифа под быстрым выбором: где трафик выходит в интернет (у вариантов одного направления бывает по-разному) и, у суточных, скорость после лимита
+  PS.planNote = function (p, type) {
+    if (!p) return '';
+    return [p.ip ? 'Internet via' + ': ' + p.ip : '', type === 'daily' ? p.days : ''].filter(Boolean).join(' · ');
+  };
   // Какие флаги есть в assets/flags (список дописывает сборщик в catalog.js)
   PS.flagOf = function (code) {
     var c = String(code || '').toLowerCase(), list = root.PS_FLAGS || '';
@@ -261,6 +266,10 @@
       var r = cat.regions[c], n = PS.enName(c), g = PS.enName(c, true);
       if (n) { r.name = n; r.gen = g; }
       (r.countries || []).forEach(function (x) { x[1] = PS.enName(x[0]) || x[1]; });
+    });
+    // Скорость после лимита у суточных: «1 Мбит/с» → «1 Mbps»
+    [cat.countries, cat.regions].forEach(function (g) {
+      Object.keys(g || {}).forEach(function (c) { (g[c].plans.daily || []).forEach(function (p) { if (p.f) p.f = p.f.replace('Мбит/с', 'Mbps').replace('Кбит/с', 'Kbps'); }); });
     });
     cat.en = true;
     return cat;
@@ -352,14 +361,14 @@
     PS.plans = function (code) {
       var e = catEntry(code) || CAT.countries.TR;
       var total = e.plans.total.map(function (p) {
-        return { gb: GBL(p.n), days: PS.daysWord(p.d), daysShort: p.d + ' DAYS', total: 'for the whole period', n: p.n, price: p.p, code: p.c, top: p.t, more: p.n < 1 || p.d >= 90 };
+        return { gb: GBL(p.n), days: PS.daysWord(p.d), daysShort: p.d + ' DAYS', total: 'for the whole period', n: p.n, price: p.p, code: p.c, top: p.t, ip: PS.ipName(p.i), more: p.n < 1 || p.d >= 90 };
       });
       var main = total.filter(function (p) { return !p.more; });
       main.slice(8).forEach(function (p) { p.more = true; });
       var hit = main.filter(function (p) { return p.n === 5 && p.daysShort === '30 DAYS'; })[0] || main.filter(function (p) { return p.n >= 3; })[0] || main[0] || total[0];
       if (hit) hit.hit = true;
       var daily = e.plans.daily.map(function (p) {
-        return { gb: GBL(p.n) + '/day', days: p.f ? 'after the limit ' + p.f : 'speed is reduced after the limit', total: USE(p.n), n: p.n, price: p.p, x: p.x, code: p.c, top: p.t, gbShort: (GBL(p.n) + '/day').toUpperCase() };
+        return { gb: GBL(p.n) + '/day', days: p.f ? 'after the limit ' + p.f : 'speed is reduced after the limit', total: USE(p.n), n: p.n, price: p.p, x: p.x, code: p.c, top: p.t, ip: PS.ipName(p.i), gbShort: (GBL(p.n) + '/day').toUpperCase() };
       });
       var dh = daily.filter(function (p) { return p.n === 1; })[0] || daily[0];
       if (dh) dh.hit = true;

@@ -28,20 +28,20 @@
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script src="config.js?v=202610261627"></script>
-<script src="assets/catalog.js?v=202610261627"></script>
+<script src="config.js?v=202610270045"></script>
+<script src="assets/catalog.js?v=202610270045"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="assets/site.js?v=202610261627"></script>
-<script src="assets/account.js?v=202610261627"></script>
-<link rel="stylesheet" href="assets/account.css?v=202610261627">
-<script src="assets/chat.js?v=202610261627" defer></script>
+<script src="assets/site.js?v=202610270045"></script>
+<script src="assets/account.js?v=202610270045"></script>
+<link rel="stylesheet" href="assets/account.css?v=202610270045">
+<script src="assets/chat.js?v=202610270045" defer></script>
 <script src="assets/vendor/react.production.min.js"></script>
 <script src="assets/vendor/react-dom.production.min.js"></script>
-<script src="assets/dc-runtime.js?v=202610261627"></script>
-<link rel="stylesheet" href="assets/ui.css?v=202610261627">
-<script src="assets/ui.js?v=202610261627"></script>
-<link rel="stylesheet" href="assets/motion.css?v=202610261627">
-<script src="assets/motion.js?v=202610261627" defer></script>
+<script src="assets/dc-runtime.js?v=202610270045"></script>
+<link rel="stylesheet" href="assets/ui.css?v=202610270045">
+<script src="assets/ui.js?v=202610270045"></script>
+<link rel="stylesheet" href="assets/motion.css?v=202610270045">
+<script src="assets/motion.js?v=202610270045" defer></script>
 <script>(function () { var p = new URLSearchParams(location.search), c = p.get('c'), r = p.get('r'), u = c ? (PS.isRegion(c.toUpperCase()) ? '' : PS.dest(c)) : r && PS.isRegion(r.toUpperCase()) ? PS.dest(r) : ''; if (/^esim-/.test(u)) location.replace(u + location.hash); })()</script>
 </head>
 <body>
@@ -763,7 +763,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           <dl style="margin: 0; border-top: 1px solid #E3E6ED">
             <div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Покрытие</dt><dd class="mono" style="margin: 0; font-weight: 500">{{psCover}}</dd></div>
             <div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Сеть</dt><dd class="mono" style="margin: 0; font-weight: 500">4G / 5G</dd></div>
-            <div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Операторы</dt><dd class="mono" style="margin: 0; font-weight: 500">по&nbsp;стране, см.&nbsp;список выше</dd></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Выход в интернет</dt><dd class="mono" style="margin: 0; font-weight: 500">{{psR.ip}}</dd></div>
+            <div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Операторы</dt><dd class="mono" style="margin: 0; font-weight: 500">по&nbsp;стране, см.&nbsp;список выше</dd></div><div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Выход в интернет</dt><dd class="mono" style="margin: 0; font-weight: 500">{{psIp}}</dd></div>
             <div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Тип</dt><dd class="mono" style="margin: 0; font-weight: 500">Только данные, без&nbsp;номера телефона</dd></div>
             <div style="display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid #E3E6ED; font-size: 15px"><dt style="color: #5A6175">Настройка APN</dt><dd class="mono" style="margin: 0; font-weight: 500">Автоматически</dd></div>
           </dl>
@@ -804,6 +804,7 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
               </label>
             </sc-if>
             <span style="display: flex; justify-content: space-between; font-size: 13px; color: #5A6175"><span>{{psR.n}} стран · только интернет</span><span>{{qHint}}</span></span>
+            <span style="margin-top: -6px; font-size: 13px; color: #5A6175">{{psPlanNote}}</span>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 1px solid #EDEFF3">
             <span style="font-size: 16px; font-weight: 500">Итого</span>
@@ -990,7 +991,7 @@ class Component extends (window.PSLogic || DCLogic) {
     const selP = type === 'daily' ? { ...raw[si], days: plural(dn), daysShort: dn + ' ДН', gb: raw[si].gb } : raw[si];
     const fmtGb = (x) => x < 1 ? Math.round(x * 1000) + ' МБ' : (String(Math.round(x * 10) / 10).replace('.', ',') + ' ГБ');
     return { cn, cnEmpty: cnF.length === 0, cnMore: !qq && CN.length > 12, cnMoreLabel: this.state.cnAll ? 'Свернуть список' : 'Показать все ' + PSR.list.length + ' стран', toggleCn: () => this.setState({ cnAll: !this.state.cnAll }), q: this.state.q, onQ: (e) => this.setState({ q: e.target.value }),
-      psR: PSR, psLead: 'Одна eSIM на\u00a0' + PSR.n + ' стран: ' + PSR.list.slice(0, 4).map((x) => x[1]).join(', ') + ' и\u00a0другие.', psHead: PSR.head.map((c) => ({ flag: PS.flagOf(c) })), psMore: Math.max(0, PSR.n - 7), psCover: PSR.code === 'EU' ? PSR.n + ' стран Европы' : PSR.n + ' стран', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psSave: type === 'daily' ? PS.dailySaveText(raw[si], dn) : '', psCheckout: PS.checkoutUrl(PSR.code, raw[si].code, type === 'daily' ? dn : 0),
+      psR: PSR, psLead: 'Одна eSIM на\u00a0' + PSR.n + ' стран: ' + PSR.list.slice(0, 4).map((x) => x[1]).join(', ') + ' и\u00a0другие.', psHead: PSR.head.map((c) => ({ flag: PS.flagOf(c) })), psMore: Math.max(0, PSR.n - 7), psCover: PSR.code === 'EU' ? PSR.n + ' стран Европы' : PSR.n + ' стран', psTotal: PS.fmt(type === 'daily' ? PS.dailyTotal(raw[si], dn) : raw[si].price), psSave: type === 'daily' ? PS.dailySaveText(raw[si], dn) : '', psCheckout: PS.checkoutUrl(PSR.code, raw[si].code, type === 'daily' ? dn : 0), psIp: raw[si].ip || PSR.ip, psPlanNote: PS.planNote(raw[si], type),
       qType: type, qPkg: String(si), qOpts, qPkgLabel: type === 'daily' ? 'Гигабайт в день' : 'Гигабайты и срок', qHint: type === 'daily' ? 'лимит обновляется каждые 24 ч' : 'общий объём на поездку',
       onQType: (e) => this.setState({ type: e.target.value }),
       onQPkg: (e) => this.setState({ sel: { ...this.state.sel, [type]: parseInt(e.target.value, 10) || 0 } }),
