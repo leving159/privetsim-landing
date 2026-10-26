@@ -28,21 +28,21 @@
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <script>window.PS_LANG = "en"</script>
-<script src="../config.js?v=202610252055"></script>
-<script src="../assets/en/names.js?v=202610252055"></script>
-<script src="../assets/catalog.js?v=202610252055"></script>
+<script src="../config.js?v=202610261627"></script>
+<script src="../assets/en/names.js?v=202610261627"></script>
+<script src="../assets/catalog.js?v=202610261627"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="../assets/en/site.js?v=202610252055"></script>
-<script src="../assets/en/account.js?v=202610252055"></script>
-<link rel="stylesheet" href="../assets/account.css?v=202610252055">
-<script src="../assets/en/chat.js?v=202610252055" defer></script>
+<script src="../assets/en/site.js?v=202610261627"></script>
+<script src="../assets/en/account.js?v=202610261627"></script>
+<link rel="stylesheet" href="../assets/account.css?v=202610261627">
+<script src="../assets/en/chat.js?v=202610261627" defer></script>
 <script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/dc-runtime.js?v=202610252055"></script>
-<link rel="stylesheet" href="../assets/ui.css?v=202610252055">
-<script src="../assets/en/ui.js?v=202610252055"></script>
-<link rel="stylesheet" href="../assets/motion.css?v=202610252055">
-<script src="../assets/en/motion.js?v=202610252055" defer></script>
+<script src="../assets/dc-runtime.js?v=202610261627"></script>
+<link rel="stylesheet" href="../assets/ui.css?v=202610261627">
+<script src="../assets/en/ui.js?v=202610261627"></script>
+<link rel="stylesheet" href="../assets/motion.css?v=202610261627">
+<script src="../assets/en/motion.js?v=202610261627" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -843,10 +843,11 @@ class Component extends (window.PSLogic || DCLogic) {
     const SUM = O.price * s.qty;
     const DISC = s.applied ? PSA.promoDisc(s.pr, SUM) : 0;
     const Q = PSA.quote({ pkg: O.pkg, qty: s.qty, d: O.d, promo: s.applied }, () => this.setState({ qt: Date.now() }));
-    const TIERD = Q ? Q.tierDiscountKopecks / 100 : 0;
+    const TIERD = Q ? (Q.tierDiscountKopecks + (Q.volume ? Q.volume.discountKopecks : 0)) / 100 : 0;
     const PDISC = Q ? Q.promoDiscountKopecks / 100 : DISC;
     const TOT = Q ? Q.sumKopecks / 100 : SUM - DISC;
-    const DLABEL = Q && Q.tier ? (Q.tier.key === 'own' ? 'Friends & family price' : 'Discount ' + Q.tier.name + ' −' + Q.tier.percent + '%') + (PDISC > 0 ? (Q.promo && Q.promo.referral ? '  and friend code' : ' and promo code') : '') : Q && Q.promo && Q.promo.referral ? 'Friend\'s code discount' : 'Discount';
+    const DPARTS = Q ? [Q.tier ? (Q.tier.key === 'own' ? 'Friends & family price' : 'Discount ' + Q.tier.name + ' −' + Q.tier.percent + '%') : '', Q.volume ? (Q.tier ? 'plan discount −' : 'Plan discount −') + Q.volume.percent + '%' : ''].filter(Boolean) : [];
+    const DLABEL = DPARTS.length ? DPARTS.join(' and ') + (PDISC > 0 ? (Q.promo && Q.promo.referral ? '  and friend code' : ' and promo code') : '') : Q && Q.promo && Q.promo.referral ? 'Friend\'s code discount' : 'Discount';
     const R = (n) => PS.fmt(n) + ' ₽';
     const raw = [
       { key: 'wallet', title: 'From balance', sub: (PSA.balance().total < TOT ? 'Available ' + R(PSA.balance().total) + ' · pay the rest via SBP or USDT' : 'Available ' + R(PSA.balance().total) + ' · no fees'), hint: 'We\'ll charge your balance — no network fees or payment details needed. Not enough? Top up your balance with USDT in your account.' },
