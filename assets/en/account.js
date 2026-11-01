@@ -335,6 +335,25 @@
   }
 
   /*
+    Даты поездки в корзине (по желанию): s.tS / s.tE — 'YYYY-MM-DD', s.tErr — ошибка.
+    Возвращает переменные блока «Когда поездка?» и bad — текст ошибки, если оформлять нельзя.
+  */
+  PSA.trip = function (s, O, set) {
+    var today = new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 10);
+    var plus = function (d, n) { return new Date(Date.parse(d + 'T00:00:00Z') + n * 864e5).toISOString().slice(0, 10); };
+    var tS = s.tS || '', tE = s.tE || '', dur = O.d || 0;
+    var bad = !tS && !tE ? '' : !tS || !tE ? 'Enter both dates or clear both' : tE < tS ? 'The return date is before the departure date' : tE < today ? 'This trip has already ended — please check the dates' : '';
+    var len = tS && tE && !bad ? Math.round((Date.parse(tE) - Date.parse(tS)) / 864e5) + 1 : 0;
+    var hint = len && dur && len > dur ? 'Your trip is ' + PSA.days(len) + ', but the plan is for  ' + PSA.days(dur) + '  — choose a longer plan or top up the eSIM while you\'re there' : '';
+    return {
+      bad: bad, tripStart: tS, tripEnd: tE, tripMin: today, tripEndMin: tS || today,
+      hasTripErr: !!s.tErr, tripErr: s.tErr || '', hasTripHint: !s.tErr && !!hint, tripHint: hint,
+      onTripStart: function (e) { var v = e.target.value; set({ tS: v, tE: v && (!tE || tE < v) && dur ? plus(v, dur - 1) : tE, tErr: '', ready: false }); },
+      onTripEnd: function (e) { set({ tE: e.target.value, tErr: '', ready: false }); }
+    };
+  };
+
+  /*
     Новый заказ. p: { kind: 'esim'|'topup'|'balance', code, pkg, d (для суточных), qty, email, method: 'sbp'|'usdt'|'balance',
                       useBal (₽ с баланса при оплате СБП/USDT), promo, esimId (пополнение), amount (пополнение баланса) }
   */
@@ -1206,6 +1225,7 @@
         if (p.email) body.email = normEmail(p.email);
         if (u && p.useBal) body.useBalanceKopecks = Math.round(p.useBal * 100);
         if (p.promo) body.promoCode = up(p.promo);
+        if (p.tripStart && p.tripEnd) { body.tripStart = p.tripStart; body.tripEnd = p.tripEnd; }
       }
       return call('POST', '/orders', body).then(function (r) {
         if (!r.id) return fail(r, r.error === 'balance_low' || /^crypto_/.test(r.error || '') ? r.message : 'Couldn\'t create the order. Try again');

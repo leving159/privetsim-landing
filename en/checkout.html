@@ -28,21 +28,21 @@
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <script>window.PS_LANG = "en"</script>
-<script src="../config.js?v=202611011722"></script>
-<script src="../assets/en/names.js?v=202611011722"></script>
-<script src="../assets/catalog.js?v=202611011722"></script>
+<script src="../config.js?v=202611011900"></script>
+<script src="../assets/en/names.js?v=202611011900"></script>
+<script src="../assets/catalog.js?v=202611011900"></script>
 <script>try { var c = JSON.parse(localStorage.getItem("ps.cat") || "null"); if (c && c.meta && window.PS_CATALOG && c.meta.syncedAt >= PS_CATALOG.meta.syncedAt) window.PS_CATALOG = c; } catch (e) {}</script>
-<script src="../assets/en/site.js?v=202611011722"></script>
-<script src="../assets/en/account.js?v=202611011722"></script>
-<link rel="stylesheet" href="../assets/account.css?v=202611011722">
-<script src="../assets/en/chat.js?v=202611011722" defer></script>
+<script src="../assets/en/site.js?v=202611011900"></script>
+<script src="../assets/en/account.js?v=202611011900"></script>
+<link rel="stylesheet" href="../assets/account.css?v=202611011900">
+<script src="../assets/en/chat.js?v=202611011900" defer></script>
 <script src="../assets/vendor/react.production.min.js"></script>
 <script src="../assets/vendor/react-dom.production.min.js"></script>
-<script src="../assets/dc-runtime.js?v=202611011722"></script>
-<link rel="stylesheet" href="../assets/ui.css?v=202611011722">
-<script src="../assets/en/ui.js?v=202611011722"></script>
-<link rel="stylesheet" href="../assets/motion.css?v=202611011722">
-<script src="../assets/en/motion.js?v=202611011722" defer></script>
+<script src="../assets/dc-runtime.js?v=202611011900"></script>
+<link rel="stylesheet" href="../assets/ui.css?v=202611011900">
+<script src="../assets/en/ui.js?v=202611011900"></script>
+<link rel="stylesheet" href="../assets/motion.css?v=202611011900">
+<script src="../assets/en/motion.js?v=202611011900" defer></script>
 </head>
 <body>
 <x-dc><noscript data-tpl>
@@ -595,6 +595,21 @@ h1,h2,h3,h4,.t-h1,.t-h2,.t-h3,.t-display{text-wrap:balance}
           </div>
         </section>
 
+        <section style="padding: 32px; border-radius: 28px; background: #FFFFFF; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <h2 class="t-h3">When is your trip?</h2>
+            <span style="font-size: 14px; line-height: 20px; color: #5A6175">Optional. We'll remind you to install the eSIM the day before departure and to extend it if you decide to stay longer</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <label style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">Departure  <input type="date" value="{{tripStart}}" min="{{tripMin}}" sc-camel-on-change="{{onTripStart}}" style="height: 56px; padding: 0 16px; border-radius: 16px; box-sizing: border-box; border: 1px solid #E3E6ED; background: #FFFFFF; font: 400 16px/24px 'Onest', system-ui, sans-serif; color: #0E1220">
+            </label>
+            <label style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500">Return  <input type="date" value="{{tripEnd}}" min="{{tripEndMin}}" sc-camel-on-change="{{onTripEnd}}" style="height: 56px; padding: 0 16px; border-radius: 16px; box-sizing: border-box; border: 1px solid #E3E6ED; background: #FFFFFF; font: 400 16px/24px 'Onest', system-ui, sans-serif; color: #0E1220">
+            </label>
+          </div>
+          <sc-if value="{{hasTripErr}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 18px; color: #C62F35">{{tripErr}}</span></sc-if>
+          <sc-if value="{{hasTripHint}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 18px; color: #5A6175">{{tripHint}}</span></sc-if>
+        </section>
+
         <section style="padding: 32px; border-radius: 28px; background: #FFFFFF; display: flex; flex-direction: column; gap: 20px">
           <h2 id="pay-h" class="t-h3">Payment method</h2>
           <div role="radiogroup" aria-labelledby="pay-h" style="display: flex; flex-direction: column; gap: 10px">
@@ -864,6 +879,7 @@ class Component extends (window.PSLogic || DCLogic) {
     const dom = (em.split('@')[1] || '').toLowerCase();
     const typoFix = typos[dom] ? em.split('@')[0] + '@' + typos[dom] : '';
     const low = LOWB;
+    const TR = PSA.trip(s, O, (st) => this.setState(st));
     const TOPS = ['SBP', 'USDT'];
     const tops = TOPS.map((label, i) => { const on = s.top === i; return { label, on: on ? 'true' : 'false', bg: on ? '#0E1220' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0E1220', ring: on ? 'none' : 'inset 0 0 0 1px #E3E6ED', pick: () => this.setState({ top: i }) }; });
     const methods = raw.map((m, i) => ({ m, i })).filter(({ m }) => m.key !== 'wallet' || (PSA.authed() && PSA.balance().total > 0)).map(({ m, i }) => {
@@ -939,7 +955,7 @@ class Component extends (window.PSLogic || DCLogic) {
       quick, balLine: authed, walLine: authed && s.m === 0, balUsed: used, balLeft: BAL - used,
       splitOn, tops, topName: TOPS[s.top], walAmt: splitOn ? '−' + R(BALT) : '−' + R(TOT),
       payBtn: splitOn ? 'Pay the rest ' + R(TOT - BALT) + ' · ' + TOPS[s.top] : (authed && s.m === 0 ? 'Pay from balance' : 'Pay ' + R(TOT)), totalLabel: splitOn ? R(TOT - BALT) : (authed && s.m === 0 ? '0 ₽' : R(TOT)),
-      disc: TIERD + PDISC > 0 ? '−' + R(TIERD + PDISC) : '—', discLabel: DLABEL, psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' countries' : O.info.net) + (O.save ? ' · ' + O.save : ''), back: O.back }, psMinus80: PS.fmt(TOT - BALT), psSuccess: PS.successUrl(O), psBalT: R(BALT), psLogin: PSA.loginUrl(PS.checkoutBack()), psHasAcc: !authed && PSA.validEmail(em) && PSA.hasAccount(em), psPay: PS.payUrl(O, s.m), discColor: TIERD + PDISC > 0 ? '#0B7A3E' : '#0E1220',
+      disc: TIERD + PDISC > 0 ? '−' + R(TIERD + PDISC) : '—', discLabel: DLABEL, psO: { name: O.info.name, flag: O.isRegion ? O.info.icon : O.info.flag, photo: O.info.photo, line: O.label + ' · ' + (O.isRegion ? O.info.n + ' countries' : O.info.net) + (O.save ? ' · ' + O.save : ''), back: O.back }, psMinus80: PS.fmt(TOT - BALT), psSuccess: PS.successUrl(O), psBalT: R(BALT), psLogin: PSA.loginUrl(PS.checkoutBack()), psHasAcc: !authed && PSA.validEmail(em) && PSA.hasAccount(em), ...TR, psPay: PS.payUrl(O, s.m), discColor: TIERD + PDISC > 0 ? '#0B7A3E' : '#0E1220',
       agree: s.agree, agreeAria: s.agree ? 'true' : 'false', hasAErr: s.aErr,
       boxBg: s.agree ? '#2F5BFF' : (s.aErr ? '#FFFBFB' : '#FFFFFF'),
       boxBorder: s.agree ? '0' : (s.aErr ? '2px solid #C62F35' : '2px solid #C5CAD6'),
@@ -952,8 +968,9 @@ class Component extends (window.PSLogic || DCLogic) {
         this.setState({ ...r, tried: true, ready: ok });
         if (ok && s.removed) { this.setState({ ready: false, toast: 'Your cart is empty — choose a plan' }); return; }
         if (ok) {
+          if (TR.bad) return this.setState({ ready: false, tErr: TR.bad });
           const method = s.m === 0 ? (splitOn ? ['sbp', 'usdt'][s.top] : 'balance') : (s.m === 2 ? 'usdt' : 'sbp');
-          PSA.then(PSA.createOrder({ kind: 'esim', code: O.code, pkg: O.pkg, d: O.d, qty: s.qty, email: em.trim(), method, useBal: splitOn ? BALT : 0, promo: s.applied }), (o) => {
+          PSA.then(PSA.createOrder({ kind: 'esim', code: O.code, pkg: O.pkg, d: O.d, qty: s.qty, email: em.trim(), method, useBal: splitOn ? BALT : 0, promo: s.applied, tripStart: s.tS, tripEnd: s.tE }), (o) => {
             if (!o || o.err) return this.setState({ ready: false });
             clearTimeout(this._go); this._go = setTimeout(() => PS.go(o.status === 'paid' ? PSA.doneUrl(o) : PSA.payUrl(o)), 900);
           });
