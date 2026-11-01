@@ -340,16 +340,24 @@
   */
   PSA.trip = function (s, O, set) {
     var today = new Date(Date.now() + 3 * 3600e3).toISOString().slice(0, 10);
-    var plus = function (d, n) { return new Date(Date.parse(d + 'T00:00:00Z') + n * 864e5).toISOString().slice(0, 10); };
     var tS = s.tS || '', tE = s.tE || '', dur = O.d || 0;
     var bad = !tS && !tE ? '' : !tS || !tE ? 'Укажите обе даты или очистите обе' : tE < tS ? 'Дата возвращения раньше даты вылета' : tE < today ? 'Эта поездка уже закончилась — проверьте даты' : '';
     var len = tS && tE && !bad ? Math.round((Date.parse(tE) - Date.parse(tS)) / 864e5) + 1 : 0;
     var hint = len && dur && len > dur ? 'Поездка ' + PSA.days(len) + ', а\u00a0тариф на\u00a0' + PSA.days(dur) + '\u00a0— возьмите тариф подлиннее или пополните eSIM на\u00a0месте' : '';
+    // Календарь «Туда — обратно» (assets/tripcal.js, общий с Mini App) всплывает под полем
+    var open = function (focus) {
+      return function (e) {
+        if (!window.TripCal) return;
+        TripCal.open({ anchor: document.querySelector('[data-trip="' + focus + '"]') || (e && e.currentTarget), start: tS, end: tE, min: today, dur: dur, focus: focus,
+          onDone: function (a, b) { set({ tS: a, tE: b, tErr: '', ready: false }); } });
+      };
+    };
+    var lbl = function (v) { return v && window.TripCal ? TripCal.label(v) : v || 'Выбрать'; };
     return {
-      bad: bad, tripStart: tS, tripEnd: tE, tripMin: today, tripEndMin: tS || today,
-      hasTripErr: !!s.tErr, tripErr: s.tErr || '', hasTripHint: !s.tErr && !!hint, tripHint: hint,
-      onTripStart: function (e) { var v = e.target.value; set({ tS: v, tE: v && (!tE || tE < v) && dur ? plus(v, dur - 1) : tE, tErr: '', ready: false }); },
-      onTripEnd: function (e) { set({ tE: e.target.value, tErr: '', ready: false }); }
+      bad: bad,
+      tripSL: lbl(tS), tripEL: lbl(tE), tripSC: tS ? '#0E1220' : '#8C92A3', tripEC: tE ? '#0E1220' : '#8C92A3', tripSW: tS ? 500 : 400, tripEW: tE ? 500 : 400,
+      tripOpenS: open('start'), tripOpenE: open('end'),
+      hasTripErr: !!s.tErr, tripErr: s.tErr || '', hasTripHint: !s.tErr && !!hint, tripHint: hint
     };
   };
 
