@@ -427,7 +427,7 @@
     };
     PS.payUrl = function (O, m) { return 'payment?variant=' + (m === 2 ? 'crypto' : 'pending') + '&c=' + O.code + '&pkg=' + encodeURIComponent(O.pkg) + (O.t === 'daily' ? '&d=' + O.d : ''); };
     PS.checkoutBack = function () { var o = PS.order(); return PS.checkoutUrl(o.code, o.pkg, o.t === 'daily' ? o.d : 0); };
-    // Курс оплаты в USDT (Rapira − 7%); в старых снимках каталога его нет — тогда курс Rapira
+    // Курс оплаты в USDT (Rapira, без скидки); в старых снимках каталога его нет — тогда курс Rapira
     if (CAT.meta && (CAT.meta.usdtRate || CAT.meta.usdRub)) PS.USDT_RATE = Math.round((CAT.meta.usdtRate || CAT.meta.usdRub) * 100) / 100;
 
     var successOld = PS.successC;
