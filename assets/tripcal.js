@@ -45,7 +45,13 @@
 
   function close() {
     if (!st) return;
-    st.back.remove(); st.box.remove();
+    // Уезжает с анимацией; клики по уходящему окну уже не принимаем
+    var back = st.back, box = st.box, gone = false;
+    var drop = function () { if (gone) return; gone = true; back.remove(); box.remove(); };
+    back.classList.add('tc-out'); box.classList.add('tc-out');
+    back.style.pointerEvents = box.style.pointerEvents = 'none';
+    box.addEventListener('animationend', drop);
+    setTimeout(drop, 320);
     document.removeEventListener('keydown', st.key);
     window.removeEventListener('resize', st.place);
     window.removeEventListener('scroll', st.place, true);
@@ -53,9 +59,23 @@
     if (a && a.focus) try { a.focus({ preventScroll: true }); } catch (e) { /* */ }
   }
 
+  /** Классы ячейки: начало, конец, промежуток; prev — конец «на примерку» под курсором мыши */
+  function cellClass(v) {
+    var s = st, last = s.end || (s.start && s.hover && s.hover > s.start ? s.hover : ''), cls = 'tc-d';
+    if (v === s.min) cls += ' today';
+    if (s.start && v === s.start) cls += ' s';
+    if (last && v === last) cls += s.end ? ' e' : ' e prev';
+    if (s.start && last && v > s.start && v < last) cls += ' in';
+    return cls;
+  }
+  // Наведение не перерисовывает календарь (иначе кнопка под пальцем пропадает и нажатие теряется) — меняем только классы
+  function paint() {
+    var cells = st.box.querySelectorAll('button[data-d]');
+    for (var i = 0; i < cells.length; i++) cells[i].parentNode.className = cellClass(cells[i].dataset.d);
+  }
+
   function render() {
     var s = st, wide = s.wide, n = wide ? 2 : 1;
-    var lastEnd = s.end || (s.start && s.hover && s.hover > s.start ? s.hover : '');
     var h = wide ? '' : '<div class="tc-grab"></div>';
     h += '<div class="tc-sum">' +
       '<button type="button" class="tc-f' + (s.focus === 'start' ? ' on' : '') + '" data-f="start"><span>' + T.from + '</span><b' + (s.start ? '>' + nice(s.start) : ' class="tc-ph">' + T.pick) + '</b></button>' +
@@ -71,11 +91,7 @@
       var first = (new Date(Date.UTC(y, m, 1)).getUTCDay() + 6) % 7, days = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
       for (var e = 0; e < first; e++) h += '<div></div>';
       for (var d = 1; d <= days; d++) {
-        var v = iso(y, m, d), cls = 'tc-d', off = v < s.min || (s.focus === 'end' && s.start && v < s.start && false);
-        if (v === s.min) cls += ' today';
-        if (s.start && v === s.start) cls += ' s';
-        if (lastEnd && v === lastEnd) cls += s.end ? ' e' : ' e prev';
-        if (s.start && lastEnd && v > s.start && v < lastEnd) cls += ' in';
+        var v = iso(y, m, d), cls = cellClass(v), off = v < s.min;
         h += '<div class="' + cls + '"><button type="button" data-d="' + v + '"' + (off ? ' disabled' : '') + ' aria-label="' + nice(v) + ' ' + y + '"' + (v === s.start || v === s.end ? ' aria-pressed="true"' : '') + '>' + d + '</button></div>';
       }
       h += '</div></div>';
@@ -149,10 +165,11 @@
         if (t.hasAttribute('data-clear')) { st.start = ''; st.end = ''; st.focus = 'start'; render(); return; }
         if (t.hasAttribute('data-ok')) return done();
       });
-      box.addEventListener('mouseover', function (e) {
+      box.addEventListener('pointerover', function (e) {
+        if (e.pointerType !== 'mouse') return;
         var t = e.target.closest('button[data-d]');
         var v = t && !t.disabled && st.start && !st.end && st.focus === 'end' ? t.dataset.d : '';
-        if (v !== st.hover) { st.hover = v; render(); }
+        if (v !== st.hover) { st.hover = v; paint(); }
       });
       document.body.appendChild(back); document.body.appendChild(box);
       document.addEventListener('keydown', st.key);
